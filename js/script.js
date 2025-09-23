@@ -54,7 +54,9 @@ const translations = {
     emailPlaceholder: "Your Email",
     messageLabel: "Your Message",
     sendMessage: "Send Message",
-    rightsReserved: "All rights reserved.",
+    madeWith: "Made with",
+    by: "by",
+    sourceCode: "Source Code",
   },
   fr: {
     name: "Kévin Bourbasquet",
@@ -112,7 +114,9 @@ const translations = {
     emailPlaceholder: "Votre email",
     messageLabel: "Votre message",
     sendMessage: "Envoyer le message",
-    rightsReserved: "Tous droits réservés.",
+    madeWith: "Fait avec",
+    by: "par",
+    sourceCode: "Code source",
   },
 };
 
@@ -124,8 +128,32 @@ let currentTheme = localStorage.getItem("theme") || "light";
 const langToggle = document.getElementById("langToggle");
 const themeToggle = document.getElementById("themeToggle");
 
+function calculateAge(birthDate) {
+  const today = new Date();
+  const birth = new Date(birthDate);
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
+function updateAgeInTranslations() {
+  const age = calculateAge("1989-06-18");
+
+  // Mettre à jour les traductions
+  translations.en.aboutText1 = `I'm a ${age}-year-old full-stack developer with a passion for building scalable web applications using modern technologies. My expertise lies in creating microservice architectures with Symfony API Platform and crafting intuitive user interfaces with Vue.js and React.js.`;
+
+  translations.fr.aboutText1 = `Je suis un développeur full-stack de ${age} ans passionné par la création d'applications web évolutives utilisant des technologies modernes. Mon expertise réside dans la création d'architectures de microservices avec Symfony API Platform et la création d'interfaces utilisateur intuitives avec Vue.js et React.js.`;
+}
+
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
+  updateAgeInTranslations();
+
   // Set initial theme
   document.documentElement.setAttribute("data-theme", currentTheme);
 
