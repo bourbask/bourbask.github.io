@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kévin Bourbasquet - Full Stack Developer & Creative Technologist"
+    />
+    <title>Kévin Bourbasquet - Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text" data-key="name">Kévin Bourbasquet</span>
+        </div>
+        <div class="nav-controls">
+          <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-option" data-lang="fr">FR</span>
+            <div class="lang-slider"></div>
+          </button>
+          <button class="theme-toggle" id="themeToggle">
+            <div class="theme-icon-container">
+              <svg
+                class="sun-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg
+                class="moon-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span data-key="badge">Available for work</span>
+          </div>
+          <h1 class="hero-title">
+            <span data-key="heroTitle1">Building digital</span><br />
+            <span class="gradient-text" data-key="heroTitle2">experiences</span>
+          </h1>
+          <p class="hero-description" data-key="heroDescription">
+            Full-stack developer passionate about creating scalable web
+            applications, exploring DevOps practices, and crafting unique
+            digital experiences.
+          </p>
+          <div class="hero-actions">
+            <button
+              class="btn btn-primary"
+              onclick="scrollToSection('projects')"
+              data-key="viewWork"
+            >
+              View My Work
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="scrollToSection('contact')"
+              data-key="getInTouch"
+            >
+              Get In Touch
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-card card-code">
+            <div class="code-snippet">
+              <div class="code-header">
+                <div class="code-dots">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="code-content">
+                <span class="code-line"
+                  >const <span class="code-var">developer</span> = {</span
+                >
+                <span class="code-line">
+                  name: <span class="code-string">"Kévin"</span>,</span
+                >
+                <span class="code-line">
+                  skills: [<span class="code-string">"Vue"</span>,
+                  <span class="code-string">"React"</span>,
+                  <span class="code-string">"Symfony"</span>]</span
+                >
+                <span class="code-line">};</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating-card card-tech">
+            <div class="tech-icons">
+              <div class="tech-icon">⚡</div>
+              <div class="tech-icon">🐳</div>
+              <div class="tech-icon">🔧</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-key="aboutTitle">About Me</h2>
+          <p class="section-subtitle" data-key="aboutSubtitle">
+            Developer, creator, and technology enthusiast
+          </p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p data-key="aboutText1">
+              I'm a 26-year-old full-stack developer with a passion for building
+              scalable web applications using modern technologies. My expertise
+              lies in creating microservice architectures with Symfony API
+              Platform and crafting intuitive user interfaces with Vue.js and
+              React.js.
+            </p>
+            <p data-key="aboutText2">
+              Beyond coding, I'm deeply interested in DevOps practices, from
+              CI/CD pipelines to infrastructure automation with tools like
+              OpenTofu, Ansible, and Docker. I believe in the power of
+              technology to solve real-world problems.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-number">3+</div>
+              <div class="stat-label" data-key="yearsExperience">
+                Years Experience
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">20+</div>
+              <div class="stat-label" data-key="projectsCompleted">
+                Projects Completed
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">5+</div>
+              <div class="stat-label" data-key="technologiesMastered">
+                Technologies Mastered
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-key="skillsTitle">
+            Skills & Technologies
+          </h2>
+          <p class="section-subtitle" data-key="skillsSubtitle">
+            Tools and technologies I work with
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 data-key="frontendTitle">Frontend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Vue.js</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">CSS/SCSS</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 data-key="backendTitle">Backend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Symfony</span>
+              <span class="skill-tag">API Platform</span>
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">PostgreSQL</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 data-key="devopsTitle">DevOps</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">OpenTofu</span>
+              <span class="skill-tag">Ansible</span>
+              <span class="skill-tag">GitHub Actions</span>
+              <span class="skill-tag">GitLab CI</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 data-key="toolsTitle">Tools</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Manjaro Linux</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-key="projectsTitle">
+            Featured Projects
+          </h2>
+          <p class="section-subtitle" data-key="projectsSubtitle">
+            Some of my recent work and side projects
+          </p>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card featured">
+            <div class="project-image">
+              <div class="project-placeholder">🖨️</div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="project-tag">Startup</span>
+                <span class="project-tag">Full-Stack</span>
+              </div>
+              <h3 class="project-title">EzPrint3D</h3>
+              <p class="project-description" data-key="ezprint3dDescription">
+                A platform connecting 3D printing service providers with
+                customers. Built with modern microservices architecture and
+                focuses on user experience.
+              </p>
+              <div class="project-tech">
+                <span>Symfony</span>
+                <span>Vue.js</span>
+                <span>Docker</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-placeholder">🤖</div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="project-tag">Bot</span>
+                <span class="project-tag">Rust</span>
+              </div>
+              <h3 class="project-title">LeKickerFou</h3>
+              <p class="project-description" data-key="lekickerfouDescription">
+                Discord bot for automated voice channel management. Built with
+                Rust for performance and reliability.
+              </p>
+              <div class="project-tech">
+                <span>Rust</span>
+                <span>Discord API</span>
+                <span>Tokio</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-placeholder">⌨️</div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="project-tag">Hardware</span>
+                <span class="project-tag">DIY</span>
+              </div>
+              <h3 class="project-title">Custom Keyboards</h3>
+              <p class="project-description" data-key="keyboardDescription">
+                Hand-built mechanical keyboards including a Corne 3x6. Exploring
+                ergonomic designs and custom firmware.
+              </p>
+              <div class="project-tech">
+                <span>QMK</span>
+                <span>3D Printing</span>
+                <span>Electronics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section class="section interests">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-key="interestsTitle">Beyond Code</h2>
+          <p class="section-subtitle" data-key="interestsSubtitle">
+            Creative pursuits and hobbies that inspire my work
+          </p>
+        </div>
+        <div class="interests-grid">
+          <div class="interest-card">
+            <div class="interest-icon">📸</div>
+            <h3 data-key="photographyTitle">Photography</h3>
+            <p data-key="photographyDescription">
+              Capturing moments and perspectives through the lens, exploring
+              composition and storytelling.
+            </p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">🎵</div>
+            <h3 data-key="musicTitle">Music</h3>
+            <p data-key="musicDescription">
+              Playing guitar and piano, creating melodies and exploring
+              different musical styles and techniques.
+            </p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">🪚</div>
+            <h3 data-key="woodworkingTitle">Woodworking</h3>
+            <p data-key="woodworkingDescription">
+              Crafting functional and artistic pieces from wood, combining
+              traditional techniques with modern tools.
+            </p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">🐧</div>
+            <h3 data-key="linuxTitle">Linux Enthusiast</h3>
+            <p data-key="linuxDescription">
+              Daily Manjaro user, exploring system optimization and contributing
+              to open-source projects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-info">
+            <h2 class="section-title" data-key="contactTitle">
+              Let's Work Together
+            </h2>
+            <p data-key="contactDescription">
+              I'm always interested in new opportunities and collaborations.
+              Whether you have a project in mind or just want to chat about
+              technology, feel free to reach out.
+            </p>
+            <div class="contact-methods">
+              <a href="mailto:contact@bourbask.dev" class="contact-method">
+                <span class="contact-icon">📧</span>
+                <span data-key="emailLabel">Email</span>
+              </a>
+              <a
+                href="https://github.com/bourbask"
+                class="contact-method"
+                target="_blank"
+              >
+                <span class="contact-icon">🐙</span>
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/kevin-bourbasquet"
+                class="contact-method"
+                target="_blank"
+              >
+                <span class="contact-icon">💼</span>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-form-container">
+            <form class="contact-form">
+              <input
+                type="text"
+                placeholder="Your Name"
+                data-placeholder="nameLabel"
+                required
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                data-placeholder="emailPlaceholder"
+                required
+              />
+              <textarea
+                placeholder="Your Message"
+                data-placeholder="messageLabel"
+                rows="4"
+                required
+              ></textarea>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-key="sendMessage"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Kévin Bourbasquet.
+          <span data-key="rightsReserved">All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
