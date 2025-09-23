@@ -726,11 +726,29 @@ body {
   background: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   padding: 2rem 0;
-  text-align: center;
 }
 
-.footer p {
+.footer-content {
+  text-align: center;
   color: var(--text-secondary);
+}
+
+.footer-content p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  font-size: 0.875rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-primary);
 }
 
 /* Responsive Design */
