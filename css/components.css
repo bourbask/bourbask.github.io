@@ -1,0 +1,217 @@
+/**
+ * Reusable Components
+ * 
+ * Button styles, cards, form elements, and other
+ * reusable UI components throughout the portfolio.
+ */
+
+/* ===== BUTTON SYSTEM ===== */
+
+/* Base button styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+/* Primary button with green gradient */
+.btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Secondary button with warm gradient */
+.btn-secondary {
+  background: var(--accent-gradient-warm);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-amber);
+}
+
+/* Accent button with amber color */
+.btn-accent {
+  background: var(--accent-tertiary);
+  color: white;
+}
+
+/* ===== CARD COMPONENTS ===== */
+
+/* Base card styling */
+.card {
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== FORM COMPONENTS ===== */
+
+/* Form input styling */
+.form-input {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+}
+
+/* ===== TAG SYSTEM ===== */
+
+/* Base tag styling */
+.tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+/* Skill tags with hover effects */
+.skill-tag {
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: var(--accent-primary);
+  box-shadow: var(--glow-green);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===== PROFILE IMAGE COMPONENT ===== */
+
+/* Profile image container with decorative background */
+.profile-image-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+/* Main profile image */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Decorative gradient background */
+.profile-decoration {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: var(--accent-gradient);
+  border-radius: 2.5rem;
+  z-index: 1;
+  opacity: 0.1;
+  transition: all 0.3s ease;
+}
+
+/* Profile image hover effects */
+.profile-image-container:hover .profile-decoration {
+  opacity: 0.2;
+  transform: rotate(3deg);
+}
+
+.profile-image-container:hover .profile-image {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===== STAT CARDS ===== */
+
+/* Statistics display cards */
+.stat {
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Stat numbers with color variations */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+/* Color variations for stats */
+.stat:nth-child(1) .stat-number {
+  color: var(--accent-primary); /* First stat - primary green */
+}
+
+.stat:nth-child(2) .stat-number {
+  color: var(--accent-tertiary); /* Middle stat - amber */
+}
+
+.stat:nth-child(3) .stat-number {
+  color: var(--accent-secondary); /* Last stat - dark green */
+}
+
+/* Stat labels */
+.stat-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

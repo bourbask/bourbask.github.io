@@ -1,0 +1,97 @@
+/**
+ * Animations & Transitions
+ * 
+ * Keyframe animations, transitions, and interactive effects
+ * to enhance user experience and add visual interest.
+ */
+
+/* ===== FLOATING ANIMATIONS ===== */
+
+/* Floating animation for hero cards */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Apply floating animation to cards */
+.floating-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Delayed animation for second card */
+.card-tech {
+  animation-delay: 3s;
+}
+
+/* ===== FADE IN ANIMATIONS ===== */
+
+/* Fade in from bottom animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply fade in animation to sections */
+@media (prefers-reduced-motion: no-preference) {
+  .section {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  /* Staggered animation delays */
+  .section:nth-child(even) {
+    animation-delay: 0.2s;
+  }
+
+  .section:nth-child(odd) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* ===== HOVER TRANSITIONS ===== */
+
+/* Smooth transitions for interactive elements */
+.btn,
+.card,
+.skill-tag,
+.project-card,
+.interest-card,
+.contact-method {
+  transition: all 0.3s ease;
+}
+
+/* Transform and shadow transitions */
+.btn:hover,
+.card:hover,
+.skill-tag:hover,
+.project-card:hover,
+.interest-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Color transitions for text elements */
+.footer-links a,
+.nav-controls button,
+.lang-option {
+  transition: color 0.3s ease;
+}
+
+/* ===== THEME TRANSITION ===== */
+
+/* Smooth theme switching */
+body,
+.nav,
+.card,
+.btn,
+input,
+textarea {
+  transition: all 0.3s ease;
+}
