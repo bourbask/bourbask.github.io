@@ -1,0 +1,194 @@
+/**
+ * Responsive Design
+ * 
+ * Media queries and responsive styles for different
+ * screen sizes and device types.
+ */
+
+/* ===== TABLET BREAKPOINT (768px and below) ===== */
+@media (max-width: 768px) {
+  /* Navigation adjustments */
+  .nav-container {
+    padding: 1rem;
+  }
+
+  /* Hero section becomes single column */
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Smaller hero title */
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  /* Smaller section titles */
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* About section becomes single column */
+  .about-content,
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* About info becomes single column */
+  .about-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Smaller profile image */
+  .profile-image-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  /* Featured project becomes single column */
+  .project-card.featured {
+    grid-template-columns: 1fr;
+  }
+
+  /* Smaller hero visual */
+  .hero-visual {
+    height: 200px;
+  }
+
+  /* Make floating cards relative positioned */
+  .floating-card {
+    position: relative;
+    margin: 1rem 0;
+  }
+
+  /* Reset card positions */
+  .card-code {
+    top: 0;
+    left: 0;
+  }
+
+  .card-tech {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/* ===== MOBILE BREAKPOINT (480px and below) ===== */
+@media (max-width: 480px) {
+  /* Even smaller profile image */
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Adjust container padding for mobile */
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Stack hero actions vertically */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Full width buttons on mobile */
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Smaller floating cards */
+  .card-code {
+    width: 240px;
+  }
+
+  .card-tech {
+    width: 100px;
+  }
+
+  /* Adjust section padding for mobile */
+  .section {
+    padding: 3rem 0;
+  }
+
+  /* Smaller section headers */
+  .section-header {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ===== LARGE DESKTOP (1400px and above) ===== */
+@media (min-width: 1400px) {
+  /* Larger container for big screens */
+  .container {
+    max-width: 1400px;
+  }
+
+  /* Larger hero title */
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  /* More spacing for large screens */
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  /* Hide interactive elements when printing */
+  .nav,
+  .hero-actions,
+  .contact-form,
+  .floating-card {
+    display: none;
+  }
+
+  /* Adjust colors for printing */
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  /* Remove shadows for printing */
+  .card,
+  .project-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===== REDUCED MOTION PREFERENCES ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: high) {
+  /* Increase contrast for accessibility */
+  .btn-primary {
+    background: #000;
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+  }
+}

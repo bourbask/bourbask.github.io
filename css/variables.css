@@ -1,0 +1,94 @@
+/**
+ * CSS Custom Properties - Color Palette & Design Tokens
+ * 
+ * Nature-inspired color scheme with green primary colors
+ * and warm amber accents for a personal, organic feel.
+ */
+
+:root {
+  /* ===== LIGHT THEME COLORS - NATURE PALETTE ===== */
+
+  /* Background Colors */
+  --bg-primary: #ffffff; /* Main background - pure white */
+  --bg-secondary: #f8fafc; /* Section alternates - very light gray */
+  --bg-tertiary: #f1f5f9; /* Cards and inputs - light gray */
+
+  /* Text Colors */
+  --text-primary: #0f172a; /* Main text - dark slate */
+  --text-secondary: #475569; /* Secondary text - medium gray */
+  --text-tertiary: #64748b; /* Tertiary text - light gray */
+
+  /* Green Nature Accents */
+  --accent-primary: #4ade80; /* Modern energetic green */
+  --accent-secondary: #059669; /* Professional dark green */
+  --accent-tertiary: #fbbf24; /* Warm amber for highlights */
+
+  /* Gradient Combinations */
+  --accent-gradient: linear-gradient(135deg, #4ade80 0%, #059669 100%);
+  --accent-gradient-warm: linear-gradient(135deg, #4ade80 0%, #fbbf24 100%);
+
+  /* Semantic Colors */
+  --success-color: #10b981; /* Success states */
+  --warning-color: #f59e0b; /* Warning states */
+
+  /* UI Elements */
+  --border-color: #e2e8f0; /* Borders and dividers */
+
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Nature-Inspired Glow Effects */
+  --glow-green: 0 0 20px rgba(74, 222, 128, 0.3);
+  --glow-amber: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+/**
+ * Dark Theme Override
+ * More saturated colors for better contrast in dark mode
+ */
+[data-theme="dark"] {
+  /* ===== DARK THEME COLORS - NIGHT NATURE ===== */
+
+  /* Background Colors - Dark slate palette */
+  --bg-primary: #0f172a; /* Dark slate background */
+  --bg-secondary: #1e293b; /* Lighter slate for sections */
+  --bg-tertiary: #334155; /* Medium slate for components */
+
+  /* Text Colors - Light variants for contrast */
+  --text-primary: #f8fafc; /* Light text on dark background */
+  --text-secondary: #cbd5e1; /* Medium light text */
+  --text-tertiary: #94a3b8; /* Subtle light text */
+
+  /* Dark Mode Nature Accents - More saturated */
+  --accent-primary: #22c55e; /* Bright saturated green */
+  --accent-secondary: #16a34a; /* Deep saturated green */
+  --accent-tertiary: #fbbf24; /* Amber stays the same for warmth */
+
+  /* Dark Mode Gradients */
+  --accent-gradient: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  --accent-gradient-warm: linear-gradient(135deg, #22c55e 0%, #fbbf24 100%);
+
+  /* Dark Mode Semantic Colors */
+  --success-color: #22c55e;
+  --warning-color: #fbbf24;
+
+  /* Dark Mode UI Elements */
+  --border-color: #334155; /* Darker borders for contrast */
+
+  /* Enhanced Shadow System for Dark Mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3),
+    0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3),
+    0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+  /* Enhanced Glow Effects for Dark Mode */
+  --glow-green: 0 0 25px rgba(34, 197, 94, 0.4);
+  --glow-amber: 0 0 25px rgba(251, 191, 36, 0.4);
+}

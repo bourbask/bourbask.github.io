@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ========================================
+         HEAD SECTION - Metadata & Resources
+         ======================================== -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -8,27 +12,65 @@
       content="Kévin Bourbasquet - Full Stack Developer & Creative Technologist"
     />
     <title>Kévin Bourbasquet - Full Stack Developer</title>
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#4ade80" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
-    <!-- Navigation -->
+    <!-- ========================================
+         NAVIGATION SECTION
+         Fixed navigation bar with controls
+         ======================================== -->
+
     <nav class="nav">
       <div class="nav-container">
+        <!-- Logo -->
         <div class="nav-logo">
           <span class="logo-text" data-key="name">Kévin Bourbasquet</span>
         </div>
+
+        <!-- Navigation Controls -->
         <div class="nav-controls">
+          <!-- Language Toggle -->
           <button class="lang-toggle" id="langToggle">
             <span class="lang-option active" data-lang="en">EN</span>
             <span class="lang-option" data-lang="fr">FR</span>
             <div class="lang-slider"></div>
           </button>
+
+          <!-- Theme Toggle -->
           <button class="theme-toggle" id="themeToggle">
             <div class="theme-icon-container">
               <svg
@@ -63,22 +105,30 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ========================================
+         HERO SECTION
+         Main landing area with CTA
+         ======================================== -->
+
     <section class="hero">
       <div class="hero-container">
+        <!-- Hero Content -->
         <div class="hero-content">
           <div class="hero-badge">
             <span data-key="badge">Available for work</span>
           </div>
+
           <h1 class="hero-title">
             <span data-key="heroTitle1">Building digital</span><br />
             <span class="gradient-text" data-key="heroTitle2">experiences</span>
           </h1>
+
           <p class="hero-description" data-key="heroDescription">
             Full-stack developer passionate about creating scalable web
             applications, exploring DevOps practices, and crafting unique
             digital experiences.
           </p>
+
           <div class="hero-actions">
             <button
               class="btn btn-primary"
@@ -96,6 +146,8 @@
             </button>
           </div>
         </div>
+
+        <!-- Hero Visual -->
         <div class="hero-visual">
           <div class="floating-card card-code">
             <div class="code-snippet">
@@ -120,10 +172,11 @@
               </div>
             </div>
           </div>
+
           <div class="floating-card card-tech">
             <div class="tech-icons">
-              <div class="tech-icon">⚡</div>
-              <div class="tech-icon">🐳</div>
+              <div class="tech-icon">🥾</div>
+              <div class="tech-icon">🌿</div>
               <div class="tech-icon">🔧</div>
             </div>
           </div>
@@ -131,7 +184,11 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ========================================
+         ABOUT SECTION
+         Personal info, profile, and stats
+         ======================================== -->
+
     <section class="section about" id="about">
       <div class="container">
         <div class="section-header">
@@ -140,22 +197,38 @@
             Developer, creator, and technology enthusiast
           </p>
         </div>
+
         <div class="about-content">
-          <div class="about-text">
-            <p data-key="aboutText1">
-              I'm a 26-year-old full-stack developer with a passion for building
-              scalable web applications using modern technologies. My expertise
-              lies in creating microservice architectures with Symfony API
-              Platform and crafting intuitive user interfaces with Vue.js and
-              React.js.
-            </p>
-            <p data-key="aboutText2">
-              Beyond coding, I'm deeply interested in DevOps practices, from
-              CI/CD pipelines to infrastructure automation with tools like
-              OpenTofu, Ansible, and Docker. I believe in the power of
-              technology to solve real-world problems.
-            </p>
+          <div class="about-info">
+            <!-- Profile Image -->
+            <div class="profile-image-container">
+              <img
+                src="assets/icons/profil.png"
+                alt="Kévin Bourbasquet"
+                class="profile-image"
+              />
+              <div class="profile-decoration"></div>
+            </div>
+
+            <!-- About Text -->
+            <div class="about-text">
+              <p data-key="aboutText1">
+                I'm a 26-year-old full-stack developer with a passion for
+                building scalable web applications using modern technologies. My
+                expertise lies in creating microservice architectures with
+                Symfony API Platform and crafting intuitive user interfaces with
+                Vue.js and React.js.
+              </p>
+              <p data-key="aboutText2">
+                Beyond coding, I'm deeply interested in DevOps practices, from
+                CI/CD pipelines to infrastructure automation with tools like
+                OpenTofu, Ansible, and Docker. I believe in the power of
+                technology to solve real-world problems.
+              </p>
+            </div>
           </div>
+
+          <!-- Statistics -->
           <div class="about-stats">
             <div class="stat">
               <div class="stat-number">3+</div>
@@ -180,7 +253,11 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ========================================
+         SKILLS SECTION
+         Technical skills by categories
+         ======================================== -->
+
     <section class="section skills">
       <div class="container">
         <div class="section-header">
@@ -191,7 +268,9 @@
             Tools and technologies I work with
           </p>
         </div>
+
         <div class="skills-grid">
+          <!-- Frontend Skills -->
           <div class="skill-category">
             <h3 data-key="frontendTitle">Frontend</h3>
             <div class="skill-tags">
@@ -202,6 +281,8 @@
               <span class="skill-tag">CSS/SCSS</span>
             </div>
           </div>
+
+          <!-- Backend Skills -->
           <div class="skill-category">
             <h3 data-key="backendTitle">Backend</h3>
             <div class="skill-tags">
@@ -212,6 +293,8 @@
               <span class="skill-tag">PostgreSQL</span>
             </div>
           </div>
+
+          <!-- DevOps Skills -->
           <div class="skill-category">
             <h3 data-key="devopsTitle">DevOps</h3>
             <div class="skill-tags">
@@ -222,6 +305,8 @@
               <span class="skill-tag">GitLab CI</span>
             </div>
           </div>
+
+          <!-- Tools -->
           <div class="skill-category">
             <h3 data-key="toolsTitle">Tools</h3>
             <div class="skill-tags">
@@ -236,7 +321,11 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ========================================
+         PROJECTS SECTION
+         Featured work and side projects
+         ======================================== -->
+
     <section class="section projects" id="projects">
       <div class="container">
         <div class="section-header">
@@ -247,7 +336,9 @@
             Some of my recent work and side projects
           </p>
         </div>
+
         <div class="projects-grid">
+          <!-- Featured Project -->
           <div class="project-card featured">
             <div class="project-image">
               <div class="project-placeholder">🖨️</div>
@@ -270,6 +361,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Project 2 -->
           <div class="project-card">
             <div class="project-image">
               <div class="project-placeholder">🤖</div>
@@ -291,6 +384,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Project 3 -->
           <div class="project-card">
             <div class="project-image">
               <div class="project-placeholder">⌨️</div>
@@ -316,7 +411,11 @@
       </div>
     </section>
 
-    <!-- Interests Section -->
+    <!-- ========================================
+         INTERESTS SECTION
+         Personal hobbies and interests
+         ======================================== -->
+
     <section class="section interests">
       <div class="container">
         <div class="section-header">
@@ -325,44 +424,48 @@
             Creative pursuits and hobbies that inspire my work
           </p>
         </div>
+
         <div class="interests-grid">
           <div class="interest-card">
             <div class="interest-icon">📸</div>
             <h3 data-key="photographyTitle">Photography</h3>
             <p data-key="photographyDescription">
-              Capturing moments and perspectives through the lens, exploring
-              composition and storytelling.
+              Capturing moments during treks and daily life...
             </p>
           </div>
+
           <div class="interest-card">
             <div class="interest-icon">🎵</div>
             <h3 data-key="musicTitle">Music</h3>
             <p data-key="musicDescription">
-              Playing guitar and piano, creating melodies and exploring
-              different musical styles and techniques.
+              Guitar and piano sessions for mental breaks...
             </p>
           </div>
+
           <div class="interest-card">
-            <div class="interest-icon">🪚</div>
-            <h3 data-key="woodworkingTitle">Woodworking</h3>
-            <p data-key="woodworkingDescription">
-              Crafting functional and artistic pieces from wood, combining
-              traditional techniques with modern tools.
+            <div class="interest-icon">🥾</div>
+            <h3 data-key="trekkingTitle">Trekking & Hiking</h3>
+            <p data-key="trekkingDescription">
+              Regular escapes to coastal paths and countryside trails...
             </p>
           </div>
+
           <div class="interest-card">
             <div class="interest-icon">🐧</div>
-            <h3 data-key="linuxTitle">Linux Enthusiast</h3>
+            <h3 data-key="linuxTitle">Linux Tinkerer</h3>
             <p data-key="linuxDescription">
-              Daily Manjaro user, exploring system optimization and contributing
-              to open-source projects.
+              Daily Manjaro user who actually enjoys...
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ========================================
+         CONTACT SECTION
+         Contact info and form
+         ======================================== -->
+
     <section class="section contact" id="contact">
       <div class="container">
         <div class="contact-content">
@@ -375,6 +478,7 @@
               Whether you have a project in mind or just want to chat about
               technology, feel free to reach out.
             </p>
+
             <div class="contact-methods">
               <a href="mailto:contact@bourbask.dev" class="contact-method">
                 <span class="contact-icon">📧</span>
@@ -398,6 +502,7 @@
               </a>
             </div>
           </div>
+
           <div class="contact-form-container">
             <form class="contact-form">
               <input
@@ -431,7 +536,11 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ========================================
+         FOOTER SECTION
+         Copyright and links
+         ======================================== -->
+
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
@@ -459,6 +568,11 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- ========================================
+         SCRIPTS
+         JavaScript functionality
+         ======================================== -->
+
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

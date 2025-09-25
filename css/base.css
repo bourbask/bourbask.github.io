@@ -1,0 +1,78 @@
+/**
+ * Base Styles - Reset & Typography
+ * 
+ * Foundation styles including CSS reset, typography,
+ * and basic HTML element styling.
+ */
+
+/* ===== CSS RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== HTML & BODY ===== */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+  /* Typography */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+
+  /* Colors using CSS custom properties */
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  /* Smooth theme transitions */
+  transition: all 0.3s ease;
+}
+
+/* ===== TYPOGRAPHY ===== */
+
+/* Section Titles */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+/* Section Subtitles */
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== LAYOUT CONTAINERS ===== */
+
+/* Main content container with max-width and centering */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Generic section spacing */
+.section {
+  padding: 5rem 0;
+}
+
+/* Section header styling */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
