@@ -1,6 +1,6 @@
 /**
  * Internationalization Manager
- * Handles language switching and text replacement
+ * Handles language switching with browser language detection
  */
 
 import { CONFIG } from "../config/settings.js";
@@ -11,15 +11,72 @@ import { fr } from "./fr.js";
 class I18nManager {
   constructor() {
     this.translations = { en, fr };
-    this.currentLang = CONFIG.DEFAULT_LANG;
+    this.supportedLanguages = Object.keys(this.translations);
     this.langToggle = document.getElementById("langToggle");
+
+    // Detect initial language from browser/localStorage
+    this.currentLang = this.detectInitialLanguage();
+  }
+
+  /**
+   * Detect initial language preference
+   */
+  detectInitialLanguage() {
+    // 1. Check localStorage first (user explicitly chose)
+    const savedLang = localStorage.getItem("language");
+    if (savedLang && this.supportedLanguages.includes(savedLang)) {
+      return savedLang;
+    }
+
+    // 2. Check browser language preferences
+    const browserLanguages = this.getBrowserLanguages();
+
+    for (const browserLang of browserLanguages) {
+      // Check exact match first (e.g., 'fr')
+      if (this.supportedLanguages.includes(browserLang)) {
+        return browserLang;
+      }
+
+      // Check language prefix (e.g., 'fr-FR' -> 'fr')
+      const langPrefix = browserLang.split("-")[0];
+      if (this.supportedLanguages.includes(langPrefix)) {
+        return langPrefix;
+      }
+    }
+
+    // 3. Fallback to project default
+    return CONFIG.DEFAULT_LANG;
+  }
+
+  /**
+   * Get browser languages in order of preference
+   */
+  getBrowserLanguages() {
+    const languages = [];
+
+    // Modern browsers - multiple languages
+    if (navigator.languages && navigator.languages.length > 0) {
+      languages.push(...navigator.languages);
+    }
+
+    // Fallback - single language
+    if (navigator.language) {
+      languages.push(navigator.language);
+    }
+
+    // Legacy fallback
+    if (navigator.userLanguage) {
+      languages.push(navigator.userLanguage);
+    }
+
+    return [...new Set(languages)]; // Remove duplicates
   }
 
   /**
    * Initialize i18n system
    */
   init() {
-    this.loadLanguage(this.currentLang);
+    this.loadLanguage(this.currentLang, false); // Don't save initial detection
     this.setupEventListeners();
   }
 
@@ -40,8 +97,10 @@ class I18nManager {
 
   /**
    * Load and apply language
+   * @param {string} lang - Language code to load
+   * @param {boolean} saveToStorage - Whether to save the preference
    */
-  loadLanguage(lang) {
+  loadLanguage(lang, saveToStorage = true) {
     if (!this.translations[lang]) {
       console.warn(
         `Language ${lang} not found, falling back to ${CONFIG.DEFAULT_LANG}`
@@ -63,6 +122,10 @@ class I18nManager {
     this.updateLangToggleUI(lang);
 
     this.currentLang = lang;
+
+    if (saveToStorage) {
+      localStorage.setItem("language", lang);
+    }
   }
 
   /**
@@ -112,8 +175,21 @@ class I18nManager {
    * Toggle between languages
    */
   toggleLanguage() {
-    const newLang = this.currentLang === "en" ? "fr" : "en";
-    this.loadLanguage(newLang);
+    const availableLangs = this.supportedLanguages;
+    const currentIndex = availableLangs.indexOf(this.currentLang);
+    const nextIndex = (currentIndex + 1) % availableLangs.length;
+    const newLang = availableLangs[nextIndex];
+
+    this.loadLanguage(newLang, true); // Always save manual choices
+  }
+
+  /**
+   * Reset to browser preference
+   */
+  resetToBrowserPreference() {
+    localStorage.removeItem("language");
+    const browserLang = this.detectInitialLanguage();
+    this.loadLanguage(browserLang, false);
   }
 
   /**
@@ -133,6 +209,20 @@ class I18nManager {
     if (this.langToggle) {
       this.langToggle.addEventListener("click", () => this.toggleLanguage());
     }
+  }
+
+  /**
+   * Check if current language is from browser preference
+   */
+  isUsingBrowserPreference() {
+    return !localStorage.getItem("language");
+  }
+
+  /**
+   * Get supported languages
+   */
+  getSupportedLanguages() {
+    return this.supportedLanguages;
   }
 }
 

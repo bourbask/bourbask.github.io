@@ -149,7 +149,7 @@ Found a bug or have a suggestion? Please [open an issue](https://github.com/bour
 
 ## 📞 Contact
 
-- **Email:** [contact@bourbask.dev](mailto:contact@bourbask.dev)
+- **Email:** [bourbasquet.k@etik.com](mailto:bourbasquet.k@etik.com)
 - **GitHub:** [@bourbask](https://github.com/bourbask)
 - **LinkedIn:** [Kevin Bourbasquet](https://linkedin.com/in/kevin-bourbasquet)
 
@@ -241,7 +241,7 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de
 
 ## 📞 Contact
 
-- **Email:** [contact@bourbask.dev](mailto:contact@bourbask.dev)
+- **Email:** [bourbasquet.k@etik.com](mailto:bourbasquet.k@etik.com)
 - **GitHub:** [@bourbask](https://github.com/bourbask)
 - **LinkedIn:** [Kevin Bourbasquet](https://linkedin.com/in/kevin-bourbasquet)
 

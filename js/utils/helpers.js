@@ -63,3 +63,29 @@ export function isInViewport(element) {
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
+
+/**
+ * Detect user preferences from browser
+ */
+export function getBrowserPreferences() {
+  const preferences = {};
+
+  // Theme preference
+  if (window.matchMedia) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      preferences.theme = "dark";
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      preferences.theme = "light";
+    }
+  }
+
+  // Language preference
+  preferences.languages = [];
+  if (navigator.languages) {
+    preferences.languages = [...navigator.languages];
+  } else if (navigator.language) {
+    preferences.languages = [navigator.language];
+  }
+
+  return preferences;
+}
