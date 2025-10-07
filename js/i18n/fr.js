@@ -69,6 +69,10 @@ export const fr = {
   messageLabel: "Qu'est-ce qui vous trotte dans la tête ?",
   sendMessage: "Envoyer le message",
 
+  // CV Button
+  loader: "Ouverture impression...",
+  action: "Télécharger CV",
+
   // Footer
   madeWith: "Conçu avec",
   by: "par",
@@ -77,4 +81,149 @@ export const fr = {
   // Form messages
   fillAllFields: "Merci de remplir tous les champs—j'ai hâte de vous lire !",
   emailClientOpened: "Client email ouvert ! J'ai hâte de vous lire.",
+
+  // CV Translations
+  cv: {
+    // Personal info
+    title: "Développeur Full-Stack",
+    phoneAvailable: "Disponible sur demande",
+    locationMove: "Brest → Toulouse",
+    drivingLicense: "Permis B",
+
+    // Summary
+    summary:
+      "Développeur full-stack de {age} ans avec 5 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. Recherche de nouveaux défis à Toulouse.",
+
+    // Section titles
+    experienceTitle: "Expérience Professionnelle",
+    projectsTitle: "Projets Marquants",
+    skillsTitle: "Compétences",
+    educationTitle: "Formation",
+    languagesTitle: "Langues",
+    interestsTitle: "Centres d'intérêt",
+
+    // Experience
+    experiences: [
+      {
+        title: "Développeur Full-Stack",
+        company: "Europrocurement",
+        period: "Nov 2022 - Présent",
+        location: "Brest, Bretagne",
+        type: "CDI",
+        achievements: [
+          "Développement d'applications pour annonces légales et formalités juridiques",
+          "Stack technique : Symfony, ReactJS, MySQL/MariaDB, API REST",
+          "Méthodes agiles, collaboration avec GitLab, intégration Redux",
+          "Gestion complète du cycle de développement full-stack",
+        ],
+      },
+      {
+        title: "Développeur Full-Stack",
+        company: "Kooi Security",
+        period: "Juil 2019 - Sept 2022",
+        location: "Lanester, Bretagne",
+        type: "Alternance",
+        achievements: [
+          "Développement d'applications de sécurité en environnement international",
+          "Stack : Symfony, Vue.js, Node.js, composants web sur mesure",
+          "Collaboration avec équipes néerlandaises (anglais professionnel)",
+          "Méthodes agiles, design avec Adobe Creative Suite",
+        ],
+      },
+      {
+        title: "Développeur Web",
+        company: "Société Alimentaire de Guidel",
+        period: "Déc 2018 - Fév 2019",
+        location: "Guidel, Bretagne",
+        type: "Stage",
+        achievements: [
+          "Conception et développement d'affichage web d'informations internes",
+          "Mise en production complète de la solution",
+          "Interface destinée aux équipes opérationnelles",
+        ],
+      },
+    ],
+
+    // Skills categories
+    skillCategories: {
+      backend: "Backend",
+      frontend: "Frontend",
+      database: "Database",
+      devops: "DevOps",
+      learning: "En cours",
+    },
+
+    // Skills lists
+    skills: {
+      backend: ["Symfony", "PHP", "Node.js", "API REST"],
+      frontend: ["React", "Vue.js", "TypeScript", "Redux"],
+      database: ["MySQL", "PostgreSQL", "MariaDB"],
+      devops: ["Docker", "GitLab", "AWS"],
+      learning: ["Rust", "Microservices"],
+    },
+
+    // Projects
+    projects: [
+      {
+        name: "EzPrint3D",
+        description:
+          "Plateforme SaaS connectant services d'impression 3D et clients",
+        tech: ["Symfony", "React", "Docker", "PostgreSQL"],
+        status: "En développement",
+      },
+      {
+        name: "LeKickerFou Bot",
+        description:
+          "Bot Discord haute performance pour gestion de canaux vocaux",
+        tech: ["Rust", "Discord API", "Tokio"],
+        status: "Déployé",
+      },
+      {
+        name: "Excelsior",
+        description: "Jeu d'horreur narratif basé sur voyage dans les Pyrénées",
+        tech: ["Unreal Engine 5", "Blueprint", "Level Design"],
+        status: "En développement",
+      },
+    ],
+
+    // Education
+    education: [
+      {
+        degree: "Master Manager de Solutions Digitales et Data",
+        school: "CS2I Lorient",
+        period: "2020 - 2022",
+        details: "Formation en alternance, spécialisation développement",
+      },
+      {
+        degree: "Licence Concepteur de Systèmes d'Information",
+        school: "CS2I Lorient",
+        period: "2019 - 2020",
+        details: "Spécialisation Développement",
+      },
+      {
+        degree: "BTS Systèmes Informatiques aux Organisations",
+        school: "Saint-Louis Châteaulin",
+        period: "2017 - 2019",
+        details: "Option Solutions d'infrastructure",
+      },
+    ],
+
+    // Languages
+    languagesList: [
+      { name: "Français", level: "Natif" },
+      { name: "Anglais", level: "Professionnel" },
+    ],
+
+    // Interests
+    interestsList: [
+      "🥾 Randonnée côtière",
+      "🌿 Jardinage",
+      "🔧 Projets DIY",
+      "🐧 Linux",
+    ],
+
+    // Footer
+    footer:
+      "Disponible pour un poste à Toulouse • Préavis flexible • Portfolio complet sur bourbasquetkev.in",
+  },
 };

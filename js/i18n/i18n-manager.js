@@ -92,6 +92,11 @@ class I18nManager {
       processed.aboutText1 = processed.aboutText1.replace("{age}", age);
     }
 
+    // Replace {age} placeholder in summary
+    if (processed.summary) {
+      processed.summary = processed.summary.replace("{age}", age);
+    }
+
     return processed;
   }
 
