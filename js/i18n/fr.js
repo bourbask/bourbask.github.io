@@ -48,7 +48,7 @@ export const fr = {
   interestsSubtitle: "Aventures et hobbies qui nourrissent la créativité",
   photographyTitle: "Photographie",
   photographyDescription:
-    "Capturer des moments pendant les treks et au quotidien. Il y a quelque chose dans l'art de figer le temps qui parle à l'esprit développeur.",
+    "Capturer des moments pendant les treks et au quotidien—il y a quelque chose dans l'art de figer le temps qui parle à l'esprit développeur.",
   musicTitle: "Musique",
   musicDescription:
     "Sessions guitare et piano pour les pauses mentales. Musique et code suivent des patterns—comprendre l'un aide avec l'autre.",
@@ -57,12 +57,12 @@ export const fr = {
     "Évasions régulières sur les sentiers côtiers et chemins de campagne. Rien ne vide l'esprit comme une bonne rando en bord de mer—et c'est là que mes meilleures idées de debug arrivent.",
   linuxTitle: "Bricoleur Linux",
   linuxDescription:
-    "Utilisateur quotidien de Manjaro qui aime vraiment configurer ses systèmes. Si ça tourne sous Linux et que ça peut être optimisé, ça m'intéresse probablement.",
+    "Utilisateur quotidien de Manjaro qui aime vraiment configurer ses systèmes—si ça tourne sous Linux et que ça peut être optimisé, ça m'intéresse probablement.",
 
   // Contact
   contactTitle: "Construisons quelque chose",
   contactDescription:
-    "Toujours partant pour discuter de projets intéressants, partager des connaissances, ou simplement parler tech. Que vous cherchiez un co-fondateur technique ou souhaiiter collaborer sur de l'open source.",
+    "Toujours partant pour discuter de projets intéressants, partager des connaissances, ou simplement parler tech. Que vous cherchiez un co-fondateur technique ou souhaitiez collaborer sur de l'open source.",
   emailLabel: "Email",
   nameLabel: "Votre nom",
   emailPlaceholder: "votre.email@domaine.com",
