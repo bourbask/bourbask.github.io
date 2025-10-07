@@ -8,6 +8,7 @@ import ThemeManager from "./modules/theme-manager.js";
 import ContactFormManager from "./modules/contact-form.js";
 import NavigationManager from "./modules/navigation.js";
 import AnimationManager from "./modules/animations.js";
+import CVGenerator from "./modules/cv-generator.js";
 
 class PortfolioApp {
   constructor() {
@@ -16,6 +17,7 @@ class PortfolioApp {
     this.contactForm = new ContactFormManager(this.i18n);
     this.navigation = new NavigationManager();
     this.animations = new AnimationManager();
+    this.cvGenerator = new CVGenerator(this.i18n);
   }
 
   /**
@@ -28,8 +30,52 @@ class PortfolioApp {
     this.contactForm.init();
     this.navigation.init();
     this.animations.init();
+    this.cvGenerator.init();
+    this.setupCVDownload();
+    this.setupLanguageChangeListener();
 
     console.log("✅ Portfolio application initialized");
+  }
+
+  /**
+   * Setup CV download functionality
+   */
+  setupCVDownload() {
+    const downloadBtn = document.getElementById("downloadCV");
+    if (downloadBtn) {
+      downloadBtn.addEventListener("click", async () => {
+        await this.cvGenerator.generatePDF();
+      });
+    }
+  }
+
+  /**
+   * Setup language change listener to update CV
+   */
+  setupLanguageChangeListener() {
+    // Store original toggle method
+    const originalToggle = this.i18n.toggleLanguage.bind(this.i18n);
+
+    // Override toggle method to update CV language
+    this.i18n.toggleLanguage = () => {
+      originalToggle();
+
+      // Update CV generator language
+      if (this.cvGenerator) {
+        this.cvGenerator.updateLanguage();
+      }
+    };
+
+    // Also listen for direct language changes
+    const originalLoadLanguage = this.i18n.loadLanguage.bind(this.i18n);
+    this.i18n.loadLanguage = (lang, saveToStorage = true) => {
+      originalLoadLanguage(lang, saveToStorage);
+
+      // Update CV generator language
+      if (this.cvGenerator) {
+        this.cvGenerator.updateLanguage();
+      }
+    };
   }
 }
 

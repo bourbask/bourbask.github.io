@@ -63,6 +63,38 @@
 
         <!-- Navigation Controls -->
         <div class="nav-controls">
+          <!-- CV Download with tooltip -->
+          <div class="cv-download-wrapper">
+            <button
+              id="downloadCV"
+              class="cv-download-btn"
+              aria-label="Download CV"
+            >
+              <svg
+                class="download-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  class="download-arrow"
+                  d="M12 15L8 11H11V3H13V11H16L12 15Z"
+                  fill="currentColor"
+                />
+                <path
+                  class="download-base"
+                  d="M20 16V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V16H6V20H18V16H20Z"
+                  fill="currentColor"
+                />
+                <div class="download-fill"></div>
+              </svg>
+            </button>
+            <div class="cv-tooltip">
+              <span data-key="actionLabel">Télécharger CV</span>
+            </div>
+          </div>
+
           <!-- Language Toggle -->
           <button class="lang-toggle" id="langToggle">
             <span class="lang-option active" data-lang="en">EN</span>
@@ -480,7 +512,7 @@
             </p>
 
             <div class="contact-methods">
-              <a href="mailto:bourbasquet.k@etik.com" class="contact-method">
+              <a href="mailto:contact@bourbask.dev" class="contact-method">
                 <span class="contact-icon">📧</span>
                 <span data-key="emailLabel">Email</span>
               </a>

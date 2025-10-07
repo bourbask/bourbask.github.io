@@ -44,6 +44,209 @@
   gap: 1rem;
 }
 
+/* ===== CV DOWNLOAD BUTTON ===== */
+.cv-download-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cv-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-download-btn:hover {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+
+.cv-download-btn:active {
+  transform: translateY(0);
+}
+
+.cv-download-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+/* Download Icon */
+.download-icon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.cv-download-btn:hover .download-icon {
+  transform: scale(1.1);
+}
+
+/* Loading Animation */
+.cv-download-btn.loading {
+  pointer-events: none;
+}
+
+.cv-download-btn.loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    transparent
+  );
+  animation: fillProgress 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes fillProgress {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Alternative pulse animation for the icon */
+.cv-download-btn.loading .download-icon {
+  animation: iconPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Tooltip */
+.cv-tooltip {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+}
+
+.cv-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--bg-secondary);
+}
+
+.cv-download-wrapper:hover .cv-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Dark theme support */
+[data-theme="dark"] .cv-tooltip {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .cv-tooltip::before {
+  border-bottom-color: var(--bg-secondary);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .cv-download-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .download-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cv-tooltip {
+    bottom: -40px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* Success animation */
+.cv-download-btn.success {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+.cv-download-btn.success .download-icon {
+  animation: successBounce 0.6s ease-out;
+}
+
+@keyframes successBounce {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateY(-4px) scale(1.1);
+  }
+}
+
 /* ===== LANGUAGE TOGGLE ===== */
 
 /* Language toggle button */
@@ -155,8 +358,8 @@
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding-top: 5rem;
+  align-items: start;
+  padding-top: 10rem;
   background: linear-gradient(
     135deg,
     var(--bg-primary) 0%,
