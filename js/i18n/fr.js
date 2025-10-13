@@ -225,5 +225,47 @@ export const fr = {
     // Footer
     footer:
       "Disponible pour un poste à Toulouse • Préavis flexible • Portfolio complet sur bourbasquetkev.in",
+
+    // Blog
+    blogTitle: "Blog Technique",
+    blogSubtitle:
+      "Réflexions, tutoriels et insights de mon parcours de développeur",
+    readMore: "Lire la suite",
+    blogNavigation: "Blog",
+    categories: "Catégories",
+    tags: "Tags",
+
+    // Article navigation
+    previousArticle: "Article précédent",
+    nextArticle: "Article suivant",
+    shareArticle: "Partager cet article",
+
+    // Categories
+    categorySystem: "Système",
+    categoryHardware: "Hardware",
+    categoryDevops: "DevOps",
+    categoryTools: "Outils",
+    categoryProject: "Projets",
+
+    // Blog Hero
+    blogBadge: "Blog Technique",
+    blogHeroTitle1: "Partager des connaissances",
+    blogHeroTitle2: "et expériences",
+    blogHeroDescription:
+      "Réflexions, tutoriels et insights de mon parcours de développeur. Du système à la pratique de développement, découvrez mes apprentissages et projets.",
+    articlesPublished: "Articles Publiés",
+    minutesReading: "Minutes de Lecture",
+    categories: "Catégories",
+
+    // Latest Article
+    latestArticle: "Dernier Article",
+    readArticle: "Lire l'Article",
+
+    // Articles List
+    allArticlesTitle: "Tous les Articles",
+    allCategories: "Toutes les Catégories",
+    sortNewest: "Plus Récents",
+    sortOldest: "Plus Anciens",
+    sortReadingTime: "Temps de Lecture",
   },
 };

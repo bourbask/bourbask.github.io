@@ -9,6 +9,8 @@ import ContactFormManager from "./modules/contact-form.js";
 import NavigationManager from "./modules/navigation.js";
 import AnimationManager from "./modules/animations.js";
 import CVGenerator from "./modules/cv-generator.js";
+import BlogManager from "./modules/blog-manager.js";
+("./modules/blog-manager.js");
 
 class PortfolioApp {
   constructor() {
@@ -18,6 +20,7 @@ class PortfolioApp {
     this.navigation = new NavigationManager();
     this.animations = new AnimationManager();
     this.cvGenerator = new CVGenerator(this.i18n);
+    this.blogManager = new BlogManager(this.i18n);
   }
 
   /**
@@ -27,10 +30,21 @@ class PortfolioApp {
     // Initialize all modules
     this.theme.init();
     this.i18n.init();
-    this.contactForm.init();
     this.navigation.init();
-    this.animations.init();
     this.cvGenerator.init();
+
+    // Initialize contact form only on main site (not needed in blog)
+    if (!window.location.pathname.startsWith("/blog/")) {
+      this.contactForm.init();
+      this.animations.init();
+    }
+
+    // Initialize blog if on blog pages
+    if (window.location.pathname.includes("/blog")) {
+      console.log("🔍 Initializing blog for path:", window.location.pathname);
+      this.blogManager.init();
+    }
+
     this.setupCVDownload();
     this.setupLanguageChangeListener();
 
@@ -63,6 +77,10 @@ class PortfolioApp {
       // Update CV generator language
       if (this.cvGenerator) {
         this.cvGenerator.updateLanguage();
+      }
+      // Update Blog pages language
+      if (this.blogManager) {
+        this.blogManager.updateLanguage();
       }
     };
 
