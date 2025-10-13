@@ -226,5 +226,47 @@ export const en = {
     // Footer
     footer:
       "Available for a position in Toulouse • Flexible notice period • Complete portfolio on bourbasquetkev.in",
+
+    // Blog
+    blogTitle: "Technical Blog",
+    blogSubtitle:
+      "Thoughts, tutorials, and insights from my development journey",
+    readMore: "Read more",
+    blogNavigation: "Blog",
+    categories: "Categories",
+    tags: "Tags",
+
+    // Article navigation
+    previousArticle: "Previous article",
+    nextArticle: "Next article",
+    shareArticle: "Share this article",
+
+    // Categories
+    categorySystem: "System",
+    categoryHardware: "Hardware",
+    categoryDevops: "DevOps",
+    categoryTools: "Tools",
+    categoryProject: "Projects",
+
+    // Blog Hero
+    blogBadge: "Technical Blog",
+    blogHeroTitle1: "Sharing knowledge",
+    blogHeroTitle2: "and experiences",
+    blogHeroDescription:
+      "Thoughts, tutorials, and insights from my development journey. From system administration to development practices, discover my learnings and projects.",
+    articlesPublished: "Articles Published",
+    minutesReading: "Minutes of Reading",
+    categories: "Categories",
+
+    // Latest Article
+    latestArticle: "Latest Article",
+    readArticle: "Read Article",
+
+    // Articles List
+    allArticlesTitle: "All Articles",
+    allCategories: "All Categories",
+    sortNewest: "Newest First",
+    sortOldest: "Oldest First",
+    sortReadingTime: "Reading Time",
   },
 };
