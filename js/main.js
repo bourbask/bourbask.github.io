@@ -10,14 +10,12 @@ import NavigationManager from "./modules/navigation.js";
 import AnimationManager from "./modules/animations.js";
 import CVGenerator from "./modules/cv-generator.js";
 import BlogManager from "./modules/blog-manager.js";
-("./modules/blog-manager.js");
 
 class PortfolioApp {
   constructor() {
     this.i18n = new I18nManager();
     this.theme = new ThemeManager();
     this.contactForm = new ContactFormManager(this.i18n);
-    this.navigation = new NavigationManager();
     this.animations = new AnimationManager();
     this.cvGenerator = new CVGenerator(this.i18n);
     this.blogManager = new BlogManager(this.i18n);
@@ -27,11 +25,19 @@ class PortfolioApp {
    * Initialize the application
    */
   init() {
-    // Initialize all modules
+    // Initialize base modules first
     this.theme.init();
     this.i18n.init();
-    this.navigation.init();
     this.cvGenerator.init();
+
+    // Create navigation with dependencies AFTER other modules are ready
+    this.navigation = new NavigationManager({
+      cvGenerator: this.cvGenerator,
+      i18nManager: this.i18n,
+      themeManager: this.theme,
+    });
+
+    this.navigation.init();
 
     // Initialize contact form only on main site (not needed in blog)
     if (!window.location.pathname.startsWith("/blog/")) {
@@ -79,6 +85,10 @@ class PortfolioApp {
       // Update Blog pages language
       if (this.blogManager) {
         this.blogManager.updateLanguage();
+      }
+      // Update navigation language
+      if (this.navigation) {
+        this.navigation.updateLanguage();
       }
     };
 

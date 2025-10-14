@@ -3,48 +3,38 @@
  * Handles navigation interactions and scroll effects
  */
 
-import { CONFIG } from "../config/settings.js";
-import { scrollToSection, debounce } from "../utils/helpers.js";
+import { DesktopNavigation } from "./navigation/desktop-navigation.js";
+import { MobileNavigation } from "./navigation/mobile-navigation.js";
 
 class NavigationManager {
-  constructor() {
-    this.nav = document.querySelector(".nav");
+  constructor(dependencies = {}) {
+    this.cvGenerator = dependencies.cvGenerator;
+    this.i18nManager = dependencies.i18nManager;
+    this.themeManager = dependencies.themeManager;
   }
 
-  /**
-   * Initialize navigation system
-   */
   init() {
-    this.setupScrollEffects();
-    this.setupClickHandlers();
-  }
-
-  /**
-   * Setup navigation scroll effects
-   */
-  setupScrollEffects() {
-    const handleScroll = debounce(() => {
-      if (window.scrollY > CONFIG.NAV_SCROLL_THRESHOLD) {
-        this.nav.style.background = "rgba(var(--bg-primary-rgb), 0.95)";
-      } else {
-        this.nav.style.background = "var(--bg-primary)";
-      }
-    }, 10);
-
-    window.addEventListener("scroll", handleScroll);
-  }
-
-  /**
-   * Setup click handlers for smooth scrolling
-   */
-  setupClickHandlers() {
-    document.addEventListener("click", (e) => {
-      if (e.target.hasAttribute("onclick")) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute("onclick").match(/'([^']+)'/)[1];
-        scrollToSection(targetId);
-      }
+    this.desktop = new DesktopNavigation();
+    this.mobile = new MobileNavigation({
+      cvGenerator: this.cvGenerator,
+      i18nManager: this.i18nManager,
+      themeManager: this.themeManager,
     });
+
+    this.desktop.init();
+    this.mobile.init();
+  }
+
+  /**
+   * Update language for both desktop and mobile navigation
+   */
+  updateLanguage() {
+    if (this.mobile) {
+      this.mobile.updateLanguage();
+    }
+    if (this.desktop) {
+      this.desktop.updateLanguage();
+    }
   }
 }
 
