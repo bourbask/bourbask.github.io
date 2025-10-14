@@ -229,6 +229,35 @@ class I18nManager {
   getSupportedLanguages() {
     return this.supportedLanguages;
   }
+
+  /**
+   * Get current translation with support for nested keys (dot notation)
+   */
+  t(key) {
+    const processedTranslations = this.processTranslations(
+      this.translations[this.currentLang]
+    );
+
+    // Handle dot notation (navigation.home -> navigation.home)
+    if (key.includes(".")) {
+      return this.getNestedValue(processedTranslations, key);
+    }
+
+    return processedTranslations[key] || key;
+  }
+
+  /**
+   * Get nested value from object using dot notation
+   * @param {Object} obj - The object to search in
+   * @param {string} path - The dot notation path (e.g., 'navigation.home')
+   */
+  getNestedValue(obj, path) {
+    return (
+      path.split(".").reduce((current, key) => {
+        return current && current[key] !== undefined ? current[key] : null;
+      }, obj) || path
+    ); // Return original key if not found
+  }
 }
 
 export default I18nManager;

@@ -279,4 +279,13 @@ export const fr = {
   error404Title: "404 - Article introuvable",
   error404Message: "Désolé, cet article n'existe pas ou a été supprimé.",
   backToBlog: "Retour au blog",
+
+  // FAB Navigation
+  navigation: {
+    home: "Accueil",
+    blog: "Blog",
+    cv: "CV",
+    language: "Langue",
+    theme: "Thème",
+  },
 };

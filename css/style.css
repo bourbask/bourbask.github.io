@@ -11,6 +11,12 @@
 @import url("./base.css");
 @import url("./components.css");
 @import url("./layout.css");
+
+/* Navigation imports */
+@import url("./navigation/navigation-base.css");
+@import url("./navigation/navigation-desktop.css");
+@import url("./navigation/navigation-mobile.css");
+
 @import url("./animations.css");
 @import url("./responsive.css");
 @import url("./blog.css");
