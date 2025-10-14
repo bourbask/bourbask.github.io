@@ -269,9 +269,13 @@ class BlogManager {
       </div>
       
       <div class="latest-article-content">
-        <h3 class="latest-article-title">${
-          article.meta.title[this.currentLang]
-        }</h3>
+        <h3 class="latest-article-title">
+          <a href="/blog/?article=${
+            article.meta.id
+          }" class="latest-article-link">
+          ${article.meta.title[this.currentLang]}
+          </a>
+        </h3>
         <p class="latest-article-description">${
           article.meta.description[this.currentLang]
         }</p>
