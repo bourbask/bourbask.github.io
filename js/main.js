@@ -41,14 +41,12 @@ class PortfolioApp {
 
     // Initialize blog if on blog pages
     if (window.location.pathname.includes("/blog")) {
-      console.log("🔍 Initializing blog for path:", window.location.pathname);
       this.blogManager.init();
     }
 
     this.setupCVDownload();
     this.setupLanguageChangeListener();
-
-    console.log("✅ Portfolio application initialized");
+    this.setupProjectBlogNavigation();
   }
 
   /**
@@ -94,6 +92,19 @@ class PortfolioApp {
         this.cvGenerator.updateLanguage();
       }
     };
+  }
+
+  /**
+   * Setup navigation from projects to blog
+   */
+  setupProjectBlogNavigation() {
+    document.addEventListener("click", (e) => {
+      const blogLink = e.target.closest('a[href^="/blog/"]');
+      if (blogLink && !window.location.pathname.includes("/blog")) {
+        // Navigation from main site to blog
+        window.location.href = blogLink.href;
+      }
+    });
   }
 }
 

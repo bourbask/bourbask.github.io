@@ -40,10 +40,11 @@ class BlogManager {
    */
   handleRouting() {
     const path = window.location.pathname;
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get("article");
 
     if (path.startsWith("/blog/")) {
-      const articleId = path.split("/")[2];
-      if (articleId && articleId !== "index.html") {
+      if (articleId) {
         this.loadArticle(articleId);
       } else {
         this.loadBlogIndex();
@@ -284,7 +285,7 @@ class BlogManager {
           } min</span>
         </div>
         
-        <a href="/blog/${article.meta.id}/" class="latest-article-cta">
+        <a href="/blog/?article=${article.meta.id}" class="latest-article-cta">
           <span data-key="readArticle">Read Article</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -323,7 +324,7 @@ class BlogManager {
         </div>
         
         <h3 class="article-list-title">
-          <a href="/blog/${article.meta.id}/">${
+          <a href="/blog/?article=${article.meta.id}">${
       article.meta.title[this.currentLang]
     }</a>
         </h3>
@@ -481,7 +482,6 @@ class BlogManager {
 
       <footer class="article-footer">
         ${this.renderArticleNavigation()}
-        ${this.renderShareButtons(article)}
       </footer>
     </article>
     `;
@@ -502,28 +502,6 @@ class BlogManager {
   }
 
   /**
-   * Render share buttons
-   */
-  renderShareButtons(article) {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(article.meta.title[this.currentLang]);
-
-    return `
-      <div class="share-buttons">
-        <h4>Partager cet article</h4>
-        <div class="share-links">
-          <a href="https://twitter.com/intent/tweet?url=${url}&text=${title}" target="_blank" rel="noopener">
-            Twitter
-          </a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener">
-            LinkedIn
-          </a>
-        </div>
-      </div>
-    `;
-  }
-
-  /**
    * Show 404 page
    */
   show404() {
@@ -531,12 +509,21 @@ class BlogManager {
     if (!container) return;
 
     container.innerHTML = `
-      <div class="error-404">
-        <h1>404 - Article non trouvé</h1>
-        <p>Désolé, cet article n'existe pas ou a été supprimé.</p>
-        <a href="/blog/" class="btn-primary">Retour au blog</a>
-      </div>
-    `;
+    <div class="error-404">
+      <h1 data-key="error404Title">404 - Article non trouvé</h1>
+      <p data-key="error404Message">
+        Désolé, cet article n'existe pas ou a été supprimé.
+      </p>
+      <a href="/blog/" class="btn-primary" data-key="backToBlog">
+        Retour au blog
+      </a>
+    </div>
+  `;
+
+    // Apply translations if needed
+    if (this.i18nManager) {
+      this.i18nManager.updatePageContent();
+    }
   }
 
   /**
@@ -606,25 +593,34 @@ class BlogManager {
   }
 
   /**
-   * Bind events
+   * Handle navigation clicks for query params
    */
   bindEvents() {
     document.addEventListener("click", (e) => {
-      const link = e.target.closest('a[href^="/blog/"]');
+      const link = e.target.closest('a[href*="/blog/?article="]');
       if (link) {
         e.preventDefault();
-        const path = new URL(link.href).pathname;
-        this.navigateTo(path);
+        const url = new URL(link.href);
+        const articleId = url.searchParams.get("article");
+        if (articleId) {
+          this.navigateToArticle(articleId);
+        }
       }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener("popstate", () => {
+      this.handleRouting();
     });
   }
 
   /**
-   * Navigate to path
+   * Navigate to article using query params
    */
-  navigateTo(path) {
-    history.pushState(null, "", path);
-    this.handleRouting();
+  navigateToArticle(articleId) {
+    const newUrl = `/blog/?article=${articleId}`;
+    history.pushState(null, "", newUrl);
+    this.loadArticle(articleId);
   }
 
   /**

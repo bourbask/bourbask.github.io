@@ -908,3 +908,247 @@
   color: var(--accent-tertiary);
   text-shadow: var(--glow-amber);
 }
+
+/* Project Header avec badge */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.project-title {
+  margin: 0;
+  flex: 1;
+}
+
+.project-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: var(--accent-primary);
+}
+
+/* Project Badge */
+.project-badge {
+  flex-shrink: 0;
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.project-badge.coming-soon {
+  background: var(--text-secondary);
+}
+
+/* Project Actions */
+.project-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.project-cta:hover {
+  gap: 1rem;
+  transform: translateX(4px);
+}
+
+.project-cta.primary {
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transform: none;
+}
+
+.project-cta.primary:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-2px);
+  gap: 0.75rem;
+}
+
+/* Project CTA disabled state */
+.project-cta.disabled {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 2px dashed var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+  pointer-events: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.project-cta.disabled:hover {
+  transform: none;
+  gap: 0.5rem;
+  background: var(--bg-tertiary);
+}
+
+.project-cta.disabled svg {
+  opacity: 0.5;
+}
+
+/* Animation subtile pour indiquer que c'est "en attente" */
+.project-cta.disabled::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: shimmer-disabled 2s linear infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer-disabled {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dark theme adjustments for disabled state */
+[data-theme="dark"] .project-cta.disabled {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .project-cta.disabled::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+/* Hover effect pour la card entière quand le bouton est désactivé */
+.project-card:has(.project-cta.disabled):hover {
+  transform: translateY(-4px); /* Moins de mouvement */
+}
+
+.project-card:has(.project-cta.disabled):hover .project-cta.disabled {
+  /* Petit effet visuel pour montrer qu'on a essayé de cliquer */
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-cta.disabled {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Blog CTA Card spéciale */
+.blog-cta-card {
+  border: 2px solid var(--accent-primary);
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    var(--accent-primary) 08 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-cta-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 60%
+  );
+  background-size: 20px 20px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.blog-cta-card .project-placeholder {
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary) 0%,
+    var(--accent-secondary) 100%
+  );
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-badge {
+    align-self: flex-start;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
