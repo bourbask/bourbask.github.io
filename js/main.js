@@ -9,6 +9,8 @@ import ContactFormManager from "./modules/contact-form.js";
 import NavigationManager from "./modules/navigation.js";
 import AnimationManager from "./modules/animations.js";
 import CVGenerator from "./modules/cv-generator.js";
+import BlogManager from "./modules/blog-manager.js";
+("./modules/blog-manager.js");
 
 class PortfolioApp {
   constructor() {
@@ -18,6 +20,7 @@ class PortfolioApp {
     this.navigation = new NavigationManager();
     this.animations = new AnimationManager();
     this.cvGenerator = new CVGenerator(this.i18n);
+    this.blogManager = new BlogManager(this.i18n);
   }
 
   /**
@@ -27,14 +30,23 @@ class PortfolioApp {
     // Initialize all modules
     this.theme.init();
     this.i18n.init();
-    this.contactForm.init();
     this.navigation.init();
-    this.animations.init();
     this.cvGenerator.init();
+
+    // Initialize contact form only on main site (not needed in blog)
+    if (!window.location.pathname.startsWith("/blog/")) {
+      this.contactForm.init();
+      this.animations.init();
+    }
+
+    // Initialize blog if on blog pages
+    if (window.location.pathname.includes("/blog")) {
+      this.blogManager.init();
+    }
+
     this.setupCVDownload();
     this.setupLanguageChangeListener();
-
-    console.log("✅ Portfolio application initialized");
+    this.setupProjectBlogNavigation();
   }
 
   /**
@@ -64,6 +76,10 @@ class PortfolioApp {
       if (this.cvGenerator) {
         this.cvGenerator.updateLanguage();
       }
+      // Update Blog pages language
+      if (this.blogManager) {
+        this.blogManager.updateLanguage();
+      }
     };
 
     // Also listen for direct language changes
@@ -76,6 +92,19 @@ class PortfolioApp {
         this.cvGenerator.updateLanguage();
       }
     };
+  }
+
+  /**
+   * Setup navigation from projects to blog
+   */
+  setupProjectBlogNavigation() {
+    document.addEventListener("click", (e) => {
+      const blogLink = e.target.closest('a[href^="/blog/"]');
+      if (blogLink && !window.location.pathname.includes("/blog")) {
+        // Navigation from main site to blog
+        window.location.href = blogLink.href;
+      }
+    });
   }
 }
 

@@ -51,7 +51,6 @@
   <body>
     <!-- ========================================
          NAVIGATION SECTION
-         Fixed navigation bar with controls
          ======================================== -->
 
     <nav class="nav">
@@ -63,6 +62,11 @@
 
         <!-- Navigation Controls -->
         <div class="nav-controls">
+          <!-- Blog -->
+          <a href="/blog/" class="nav-link blog-link">
+            <span data-key="blogNavigation">Blog</span>
+          </a>
+
           <!-- CV Download with tooltip -->
           <div class="cv-download-wrapper">
             <button
@@ -354,9 +358,9 @@
     </section>
 
     <!-- ========================================
-         PROJECTS SECTION
-         Featured work and side projects
-         ======================================== -->
+     PROJECTS SECTION
+     Featured work and side projects
+     ======================================== -->
 
     <section class="section projects" id="projects">
       <div class="container">
@@ -380,7 +384,18 @@
                 <span class="project-tag">Startup</span>
                 <span class="project-tag">Full-Stack</span>
               </div>
-              <h3 class="project-title">EzPrint3D</h3>
+              <div class="project-header">
+                <h3 class="project-title">
+                  <a
+                    href="/blog/?article=ezprint3d-journey"
+                    class="project-link"
+                    >EzPrint3D</a
+                  >
+                </h3>
+                <div class="project-badge">
+                  <span data-key="readStory">📖 Read Story</span>
+                </div>
+              </div>
               <p class="project-description" data-key="ezprint3dDescription">
                 A platform connecting 3D printing service providers with
                 customers. Built with modern microservices architecture and
@@ -391,9 +406,26 @@
                 <span>Vue.js</span>
                 <span>Docker</span>
               </div>
+              <div class="project-actions">
+                <a
+                  href="/blog/?article=ezprint3d-journey"
+                  class="project-cta"
+                  data-key="readFullStory"
+                >
+                  <span>Read Full Story</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-
           <!-- Project 2 -->
           <div class="project-card">
             <div class="project-image">
@@ -404,7 +436,12 @@
                 <span class="project-tag">Bot</span>
                 <span class="project-tag">Rust</span>
               </div>
-              <h3 class="project-title">LeKickerFou</h3>
+              <div class="project-header">
+                <h3 class="project-title">LeKickerFou</h3>
+                <div class="project-badge coming-soon">
+                  <span data-key="storyComingSoon">📝 Story Coming Soon</span>
+                </div>
+              </div>
               <p class="project-description" data-key="lekickerfouDescription">
                 Discord bot for automated voice channel management. Built with
                 Rust for performance and reliability.
@@ -413,6 +450,21 @@
                 <span>Rust</span>
                 <span>Discord API</span>
                 <span>Tokio</span>
+              </div>
+              <div class="project-actions">
+                <button class="project-cta disabled" disabled>
+                  <span>🔒</span>
+                  <span data-key="storyComingSoonBtn">Story Coming Soon</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -427,7 +479,16 @@
                 <span class="project-tag">Hardware</span>
                 <span class="project-tag">DIY</span>
               </div>
-              <h3 class="project-title">Custom Keyboards</h3>
+              <div class="project-header">
+                <h3 class="project-title">
+                  <a href="/blog/?article=custom-keyboards" class="project-link"
+                    >Custom Keyboards</a
+                  >
+                </h3>
+                <div class="project-badge">
+                  <span data-key="readStory">📖 Read Story</span>
+                </div>
+              </div>
               <p class="project-description" data-key="keyboardDescription">
                 Hand-built mechanical keyboards including a Corne 3x6. Exploring
                 ergonomic designs and custom firmware.
@@ -436,6 +497,24 @@
                 <span>QMK</span>
                 <span>3D Printing</span>
                 <span>Electronics</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="/blog/?article=custom-keyboards"
+                  class="project-cta"
+                  data-key="readFullStory"
+                >
+                  <span>Read Full Story</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>

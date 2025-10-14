@@ -43,6 +43,12 @@ export const fr = {
   keyboardDescription:
     "Claviers mécaniques sur mesure dont un Corne 3x6 terminé et un Skeletyl en cours. Parce que taper du code devrait être aussi agréable que le code qu'on écrit.",
 
+  // Project Blog Integration
+  readStory: "📖 Lire l'Article",
+  storyComingSoon: "📝 Article Bientôt",
+  storyComingSoonBtn: "Article Bientôt Disponible",
+  readFullStory: "Lire l'Article Complet",
+
   // Interests
   interestsTitle: "Quand je ne code pas",
   interestsSubtitle: "Aventures et hobbies qui nourrissent la créativité",
@@ -87,12 +93,12 @@ export const fr = {
     // Personal info
     title: "Développeur Full-Stack",
     phoneAvailable: "Disponible sur demande",
-    locationMove: "Brest → Toulouse",
+    locationMove: "Brest → Bordeaux",
     drivingLicense: "Permis B",
 
     // Summary
     summary:
-      "Développeur full-stack de {age} ans avec 5 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. Recherche de nouveaux défis à Toulouse.",
+      "Développeur full-stack de {age} ans avec 5 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. Recherche de nouveaux défis à Bordeaux.",
 
     // Section titles
     experienceTitle: "Expérience Professionnelle",
@@ -224,6 +230,53 @@ export const fr = {
 
     // Footer
     footer:
-      "Disponible pour un poste à Toulouse • Préavis flexible • Portfolio complet sur bourbasquetkev.in",
+      "Disponible pour un poste à Bordeaux • Préavis flexible • Portfolio complet sur bourbask.github.io",
   },
+
+  // Blog
+  blogTitle: "Blog Technique",
+  blogSubtitle:
+    "Réflexions, tutoriels et insights de mon parcours de développeur",
+  readMore: "Lire la suite",
+  blogNavigation: "Blog",
+  categories: "Catégories",
+  tags: "Tags",
+
+  // Article navigation
+  previousArticle: "Article précédent",
+  nextArticle: "Article suivant",
+  shareArticle: "Partager cet article",
+
+  // Categories
+  categorySystem: "Système",
+  categoryHardware: "Hardware",
+  categoryDevops: "DevOps",
+  categoryTools: "Outils",
+  categoryProject: "Projets",
+
+  // Blog Hero
+  blogBadge: "Blog Technique",
+  blogHeroTitle1: "Partager des connaissances",
+  blogHeroTitle2: "et expériences",
+  blogHeroDescription:
+    "Réflexions, tutoriels et insights de mon parcours de développeur. Du système à la pratique de développement, découvrez mes apprentissages et projets.",
+  articlesPublished: "Articles Publiés",
+  minutesReading: "Minutes de Lecture",
+  categories: "Catégories",
+
+  // Latest Article
+  latestArticle: "Dernier Article",
+  readArticle: "Lire l'Article",
+
+  // Articles List
+  allArticlesTitle: "Tous les Articles",
+  allCategories: "Toutes les Catégories",
+  sortNewest: "Plus Récents",
+  sortOldest: "Plus Anciens",
+  sortReadingTime: "Temps de Lecture",
+
+  // Error 404 Article
+  error404Title: "404 - Article introuvable",
+  error404Message: "Désolé, cet article n'existe pas ou a été supprimé.",
+  backToBlog: "Retour au blog",
 };
