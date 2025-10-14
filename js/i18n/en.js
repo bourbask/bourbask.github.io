@@ -279,4 +279,13 @@ export const en = {
   error404Title: "404 - Article Not Found",
   error404Message: "Sorry, this article doesn't exist or has been removed.",
   backToBlog: "Back to Blog",
+
+  // FAB Navigation
+  navigation: {
+    home: "Home",
+    blog: "Blog",
+    cv: "CV",
+    language: "Language",
+    theme: "Theme",
+  },
 };

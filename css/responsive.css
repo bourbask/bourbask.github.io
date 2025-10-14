@@ -78,6 +78,75 @@
   }
 }
 
+/* ===== TABLET BREAKPOINT (768px and below) ===== */
+@media (max-width: 768px) {
+  /* Navigation adjustments */
+  .nav-container {
+    padding: 1rem;
+  }
+
+  /* Hero section becomes single column */
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Smaller hero title */
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  /* Smaller section titles */
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* About section becomes single column */
+  .about-content,
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* About info becomes single column */
+  .about-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Smaller profile image */
+  .profile-image-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  /* Featured project becomes single column */
+  .project-card.featured {
+    grid-template-columns: 1fr;
+  }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    height: 250px;
+  }
+
+  .card-code {
+    top: 0rem;
+    left: 4rem;
+    width: 260px;
+  }
+
+  .card-tech {
+    top: -19rem;
+    right: -24rem;
+    bottom: auto;
+    width: 100px;
+  }
+}
+
 /* ===== MOBILE BREAKPOINT (480px and below) ===== */
 @media (max-width: 480px) {
   /* Even smaller profile image */
@@ -103,21 +172,28 @@
     max-width: 300px;
   }
 
-  /* Smaller floating cards */
+  .hero-visual {
+    height: 220px;
+  }
+
   .card-code {
-    width: 240px;
+    top: -1rem;
+    left: -1rem;
+    width: 260px;
   }
 
   .card-tech {
+    top: -13rem;
+    right: -14rem;
+    bottom: auto;
     width: 100px;
+    z-index: 10;
   }
 
-  /* Adjust section padding for mobile */
   .section {
     padding: 3rem 0;
   }
 
-  /* Smaller section headers */
   .section-header {
     margin-bottom: 2rem;
   }
