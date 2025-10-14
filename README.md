@@ -337,7 +337,7 @@ Found a bug or have a suggestion?
 - **📧 Email**: [bourbasquet.k@etik.com](mailto:bourbasquet.k@etik.com)
 - **🐙 GitHub**: [@bourbask](https://github.com/bourbask)
 - **💼 LinkedIn**: [Kevin Bourbasquet](https://www.linkedin.com/in/k%C3%A9vin-bourbasquet)
-- **🌐 Portfolio**: [bourbasquetkev.in](https://bourbasquetkev.in)
+- **🌐 Portfolio**: [bourbask.github.io](https://bourbask.github.io)
 
 ---
 
@@ -422,7 +422,7 @@ N'hésitez pas à utiliser ce code comme inspiration pour votre propre portfolio
 - **📧 Email**: [bourbasquet.k@etik.com](mailto:bourbasquet.k@etik.com)
 - **🐙 GitHub**: [@bourbask](https://github.com/bourbask)
 - **💼 LinkedIn**: [Kevin Bourbasquet](https://www.linkedin.com/in/k%C3%A9vin-bourbasquet)
-- **🌐 Portfolio**: [bourbasquetkev.in](https://bourbasquetkev.in)
+- **🌐 Portfolio**: [bourbask.github.io](https://bourbask.github.io)
 
 ---
 

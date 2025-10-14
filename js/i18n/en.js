@@ -43,6 +43,12 @@ export const en = {
   keyboardDescription:
     "Custom mechanical keyboards including a completed Corne 3x6 and a Skeletyl in progress. Because typing should feel as good as the code you write.",
 
+  // Project Blog Integration
+  readStory: "📖 Read Story",
+  storyComingSoon: "📝 Story Coming Soon",
+  storyComingSoonBtn: "Story Coming Soon",
+  readFullStory: "Read Full Story",
+
   // Interests
   interestsTitle: "When I'm Not Coding",
   interestsSubtitle: "Adventures and hobbies that fuel creativity",
@@ -88,12 +94,12 @@ export const en = {
     // Personal info
     title: "Full-Stack Developer",
     phoneAvailable: "Available on request",
-    locationMove: "Brest → Toulouse",
+    locationMove: "Brest → Bordeaux",
     drivingLicense: "Driving License",
 
     // Summary
     summary:
-      "Full-stack developer, {age} years old, with 5 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new challenges in Toulouse.",
+      "Full-stack developer, {age} years old, with 5 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new challenges in Bordeaux.",
 
     // Section titles
     experienceTitle: "Professional Experience",
@@ -225,6 +231,52 @@ export const en = {
 
     // Footer
     footer:
-      "Available for a position in Toulouse • Flexible notice period • Complete portfolio on bourbasquetkev.in",
+      "Available for a position in Bordeaux • Flexible notice period • Complete portfolio on bourbask.github.io",
   },
+
+  // Blog
+  blogTitle: "Technical Blog",
+  blogSubtitle: "Thoughts, tutorials, and insights from my development journey",
+  readMore: "Read more",
+  blogNavigation: "Blog",
+  categories: "Categories",
+  tags: "Tags",
+
+  // Article navigation
+  previousArticle: "Previous article",
+  nextArticle: "Next article",
+  shareArticle: "Share this article",
+
+  // Categories
+  categorySystem: "System",
+  categoryHardware: "Hardware",
+  categoryDevops: "DevOps",
+  categoryTools: "Tools",
+  categoryProject: "Projects",
+
+  // Blog Hero
+  blogBadge: "Technical Blog",
+  blogHeroTitle1: "Sharing knowledge",
+  blogHeroTitle2: "and experiences",
+  blogHeroDescription:
+    "Thoughts, tutorials, and insights from my development journey. From system administration to development practices, discover my learnings and projects.",
+  articlesPublished: "Articles Published",
+  minutesReading: "Minutes of Reading",
+  categories: "Categories",
+
+  // Latest Article
+  latestArticle: "Latest Article",
+  readArticle: "Read Article",
+
+  // Articles List
+  allArticlesTitle: "All Articles",
+  allCategories: "All Categories",
+  sortNewest: "Newest First",
+  sortOldest: "Oldest First",
+  sortReadingTime: "Reading Time",
+
+  // Error 404 Article
+  error404Title: "404 - Article Not Found",
+  error404Message: "Sorry, this article doesn't exist or has been removed.",
+  backToBlog: "Back to Blog",
 };

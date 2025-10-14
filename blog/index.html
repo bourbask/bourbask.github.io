@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Technique - Kevin Bourbasquet</title>
+    <meta
+      name="description"
+      content="Blog technique de Kevin Bourbasquet : développement, Linux, productivité et projets personnels"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="nav-logo">
+          <span class="logo-text" data-key="name">Kévin Bourbasquet</span>
+        </div>
+
+        <div class="nav-controls">
+          <!-- Lien retour au site principal -->
+          <a href="/#projects" class="nav-link">
+            <span data-key="projectsTitle">Projets</span>
+          </a>
+
+          <!-- CV Download with tooltip -->
+          <div class="cv-download-wrapper">
+            <button
+              id="downloadCV"
+              class="cv-download-btn"
+              aria-label="Download CV"
+            >
+              <svg
+                class="download-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  class="download-arrow"
+                  d="M12 15L8 11H11V3H13V11H16L12 15Z"
+                  fill="currentColor"
+                />
+                <path
+                  class="download-base"
+                  d="M20 16V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V16H6V20H18V16H20Z"
+                  fill="currentColor"
+                />
+                <div class="download-fill"></div>
+              </svg>
+            </button>
+            <div class="cv-tooltip">
+              <span data-key="actionLabel">Télécharger CV</span>
+            </div>
+          </div>
+
+          <!-- Language Toggle -->
+          <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-option" data-lang="fr">FR</span>
+            <div class="lang-slider"></div>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button class="theme-toggle" id="themeToggle">
+            <div class="theme-icon-container">
+              <svg
+                class="sun-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg
+                class="moon-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================
+         MAIN CONTENT
+         ======================================== -->
+    <main id="blog-container">
+      <!-- Content will be loaded here by BlogManager -->
+    </main>
+
+    <!-- ========================================
+         FOOTER SECTION
+         Copyright and links
+         ======================================== -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>
+            <span data-key="madeWith">Made with</span> ❤️
+            <span data-key="by">by</span> Kévin Bourbasquet
+          </p>
+          <p class="footer-links">
+            <a
+              href="https://github.com/bourbask/bourbask.github.io"
+              target="_blank"
+              data-key="sourceCode"
+            >
+              Source Code
+            </a>
+            •
+            <a
+              href="https://github.com/bourbask/bourbask.github.io/blob/main/LICENSE"
+              target="_blank"
+            >
+              MIT License
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================
+         SCRIPTS
+         JavaScript functionality
+         ======================================== -->
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
