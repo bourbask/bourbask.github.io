@@ -933,3 +933,139 @@
     text-align: center;
   }
 }
+
+/* =================================
+   ERROR 404 ARTICLE PAGE  
+   ================================= */
+
+#blog-container {
+  min-height: calc(100vh - 160px); /* 80px navbar + 80px footer approximatif */
+  display: flex;
+  flex-direction: column;
+}
+
+.error-404 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  position: relative;
+}
+
+.error-404::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(59, 130, 246, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.error-404 > * {
+  position: relative;
+  z-index: 1;
+}
+
+.error-404 h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+
+  /* Gradient pour le "404" */
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.error-404 p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.error-404 .btn-primary {
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.error-404 .btn-primary:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.error-404 .btn-primary::before {
+  content: "←";
+  font-size: 1.2rem;
+}
+
+/* Animation pour rendre la page plus vivante */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-404 h1 {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.error-404 p {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.error-404 .btn-primary {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .error-404 {
+    padding: 2rem 1rem;
+    min-height: 50vh;
+  }
+
+  .error-404 h1 {
+    font-size: 2rem;
+  }
+
+  #blog-container {
+    min-height: calc(100vh - 140px);
+  }
+}
