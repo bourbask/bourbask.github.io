@@ -32,7 +32,6 @@ class BlogManager {
   init() {
     this.bindEvents();
     this.handleRouting();
-    console.log("✅ Blog Manager initialized");
   }
 
   /**
@@ -594,6 +593,14 @@ class BlogManager {
     } else {
       this.loadBlogIndex();
     }
+
+    setTimeout(() => {
+      const translations = this.i18nManager.processTranslations(
+        this.i18nManager.translations[this.currentLang]
+      );
+      this.i18nManager.updateTextContent(translations);
+      this.i18nManager.updatePlaceholders(translations);
+    }, 50);
   }
 
   /**
