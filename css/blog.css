@@ -207,6 +207,16 @@
   gap: 1rem;
 }
 
+.latest-article-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.latest-article-link:hover {
+  color: var(--accent-primary);
+}
+
 /* =================================
    ARTICLES LIST SECTION
    ================================= */
