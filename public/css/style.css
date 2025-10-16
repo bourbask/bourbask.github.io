@@ -1,0 +1,24 @@
+/**
+ * Portfolio CSS - Main Import File
+ * Author: Kévin Bourbasquet
+ * 
+ * This file imports all CSS modules to maintain organization
+ * and make the codebase more maintainable.
+ */
+
+/* Import order matters - variables first, then base styles, then components */
+@import url("/public/css/variables.css");
+@import url("/public/css/base.css");
+@import url("/public/css/components.css");
+@import url("/public/css/layout.css");
+
+/* Navigation imports */
+@import url("/public/css/navigation/navigation-base.css");
+@import url("/public/css/navigation/navigation-desktop.css");
+@import url("/public/css/navigation/navigation-mobile.css");
+
+@import url("/public/css/animations.css");
+@import url("/public/css/responsive.css");
+@import url("/public/css/blog.css");
+
+@import url("/public/css/404.css");

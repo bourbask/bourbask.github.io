@@ -1,0 +1,22 @@
+[build]
+target = "index.html"
+dist = "dist"
+
+[watch]
+watch = ["src", "public"]
+ignore = ["dist", "target"]
+
+[serve]
+addresses = ["127.0.0.1"]
+port = 9999
+open = true
+
+[[hooks]]
+stage = "pre_build"
+command = "echo"
+command_arguments = ["Building Leptos Portfolio..."]
+
+[[hooks]]
+stage = "post_build"
+command = "echo"
+command_arguments = ["✅ Build complete! Ready for deployment."]
