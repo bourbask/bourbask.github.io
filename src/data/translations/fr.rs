@@ -78,8 +78,9 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("sendMessage", "Envoyer le message");
 
     // CV Button
-    map.insert("loader", "Ouverture impression...");
     map.insert("action", "Télécharger CV");
+    map.insert("cv.downloading", "Génération...");
+    map.insert("cv.downloaded", "Généré!");
 
     // Footer
     map.insert("madeWith", "Conçu avec");
@@ -97,11 +98,169 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     );
 
     // CV Translations
-    map.insert("cv.title", "Développeur Full-Stack");
-    map.insert("cv.phoneAvailable", "Disponible sur demande");
-    map.insert("cv.locationMove", "Brest → Bordeaux");
-    map.insert("cv.drivingLicense", "Permis B");
+    map.insert("cv.personal.name", "Kévin Bourbasquet");
+    map.insert("cv.personal.title", "Développeur Full-Stack PLIP");
+    map.insert("cv.personal.email", "bourbasquet.k@etik.com");
+    map.insert("cv.personal.phone", "Disponible sur demande");
+    map.insert("cv.personal.location", "Brest → Bordeaux");
+    map.insert("cv.personal.license", "Permis B");
+    map.insert("cv.personal.portfolio", "bourbask.github.io");
     map.insert("cv.summary", "Développeur full-stack de {age} ans avec 5 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. Recherche de nouveaux défis à Bordeaux.");
+
+    // CV Section titles
+    map.insert("cv.sections.experience", "Expérience Professionnelle");
+    map.insert("cv.sections.projects", "Projets Marquants");
+    map.insert("cv.sections.skills", "Compétences");
+    map.insert("cv.sections.education", "Formation");
+    map.insert("cv.sections.languages", "Langues");
+    map.insert("cv.sections.interests", "Centres d'intérêt");
+
+    // CV experience item (europroc)
+    map.insert("cv.experience.0.title", "Développeur Full-Stack");
+    map.insert("cv.experience.0.company", "Europrocurement");
+    map.insert("cv.experience.0.location", "Brest, Bretagne");
+    map.insert("cv.experience.0.period", "Nov 2022 - Présent");
+    map.insert(
+        "cv.experience.0.achievements.0",
+        "Développement d'applications pour annonces légales et formalités juridiques",
+    );
+    map.insert(
+        "cv.experience.0.achievements.1",
+        "Stack technique : Symfony, ReactJS, MySQL/MariaDB, API REST",
+    );
+    map.insert(
+        "cv.experience.0.achievements.2",
+        "Méthodes agiles, collaboration avec GitLab, intégration Redux",
+    );
+    map.insert(
+        "cv.experience.0.achievements.3",
+        "Gestion complète du cycle de développement full-stack",
+    );
+
+    // CV experience item (kooi)
+    map.insert("cv.experience.1.title", "Développeur Full-Stack");
+    map.insert("cv.experience.1.company", "Kooi Security");
+    map.insert("cv.experience.1.location", "Lanester, Bretagne");
+    map.insert("cv.experience.1.period", "Juil 2019 - Sept 2022");
+    map.insert(
+        "cv.experience.1.achievements.0",
+        "Développement d'applications de sécurité en environnement international",
+    );
+    map.insert(
+        "cv.experience.1.achievements.1",
+        "Stack : Symfony, Vue.js, Node.js, composants web sur mesure",
+    );
+    map.insert(
+        "cv.experience.1.achievements.2",
+        "Collaboration avec équipes néerlandaises (anglais professionnel)",
+    );
+    map.insert(
+        "cv.experience.1.achievements.3",
+        "Méthodes agiles, design avec Adobe Creative Suite",
+    );
+
+    // CV experience item (sag)
+    map.insert("cv.experience.2.title", "Développeur Web");
+    map.insert("cv.experience.2.company", "Société Alimentaire de Guidel");
+    map.insert("cv.experience.2.location", "Guidel, Bretagne");
+    map.insert("cv.experience.2.period", "Déc 2018 - Fév 2019");
+    map.insert(
+        "cv.experience.2.achievements.0",
+        "Conception et développement d'affichage web d'informations internes",
+    );
+    map.insert(
+        "cv.experience.2.achievements.1",
+        "Mise en production complète de la solution",
+    );
+    map.insert(
+        "cv.experience.2.achievements.2",
+        "Interface destinée aux équipes opérationnelles",
+    );
+
+    // CV project item (ezp)
+    map.insert("cv.projects.ezprint3d.name", "EzPrint3D");
+    map.insert(
+        "cv.projects.ezprint3d.description",
+        "Plateforme SaaS connectant services d'impression 3D et clients",
+    );
+    map.insert("cv.projects.ezprint3d.status", "En développement");
+
+    // CV project item (lkf bot)
+    map.insert("cv.projects.lekickerfou.name", "LeKickerFou Bot");
+    map.insert(
+        "cv.projects.lekickerfou.description",
+        "Bot Discord haute performance pour gestion de canaux vocaux",
+    );
+    map.insert("cv.projects.lekickerfou.status", "Déployé");
+
+    // CV project item (Excelsior)
+    map.insert("cv.projects.excelsior.name", "Excelsior");
+    map.insert(
+        "cv.projects.excelsior.description",
+        "Jeu d'horreur narratif basé sur voyage dans les Pyrénées",
+    );
+    map.insert("cv.projects.excelsior.status", "En développement");
+
+    // CV skill categories
+    map.insert("cv.skills.categories.backend", "Backend");
+    map.insert("cv.skills.categories.frontend", "Frontend");
+    map.insert("cv.skills.categories.database", "Database");
+    map.insert("cv.skills.categories.devops", "DevOps");
+    map.insert("cv.skills.categories.learning", "En cours");
+
+    // CV education
+
+    // Master
+    map.insert(
+        "cv.education.master.degree",
+        "Master Manager de Solutions Digitales et Data",
+    );
+    map.insert("cv.education.master.school", "CS2I Lorient");
+    map.insert("cv.education.master.period", "2020 - 2022");
+    map.insert(
+        "cv.education.master.details",
+        "Formation en alternance, spécialisation développement",
+    );
+
+    // License
+    map.insert(
+        "cv.education.bachelor.degree",
+        "Licence Concepteur de Systèmes d'Information",
+    );
+    map.insert("cv.education.bachelor.school", "CS2I Lorient");
+    map.insert("cv.education.bachelor.period", "2019 - 2020");
+    map.insert(
+        "cv.education.bachelor.details",
+        "Spécialisation Développement",
+    );
+
+    // BTS
+    map.insert(
+        "cv.education.bts.degree",
+        "BTS Systèmes Informatiques aux Organisations",
+    );
+    map.insert("cv.education.bts.school", "Saint-Louis Châteaulin");
+    map.insert("cv.education.bts.period", "2017 - 2019");
+    map.insert(
+        "cv.education.bts.details",
+        "Option Solutions d'infrastructure",
+    );
+
+    // CV languages
+    map.insert("cv.languages.french.name", "Français");
+    map.insert("cv.languages.french.level", "Natif");
+
+    map.insert("cv.languages.english.name", "Anglais");
+    map.insert("cv.languages.english.level", "Professionnel");
+
+    // CV interests
+    map.insert("cv.interests.hiking", "🥾 Randonnée");
+    map.insert("cv.interests.gardening", "🌿 Jardinage");
+    map.insert("cv.interests.diy", "🔧 Bricolage");
+    map.insert("cv.interests.linux", "🐧 Linux");
+
+    // CV footer
+    map.insert("cv.footer", "Disponible pour un poste à Bordeaux • Préavis flexible • Portfolio complet sur bourbask.github.io");
 
     // CV Section titles
     map.insert("cv.experienceTitle", "Expérience Professionnelle");
