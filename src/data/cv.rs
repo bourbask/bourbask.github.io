@@ -56,10 +56,10 @@ pub struct SkillCategories {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Skills {
-    pub technical: Vec<String>,
-    pub frontend: Vec<String>,
     pub backend: Vec<String>,
-    pub tools: Vec<String>,
+    pub frontend: Vec<String>,
+    pub database: Vec<String>,
+    pub devops: Vec<String>,
     pub learning: Vec<String>,
 }
 
