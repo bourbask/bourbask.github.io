@@ -17,36 +17,54 @@ pub fn CVDownloadButton() -> impl IntoView {
         }
 
         set_downloading.set(true);
-        cv_service.generate_pdf();
 
-        set_downloading.set(false);
-        set_success.set(true);
-
-        // Réinitialiser après 2 secondes
         let window = web_sys::window().unwrap();
-        let set_success_reset = set_success.clone();
-        let closure = Closure::wrap(Box::new(move || {
-            set_success_reset.set(false);
+        let set_downloading_clone = set_downloading.clone();
+        let set_success_clone = set_success.clone();
+        let cv_service_clone = cv_service.clone();
+
+        let loading_closure = Closure::wrap(Box::new(move || {
+            // Générer le PDF après l'animation
+            cv_service_clone.generate_pdf();
+
+            // Arrêter loading et commencer success
+            set_downloading_clone.set(false);
+            set_success_clone.set(true);
+
+            // Réinitialiser success après 2 secondes
+            let window = web_sys::window().unwrap();
+            let set_success_reset = set_success_clone.clone();
+            let success_closure = Closure::wrap(Box::new(move || {
+                set_success_reset.set(false);
+            }) as Box<dyn FnMut()>);
+
+            window
+                .set_timeout_with_callback_and_timeout_and_arguments_0(
+                    success_closure.as_ref().unchecked_ref(),
+                    2000,
+                )
+                .ok();
+
+            success_closure.forget();
         }) as Box<dyn FnMut()>);
 
         window
             .set_timeout_with_callback_and_timeout_and_arguments_0(
-                closure.as_ref().unchecked_ref(), // ✅ Maintenant ça marche
-                2000,
+                loading_closure.as_ref().unchecked_ref(),
+                800,
             )
             .ok();
 
-        closure.forget();
+        loading_closure.forget();
     };
 
     view! {
-        // ✅ Reprendre le design original avec l'icône SVG
         <div class="cv-download-wrapper">
             <button
                 id="downloadCV"
                 class={move || {
                     let mut class = "cv-download-btn".to_string();
-                    if is_downloading.get() { class.push_str(" downloading"); }
+                    if is_downloading.get() { class.push_str(" loading"); }
                     if is_success.get() { class.push_str(" success"); }
                     class
                 }}
