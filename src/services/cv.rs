@@ -20,23 +20,22 @@ impl CVService {
     pub fn get_cv_data(&self) -> CVData {
         CVData {
             personal: PersonalInfo {
-                name: "Kévin Bourbasquet".to_string(),
-                title: "Développeur Full-Stack".to_string(), // ✅ Hardcodé pour test
-                email: "bourbasquet.k@etik.com".to_string(),
-                phone: "Sur demande".to_string(), // ✅ Hardcodé
-                location: "Ouvert à la mobilité".to_string(), // ✅ Hardcodé
-                portfolio: "bourbask.github.io".to_string(),
-                license: "Permis B".to_string(), // ✅ Hardcodé
+                name: self.i18n.t("cv.personal.name"),
+                title: self.i18n.t("cv.personal.title"),
+                email: self.i18n.t("cv.personal.email"),
+                phone: self.i18n.t("cv.personal.phone"),
+                location: self.i18n.t("cv.personal.location"),
+                portfolio: self.i18n.t("cv.personal.portfolio"),
+                license: self.i18n.t("cv.personal.license"),
             },
-            summary: "Développeur passionné avec 3 ans d'expérience en développement web moderne."
-                .to_string(),
+            summary: self.i18n.t("cv.summary"),
             section_titles: SectionTitles {
-                experience: "Expérience Professionnelle".to_string(),
-                projects: "Projets".to_string(),
-                skills: "Compétences".to_string(),
-                education: "Formation".to_string(),
-                languages: "Langues".to_string(),
-                interests: "Centres d'Intérêt".to_string(),
+                experience: self.i18n.t("cv.sections.experience"),
+                projects: self.i18n.t("cv.sections.projects"),
+                skills: self.i18n.t("cv.sections.skills"),
+                education: self.i18n.t("cv.sections.education"),
+                languages: self.i18n.t("cv.sections.languages"),
+                interests: self.i18n.t("cv.sections.interests"),
             },
             experience: self.get_experience_data(),
             skill_categories: self.get_skill_categories(),
@@ -45,7 +44,7 @@ impl CVService {
             education: self.get_education_data(),
             languages: self.get_languages_data(),
             interests: self.get_interests_data(),
-            footer: "CV généré dynamiquement - Version web : bourbask.github.io".to_string(),
+            footer: self.i18n.t("cv.footer"),
         }
     }
 
@@ -649,10 +648,10 @@ impl CVService {
 
     fn render_skills(&self, data: &CVData) -> String {
         let skill_sections = vec![
-            ("technical", &data.skills.technical),
-            ("frontend", &data.skills.frontend),
             ("backend", &data.skills.backend),
-            ("tools", &data.skills.tools),
+            ("frontend", &data.skills.frontend),
+            ("database", &data.skills.database),
+            ("devops", &data.skills.devops),
             ("learning", &data.skills.learning),
         ];
 
@@ -788,30 +787,39 @@ impl CVService {
         )
     }
 
-    // ========== DONNÉES RÉELLES ==========
-
     fn get_experience_data(&self) -> Vec<Experience> {
         vec![
             Experience {
-                title: "Développeur Full-Stack".to_string(),
-                company: "Tech Company".to_string(),
-                location: "Paris, France".to_string(),
-                period: "2022 - 2024".to_string(),
+                title: self.i18n.t("cv.experience.0.title"),
+                company: self.i18n.t("cv.experience.0.company"),
+                location: self.i18n.t("cv.experience.0.location"),
+                period: self.i18n.t("cv.experience.0.period"),
                 achievements: vec![
-                    "Développement d'applications web React/Node.js".to_string(),
-                    "Optimisation des performances (+40%)".to_string(),
-                    "Mise en place de l'architecture CI/CD".to_string(),
+                    self.i18n.t("cv.experience.0.achievements.0"),
+                    self.i18n.t("cv.experience.0.achievements.1"),
+                    self.i18n.t("cv.experience.0.achievements.2"),
                 ],
             },
             Experience {
-                title: "Développeur Frontend".to_string(),
-                company: "Digital Agency".to_string(),
-                location: "Lyon, France".to_string(),
-                period: "2021 - 2022".to_string(),
+                title: self.i18n.t("cv.experience.1.title"),
+                company: self.i18n.t("cv.experience.1.company"),
+                location: self.i18n.t("cv.experience.1.location"),
+                period: self.i18n.t("cv.experience.1.period"),
                 achievements: vec![
-                    "Création d'interfaces utilisateur modernes".to_string(),
-                    "Intégration responsive design".to_string(),
-                    "Collaboration avec équipe UX/UI".to_string(),
+                    self.i18n.t("cv.experience.1.achievements.0"),
+                    self.i18n.t("cv.experience.1.achievements.1"),
+                    self.i18n.t("cv.experience.1.achievements.2"),
+                ],
+            },
+            Experience {
+                title: self.i18n.t("cv.experience.2.title"),
+                company: self.i18n.t("cv.experience.2.company"),
+                location: self.i18n.t("cv.experience.2.location"),
+                period: self.i18n.t("cv.experience.2.period"),
+                achievements: vec![
+                    self.i18n.t("cv.experience.2.achievements.0"),
+                    self.i18n.t("cv.experience.2.achievements.1"),
+                    self.i18n.t("cv.experience.2.achievements.2"),
                 ],
             },
         ]
@@ -829,15 +837,12 @@ impl CVService {
 
     fn get_skills_data(&self) -> Skills {
         Skills {
-            technical: vec![
-                "JavaScript".to_string(),
-                "TypeScript".to_string(),
-                "Python".to_string(),
-                "PHP".to_string(),
-                "SQL".to_string(),
-                "NoSQL".to_string(),
-                "Git".to_string(),
-                "Linux".to_string(),
+            backend: vec![
+                "Node.js".to_string(),
+                "Express".to_string(),
+                "Rust".to_string(),
+                "Laravel".to_string(),
+                "FastAPI".to_string(),
             ],
             frontend: vec![
                 "React".to_string(),
@@ -849,31 +854,19 @@ impl CVService {
                 "Tailwind".to_string(),
                 "Responsive Design".to_string(),
             ],
-            backend: vec![
-                "Node.js".to_string(),
-                "Express".to_string(),
-                "Rust".to_string(),
-                "Laravel".to_string(),
-                "FastAPI".to_string(),
+            database: vec![
+                "MySQL".to_string(),
                 "PostgreSQL".to_string(),
                 "MongoDB".to_string(),
                 "Redis".to_string(),
             ],
-            tools: vec![
-                "Docker".to_string(),
-                "AWS".to_string(),
-                "CI/CD".to_string(),
-                "Webpack".to_string(),
-                "Vite".to_string(),
-                "VS Code".to_string(),
-                "Figma".to_string(),
-                "Postman".to_string(),
-            ],
+            devops: vec!["Docker".to_string(), "CI/CD".to_string(), "AWS".to_string()],
             learning: vec![
-                "WebAssembly".to_string(),
+                "Rust".to_string(),
+                "Microservices".to_string(),
+                "OpenTofu".to_string(),
                 "Kubernetes".to_string(),
                 "GraphQL".to_string(),
-                "Microservices".to_string(),
             ],
         }
     }
@@ -881,36 +874,34 @@ impl CVService {
     fn get_projects_data(&self) -> Vec<Project> {
         vec![
             Project {
-                name: self.i18n.t("cv.projects.portfolio.name"),
-                status: self.i18n.t("cv.projects.portfolio.status"),
-                description: self.i18n.t("cv.projects.portfolio.description"),
+                name: self.i18n.t("cv.projects.ezprint3d.name"),
+                status: self.i18n.t("cv.projects.ezprint3d.status"),
+                description: self.i18n.t("cv.projects.ezprint3d.description"),
+                tech: vec![
+                    "Symfony".to_string(),
+                    "React".to_string(),
+                    "Docker".to_string(),
+                    "PostgreSQL".to_string(),
+                ],
+            },
+            Project {
+                name: self.i18n.t("cv.projects.lekickerfou.name"),
+                status: self.i18n.t("cv.projects.lekickerfou.status"),
+                description: self.i18n.t("cv.projects.lekickerfou.description"),
                 tech: vec![
                     "Rust".to_string(),
-                    "Leptos".to_string(),
-                    "WebAssembly".to_string(),
-                    "CSS3".to_string(),
+                    "Discord API".to_string(),
+                    "Tokio".to_string(),
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.ecommerce.name"),
-                status: self.i18n.t("cv.projects.ecommerce.status"),
-                description: self.i18n.t("cv.projects.ecommerce.description"),
+                name: self.i18n.t("cv.projects.excelsior.name"),
+                status: self.i18n.t("cv.projects.excelsior.status"),
+                description: self.i18n.t("cv.projects.excelsior.description"),
                 tech: vec![
-                    "React".to_string(),
-                    "Node.js".to_string(),
-                    "PostgreSQL".to_string(),
-                    "Stripe".to_string(),
-                ],
-            },
-            Project {
-                name: self.i18n.t("cv.projects.dashboard.name"),
-                status: self.i18n.t("cv.projects.dashboard.status"),
-                description: self.i18n.t("cv.projects.dashboard.description"),
-                tech: vec![
-                    "Vue.js".to_string(),
-                    "Python".to_string(),
-                    "FastAPI".to_string(),
-                    "Chart.js".to_string(),
+                    "Unreal Engine 5".to_string(),
+                    "Blueprint".to_string(),
+                    "Level Design".to_string(),
                 ],
             },
         ]
@@ -930,6 +921,12 @@ impl CVService {
                 period: self.i18n.t("cv.education.bachelor.period"),
                 details: self.i18n.t("cv.education.bachelor.details"),
             },
+            Education {
+                degree: self.i18n.t("cv.education.bts.degree"),
+                school: self.i18n.t("cv.education.bts.school"),
+                period: self.i18n.t("cv.education.bts.period"),
+                details: self.i18n.t("cv.education.bts.details"),
+            },
         ]
     }
 
@@ -943,23 +940,15 @@ impl CVService {
                 name: self.i18n.t("cv.languages.english.name"),
                 level: self.i18n.t("cv.languages.english.level"),
             },
-            LanguageSkill {
-                name: self.i18n.t("cv.languages.spanish.name"),
-                level: self.i18n.t("cv.languages.spanish.level"),
-            },
         ]
     }
 
     fn get_interests_data(&self) -> Vec<String> {
         vec![
-            self.i18n.t("cv.interests.technology"),
-            self.i18n.t("cv.interests.opensource"),
-            self.i18n.t("cv.interests.photography"),
-            self.i18n.t("cv.interests.music"),
-            self.i18n.t("cv.interests.travel"),
-            self.i18n.t("cv.interests.gaming"),
-            self.i18n.t("cv.interests.reading"),
-            self.i18n.t("cv.interests.sports"),
+            self.i18n.t("cv.interests.hiking"),
+            self.i18n.t("cv.interests.gardening"),
+            self.i18n.t("cv.interests.diy"),
+            self.i18n.t("cv.interests.linux"),
         ]
     }
 }
