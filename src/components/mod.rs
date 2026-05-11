@@ -2,6 +2,7 @@
 pub mod footer;
 pub mod hero;
 pub mod navigation;
+pub mod veille;
 
 // Sections de contenu
 pub mod about;
@@ -28,3 +29,4 @@ pub use navigation::*;
 pub use not_found::*;
 pub use projects::*;
 pub use skills::*;
+pub use veille::*;

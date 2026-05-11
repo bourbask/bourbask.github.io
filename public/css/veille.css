@@ -1,0 +1,226 @@
+/* ===== VEILLE PAGE ===== */
+
+.veille-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.veille-hero {
+  padding: 7rem 2rem 3rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.veille-hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.veille-updated {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-top: 0.75rem;
+}
+
+/* ===== CONTENT ===== */
+
+.veille-content {
+  padding: 2.5rem 2rem 4rem;
+}
+
+.veille-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===== FILTER TABS ===== */
+
+.veille-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.veille-filter-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.veille-filter-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.veille-filter-btn-active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== STATUS ===== */
+
+.veille-status {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-tertiary);
+}
+
+.veille-error {
+  color: var(--warning-color);
+}
+
+/* ===== NEWS CARDS ===== */
+
+.veille-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.veille-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.veille-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.veille-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.veille-source {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.veille-date {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.veille-lang {
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+.veille-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+
+.veille-card-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.veille-card-title a:hover {
+  color: var(--accent-secondary);
+}
+
+.veille-card-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ===== CATEGORY BADGES ===== */
+
+.veille-cat {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.veille-cat-urgent {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+.veille-cat-good_news {
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--accent-secondary);
+}
+
+.veille-cat-future_watch {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+}
+
+.veille-cat-stack_alt {
+  background: rgba(168, 85, 247, 0.12);
+  color: #7c3aed;
+}
+
+.veille-cat-general {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+/* ===== DARK MODE ADJUSTMENTS ===== */
+
+[data-theme="dark"] .veille-cat-urgent {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+[data-theme="dark"] .veille-cat-good_news {
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--accent-primary);
+}
+
+[data-theme="dark"] .veille-cat-future_watch {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .veille-cat-stack_alt {
+  background: rgba(168, 85, 247, 0.2);
+  color: #a78bfa;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .veille-hero {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .veille-content {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .veille-card {
+    padding: 1rem 1.25rem;
+  }
+}
