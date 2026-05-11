@@ -60,13 +60,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
         "Aventures et hobbies qui nourrissent la créativité",
     );
     map.insert("photographyTitle", "Photographie");
-    map.insert("photographyDescription", "Capturer des moments pendant les treks et au quotidien—il y a quelque chose dans l'art de figer le temps qui parle à l'esprit développeur.");
+    map.insert("photographyDescription", "Un sentier dans les Monts d'Arrée à l'aube, la brume sur l'Aulne, un coucher de soleil sur la rade de Brest. La photographie, c'est ma façon de ne pas oublier que je suis ailleurs qu'à l'écran.");
     map.insert("musicTitle", "Musique");
-    map.insert("musicDescription", "Sessions guitare et piano pour les pauses mentales. Musique et code suivent des patterns—comprendre l'un aide avec l'autre.");
+    map.insert("musicDescription", "Guitare et piano, surtout le soir. Quand je bloque sur un bug depuis trop longtemps, vingt minutes de musique valent souvent mieux qu'une heure supplémentaire de débogage. C'est empirique, mais ça marche.");
     map.insert("trekkingTitle", "Randonnée & Trek");
-    map.insert("trekkingDescription", "Évasions régulières sur les sentiers côtiers et chemins de campagne. Rien ne vide l'esprit comme une bonne rando en bord de mer—et c'est là que mes meilleures idées de debug arrivent.");
+    map.insert("trekkingDescription", "Les sentiers côtiers de Bretagne, les chemins vers les pointes, les falaises. La marche, c'est l'endroit où j'ai le plus d'idées nettes. Aucune réunion n'a jamais aussi bien fonctionné qu'une rando en bord de mer.");
     map.insert("linuxTitle", "Bricoleur Linux");
-    map.insert("linuxDescription", "Utilisateur quotidien de Manjaro qui aime vraiment configurer ses systèmes—si ça tourne sous Linux et que ça peut être optimisé, ça m'intéresse probablement.");
+    map.insert("linuxDescription", "Manjaro en daily driver. Les dotfiles dans un repo Git. Le gestionnaire de fenêtres configuré à la virgule près. Je sais que c'est une forme de procrastination déguisée en productivité. Mais c'est une très bonne forme de procrastination.");
 
     // Contact
     map.insert("contactTitle", "Construisons quelque chose");
@@ -99,13 +99,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
 
     // CV Translations
     map.insert("cv.personal.name", "Kévin Bourbasquet");
-    map.insert("cv.personal.title", "Développeur Full-Stack PLIP");
+    map.insert("cv.personal.title", "Développeur Full-Stack");
     map.insert("cv.personal.email", "bourbasquet.k@etik.com");
     map.insert("cv.personal.phone", "Disponible sur demande");
     map.insert("cv.personal.location", "Brest → Bordeaux");
     map.insert("cv.personal.license", "Permis B");
     map.insert("cv.personal.portfolio", "bourbask.github.io");
-    map.insert("cv.summary", "Développeur full-stack de {age} ans avec 5 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. Recherche de nouveaux défis à Bordeaux.");
+    map.insert("cv.summary", "Développeur full-stack de {age} ans avec 7 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. En recherche de nouveaux défis à Bordeaux.");
 
     // CV Section titles
     map.insert("cv.sections.experience", "Expérience Professionnelle");
@@ -197,7 +197,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.projects.excelsior.name", "Excelsior");
     map.insert(
         "cv.projects.excelsior.description",
-        "Jeu d'horreur narratif basé sur voyage dans les Pyrénées",
+        "Jeu d'horreur narratif basé sur un voyage dans les Pyrénées",
     );
     map.insert("cv.projects.excelsior.status", "En développement");
 
@@ -326,6 +326,21 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("navigation.cv", "CV");
     map.insert("navigation.language", "Langue");
     map.insert("navigation.theme", "Thème");
+    map.insert("navigation.veille", "Veille");
+
+    // Veille page
+    map.insert("veille.title", "Veille Technologique");
+    map.insert("veille.subtitle", "Actualités tech du jour");
+    map.insert("veille.updatedAt", "Mis à jour le");
+    map.insert("veille.loading", "Chargement des actualités…");
+    map.insert("veille.error", "Impossible de charger les actualités. Réessayez plus tard.");
+    map.insert("veille.filterAll", "Tout");
+    map.insert("veille.filterUrgent", "Urgent");
+    map.insert("veille.filterGoodNews", "Bonne nouvelle");
+    map.insert("veille.filterFutureWatch", "À surveiller");
+    map.insert("veille.filterStackAlt", "Alternatives stack");
+    map.insert("veille.filterGeneral", "Général");
+    map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
 
     map
 }
