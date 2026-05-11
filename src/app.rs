@@ -22,7 +22,8 @@ pub fn App() -> impl IntoView {
                 <main class="main-content">
                     <Routes>
                         <Route path="" view=HomePage/>
-                        <Route path="/blog" view=BlogPage/> // ← BlogPage gère maintenant tout
+                        <Route path="/blog" view=BlogPage/>
+                        <Route path="/veille" view=VeillePage/>
                         <Route path="/*any" view=NotFound404/>
                     </Routes>
                 </main>
