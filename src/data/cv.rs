@@ -47,10 +47,10 @@ pub struct Experience {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SkillCategories {
-    pub technical: String,
-    pub frontend: String,
     pub backend: String,
-    pub tools: String,
+    pub frontend: String,
+    pub database: String,
+    pub devops: String,
     pub learning: String,
 }
 

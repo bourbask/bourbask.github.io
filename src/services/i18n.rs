@@ -15,7 +15,17 @@ impl I18nService {
         // Date de naissance pour calculer l'âge
         let birth_date = NaiveDate::from_ymd_opt(1999, 1, 1).expect("Invalid birth date");
 
-        let current_language = create_rw_signal(Language::En);
+        let storage = crate::services::StorageService::new();
+        let initial_lang = storage
+            .get_language()
+            .and_then(|s| match s.as_str() {
+                "fr" => Some(Language::Fr),
+                "en" => Some(Language::En),
+                _ => None,
+            })
+            .unwrap_or(Language::En);
+
+        let current_language = create_rw_signal(initial_lang);
         let translations = create_rw_signal(current_language.get().get_translations());
 
         Self {
@@ -60,6 +70,7 @@ impl I18nService {
 
     /// Changer de langue
     pub fn set_language(&self, lang: Language) {
+        crate::services::StorageService::new().set_language(lang.as_str());
         self.current_language.set(lang.clone());
         self.translations.set(lang.get_translations());
     }

@@ -659,10 +659,10 @@ impl CVService {
             .iter()
             .map(|(key, skills)| {
                 let title = match *key {
-                    "technical" => &data.skill_categories.technical,
-                    "frontend" => &data.skill_categories.frontend,
                     "backend" => &data.skill_categories.backend,
-                    "tools" => &data.skill_categories.tools,
+                    "frontend" => &data.skill_categories.frontend,
+                    "database" => &data.skill_categories.database,
+                    "devops" => &data.skill_categories.devops,
                     "learning" => &data.skill_categories.learning,
                     _ => "",
                 };
@@ -827,10 +827,10 @@ impl CVService {
 
     fn get_skill_categories(&self) -> SkillCategories {
         SkillCategories {
-            technical: self.i18n.t("cv.skills.categories.technical"),
-            frontend: self.i18n.t("cv.skills.categories.frontend"),
             backend: self.i18n.t("cv.skills.categories.backend"),
-            tools: self.i18n.t("cv.skills.categories.tools"),
+            frontend: self.i18n.t("cv.skills.categories.frontend"),
+            database: self.i18n.t("cv.skills.categories.database"),
+            devops: self.i18n.t("cv.skills.categories.devops"),
             learning: self.i18n.t("cv.skills.categories.learning"),
         }
     }

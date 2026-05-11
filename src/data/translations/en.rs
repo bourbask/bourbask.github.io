@@ -57,13 +57,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
         "Adventures and hobbies that fuel creativity",
     );
     map.insert("photographyTitle", "Photography");
-    map.insert("photographyDescription", "Capturing moments during treks and daily life. There's something about freezing time that appeals to the developer mindset.");
+    map.insert("photographyDescription", "Coastal trails at dawn, sea fog over the cliffs, the estuary at golden hour. Photography is how I keep proof that I do occasionally step away from a screen.");
     map.insert("musicTitle", "Music");
-    map.insert("musicDescription", "Guitar and piano sessions for mental breaks. Music and code both follow patterns—understanding one helps with the other.");
+    map.insert("musicDescription", "Guitar and piano, mostly evenings. When a bug has had me for two hours straight, twenty minutes of playing fixes more than another hour of debugging. Can't explain it. Stopped trying.");
     map.insert("trekkingTitle", "Trekking & Hiking");
-    map.insert("trekkingDescription", "Regular escapes to coastal paths and countryside trails. Nothing clears the mind like a good hike by the sea—plus it's where my best debugging ideas happen.");
+    map.insert("trekkingDescription", "Brittany's coastal paths are where I do my best thinking. Not multitasking, not podcasts — just walking, sea wind, and whatever problem I've been turning over all week. It usually sorts itself out.");
     map.insert("linuxTitle", "Linux Tinkerer");
-    map.insert("linuxDescription", "Daily Manjaro user who actually enjoys configuring systems. If it runs on Linux and can be optimized, I'm probably interested.");
+    map.insert("linuxDescription", "Daily Manjaro user with an embarrassingly detailed dotfiles repo. I've configured my window manager more times than I've shipped features. I'm aware this is a problem. I'm comfortable with it.");
 
     // Contact
     map.insert("contactTitle", "Let's Build Something");
@@ -96,13 +96,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
 
     // CV Translations
     map.insert("cv.personal.name", "Kévin Bourbasquet");
-    map.insert("cv.personal.title", "Full-Stack Developer PLIP");
+    map.insert("cv.personal.title", "Full-Stack Developer");
     map.insert("cv.personal.email", "bourbasquet.k@etik.com");
     map.insert("cv.personal.phone", "Available on request");
     map.insert("cv.personal.location", "Brest → Bordeaux");
     map.insert("cv.personal.license", "Driving License");
     map.insert("cv.personal.portfolio", "bourbask.github.io");
-    map.insert("cv.summary", "Full-stack developer, {age} years old, with 5 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new challenges in Bordeaux.");
+    map.insert("cv.summary", "Full-stack developer, {age} years old, with 7 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new challenges in Bordeaux.");
 
     // CV Section titles
     map.insert("cv.sections.experience", "Professional Experience");
@@ -178,7 +178,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.projects.ezprint3d.name", "EzPrint3D");
     map.insert(
         "cv.projects.ezprint3d.description",
-        "Saas platform connecting 3D printing services and clients",
+        "SaaS platform connecting 3D printing services and clients",
     );
     map.insert("cv.projects.ezprint3d.status", "In development");
 
@@ -194,7 +194,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.projects.excelsior.name", "Excelsior");
     map.insert(
         "cv.projects.excelsior.description",
-        "Narrative horror game based on journey in the Pyrenees",
+        "Narrative horror game based on a journey in the Pyrenees",
     );
     map.insert("cv.projects.excelsior.status", "In development");
 
@@ -315,6 +315,21 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("navigation.cv", "CV");
     map.insert("navigation.language", "Language");
     map.insert("navigation.theme", "Theme");
+    map.insert("navigation.veille", "Tech Watch");
+
+    // Veille page
+    map.insert("veille.title", "Tech Watch");
+    map.insert("veille.subtitle", "Daily curated tech news");
+    map.insert("veille.updatedAt", "Updated");
+    map.insert("veille.loading", "Fetching news…");
+    map.insert("veille.error", "Unable to load news. Try again later.");
+    map.insert("veille.filterAll", "All");
+    map.insert("veille.filterUrgent", "Urgent");
+    map.insert("veille.filterGoodNews", "Good News");
+    map.insert("veille.filterFutureWatch", "Future Watch");
+    map.insert("veille.filterStackAlt", "Stack Alternatives");
+    map.insert("veille.filterGeneral", "General");
+    map.insert("veille.noItems", "No items in this category.");
 
     map
 }
