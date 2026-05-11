@@ -1,38 +1,84 @@
 use crate::{
-    components::ui::CVDownloadButton, // ✅ Ajouter l'import
+    components::ui::CVDownloadButton,
     data::translations::Language,
     services::{I18nService, ThemeService},
 };
 use leptos::*;
+use leptos_router::*;
+use wasm_bindgen::prelude::*;
 
 #[component]
 pub fn Navigation() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
     let theme = use_context::<ThemeService>().expect("Theme service not found");
+    let location = use_location();
+    let pathname = move || location.pathname.get();
+
+    let is_scrolled = create_rw_signal(false);
+
+    create_effect(move |_| {
+        let closure = Closure::wrap(Box::new(move || {
+            let scrolled = web_sys::window()
+                .and_then(|w| w.scroll_y().ok())
+                .unwrap_or(0.0)
+                > 50.0;
+            is_scrolled.set(scrolled);
+        }) as Box<dyn Fn()>);
+
+        if let Some(win) = web_sys::window() {
+            let _ = win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+        }
+        closure.forget();
+    });
 
     view! {
-        <nav class="nav">
+        <nav class="nav" class:scrolled=move || is_scrolled.get()>
             <div class="nav-container">
-                // Logo
-                <div class="nav-logo">
+                // Logo → projects section
+                <a href="/#projects" class="nav-logo-link">
                     <span class="logo-text" data-key="name">
                         {move || i18n.t("name")}
                     </span>
+                </a>
+
+                // Page links
+                <div class="nav-links">
+                    <A
+                        href="/"
+                        class=move || if pathname() == "/" {
+                            "nav-link nav-link-active"
+                        } else {
+                            "nav-link"
+                        }
+                    >
+                        {move || i18n.t("navigation.home")}
+                    </A>
+                    <A
+                        href="/blog"
+                        class=move || if pathname() == "/blog" {
+                            "nav-link nav-link-active"
+                        } else {
+                            "nav-link"
+                        }
+                    >
+                        {move || i18n.t("navigation.blog")}
+                    </A>
+                    <A
+                        href="/veille"
+                        class=move || if pathname() == "/veille" {
+                            "nav-link nav-link-active"
+                        } else {
+                            "nav-link"
+                        }
+                    >
+                        {move || i18n.t("navigation.veille")}
+                    </A>
                 </div>
 
-                // Navigation Controls
+                // Controls
                 <div class="nav-controls">
-                    // Blog
-                    <a href="/blog/" class="nav-link blog-link">
-                        <span data-key="blogNavigation">
-                            {move || i18n.t("blogNavigation")}
-                        </span>
-                    </a>
-
-                    // ✅ Utiliser le composant CV Download
                     <CVDownloadButton/>
 
-                    // Language Toggle
                     <button
                         class="lang-toggle"
                         id="langToggle"
@@ -63,7 +109,6 @@ pub fn Navigation() -> impl IntoView {
                         <div class="lang-slider"></div>
                     </button>
 
-                    // Theme Toggle
                     <button
                         class="theme-toggle"
                         id="themeToggle"

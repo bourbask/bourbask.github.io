@@ -65,7 +65,7 @@
 .project-card,
 .interest-card,
 .contact-method {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, background-position 0.4s ease;
 }
 
 /* Transform and shadow transitions */
@@ -90,7 +90,6 @@
 body,
 .nav,
 .card,
-.btn,
 input,
 textarea {
   transition: all 0.3s ease;

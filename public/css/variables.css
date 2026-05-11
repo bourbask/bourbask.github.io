@@ -10,6 +10,7 @@
 
   /* Background Colors */
   --bg-primary: #ffffff; /* Main background - pure white */
+  --bg-primary-rgb: 255, 255, 255;
   --bg-secondary: #f8fafc; /* Section alternates - very light gray */
   --bg-tertiary: #f1f5f9; /* Cards and inputs - light gray */
 
@@ -56,6 +57,7 @@
 
   /* Background Colors - Dark slate palette */
   --bg-primary: #0f172a; /* Dark slate background */
+  --bg-primary-rgb: 15, 23, 42;
   --bg-secondary: #1e293b; /* Lighter slate for sections */
   --bg-tertiary: #334155; /* Medium slate for components */
 

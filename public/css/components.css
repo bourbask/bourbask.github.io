@@ -18,7 +18,7 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-size: 1rem;
 }
 
@@ -36,14 +36,16 @@
 
 /* Secondary button with warm gradient */
 .btn-secondary {
-  background: var(--accent-gradient-warm);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 50%, var(--accent-tertiary) 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
   color: white;
   border: none;
   font-weight: 600;
 }
 
 .btn-secondary:hover {
-  background: var(--accent-tertiary);
+  background-position: 100% 100%;
   transform: translateY(-2px);
   box-shadow: var(--glow-amber);
 }

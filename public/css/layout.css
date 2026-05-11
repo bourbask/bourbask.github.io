@@ -14,10 +14,18 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: var(--bg-primary);
+  background: transparent;
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(var(--bg-primary-rgb), 0.45);
   border-bottom: 1px solid var(--border-color);
-  transition: all 0.3s ease;
 }
 
 /* Navigation container */
@@ -30,11 +38,28 @@
   justify-content: space-between;
 }
 
+/* Logo link */
+.nav-logo-link {
+  text-decoration: none;
+}
+
+.nav-logo-link:hover .logo-text {
+  color: var(--accent-primary);
+}
+
 /* Logo text styling */
 .logo-text {
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+/* Page nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 /* Navigation controls container */
@@ -44,21 +69,30 @@
   gap: 1rem;
 }
 
-/* ===== BLOG BUTTON ===== */
+/* ===== NAV LINKS ===== */
 .nav-link {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.875rem;
   border-radius: 8px;
-  transition: all 0.3s ease;
-  margin-right: 1rem;
+  transition: all 0.2s ease;
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .nav-link:hover {
-  background: var(--accent-primary);
-  color: white;
-  transform: translateY(-2px);
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.nav-link-active {
+  color: var(--accent-secondary) !important;
+  background: color-mix(
+    in srgb,
+    var(--accent-primary) 12%,
+    transparent
+  ) !important;
+  font-weight: 600;
 }
 
 /* ===== CV DOWNLOAD BUTTON ===== */
