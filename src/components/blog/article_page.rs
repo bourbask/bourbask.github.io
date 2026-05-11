@@ -104,12 +104,6 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
             </header>
 
             <div class="article-content">
-                {move || content.get().as_ref().map(|c| view! {
-                    <div class="article-tldr">
-                        <strong>"TL;DR: "</strong> {&c.tldr}
-                    </div>
-                })}
-
                 {move || {
                     match content.get() {
                         Some(content) => {
@@ -166,14 +160,6 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
     }
 }
 
-// Fonction utilitaire pour parser le markdown (simple)
 fn parse_markdown(content: &str) -> String {
-    content
-        .replace("### ", "<h3>")
-        .replace("## ", "<h2>")
-        .replace("# ", "<h1>")
-        .replace("\n\n", "</p><p>")
-        .replace("**", "<strong>")
-        .replace("**", "</strong>")
-    // Tu peux ajouter plus de parsing ici ou utiliser une crate comme pulldown-cmark
+    content.to_string()
 }
