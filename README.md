@@ -1,321 +1,249 @@
-# Portfolio - Kévin Bourbasquet
+# bourbask.github.io
 
-> Modern, high-performance portfolio website built with **Rust + WebAssembly** showcasing my work as a Full-Stack Developer
+Personal portfolio and tech watch — built with Rust, Leptos, and WebAssembly.
 
-[🇫🇷 Version française](#version-française) | [🌐 Live Demo](https://bourbask.github.io) | [📄 CV Generator](https://bourbask.github.io/#downloadCV)
+**Live:** [bourbask.github.io](https://bourbask.github.io)
 
-## ✨ Features
+---
 
-- **🦀 Rust + WebAssembly** - Cutting-edge performance with type safety
-- **⚡ Sub-second loading** - WebAssembly delivers near-native performance
-- **🌓 Dark/Light Mode** - Smooth theme switching with system preference detection
-- **🌍 Fully Bilingual** - English/French content with intelligent language detection
-- **📄 Dynamic CV Generator** - Professional PDF CV generation with live printing
-- **📱 Responsive Design** - Optimized for all devices and screen sizes
-- **🎨 Modern Architecture** - Component-based with reactive state management
-- **♿ Accessibility First** - Built with WCAG guidelines and semantic HTML
-- **🔧 Developer Experience** - Hot reloading, type safety, and modern tooling
+## What's in here
 
-## 🦀 Why Rust + WebAssembly?
+- Portfolio (about, skills, projects, contact)
+- Blog with article routing
+- Tech Watch (`/veille`) — daily news feed from RSS/HN, auto-updated via GitHub Actions
+- Bilingual (FR/EN) with persistent language preference
+- Dark/light theme with system preference detection, no flash on load
+- Printable CV generator
 
-This portfolio demonstrates **modern web development** with:
+---
 
-- **🚀 Performance**: WebAssembly runs at near-native speed
-- **🛡️ Type Safety**: Rust's type system catches bugs at compile time
-- **📦 Small Bundle Size**: Optimized WASM output
-- **🔧 Developer Experience**: Excellent tooling and error messages
-- **🎯 Future-Proof**: Cutting-edge technology stack
+## Stack
 
-## 🏗️ Architecture
+| Layer | Tech |
+|-------|------|
+| Language | Rust (stable) |
+| Framework | Leptos 0.5 (CSR) |
+| Bundler | Trunk |
+| Target | wasm32-unknown-unknown |
+| Styling | CSS3 with custom properties |
+| News fetch | Python 3 + feedparser (GitHub Actions cron) |
 
-Built with **Leptos** - a modern Rust frontend framework that compiles to WebAssembly:
+---
 
-### **Core Philosophy**
+## Setup
 
-- **Component-Driven**: Reusable, composable UI components
-- **Reactive State**: Fine-grained reactivity without virtual DOM overhead
-- **Type Safety**: Full type safety from backend to frontend
-- **Performance First**: Zero-cost abstractions and optimal WASM output
-- **Modern Standards**: Progressive enhancement and web standards
+### Standard install (most systems)
 
-### **Technology Stack**
+```bash
+# Install Rust via rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
 
-- **🦀 Rust** - Systems programming language for web frontend
-- **🕸️ WebAssembly** - Fast, safe, and secure execution environment
-- **⚡ Leptos** - Modern reactive web framework for Rust
-- **📦 Trunk** - Build tool and asset pipeline for WASM applications
-- **🎨 CSS3** - Modern styling with custom properties and grid
-- **📱 Progressive Enhancement** - Works without WASM, enhanced with it
+# Add WASM target
+rustup target add wasm32-unknown-unknown
 
-## 🛠️ Development
+# Install Trunk
+cargo install --locked trunk
+```
 
-### **Prerequisites**
+### Arch / Manjaro
 
-- **Rust** (latest stable) - [Install Rust](https://rustup.rs/)
-- **Trunk** - WASM application bundler
-- **Modern browser** with WebAssembly support
+The `rustup` package from pacman installs shims in `/usr/bin` (cargo, rustc) that point to rustup itself. Running `cargo` without a configured toolchain causes infinite recursion.
 
-### **Quick Start**
+```bash
+# Check if this is your situation
+file /usr/bin/cargo   # → "symbolic link to rustup" = you have this issue
 
-1. **Install Rust and tools:**
+# Fix: install the stable toolchain and set it as default
+rustup toolchain install stable
+rustup target add wasm32-unknown-unknown
+rustup default stable
 
-   ```bash
-   # Install Rust
-   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Verify
+cargo --version   # should print "cargo 1.x.x ..."
 
-   # Add WASM target
-   rustup target add wasm32-unknown-unknown
+# Install Trunk — via AUR (faster, no compile)
+yay -S trunk
+# or
+paru -S trunk
 
-   # Install Trunk
-   cargo install --locked trunk
-   ```
+# Alternatively, compile from source (takes ~5-10 min)
+cargo install --locked trunk
+```
 
-2. **Clone and setup:**
+> Do not use `rustup toolchain link system /usr`. It links the shim as the toolchain, causing the same recursion.
 
-   ```bash
-   git clone https://github.com/bourbask/bourbask.github.io.git
-   cd bourbask.github.io
-   git checkout leptos-wasm
-   ```
+---
 
-3. **Development server:**
+## Development
 
-   ```bash
-   # Start development server with hot reload
-   trunk serve
-   # Open http://127.0.0.1:8080
-   ```
+```bash
+# Clone
+git clone https://github.com/bourbask/bourbask.github.io.git
+cd bourbask.github.io
+git checkout leptos-wasm
 
-4. **Build for production:**
-   ```bash
-   # Build optimized version for GitHub Pages
-   trunk build --release
-   # Output in dist/ directory
-   ```
+# Start dev server (hot reload at http://127.0.0.1:9999)
+trunk serve
 
-### **Project Structure**
+# Production build
+trunk build --release
+# Output: dist/
+```
+
+### Useful commands
+
+```bash
+trunk serve            # dev server with hot reload
+trunk serve --open     # dev server + open browser
+trunk build            # debug build
+trunk build --release  # optimized build for deployment
+
+cargo clippy           # linting
+cargo fmt              # formatting
+cargo check            # fast type check (no binary output)
+```
+
+---
+
+## Project structure
 
 ```
 src/
-├── main.rs              # Application entry point
-├── app.rs               # Root component and routing
-├── components/          # UI components
-│   ├── hero.rs         # Hero section component
-│   ├── about.rs        # About section component
-│   ├── skills.rs       # Skills showcase
-│   ├── projects.rs     # Projects portfolio
-│   ├── contact.rs      # Contact form
-│   └── ui/             # Reusable UI components
-├── services/            # Business logic
-│   ├── i18n.rs         # Internationalization service
-│   ├── theme.rs        # Theme management
-│   └── storage.rs      # Browser storage utilities
-└── data/               # Static data and content
-    ├── translations.rs # Translation data
-    ├── articles.rs     # Blog articles
-    └── cv.rs          # CV data structure
+├── lib.rs                    # WASM entry point
+├── app.rs                    # Router and top-level contexts
+├── components/
+│   ├── mod.rs
+│   ├── hero.rs
+│   ├── about.rs
+│   ├── skills.rs
+│   ├── projects.rs
+│   ├── interests.rs
+│   ├── contact.rs
+│   ├── navigation.rs
+│   ├── mobile_nav.rs
+│   ├── footer.rs
+│   ├── not_found.rs
+│   ├── veille.rs             # Tech watch page (fetches /news.json)
+│   ├── blog/
+│   │   ├── mod.rs
+│   │   ├── blog_page.rs
+│   │   └── article_page.rs
+│   └── ui/
+│       ├── cv_download.rs
+│       ├── lang_toggle.rs
+│       └── theme_toggle.rs
+├── services/
+│   ├── i18n.rs               # Language switching + localStorage persistence
+│   ├── theme.rs              # Dark/light theme
+│   ├── storage.rs            # localStorage wrapper
+│   ├── blog.rs
+│   ├── cv.rs
+│   └── animations.rs
+└── data/
+    ├── cv.rs
+    ├── articles/
+    └── translations/
+        ├── en.rs
+        └── fr.rs
+
+scripts/
+└── fetch_news.py             # Fetches RSS + HackerNews, outputs public/news.json
+
+.github/workflows/
+└── fetch-news.yml            # Runs fetch_news.py daily at 06:00 UTC
 ```
 
-## 🚀 Deployment
+---
 
-### **GitHub Pages (Current Setup)**
+## Tech Watch (Veille)
 
-The deployment workflow remains **identical** to the current setup:
+The `/veille` page shows a daily-updated feed of tech news relevant to the stack (Symfony, React, Rust, PHP, DevOps, AI).
+
+**How it works:**
+
+1. GitHub Actions runs `scripts/fetch_news.py` every day at 06:00 UTC
+2. The script fetches from HackerNews API + 13 RSS feeds
+3. Items are classified by keyword into: `urgent`, `good_news`, `future_watch`, `stack_alt`, `general`
+4. Result is committed to `public/news.json` on main
+5. The Leptos frontend fetches `/news.json` on page load
+
+**To run the fetch script locally:**
+
+```bash
+pip install feedparser requests
+python scripts/fetch_news.py
+# Output: public/news.json
+```
+
+---
+
+## Deployment
+
+The site deploys to GitHub Pages. A deploy workflow (`.github/workflows/deploy.yml`) handles the build and publish. Minimal setup:
 
 ```yaml
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
-    branches: [leptos-wasm] # or main when ready
+    branches: [main]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
 
-      - name: Install Trunk
-        uses: jetli/trunk-action@v0.4.0
+      - uses: jetli/trunk-action@v0.4.0
         with:
           version: "latest"
 
-      - name: Build
-        run: trunk build --release --public-url ${{ github.event.repository.name }}
+      - run: trunk build --release
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
 
-**Result**: Same URL (`bourbask.github.io`), same workflow, **better performance**!
+---
 
-## 🎨 Styling Strategy
+## i18n
 
-**Keep your existing CSS** with minimal changes:
+Translations live in `src/data/translations/en.rs` and `fr.rs` as `HashMap<&'static str, &'static str>`. The selected language is persisted in `localStorage` (`portfolio_language` key) and restored on page load.
 
-1. **Preserve** your current `assets/style.css`
-2. **Component-specific styles** in Rust components
-3. **CSS custom properties** for theming (already perfect!)
-4. **No major refactoring** needed
+To add a key:
 
 ```rust
-// Example: Hero component with your existing CSS
-#[component]
-pub fn Hero() -> impl IntoView {
-    view! {
-        <section class="hero">  // Your existing CSS classes work!
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        {move || t("heroTitle1")}
-                        <br/>
-                        <span class="gradient-text">{move || t("heroTitle2")}</span>
-                    </h1>
-                </div>
-            </div>
-        </section>
-    }
-}
+// en.rs
+map.insert("my.key", "My value");
+
+// fr.rs
+map.insert("my.key", "Ma valeur");
 ```
 
-## 📊 Performance Benefits
-
-Compared to vanilla JS version:
-
-- **⚡ 60%+ faster** initial load
-- **🚀 90%+ faster** interactions
-- **📦 Smaller bundle** after compression
-- **🔒 Type-safe** runtime
-- **🎯 Zero runtime errors** from type mismatches
-
-## 🌍 Internationalization
-
-Rust-powered i18n with compile-time verification:
+Usage in a component:
 
 ```rust
-// Type-safe translations
-#[derive(Clone)]
-pub struct Translations {
-    pub hero_title: &'static str,
-    pub hero_description: &'static str,
-    // ... compiler ensures all fields exist
-}
-
-// Usage in components
-let t = use_i18n();
-view! {
-    <h1>{t.hero_title}</h1>
-    <p>{t.hero_description}</p>
-}
+let i18n = use_context::<I18nService>().unwrap();
+view! { <p>{move || i18n.t("my.key")}</p> }
 ```
-
-## 🧪 Testing
-
-```bash
-# Run tests
-cargo test
-
-# Test WASM functionality
-wasm-pack test --chrome --firefox --safari
-```
-
-## 🤝 Contributing
-
-Same contribution guidelines, **enhanced developer experience**:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-rust-feature`)
-3. **Write type-safe code** (Rust compiler helps!)
-4. **Test** with `cargo test` and `trunk serve`
-5. **Commit** with conventional commits
-6. **Push** and create a Pull Request
-
-### **Development Commands**
-
-```bash
-# Development
-trunk serve              # Hot reload development server
-trunk serve --open      # Open browser automatically
-
-# Building
-trunk build             # Debug build
-trunk build --release  # Optimized production build
-
-# Testing
-cargo test             # Unit tests
-cargo clippy          # Linting
-cargo fmt            # Code formatting
-
-# Dependency management
-cargo add leptos      # Add dependency
-cargo update         # Update dependencies
-```
-
-## 📈 Migration Benefits
-
-### **For Users:**
-
-- ⚡ **Faster loading** - WebAssembly performance
-- 🔒 **More reliable** - Fewer runtime errors
-- 📱 **Better mobile** - Optimized for all devices
-
-### **For Development:**
-
-- 🛡️ **Type safety** - Catch bugs at compile time
-- 🔧 **Better tooling** - Rust ecosystem
-- 🚀 **Modern patterns** - Component-based architecture
-- 📊 **Performance insights** - Built-in profiling
-
-## 🎯 Roadmap
-
-- [x] **Phase 1**: Core migration (Hero, About, Skills)
-- [ ] **Phase 2**: Interactive components (Contact, CV Generator)
-- [ ] **Phase 3**: Blog system with routing
-- [ ] **Phase 4**: Advanced features (PWA, offline support)
-- [ ] **Phase 5**: Performance optimizations
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-**Built with Rust 🦀 + WebAssembly 🕸️ for the modern web**
 
 ---
 
-## Version Française
+## Notes
 
-> Site portfolio moderne et haute performance construit avec **Rust + WebAssembly**
-
-[Voir la documentation complète en anglais ci-dessus]
-
-## 🦀 Pourquoi Rust + WebAssembly ?
-
-- **🚀 Performance**: WebAssembly s'exécute à une vitesse quasi-native
-- **🛡️ Sécurité des types**: Le système de types de Rust détecte les bugs à la compilation
-- **📦 Bundle compact**: Sortie WASM optimisée
-- **🔧 Expérience développeur**: Excellent outillage et messages d'erreur
-- **🎯 Futur-proof**: Stack technologique de pointe
-
-## 📞 Contact & Social
-
-- **📧 Email**: [bourbasquet.k@etik.com](mailto:bourbasquet.k@etik.com)
-- **🐙 GitHub**: [@bourbask](https://github.com/bourbask)
-- **💼 LinkedIn**: [Kevin Bourbasquet](https://www.linkedin.com/in/k%C3%A9vin-bourbasquet)
-- **🌐 Portfolio**: [bourbask.github.io](https://bourbask.github.io)
+- No SSR, no server functions — pure CSR WASM. Dynamic data (news feed) is pre-fetched by GitHub Actions and served as static JSON.
+- The `leptos-wasm` branch is the active development branch. `main` is what GitHub Pages deploys from.
+- Codebase is a learning project. Quality varies; a cleanup pass is planned.
 
 ---
 
-<div align="center">
+## License
 
-**Construit avec Rust 🦀 + WebAssembly 🕸️ pour le web moderne**
-
-</div>
+MIT — see [LICENSE](LICENSE).

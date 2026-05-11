@@ -236,32 +236,39 @@
      NAVIGATION ITEMS POSITIONS (ARC LAYOUT)
      ========================================== */
 
-  /* Blog navigation item */
+  /* Blog */
   .mobile-nav-items.active .mobile-nav-item:nth-child(1) {
-    transform: translate(-160px, -40px) scale(1);
+    transform: translate(-157px, -28px) scale(1);
     opacity: 1;
     transition-delay: 0.05s;
   }
 
-  /* CV download item */
+  /* Veille */
   .mobile-nav-items.active .mobile-nav-item:nth-child(2) {
-    transform: translate(-105px, -150px) scale(1);
+    transform: translate(-142px, -74px) scale(1);
     opacity: 1;
-    transition-delay: 0.1s;
+    transition-delay: 0.08s;
   }
 
-  /* Language toggle item */
+  /* CV */
   .mobile-nav-items.active .mobile-nav-item:nth-child(3) {
-    transform: translate(-40px, -160px) scale(1);
+    transform: translate(-113px, -113px) scale(1);
     opacity: 1;
-    transition-delay: 0.15s;
+    transition-delay: 0.11s;
   }
 
-  /* Theme toggle item */
+  /* Language */
   .mobile-nav-items.active .mobile-nav-item:nth-child(4) {
-    transform: translate(-150px, -105px) scale(1);
+    transform: translate(-74px, -142px) scale(1);
     opacity: 1;
-    transition-delay: 0.2s;
+    transition-delay: 0.14s;
+  }
+
+  /* Theme */
+  .mobile-nav-items.active .mobile-nav-item:nth-child(5) {
+    transform: translate(-28px, -157px) scale(1);
+    opacity: 1;
+    transition-delay: 0.17s;
   }
 
   /* ==========================================
