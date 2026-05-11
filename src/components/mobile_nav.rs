@@ -1,4 +1,4 @@
-use crate::services::{I18nService, ThemeService};
+use crate::services::{CVService, I18nService, ThemeService};
 use leptos::*;
 
 #[component]
@@ -7,43 +7,43 @@ pub fn MobileFloatingNav() -> impl IntoView {
     let theme = use_context::<ThemeService>().expect("Theme service not found");
 
     let (is_open, set_is_open) = create_signal(false);
-
-    let toggle_nav = move |_| {
-        set_is_open.update(|open| *open = !*open);
-    };
-
-    let close_nav = move |_| {
-        set_is_open.set(false);
-    };
+    let cv_service = CVService::new(i18n.clone());
 
     view! {
         <div class="mobile-floating-nav" id="mobileFloatingNav">
-            // Overlay pour fermer
             <div
                 class="mobile-nav-overlay"
                 id="mobileNavOverlay"
                 class:active=move || is_open.get()
-                on:click=close_nav
+                on:click=move |_| set_is_open.set(false)
             ></div>
 
-            // Navigation Items
             <div
                 class="mobile-nav-items"
                 id="mobileNavItems"
                 class:active=move || is_open.get()
             >
-                <button class="mobile-nav-item" id="mobileBlogBtn" data-label="Blog">
+                // Blog
+                <a href="/blog" class="mobile-nav-item" data-label="Blog">
                     "📝"
-                </button>
+                </a>
 
+                // Veille
+                <a href="/veille" class="mobile-nav-item" data-label="Veille">
+                    "📡"
+                </a>
+
+                // CV
                 <button
                     class="mobile-nav-item"
                     id="mobileCVBtn"
                     data-label="Download CV"
+                    on:click=move |_| cv_service.generate_pdf()
                 >
                     "📄"
                 </button>
 
+                // Language toggle
                 <button
                     class="mobile-nav-item"
                     id="mobileLangBtn"
@@ -53,11 +53,12 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     <span class="mobile-lang-flag">
                         {move || match i18n.current_language.get().as_str() {
                             "fr" => "🇫🇷",
-                            _ => "🇺🇸"
+                            _ => "🇬🇧"
                         }}
                     </span>
                 </button>
 
+                // Theme toggle
                 <button
                     class="mobile-nav-item"
                     id="mobileThemeBtn"
@@ -91,8 +92,11 @@ pub fn MobileFloatingNav() -> impl IntoView {
                 </button>
             </div>
 
-            // Main FAB Button
-            <button class="mobile-fab" id="mobileFab" on:click=toggle_nav>
+            <button
+                class="mobile-fab"
+                id="mobileFab"
+                on:click=move |_| set_is_open.update(|open| *open = !*open)
+            >
                 <div class="fab-icon">
                     <span class="fab-icon-line"></span>
                     <span class="fab-icon-line"></span>

@@ -264,9 +264,9 @@ pub fn LatestArticleCard(article: Article, lang: String) -> impl IntoView {
 
             <div class="latest-article-content">
                 <h3 class="latest-article-title">
-                    <a href={format!("/blog?article={}", article.meta.id)} class="latest-article-link">
+                    <A href={format!("/blog?article={}", article.meta.id)} class="latest-article-link">
                         {title}
-                    </a>
+                    </A>
                 </h3>
                 <p class="latest-article-description">{description}</p>
 
@@ -275,7 +275,7 @@ pub fn LatestArticleCard(article: Article, lang: String) -> impl IntoView {
                     <span class="latest-article-read-time">{article.meta.read_time}" min"</span>
                 </div>
 
-                <a href={format!("/blog?article={}", article.meta.id)} class="latest-article-cta">
+                <A href={format!("/blog?article={}", article.meta.id)} class="latest-article-cta">
                     <span data-key="readArticle">
                         {move || {
                             let i18n = i18n.clone();
@@ -285,7 +285,7 @@ pub fn LatestArticleCard(article: Article, lang: String) -> impl IntoView {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </a>
+                </A>
             </div>
         </div>
     }
@@ -322,7 +322,7 @@ pub fn ArticleListItem(article: Article, lang: String) -> impl IntoView {
                 </div>
 
                 <h3 class="article-list-title">
-                    <a href={format!("/blog?article={}", article.meta.id)}>{title}</a>
+                    <A href={format!("/blog?article={}", article.meta.id)}>{title}</A>
                 </h3>
 
                 <p class="article-list-description">{description}</p>

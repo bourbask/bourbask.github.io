@@ -81,48 +81,5 @@ pub fn NotFound404() -> impl IntoView {
                 </div>
             </div>
         </div>
-
-        // Footer
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <p>
-                        <span id="madeWith">
-                            {move || {
-                                let i18n = i18n.clone();
-                                i18n.t("madeWith")
-                            }}
-                        </span>
-                        " ❤️ "
-                        <span id="by">
-                            {move || {
-                                let i18n = i18n.clone();
-                                i18n.t("by")
-                            }}
-                        </span>
-                        " Kévin Bourbasquet"
-                    </p>
-                    <div class="footer-links">
-                        <a
-                            href="https://github.com/bourbask/bourbask.github.io"
-                            target="_blank"
-                            id="sourceCode"
-                        >
-                            {move || {
-                                let i18n = i18n.clone();
-                                i18n.t("sourceCode")
-                            }}
-                        </a>
-                        " • "
-                        <a
-                            href="https://github.com/bourbask/bourbask.github.io/blob/main/LICENSE"
-                            target="_blank"
-                        >
-                            "MIT License"
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
     }
 }

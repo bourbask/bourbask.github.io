@@ -22,7 +22,7 @@ pub fn AboutSection() -> impl IntoView {
                         // Profile Image
                         <div class="profile-image-container">
                             <img
-                                src="public/icons/profil.png"
+                                src="/public/icons/profil.png"
                                 alt="Kévin Bourbasquet"
                                 class="profile-image"
                             />
