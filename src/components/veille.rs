@@ -52,7 +52,7 @@ pub fn VeillePage() -> impl IntoView {
     let (active_filter, set_active_filter) = create_signal("all".to_string());
 
     spawn_local(async move {
-        match Request::get("/news.json").send().await {
+        match Request::get("/public/news.json").send().await {
             Ok(resp) => match resp.json::<NewsData>().await {
                 Ok(data) => set_news_state.set(NewsState::Loaded(data)),
                 Err(_) => set_news_state.set(NewsState::Error),
