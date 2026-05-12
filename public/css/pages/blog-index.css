@@ -422,6 +422,26 @@
   .blog-hero { padding-top: 110px; }
 }
 
+/* Narrow mobile: stats scroll horizontally so single-word labels don't force overflow */
+@media (max-width: 480px) {
+  .blog-hero-stats {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
+  }
+  .blog-hero-stats::-webkit-scrollbar { display: none; }
+  .blog-stat {
+    flex: 0 0 auto;
+    min-width: 100px;
+    scroll-snap-align: center;
+  }
+}
+
 @media (max-width: 360px) {
   .blog-hero-title { font-size: 1.75rem; }
 }
