@@ -134,6 +134,7 @@
   border-radius: 1rem;
   padding: 1.5rem;
   border: 1px solid var(--border-color);
+  min-width: 0;
 }
 
 .article-toc h3 {
@@ -171,7 +172,7 @@
 }
 
 /* Main article body */
-.article-body { max-width: 800px; }
+.article-body { max-width: 800px; min-width: 0; }
 
 .article-section { margin-bottom: 3rem; }
 
