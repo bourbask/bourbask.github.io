@@ -10,12 +10,13 @@
   var MAX_DRAG_RADIUS = 185;   // px — clamp FAB travel
 
   var fab, navItemsEl, overlay, glassyLabel;
-  var isDragging  = false;
-  var tapOpen     = false;
-  var pressTimer  = null;
-  var fabOriginX  = 0;
-  var fabOriginY  = 0;
-  var confirmedEl = null;
+  var isDragging       = false;
+  var tapOpen          = false;
+  var pressTimer       = null;
+  var fabOriginX       = 0;
+  var fabOriginY       = 0;
+  var confirmedEl      = null;
+  var touchStartedOnFab = false;  // guards against page-scroll triggering FAB
 
   // ── Init ──────────────────────────────────────────────────────────────────
   function init() {
@@ -95,13 +96,17 @@
 
     if (trigger) {
       trigger.classList.add('activated');
-      setTimeout(function () { trigger.click(); }, 60);
+      setTimeout(function () {
+        trigger.click();
+        trigger.classList.remove('activated');
+      }, 60);
     }
   }
 
   // ── Touch handlers ─────────────────────────────────────────────────────────
   function onTouchStart(e) {
     e.preventDefault();
+    touchStartedOnFab = true;
     fab.classList.add('touched');
 
     var rect = fab.getBoundingClientRect();
@@ -191,6 +196,11 @@
   function onTouchEnd() {
     clearTimeout(pressTimer);
     pressTimer = null;
+
+    // Ignore touchend events that didn't start on the FAB (e.g. page scroll)
+    if (!touchStartedOnFab) return;
+    touchStartedOnFab = false;
+
     fab.classList.remove('touched');
 
     if (!isDragging) {
