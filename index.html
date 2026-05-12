@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kévin Bourbasquet - Full Stack Developer</title>
+    <!-- SPA routing: restore path stored by 404.html redirect -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <!-- Anti-FOUC: apply stored theme before first paint -->
     <script>
       (function () {
@@ -27,6 +38,7 @@
     />
 
     <link data-trunk rel="copy-dir" href="public" />
+    <link data-trunk rel="copy-file" href="404.html" />
 
     <link data-trunk rel="css" href="public/css/style.css" />
     <script data-trunk rel="js" src="public/js/animations.js"></script>
