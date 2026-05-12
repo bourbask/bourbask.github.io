@@ -80,8 +80,42 @@
     animation: fabBreath 3s ease-in-out infinite;
   }
 
-  /* Stop halo when menu is open */
-  .mobile-fab.active::before { animation: none; box-shadow: none; }
+  /* Stop halo when tap-open or drag-open */
+  .mobile-fab.active::before,
+  .mobile-fab.drag-open::before { animation: none; box-shadow: none; }
+
+  /* Drag mode: stays green (not red X like tap-active) */
+  .mobile-fab.drag-open {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 8px 36px rgba(74, 222, 128, 0.5), 0 4px 12px rgba(0,0,0,0.2);
+  }
+  /* Keep hamburger icon visible in drag mode (not rotated to X) */
+  .mobile-fab.drag-open .fab-icon-line:nth-child(1) { transform: translateY(-6px); }
+  .mobile-fab.drag-open .fab-icon-line:nth-child(2) { opacity: 1; transform: translateY(0); }
+  .mobile-fab.drag-open .fab-icon-line:nth-child(3) { transform: translateY(6px); }
+
+  /* Swipe-direction hint: two expanding rings after drag mode opens */
+  .mobile-fab.drag-open::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(74, 222, 128, 0.75);
+    pointer-events: none;
+    animation: dragHintRipple 0.65s ease-out 0.3s 2;
+  }
+  @keyframes dragHintRipple {
+    from { transform: scale(1);   opacity: 0.9; }
+    to   { transform: scale(2.4); opacity: 0; }
+  }
+
+  /* Brief glow pulse on arc items to guide the user (after entrance anim) */
+  .mobile-nav-items.active.drag-hint .mobile-nav-item {
+    animation: itemGlowHint 0.45s ease-in-out 0.7s 2 alternate;
+  }
+  @keyframes itemGlowHint {
+    to { filter: brightness(1.5) drop-shadow(0 0 10px rgba(74,222,128,0.8)); }
+  }
 
   @keyframes fabBreath {
     0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
@@ -361,3 +395,62 @@
   }
 
 } /* end @media (max-width: 768px) */
+
+/* ── Glassy action label ──────────────────────────────────────────────────────
+   Injected by fab-interaction.js, shown at screen centre when FAB is dragged
+   near an option. Outside the media query because it lives directly on <body>. */
+.fab-glassy-label {
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  z-index: 1020;
+
+  padding: 0.9rem 2.5rem;
+  border-radius: 2rem;
+
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  /* Glassmorphism — dark default */
+  background: rgba(15, 20, 30, 0.52);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.fab-glassy-label.active {
+  opacity: 0.75;
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.fab-glassy-label.active.confirmed {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  border-color: rgba(74, 222, 128, 0.45);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35),
+              0 0 32px rgba(74, 222, 128, 0.22),
+              inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+[data-theme="light"] .fab-glassy-label {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(0, 0, 0, 0.09);
+  color: var(--text-primary);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+[data-theme="light"] .fab-glassy-label.active.confirmed {
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 28px rgba(74, 222, 128, 0.28);
+}
