@@ -17,19 +17,25 @@
     bottom: 24px;
     right: 24px;
     z-index: 1002;
-    animation: fabEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    /* Note: NO animation here — fabEntrance is on .mobile-fab only.
+       Animating this container would leave transform:scale(1) via fill-mode:both,
+       creating a containing block that traps the overlay to 72×72px. */
   }
 
-  /* Dimmed overlay behind open menu */
+  /* Dimmed overlay — sibling of .mobile-floating-nav, NOT a child.
+     position:fixed here is relative to the viewport (correct),
+     because the parent container has no transform. */
   .mobile-nav-overlay {
+    display: block;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1001;
     backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
   }
 
   .mobile-nav-overlay.active {
@@ -58,6 +64,9 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    /* Entrance animation on the button, not the container — prevents the
+       fill-mode:both transform from turning the parent into a containing block */
+    animation: fabEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
   /* Pulsing ring — permanent attention signal */

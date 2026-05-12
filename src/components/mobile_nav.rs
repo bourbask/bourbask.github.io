@@ -10,14 +10,19 @@ pub fn MobileFloatingNav() -> impl IntoView {
     let cv_service = CVService::new(i18n.clone());
 
     view! {
-        <div class="mobile-floating-nav" id="mobileFloatingNav">
-            <div
-                class="mobile-nav-overlay"
-                id="mobileNavOverlay"
-                class:active=move || is_open.get()
-                on:click=move |_| set_is_open.set(false)
-            ></div>
+        // Overlay is a sibling of mobile-floating-nav, NOT a child.
+        // If it were inside the FAB container, the fabEntrance animation would
+        // leave transform:scale(1) on the parent (fill-mode:both), turning it
+        // into a containing block — making the fixed overlay cover only 72×72px.
+        <>
+        <div
+            class="mobile-nav-overlay"
+            id="mobileNavOverlay"
+            class:active=move || is_open.get()
+            on:click=move |_| set_is_open.set(false)
+        ></div>
 
+        <div class="mobile-floating-nav" id="mobileFloatingNav">
             <div
                 class="mobile-nav-items"
                 id="mobileNavItems"
@@ -104,5 +109,6 @@ pub fn MobileFloatingNav() -> impl IntoView {
                 </div>
             </button>
         </div>
+        </>
     }
 }

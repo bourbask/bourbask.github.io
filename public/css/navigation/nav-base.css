@@ -3,8 +3,9 @@
  * Overridden by nav-responsive.css and nav-fab.css.
  */
 
-/* FAB hidden on desktop — shown via media query in nav-fab.css */
-.mobile-floating-nav {
+/* FAB and overlay hidden on desktop — shown via media query in nav-fab.css */
+.mobile-floating-nav,
+.mobile-nav-overlay {
   display: none;
 }
 
