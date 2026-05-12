@@ -1,0 +1,39 @@
+/* ===== INTERESTS SECTION ===== */
+
+/* Auto-fit — typically 3 cols on desktop, 1 on mobile */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.interest-card {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.interest-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.interest-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.interest-card p { color: var(--text-secondary); line-height: 1.6; }
+
+/* Ultra-wide: 4 columns */
+@media (min-width: 1920px) {
+  .interests-grid { grid-template-columns: repeat(4, 1fr); }
+}

@@ -1,4 +1,4 @@
-use crate::components::{ArticlePage, Footer, MobileFloatingNav, Navigation};
+use crate::components::{ArticlePage, Footer, Navigation};
 use crate::data::articles::{get_category_emoji, Article};
 use crate::services::{BlogService, I18nService, ThemeService};
 use leptos::*;
@@ -32,7 +32,6 @@ pub fn BlogPage() -> impl IntoView {
             </main>
 
             <Footer />
-            <MobileFloatingNav />
         </div>
     }
 }
