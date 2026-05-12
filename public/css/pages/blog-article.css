@@ -332,6 +332,7 @@
 /* ----- Article placeholders ----- */
 
 .article-placeholder {
+  width: 100%;
   height: 100%;
   background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--accent-primary) 20%, var(--bg-tertiary) 100%);
   display: flex;

@@ -84,8 +84,8 @@
   .mobile-fab.active::before { animation: none; box-shadow: none; }
 
   @keyframes fabBreath {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
-    50%      { box-shadow: 0 0 18px 8px rgba(74, 222, 128, 0.12); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+    50%      { box-shadow: 0 0 28px 14px rgba(74, 222, 128, 0.22); }
   }
 
   .mobile-fab:hover {
