@@ -1,0 +1,453 @@
+/* ===== BLOG INDEX PAGE =====
+ * Hero section, stats, article listing, and filters.
+ * See blog-article.css for individual article page styles.
+ */
+
+/* ----- Blog hero ----- */
+
+.blog-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.blog-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.blog-hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.blog-hero-content { z-index: 2; min-width: 0; }
+
+.blog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
+}
+
+.blog-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.blog-hero-description {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Stats row */
+.blog-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.blog-stat {
+  text-align: center;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+}
+
+.blog-stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  display: block;
+}
+
+.blog-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Hero right-side visual */
+.blog-hero-visual {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.latest-article-card {
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.latest-article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.latest-article-image {
+  height: 180px;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.latest-article-content { padding: 1.5rem; }
+
+.latest-article-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.latest-article-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.latest-article-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.latest-article-link, .latest-article-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.latest-article-link:hover, .latest-article-cta:hover { gap: 0.75rem; }
+
+/* ----- Articles listing section ----- */
+
+.blog-articles-section { background: var(--bg-secondary); }
+
+.blog-articles-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.blog-articles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.blog-articles-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Filter chips */
+.blog-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.blog-filter-btn {
+  padding: 0.375rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.blog-filter-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.blog-filter-btn.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+}
+
+/* Filter dropdowns — Rust component uses .category-filter and .sort-filter */
+.blog-sort-select,
+.category-filter,
+.sort-filter {
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.blog-sort-select:focus,
+.category-filter:focus,
+.sort-filter:focus {
+  border-color: var(--accent-primary);
+}
+
+/* Article list */
+.blog-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.article-list-item {
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.article-list-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.article-list-image {
+  height: 100%;
+  min-height: 150px;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.article-list-content { padding: 1.5rem; }
+
+.article-list-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.article-list-category {
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.article-list-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.article-list-item:hover .article-list-title { color: var(--accent-primary); }
+
+.article-list-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.article-list-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.article-list-tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Article title links — no browser default styling */
+.article-list-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.article-list-item:hover .article-list-title a { color: var(--accent-primary); }
+
+/* Gradient hero title highlight */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Latest article — floating badge */
+.latest-article-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-primary);
+  color: white;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* Latest article — image overlay with category */
+.latest-article-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.latest-article-category {
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.latest-article-date,
+.latest-article-read-time,
+.article-list-date,
+.article-list-read-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ----- Responsive ----- */
+
+@media (max-width: 1024px) {
+  .blog-hero-container { grid-template-columns: 1fr; text-align: center; }
+}
+
+@media (max-width: 768px) {
+  .blog-hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .blog-hero-title   { font-size: 2rem; }
+  .blog-hero-stats   { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .blog-articles-header { flex-direction: column; align-items: stretch; }
+  .blog-filters      { flex-direction: column; }
+  .article-list-item { grid-template-columns: 1fr; gap: 0; }
+  .article-list-content { padding: 1.5rem; }
+  /* Extra top padding for 2-row nav on 481-768px */
+  .blog-hero         { padding-top: 100px; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .blog-hero { padding-top: 110px; }
+}
+
+/* Narrow mobile: stats scroll horizontally so single-word labels don't force overflow */
+@media (max-width: 480px) {
+  .blog-hero-stats {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
+  }
+  .blog-hero-stats::-webkit-scrollbar { display: none; }
+  .blog-stat {
+    flex: 0 0 auto;
+    min-width: 100px;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .blog-hero-title { font-size: 1.75rem; }
+}
+
+@media (min-width: 1920px) {
+  .blog-hero-container,
+  .blog-articles-container { max-width: 1600px; }
+  .blog-hero-title { font-size: 3.5rem; }
+}

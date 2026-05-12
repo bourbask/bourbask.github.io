@@ -16,6 +16,7 @@ impl I18nService {
         let birth_date = NaiveDate::from_ymd_opt(1999, 1, 1).expect("Invalid birth date");
 
         let storage = crate::services::StorageService::new();
+        // Priority: 1) persisted user choice, 2) browser language, 3) EN
         let initial_lang = storage
             .get_language()
             .and_then(|s| match s.as_str() {
@@ -23,7 +24,17 @@ impl I18nService {
                 "en" => Some(Language::En),
                 _ => None,
             })
-            .unwrap_or(Language::En);
+            .unwrap_or_else(|| {
+                // Read navigator.language (e.g. "fr", "fr-FR", "fr-BE")
+                let browser_lang = web_sys::window()
+                    .and_then(|w| w.navigator().language())
+                    .unwrap_or_default();
+                if browser_lang.starts_with("fr") {
+                    Language::Fr
+                } else {
+                    Language::En
+                }
+            });
 
         let current_language = create_rw_signal(initial_lang);
         let translations = create_rw_signal(current_language.get().get_translations());

@@ -6,12 +6,10 @@ use leptos_router::*;
 
 #[component]
 pub fn App() -> impl IntoView {
-    // Initialiser les services globaux
     let i18n = I18nService::new();
     let theme = ThemeService::new();
     let blog = BlogService::new();
 
-    // Fournir les contexts
     provide_context(i18n.clone());
     provide_context(theme.clone());
     provide_context(blog.clone());
@@ -27,12 +25,12 @@ pub fn App() -> impl IntoView {
                         <Route path="/*any" view=NotFound404/>
                     </Routes>
                 </main>
+                <MobileFloatingNav />
             </div>
         </Router>
     }
 }
 
-/// 🏠 Page d'accueil - Portfolio complet
 #[component]
 fn HomePage() -> impl IntoView {
     view! {
@@ -45,12 +43,10 @@ fn HomePage() -> impl IntoView {
             <InterestsSection />
             <ContactSection />
             <Footer />
-            <MobileFloatingNav />
         </>
     }
 }
 
-/// 🚫 Page 404
 #[component]
 fn NotFound() -> impl IntoView {
     view! {

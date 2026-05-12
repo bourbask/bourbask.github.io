@@ -1,25 +1,39 @@
-/**
- * Portfolio CSS - Main Import File
+/* ===== PORTFOLIO CSS =====
  * Author: Kévin Bourbasquet
- * 
- * This file imports all CSS modules to maintain organization
- * and make the codebase more maintainable.
+ * Import order: variables → base → nav → components → sections → pages → global responsive
  */
 
-/* Import order matters - variables first, then base styles, then components */
+/* Foundation */
 @import url("/public/css/variables.css");
 @import url("/public/css/base.css");
-@import url("/public/css/components.css");
-@import url("/public/css/layout.css");
-
-/* Navigation imports */
-@import url("/public/css/navigation/navigation-base.css");
-@import url("/public/css/navigation/navigation-desktop.css");
-@import url("/public/css/navigation/navigation-mobile.css");
-
 @import url("/public/css/animations.css");
-@import url("/public/css/responsive.css");
-@import url("/public/css/blog.css");
 
+/* Navigation */
+@import url("/public/css/navigation/nav-base.css");
+@import url("/public/css/navigation/nav-layout.css");
+@import url("/public/css/navigation/nav-responsive.css");
+@import url("/public/css/navigation/nav-fab.css");
+
+/* Shared components */
+@import url("/public/css/components/buttons.css");
+@import url("/public/css/components/cards.css");
+@import url("/public/css/components/forms.css");
+@import url("/public/css/components/ui.css");
+
+/* Homepage sections */
+@import url("/public/css/sections/hero.css");
+@import url("/public/css/sections/about.css");
+@import url("/public/css/sections/skills.css");
+@import url("/public/css/sections/projects.css");
+@import url("/public/css/sections/interests.css");
+@import url("/public/css/sections/contact.css");
+@import url("/public/css/sections/footer.css");
+
+/* Pages */
+@import url("/public/css/pages/blog-index.css");
+@import url("/public/css/pages/blog-article.css");
 @import url("/public/css/404.css");
 @import url("/public/css/veille.css");
+
+/* Global responsive overrides (last = highest specificity in cascade) */
+@import url("/public/css/responsive.css");

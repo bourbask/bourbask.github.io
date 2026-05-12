@@ -1,0 +1,54 @@
+/* ===== NAVIGATION RESPONSIVE =====
+ * Breakpoint behaviour for the top nav bar.
+ *
+ * >768px  : full nav (logo + links + controls)
+ * ≤768px  : hide controls (CV, lang, theme) — FAB handles these
+ * ≤480px  : hide page links too — FAB handles all navigation
+ *           show compact logo ("KB") instead of full name
+ * ≤360px  : extra-compact for cover screens
+ */
+
+/* Tablet / large phone: hide controls, keep links */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Hide all controls except the FAB slot (FAB is now at app root, not here) */
+  .nav-controls > * {
+    display: none;
+  }
+
+  /* Slightly smaller CV button if rendered */
+  .cv-download-btn { width: 36px; height: 36px; }
+  .download-icon   { width: 18px; height: 18px; }
+  .cv-tooltip      { bottom: -40px; font-size: 11px; padding: 6px 10px; }
+}
+
+/* Small phone: hide page links entirely, use compact logo */
+@media (max-width: 480px) {
+  .nav-links {
+    display: none;
+  }
+
+  /* Swap full name for compact placeholder */
+  .logo-full  { display: none; }
+  .logo-short { display: inline; font-size: 1.25rem; }
+
+  /* Center the lone logo — space-between leaves it at the left edge */
+  .nav-container {
+    padding: 0.75rem 1rem;
+    justify-content: center;
+  }
+}
+
+/* Very small / Z Flip cover screen */
+@media (max-width: 360px) {
+  .logo-short { font-size: 1.1rem; }
+  .nav-container { padding: 0.625rem 0.75rem; }
+}
+
+/* Tablet portrait: tighten spacing */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-container { padding: 0.875rem 1.5rem; }
+}

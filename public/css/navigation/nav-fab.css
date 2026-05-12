@@ -1,0 +1,456 @@
+/* ===== MOBILE FLOATING ACTION BUTTON =====
+ * Radial action menu fixed to bottom-right corner.
+ * Visible only on screens ≤768px (mobile/tablet).
+ *
+ * Interaction model:
+ *  - Tap FAB → wheel of 5 action items expands in arc
+ *  - Drag FAB toward an item → magnetic attraction + trigger
+ *  - Tap overlay or FAB again → close
+ */
+
+@media (max-width: 768px) {
+
+  /* Show the FAB container */
+  .mobile-floating-nav {
+    display: block;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1002;
+    /* Note: NO animation here — fabEntrance is on .mobile-fab only.
+       Animating this container would leave transform:scale(1) via fill-mode:both,
+       creating a containing block that traps the overlay to 72×72px. */
+  }
+
+  /* Dimmed overlay — sibling of .mobile-floating-nav, NOT a child.
+     position:fixed here is relative to the viewport (correct),
+     because the parent container has no transform. */
+  .mobile-nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1001;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* ---- FAB button ---- */
+
+  .mobile-fab {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Green glow shadow draws the eye */
+    box-shadow: 0 8px 32px rgba(74, 222, 128, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    z-index: 1003;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Entrance animation on the button, not the container — prevents the
+       fill-mode:both transform from turning the parent into a containing block */
+    animation: fabEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  /* Breath halo — soft glow that fades outward, cycles smoothly */
+  .mobile-fab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    animation: fabBreath 3s ease-in-out infinite;
+  }
+
+  /* Stop halo when tap-open or drag-open */
+  .mobile-fab.active::before,
+  .mobile-fab.drag-open::before { animation: none; box-shadow: none; }
+
+  /* Drag mode: stays green (not red X like tap-active) */
+  .mobile-fab.drag-open {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 8px 36px rgba(74, 222, 128, 0.5), 0 4px 12px rgba(0,0,0,0.2);
+  }
+  /* Keep hamburger icon visible in drag mode (not rotated to X) */
+  .mobile-fab.drag-open .fab-icon-line:nth-child(1) { transform: translateY(-6px); }
+  .mobile-fab.drag-open .fab-icon-line:nth-child(2) { opacity: 1; transform: translateY(0); }
+  .mobile-fab.drag-open .fab-icon-line:nth-child(3) { transform: translateY(6px); }
+
+  /* Swipe-direction hint: two expanding rings after drag mode opens */
+  .mobile-fab.drag-open::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(74, 222, 128, 0.75);
+    pointer-events: none;
+    animation: dragHintRipple 0.65s ease-out 0.3s 2;
+  }
+  @keyframes dragHintRipple {
+    from { transform: scale(1);   opacity: 0.9; }
+    to   { transform: scale(2.4); opacity: 0; }
+  }
+
+  /* Brief glow pulse on arc items to guide the user (after entrance anim) */
+  .mobile-nav-items.active.drag-hint .mobile-nav-item {
+    animation: itemGlowHint 0.45s ease-in-out 0.7s 2 alternate;
+  }
+  @keyframes itemGlowHint {
+    to { filter: brightness(1.5) drop-shadow(0 0 10px rgba(74,222,128,0.8)); }
+  }
+
+  @keyframes fabBreath {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+    50%      { box-shadow: 0 0 28px 14px rgba(74, 222, 128, 0.22); }
+  }
+
+  .mobile-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Red when open — signals "close" */
+  .mobile-fab.active {
+    transform: rotate(45deg) scale(1.1);
+    background: linear-gradient(135deg, #ff4757, #ff3742);
+    box-shadow: 0 16px 40px rgba(255, 71, 87, 0.4);
+  }
+
+  .mobile-fab.touched   { animation: fabPulse 0.3s ease; }
+
+  /* Follows finger while dragging */
+  .mobile-fab.dragging {
+    transition: none !important;
+    transform: scale(1.2) rotate(45deg);
+    box-shadow: 0 20px 60px rgba(255, 71, 87, 0.6);
+    z-index: 1005;
+  }
+
+  .mobile-fab.near-target {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 0 40px rgba(74, 222, 128, 0.8);
+    animation: magneticPulse 0.5s ease-in-out infinite alternate;
+  }
+
+  .mobile-fab.ready-trigger {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    box-shadow: 0 0 50px rgba(74, 222, 128, 1);
+    animation: readyPulse 0.3s ease-in-out infinite alternate;
+  }
+
+  /* ---- Hamburger icon → X transition ---- */
+
+  .fab-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .fab-icon-line {
+    width: 20px;
+    height: 2px;
+    background: white;
+    position: absolute;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .fab-icon-line:nth-child(1) { transform: translateY(-6px); }
+  .fab-icon-line:nth-child(2) { transform: translateY(0); }
+  .fab-icon-line:nth-child(3) { transform: translateY(6px); }
+
+  /* X shape when active / dragging / near target */
+  .mobile-fab.active .fab-icon-line:nth-child(1),
+  .mobile-fab.dragging .fab-icon-line:nth-child(1),
+  .mobile-fab.near-target .fab-icon-line:nth-child(1),
+  .mobile-fab.ready-trigger .fab-icon-line:nth-child(1) { transform: rotate(90deg) translateY(0); }
+
+  .mobile-fab.active .fab-icon-line:nth-child(2),
+  .mobile-fab.dragging .fab-icon-line:nth-child(2),
+  .mobile-fab.near-target .fab-icon-line:nth-child(2),
+  .mobile-fab.ready-trigger .fab-icon-line:nth-child(2) { opacity: 0; }
+
+  .mobile-fab.active .fab-icon-line:nth-child(3),
+  .mobile-fab.dragging .fab-icon-line:nth-child(3),
+  .mobile-fab.near-target .fab-icon-line:nth-child(3),
+  .mobile-fab.ready-trigger .fab-icon-line:nth-child(3) { transform: rotate(-180deg) translateY(0); }
+
+  /* ---- Arc menu items ---- */
+
+  .mobile-nav-items {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1001;
+  }
+
+  .mobile-nav-items.active { pointer-events: auto; }
+
+  .mobile-nav-item {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0) rotate(-90deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    font-size: 18px;
+    z-index: 1002;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Arc positions — 45° spread from right to top */
+  .mobile-nav-items.active .mobile-nav-item:nth-child(1) { transform: translate(-157px,  -28px) scale(1); opacity: 1; transition-delay: 0.05s; }
+  .mobile-nav-items.active .mobile-nav-item:nth-child(2) { transform: translate(-142px,  -74px) scale(1); opacity: 1; transition-delay: 0.08s; }
+  .mobile-nav-items.active .mobile-nav-item:nth-child(3) { transform: translate(-113px, -113px) scale(1); opacity: 1; transition-delay: 0.11s; }
+  .mobile-nav-items.active .mobile-nav-item:nth-child(4) { transform: translate( -74px, -142px) scale(1); opacity: 1; transition-delay: 0.14s; }
+  .mobile-nav-items.active .mobile-nav-item:nth-child(5) { transform: translate( -28px, -157px) scale(1); opacity: 1; transition-delay: 0.17s; }
+
+  .mobile-nav-item:hover {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 20px rgba(74, 222, 128, 0.3);
+  }
+
+  .mobile-nav-item.near-target {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.6);
+    animation: magneticGlow 0.5s ease-in-out infinite alternate;
+  }
+
+  .mobile-nav-item.ready-trigger {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.8);
+    animation: readyGlow 0.3s ease-in-out infinite alternate;
+  }
+
+  .mobile-nav-item.activated {
+    transform: scale(1.2) !important;
+    animation: activationPulse 0.3s ease-out;
+  }
+
+  /* ---- Theme icons inside FAB items ---- */
+
+  .mobile-nav-item .theme-icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    stroke-width: 2;
+  }
+
+  .mobile-nav-item.near-target .theme-icon,
+  .mobile-nav-item.ready-trigger .theme-icon { animation: iconBounce 0.5s ease-in-out infinite alternate; }
+
+  [data-theme="light"] .mobile-nav-item .sun-icon  { opacity: 1; transform: rotate(0deg); }
+  [data-theme="light"] .mobile-nav-item .moon-icon { opacity: 0; position: absolute; transform: rotate(180deg); }
+  [data-theme="dark"]  .mobile-nav-item .moon-icon { opacity: 1; transform: rotate(0deg); }
+  [data-theme="dark"]  .mobile-nav-item .sun-icon  { opacity: 0; position: absolute; transform: rotate(-180deg); }
+
+  /* ---- Floating labels (shown on hover / near target) ---- */
+
+  .mobile-nav-item::after {
+    content: attr(data-label);
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(20px);
+    background: var(--bg-secondary);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    z-index: 1004;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-nav-item:hover::after,
+  .mobile-nav-item.near-target::after,
+  .mobile-nav-item.ready-trigger::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+  .mobile-nav-item.ready-trigger::after {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  }
+
+  /* ---- Animations ---- */
+
+  @keyframes fabEntrance {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fabPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes magneticPulse {
+    0%   { box-shadow: 0 0 40px rgba(74, 222, 128, 0.6); }
+    100% { box-shadow: 0 0 60px rgba(74, 222, 128, 0.9); }
+  }
+
+  @keyframes readyPulse {
+    0%   { box-shadow: 0 0 50px rgba(74, 222, 128, 0.8); }
+    100% { box-shadow: 0 0 80px rgba(74, 222, 128, 1); }
+  }
+
+  @keyframes magneticGlow {
+    0%   { box-shadow: 0 0 30px rgba(74, 222, 128, 0.6); filter: brightness(1.1); }
+    100% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.8); filter: brightness(1.2); }
+  }
+
+  @keyframes readyGlow {
+    0%   { box-shadow: 0 0 50px rgba(34, 197, 94, 0.8); filter: brightness(1.2); }
+    100% { box-shadow: 0 0 70px rgba(34, 197, 94, 1);   filter: brightness(1.3); }
+  }
+
+  @keyframes iconBounce {
+    0%   { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(5deg); }
+  }
+
+  @keyframes activationPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.3); }
+    100% { transform: scale(1.2); }
+  }
+
+  /* ---- Smaller phone adjustments ---- */
+
+  @media (max-width: 480px) {
+    .mobile-floating-nav { bottom: 20px; right: 20px; }
+    .mobile-fab          { width: 64px; height: 64px; }
+    .mobile-nav-item     { width: 44px; height: 44px; font-size: 16px; }
+  }
+
+  @media (max-width: 360px) {
+    .mobile-floating-nav { bottom: 16px; right: 16px; }
+    .mobile-fab          { width: 56px; height: 56px; }
+  }
+
+  /* Prevent scrollbar jump when menu opens */
+  body.mobile-nav-open { padding-bottom: 120px; }
+
+  /* Accessibility */
+  @media (prefers-contrast: high) {
+    .mobile-fab         { border: 2px solid var(--text-primary); }
+    .mobile-nav-item    { border-width: 3px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-fab, .mobile-nav-item { transition: none; animation: none; }
+    .mobile-floating-nav          { animation: none; }
+    .mobile-nav-item.near-target,
+    .mobile-nav-item.ready-trigger,
+    .mobile-fab.near-target,
+    .mobile-fab.ready-trigger     { animation: none; }
+  }
+
+} /* end @media (max-width: 768px) */
+
+/* ── Glassy action label ──────────────────────────────────────────────────────
+   Injected by fab-interaction.js, shown at screen centre when FAB is dragged
+   near an option. Outside the media query because it lives directly on <body>. */
+.fab-glassy-label {
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  z-index: 1020;
+
+  padding: 0.9rem 2.5rem;
+  border-radius: 2rem;
+
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  /* Glassmorphism — dark default */
+  background: rgba(15, 20, 30, 0.52);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.fab-glassy-label.active {
+  opacity: 0.75;
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.fab-glassy-label.active.confirmed {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  border-color: rgba(74, 222, 128, 0.45);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35),
+              0 0 32px rgba(74, 222, 128, 0.22),
+              inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+[data-theme="light"] .fab-glassy-label {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(0, 0, 0, 0.09);
+  color: var(--text-primary);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+[data-theme="light"] .fab-glassy-label.active.confirmed {
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 28px rgba(74, 222, 128, 0.28);
+}

@@ -211,9 +211,16 @@
 
 /* ===== RESPONSIVE ===== */
 
+/* 481–768px: 2-row nav adds ~35px extra height */
+@media (min-width: 481px) and (max-width: 768px) {
+  .veille-hero {
+    padding: 7.5rem 1.5rem 2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .veille-hero {
-    padding: 5rem 1.5rem 2rem;
+    padding: 6rem 1.5rem 2rem;
   }
 
   .veille-content {
@@ -222,5 +229,24 @@
 
   .veille-card {
     padding: 1rem 1.25rem;
+  }
+}
+
+/* ===== VERY SMALL (≤360px) ===== */
+@media (max-width: 360px) {
+  .veille-hero {
+    padding: 5rem 0.75rem 1.5rem;
+  }
+
+  .veille-content {
+    padding: 1rem 0.75rem 2.5rem;
+  }
+}
+
+/* ===== ULTRA-WIDE (≥1920px) ===== */
+@media (min-width: 1920px) {
+  .veille-hero-container,
+  .veille-container {
+    max-width: 1400px;
   }
 }

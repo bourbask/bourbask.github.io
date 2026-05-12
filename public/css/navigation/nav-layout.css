@@ -1,0 +1,303 @@
+/* ===== NAVIGATION LAYOUT =====
+ * Fixed top bar: logo, page links, action controls.
+ * CV download button, language toggle, theme toggle.
+ */
+
+/* ----- Nav bar ----- */
+
+/* Fixed top bar with glass blur effect */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Frosted-glass style when user has scrolled */
+.nav.scrolled {
+  background: rgba(var(--bg-primary-rgb), 0.45);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ----- Logo ----- */
+
+.nav-logo-link {
+  text-decoration: none;
+}
+
+.nav-logo-link:hover .logo-text {
+  color: var(--accent-primary);
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+/* ----- Page links ----- */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.4rem 0.875rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+/* Active page link */
+.nav-link-active {
+  color: var(--accent-secondary) !important;
+  background: color-mix(in srgb, var(--accent-primary) 12%, transparent) !important;
+  font-weight: 600;
+}
+
+/* ----- CV download button ----- */
+
+.cv-download-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cv-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-download-btn:hover {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+
+.cv-download-btn:active { transform: translateY(0); }
+
+.cv-download-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+.download-icon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.cv-download-btn:hover .download-icon { transform: scale(1.1); }
+
+/* Shimmer animation while generating PDF */
+.cv-download-btn.loading { pointer-events: none; }
+
+.cv-download-btn.loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  animation: cvFillProgress 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes cvFillProgress {
+  0%   { left: -100%; opacity: 0; }
+  50%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.cv-download-btn.loading .download-icon {
+  animation: cvIconPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes cvIconPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1; transform: scale(1.05); }
+}
+
+/* Green flash on success */
+.cv-download-btn.success {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+.cv-download-btn.success .download-icon {
+  animation: cvSuccessBounce 0.6s ease-out;
+}
+
+@keyframes cvSuccessBounce {
+  0%, 20%, 40%, 60%, 80%, 100% { transform: translateY(0) scale(1); }
+  10%, 30%, 50%, 70%, 90%      { transform: translateY(-4px) scale(1.1); }
+}
+
+/* Tooltip shown on hover */
+.cv-tooltip {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+}
+
+.cv-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--bg-secondary);
+  border-top: none;
+}
+
+.cv-download-wrapper:hover .cv-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+[data-theme="dark"] .cv-tooltip { background: var(--bg-secondary); border-color: var(--border-color); }
+[data-theme="dark"] .cv-tooltip::before { border-bottom-color: var(--bg-secondary); }
+
+/* ----- Language toggle ----- */
+
+.lang-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  z-index: 2;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.lang-option.active { color: var(--text-primary); }
+
+/* Sliding indicator */
+.lang-slider {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: calc(50% - 0.25rem);
+  height: calc(100% - 0.5rem);
+  background: var(--bg-primary);
+  border-radius: 50px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.lang-toggle[data-lang="fr"] .lang-slider { transform: translateX(100%); }
+
+/* ----- Theme toggle ----- */
+
+.theme-toggle {
+  position: relative;
+  width: 3rem;
+  height: 1.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.theme-icon-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.5s ease;
+}
+
+/* Light mode: sun visible, moon hidden */
+.sun-icon  { transform: translateX(-0.5rem); opacity: 1; }
+.moon-icon { transform: translateX(0.5rem);  opacity: 0; }
+
+/* Dark mode: moon visible, sun hidden */
+[data-theme="dark"] .sun-icon  { transform: translateX(-0.5rem); opacity: 0; }
+[data-theme="dark"] .moon-icon { transform: translateX(0.5rem);  opacity: 1; }

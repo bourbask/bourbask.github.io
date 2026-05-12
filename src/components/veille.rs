@@ -1,5 +1,4 @@
 use crate::components::footer::Footer;
-use crate::components::mobile_nav::MobileFloatingNav;
 use crate::components::navigation::Navigation;
 use crate::services::I18nService;
 use gloo_net::http::Request;
@@ -191,7 +190,6 @@ pub fn VeillePage() -> impl IntoView {
                 </div>
             </section>
             <Footer />
-            <MobileFloatingNav />
         </div>
     }
 }

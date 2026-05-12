@@ -1,0 +1,39 @@
+/* ===== SKILLS SECTION ===== */
+
+/* Auto-fit grid — collapses to 1 col on small screens */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.skill-category h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Tablet: explicit 2-column */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Ultra-wide: 4 columns */
+@media (min-width: 1920px) {
+  .skills-grid { grid-template-columns: repeat(4, 1fr); }
+}
