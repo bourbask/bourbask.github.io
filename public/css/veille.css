@@ -224,3 +224,22 @@
     padding: 1rem 1.25rem;
   }
 }
+
+/* ===== VERY SMALL (≤360px) ===== */
+@media (max-width: 360px) {
+  .veille-hero {
+    padding: 4rem 0.75rem 1.5rem;
+  }
+
+  .veille-content {
+    padding: 1rem 0.75rem 2.5rem;
+  }
+}
+
+/* ===== ULTRA-WIDE (≥1920px) ===== */
+@media (min-width: 1920px) {
+  .veille-hero-container,
+  .veille-container {
+    max-width: 1400px;
+  }
+}

@@ -1150,4 +1150,43 @@
 
 [data-theme="dark"] .article-callout.tip  { background: rgba(34, 197, 94, 0.12); }
 [data-theme="dark"] .article-callout.warning { background: rgba(245, 158, 11, 0.12); }
+
+/* ===== ULTRA-WIDE (≥1920px) ===== */
+@media (min-width: 1920px) {
+  .blog-hero-container,
+  .blog-articles-container {
+    max-width: 1600px;
+  }
+
+  .blog-article {
+    max-width: 1400px;
+  }
+
+  .blog-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .blog-hero {
+    min-height: 60vh;
+  }
+}
+
+/* ===== VERY SMALL (≤360px) ===== */
+@media (max-width: 360px) {
+  .blog-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .blog-hero {
+    padding-top: 60px;
+  }
+
+  .article-title {
+    font-size: 1.625rem;
+  }
+
+  .lead-text {
+    font-size: 1.1rem;
+  }
+}
 [data-theme="dark"] .article-callout.info { background: rgba(59, 130, 246, 0.12); }

@@ -58,8 +58,8 @@
 
   /* Main FAB button styling */
   .mobile-fab {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     background: linear-gradient(
       135deg,
@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(74, 222, 128, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     z-index: 1003;
@@ -81,6 +81,28 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Attention ping ring — draws the eye */
+  .mobile-fab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    opacity: 0.55;
+    animation: fabPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: -1;
+  }
+
+  .mobile-fab.active::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  @keyframes fabPing {
+    0% { transform: scale(1); opacity: 0.55; }
+    70%, 100% { transform: scale(1.9); opacity: 0; }
   }
 
   /* FAB hover state (for desktop testing) */
@@ -512,8 +534,8 @@
     }
 
     .mobile-fab {
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
     }
 
     .mobile-nav-item {
@@ -523,11 +545,16 @@
     }
   }
 
-  /* Very small screens */
+  /* Very small / Z Flip cover screen */
   @media (max-width: 360px) {
     .mobile-floating-nav {
       bottom: 16px;
       right: 16px;
+    }
+
+    .mobile-fab {
+      width: 56px;
+      height: 56px;
     }
   }
 
