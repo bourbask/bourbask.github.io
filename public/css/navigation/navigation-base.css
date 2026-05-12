@@ -2,7 +2,12 @@
    NAVIGATION BASE STYLES
    ================================= */
 
-/* Hide mobile navigation by default */
+/* Hide mobile navigation by default — shown via media query */
 .mobile-floating-nav {
+  display: none;
+}
+
+/* Logo variants: full shown by default, short hidden */
+.logo-short {
   display: none;
 }

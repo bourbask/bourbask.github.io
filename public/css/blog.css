@@ -525,8 +525,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  padding-top: 100px; /* Compense la navbar */
+  padding-top: 100px;
   overflow-x: hidden;
+}
+
+/* 481–768px: 2-row nav is taller */
+@media (min-width: 481px) and (max-width: 768px) {
+  .blog-article {
+    padding-top: 130px;
+  }
+
+  .blog-hero {
+    padding-top: 130px;
+  }
 }
 
 /* Article Header */

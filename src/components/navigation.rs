@@ -36,9 +36,10 @@ pub fn Navigation() -> impl IntoView {
             <div class="nav-container">
                 // Logo → projects section
                 <a href="/#projects" class="nav-logo-link">
-                    <span class="logo-text" data-key="name">
+                    <span class="logo-text logo-full" data-key="name">
                         {move || i18n.t("name")}
                     </span>
+                    <span class="logo-text logo-short">"KB"</span>
                 </a>
 
                 // Page links
