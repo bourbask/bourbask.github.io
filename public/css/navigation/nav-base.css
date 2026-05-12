@@ -1,0 +1,14 @@
+/* ===== NAVIGATION BASE STATE =====
+ * Default visibility rules for nav variants.
+ * Overridden by nav-responsive.css and nav-fab.css.
+ */
+
+/* FAB hidden on desktop — shown via media query in nav-fab.css */
+.mobile-floating-nav {
+  display: none;
+}
+
+/* Compact logo hidden by default — shown on narrow screens */
+.logo-short {
+  display: none;
+}

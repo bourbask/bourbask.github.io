@@ -1,0 +1,255 @@
+/* ===== PROJECTS SECTION =====
+ * Project cards grid, featured card, badges, CTAs,
+ * and the special blog CTA card.
+ */
+
+.projects { background: var(--bg-secondary); }
+
+/* 2-column grid; featured card spans both */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Featured card spans full width and uses side-by-side layout */
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.project-image {
+  height: 200px;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-placeholder { font-size: 4rem; opacity: 0.5; }
+
+.project-content { padding: 2rem; }
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-tech span {
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ----- Card header with badge ----- */
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.project-title  { margin: 0; flex: 1; }
+
+.project-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover { color: var(--accent-primary); }
+
+.project-badge {
+  flex-shrink: 0;
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.project-badge.coming-soon { background: var(--text-secondary); }
+
+/* ----- Project CTA button ----- */
+
+.project-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.project-cta:hover { gap: 1rem; transform: translateX(4px); }
+
+.project-cta.primary {
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transform: none;
+}
+
+.project-cta.primary:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-2px);
+  gap: 0.75rem;
+}
+
+/* Disabled / "coming soon" CTA */
+.project-cta.disabled {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 2px dashed var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+  pointer-events: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer hint: "something coming" */
+.project-cta.disabled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  animation: projectShimmer 2s linear infinite;
+  border-radius: 6px;
+}
+
+@keyframes projectShimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+[data-theme="dark"] .project-cta.disabled {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .project-cta.disabled::after {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+}
+
+/* Subtle shake on hover to signal "not yet" */
+.project-card:has(.project-cta.disabled):hover { transform: translateY(-4px); }
+
+.project-card:has(.project-cta.disabled):hover .project-cta.disabled {
+  animation: projectShake 0.3s ease-in-out;
+}
+
+@keyframes projectShake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-2px); }
+  75%       { transform: translateX(2px); }
+}
+
+/* ----- Blog CTA card (special shimmer variant) ----- */
+
+.blog-cta-card {
+  border: 2px solid var(--accent-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-cta-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
+  background-size: 20px 20px;
+  animation: blogCTAShimmer 3s ease-in-out infinite;
+}
+
+@keyframes blogCTAShimmer {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
+}
+
+.blog-cta-card .project-placeholder {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+}
+
+/* ----- Responsive ----- */
+
+/* Tablet: same 2-col, slightly tighter gap */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .projects-grid { gap: 1.5rem; }
+}
+
+/* Mobile: single column, featured card no longer spans */
+@media (max-width: 768px) {
+  .projects-grid     { grid-template-columns: 1fr; gap: 1.5rem; }
+  .project-card.featured { grid-column: 1; display: flex; flex-direction: column; }
+  .project-header    { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .project-badge     { align-self: flex-start; }
+  .project-cta.disabled { padding: 0.6rem 1.2rem; font-size: 0.8rem; }
+}

@@ -1,0 +1,151 @@
+/* ===== HERO SECTION =====
+ * Full-viewport landing section with animated floating cards.
+ * Cards are hidden on mobile to prevent horizontal overflow.
+ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: start;
+  padding-top: 10rem;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Amber badge above title */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--accent-tertiary);
+  color: white;
+  border: 1px solid var(--accent-tertiary);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ----- Floating card illustration ----- */
+
+/* overflow:hidden prevents absolutely-positioned cards
+   from causing horizontal page scroll on narrow screens */
+.hero-visual {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-xl);
+  padding: 1.5rem;
+}
+
+.card-code { top: 2rem; left: 0;    width: 280px; }
+.card-tech { bottom: 2rem; right: 0; width: 120px; }
+
+/* Code snippet in card */
+.code-snippet { font-family: "Fira Code", monospace; font-size: 0.875rem; }
+
+.code-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Mac-style window controls */
+.code-dots { display: flex; gap: 0.25rem; }
+.code-dots span { width: 0.75rem; height: 0.75rem; border-radius: 50%; }
+.code-dots span:nth-child(1) { background: var(--accent-primary); }
+.code-dots span:nth-child(2) { background: var(--accent-secondary); }
+.code-dots span:nth-child(3) { background: var(--text-tertiary); }
+
+.code-line   { display: block; margin-bottom: 0.25rem; color: var(--text-secondary); }
+.code-var    { color: var(--accent-primary); }
+.code-string { color: var(--accent-secondary); }
+
+/* Tech icons card */
+.tech-icons { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+.tech-icon  { font-size: 2rem; opacity: 0.8; }
+
+/* ----- Responsive ----- */
+
+/* Tablet: single-column, smaller visual */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+  .hero-title       { font-size: 3rem; }
+  .hero-description { max-width: 100%; }
+  .hero-actions     { justify-content: center; }
+  .hero-visual      { height: 300px; max-width: 500px; margin: 0 auto; }
+  .card-code        { top: 0; left: 6rem; width: 260px; }
+  .card-tech        { top: -17rem; right: -10rem; bottom: auto; width: 110px; }
+}
+
+/* Mobile: hide illustration to avoid overflow, single column */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .hero-title   { font-size: 2.5rem; }
+  .hero-actions { justify-content: center; }
+  .hero-visual  { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.25rem; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .hero-badge   { font-size: 0.75rem; }
+}
+
+@media (max-width: 360px) {
+  .hero-title       { font-size: 1.875rem; }
+  .hero-description { font-size: 1rem; }
+  .hero-badge       { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
+}
+
+/* Ultra-wide: bigger type, more padding */
+@media (min-width: 1920px) {
+  .hero         { padding-top: 14rem; }
+  .hero-title   { font-size: 5rem; }
+  .hero-description { font-size: 1.5rem; max-width: 640px; }
+}
