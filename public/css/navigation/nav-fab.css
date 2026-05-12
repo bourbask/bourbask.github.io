@@ -69,24 +69,23 @@
     animation: fabEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
-  /* Pulsing ring — permanent attention signal */
+  /* Breath halo — soft glow that fades outward, cycles smoothly */
   .mobile-fab::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: var(--accent-primary);
-    opacity: 0.5;
+    background: transparent;
     pointer-events: none;
-    animation: fabPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    animation: fabBreath 3s ease-in-out infinite;
   }
 
-  /* Stop ring when menu is open */
-  .mobile-fab.active::before { animation: none; opacity: 0; }
+  /* Stop halo when menu is open */
+  .mobile-fab.active::before { animation: none; box-shadow: none; }
 
-  @keyframes fabPing {
-    0%, 15%   { transform: scale(1);   opacity: 0.5; }
-    80%, 100% { transform: scale(2.1); opacity: 0; }
+  @keyframes fabBreath {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
+    50%      { box-shadow: 0 0 18px 8px rgba(74, 222, 128, 0.12); }
   }
 
   .mobile-fab:hover {
