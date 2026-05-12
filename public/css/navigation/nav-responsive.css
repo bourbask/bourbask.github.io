@@ -35,8 +35,10 @@
   .logo-full  { display: none; }
   .logo-short { display: inline; font-size: 1.25rem; }
 
+  /* Center the lone logo — space-between leaves it at the left edge */
   .nav-container {
     padding: 0.75rem 1rem;
+    justify-content: center;
   }
 }
 

@@ -5,12 +5,17 @@
 
 /* ----- Article container ----- */
 
-/* Extra top padding compensates for the fixed nav bar */
+/* Extra top padding compensates for the fixed nav bar.
+   width:100% is required because #blog-container is display:flex flex-direction:column;
+   without it, margin:auto makes the article size to its content (not the container),
+   causing the inner grid to resolve 1fr to a large value → horizontal overflow. */
 .blog-article {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   padding-top: 100px;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
 
@@ -191,6 +196,19 @@
   color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 1rem;
+}
+
+/* Hyperlinks inside article body — browser defaults (blue/purple/underline) are ugly */
+.article-section a {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.article-section a:hover {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
 }
 
 .article-section ul,

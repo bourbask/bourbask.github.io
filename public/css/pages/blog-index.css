@@ -24,9 +24,11 @@
 }
 
 .blog-hero-container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 400px;
   gap: 4rem;
@@ -217,15 +219,26 @@
   color: white;
 }
 
-/* Sort dropdown */
-.blog-sort-select {
+/* Filter dropdowns — Rust component uses .category-filter and .sort-filter */
+.blog-sort-select,
+.category-filter,
+.sort-filter {
   padding: 0.375rem 0.75rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background: var(--bg-primary);
   color: var(--text-primary);
   font-size: 0.875rem;
+  font-family: inherit;
   cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.blog-sort-select:focus,
+.category-filter:focus,
+.sort-filter:focus {
+  border-color: var(--accent-primary);
 }
 
 /* Article list */
