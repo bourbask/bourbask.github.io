@@ -1,7 +1,7 @@
 use crate::data::articles::{
     get_article_by_id, get_published_articles, get_unique_categories, Article,
 };
-use leptos::*;
+use leptos::prelude::*;
 
 #[derive(Debug, Clone)]
 pub struct BlogService {
@@ -14,13 +14,13 @@ pub struct BlogService {
 impl BlogService {
     pub fn new() -> Self {
         let articles = get_published_articles();
-        let articles_signal = create_rw_signal(articles.clone());
+        let articles_signal = RwSignal::new(articles.clone());
 
         Self {
             articles: articles_signal,
-            filtered_articles: create_rw_signal(articles),
-            current_category_filter: create_rw_signal(String::new()),
-            current_sort: create_rw_signal("newest".to_string()),
+            filtered_articles: RwSignal::new(articles),
+            current_category_filter: RwSignal::new(String::new()),
+            current_sort: RwSignal::new("newest".to_string()),
         }
     }
 

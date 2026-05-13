@@ -1,8 +1,9 @@
 use crate::components::blog::BlogPage;
 use crate::components::*;
 use crate::services::{BlogService, I18nService, ThemeService};
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::{Route, Router, Routes};
+use leptos_router::StaticSegment;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -18,11 +19,10 @@ pub fn App() -> impl IntoView {
         <Router>
             <div class="app">
                 <main class="main-content">
-                    <Routes>
-                        <Route path="" view=HomePage/>
-                        <Route path="/blog" view=BlogPage/>
-                        <Route path="/veille" view=VeillePage/>
-                        <Route path="/*any" view=NotFound404/>
+                    <Routes fallback=|| view! { <NotFound404/> }>
+                        <Route path=StaticSegment("") view=HomePage/>
+                        <Route path=StaticSegment("/blog") view=BlogPage/>
+                        <Route path=StaticSegment("/veille") view=VeillePage/>
                     </Routes>
                 </main>
                 <MobileFloatingNav />
@@ -43,16 +43,6 @@ fn HomePage() -> impl IntoView {
             <InterestsSection />
             <ContactSection />
             <Footer />
-        </>
-    }
-}
-
-#[component]
-fn NotFound() -> impl IntoView {
-    view! {
-        <>
-            <Navigation />
-            <NotFound404 />
         </>
     }
 }
