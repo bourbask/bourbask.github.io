@@ -1,0 +1,3 @@
+[advisories]
+# paste is unmaintained but stable; it's a transitive dep of Leptos that we cannot update
+ignore = ["RUSTSEC-2024-0436"]
