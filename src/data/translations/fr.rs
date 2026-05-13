@@ -344,6 +344,14 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.filterStackAlt", "Alternatives stack");
     map.insert("veille.filterGeneral", "Général");
     map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
+    map.insert("veille.synthesis.title", "Synthèse du jour");
+    map.insert("veille.synthesis.tldr", "En bref");
+    map.insert("veille.synthesis.keyTakeaways", "Points clés");
+    map.insert("veille.synthesis.signalVsNoise", "Signal vs bruit");
+    map.insert("veille.synthesis.aiGenerated", "Généré par Claude IA");
+    map.insert("veille.synthesis.hide", "Masquer");
+    map.insert("veille.synthesis.show", "Afficher");
+    map.insert("veille.synthesis.notAvailable", "Synthèse non disponible pour cette période.");
 
     // PGP contact
     map.insert("pgpDownload", "Télécharger la clé");
