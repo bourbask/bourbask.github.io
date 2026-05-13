@@ -151,7 +151,7 @@ pub fn VeillePage() -> impl IntoView {
                         };
 
                         match synth {
-                            None => view! { <></> }.into_any(),
+                            None => ().into_any(),
                             Some(s) => {
                                 let headline = s.headline.clone();
                                 let tldr = s.tldr.clone();
@@ -206,7 +206,7 @@ pub fn VeillePage() -> impl IntoView {
                                                             </div>
                                                         }.into_any()
                                                     } else {
-                                                        view! { <></> }.into_any()
+                                                        ().into_any()
                                                     }}
                                                     {if !key_takeaways.is_empty() {
                                                         view! {
@@ -222,7 +222,7 @@ pub fn VeillePage() -> impl IntoView {
                                                             </div>
                                                         }.into_any()
                                                     } else {
-                                                        view! { <></> }.into_any()
+                                                        ().into_any()
                                                     }}
                                                     <div class="veille-synthesis-noise">
                                                         <strong class="veille-synthesis-label">
@@ -233,7 +233,7 @@ pub fn VeillePage() -> impl IntoView {
                                                 </div>
                                             }.into_any()
                                         } else {
-                                            view! { <></> }.into_any()
+                                            ().into_any()
                                         }}
                                     </div>
                                 }.into_any()
