@@ -339,5 +339,33 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("pgpKeyserver", "Keyserver");
     map.insert("e2eNote", "End-to-end encrypted with PGP");
 
+    // Article page
+    map.insert("minRead", "min read");
+    map.insert("tldr", "TL;DR: ");
+    map.insert("tableOfContents", "Table of Contents");
+    map.insert("contentNotAvailable", "Content not available in this language.");
+
+    // Project tags
+    map.insert("tag.startup", "Startup");
+    map.insert("tag.fullStack", "Full-Stack");
+    map.insert("tag.bot", "Bot");
+    map.insert("tag.hardware", "Hardware");
+    map.insert("tag.diy", "DIY");
+
+    // Navigation aria-labels & tooltips
+    map.insert("switchToFrench", "Switch to French");
+    map.insert("switchToEnglish", "Switch to English");
+    map.insert("toggleTheme", "Toggle theme");
+    map.insert("navigation.menu", "Navigation menu");
+
+    // 404 generic page
+    map.insert("pageNotFound", "Page Not Found");
+    map.insert("error404Generic", "Oops! The page you're looking for seems to have vanished into the digital void.");
+    map.insert("goHome", "Go Home");
+    map.insert("exploreBlog", "Explore Blog");
+
+    // Footer
+    map.insert("mitLicense", "MIT License");
+
     map
 }
