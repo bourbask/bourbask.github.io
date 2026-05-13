@@ -17,16 +17,18 @@ pub fn MobileFloatingNav() -> impl IntoView {
         <div class="mobile-floating-nav" id="mobileFloatingNav">
             // Arc items — class:active toggled by JS
             <div class="mobile-nav-items" id="mobileNavItems">
-                <a href="/blog" class="mobile-nav-item" data-label="Blog">
+                <a href="/blog" class="mobile-nav-item" data-label="Blog" aria-label="Blog">
                     "📝"
                 </a>
-                <a href="/veille" class="mobile-nav-item" data-label="Veille">
+                <a href="/veille" class="mobile-nav-item" data-label="Veille" aria-label="Veille">
                     "📡"
                 </a>
                 <button
                     class="mobile-nav-item"
                     id="mobileCVBtn"
+                    type="button"
                     data-label="CV"
+                    aria-label="Download CV"
                     on:click=move |_| cv_service.generate_pdf()
                 >
                     "📄"
@@ -34,7 +36,12 @@ pub fn MobileFloatingNav() -> impl IntoView {
                 <button
                     class="mobile-nav-item"
                     id="mobileLangBtn"
+                    type="button"
                     data-label="Langue"
+                    attr:aria-label={move || match i18n.current_language.get().as_str() {
+                        "fr" => "Switch to English",
+                        _    => "Passer en français",
+                    }}
                     on:click=move |_| i18n.toggle_language()
                 >
                     <span class="mobile-lang-flag">
@@ -47,7 +54,9 @@ pub fn MobileFloatingNav() -> impl IntoView {
                 <button
                     class="mobile-nav-item"
                     id="mobileThemeBtn"
+                    type="button"
                     data-label="Thème"
+                    aria-label="Toggle theme"
                     on:click=move |_| theme.toggle_theme()
                 >
                     <svg class="theme-icon sun-icon"  viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -69,7 +78,7 @@ pub fn MobileFloatingNav() -> impl IntoView {
 
             // FAB — on:click intentionally absent; JS (fab-interaction.js) handles
             // all touch interaction: long-press → drag mode, short tap → tap toggle.
-            <button class="mobile-fab" id="mobileFab">
+            <button class="mobile-fab" id="mobileFab" type="button" aria-label="Navigation menu" aria-expanded="false">
                 <div class="fab-icon">
                     <span class="fab-icon-line"></span>
                     <span class="fab-icon-line"></span>

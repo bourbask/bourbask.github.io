@@ -207,26 +207,32 @@ pub fn ContactSection() -> impl IntoView {
                             <input
                                 type="text"
                                 name="name"
+                                id="contactName"
                                 prop:value=name
                                 on:input=move |ev| set_name.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("nameLabel")}
+                                attr:aria-label={move || i18n.t("nameLabel")}
                                 required
                                 prop:disabled=is_sending
                             />
                             <input
                                 type="email"
                                 name="email"
+                                id="contactEmail"
                                 prop:value=email
                                 on:input=move |ev| set_email.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("emailPlaceholder")}
+                                attr:aria-label={move || i18n.t("emailPlaceholder")}
                                 required
                                 prop:disabled=is_sending
                             />
                             <textarea
                                 name="message"
+                                id="contactMessage"
                                 prop:value=message
                                 on:input=move |ev| set_message.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("messageLabel")}
+                                attr:aria-label={move || i18n.t("messageLabel")}
                                 rows="4"
                                 required
                                 prop:disabled=is_sending

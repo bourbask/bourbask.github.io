@@ -98,9 +98,9 @@ pub fn HeroSection() -> impl IntoView {
 
                     <div class="floating-card card-tech">
                         <div class="tech-icons">
-                            <div class="tech-icon">"🥾"</div>
-                            <div class="tech-icon">"🌿"</div>
-                            <div class="tech-icon">"🔧"</div>
+                            <div class="tech-icon" aria-hidden="true">"🥾"</div>
+                            <div class="tech-icon" aria-hidden="true">"🌿"</div>
+                            <div class="tech-icon" aria-hidden="true">"🔧"</div>
                         </div>
                     </div>
                 </div>

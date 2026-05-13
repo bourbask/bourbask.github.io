@@ -2,6 +2,7 @@ use crate::data::translations::Language;
 use chrono::{Datelike, NaiveDate, Utc};
 use leptos::*;
 use std::collections::HashMap;
+use web_sys;
 
 #[derive(Debug, Clone, Copy)]
 pub struct I18nService {
@@ -84,6 +85,9 @@ impl I18nService {
         crate::services::StorageService::new().set_language(lang.as_str());
         self.current_language.set(lang.clone());
         self.translations.set(lang.get_translations());
+        if let Some(doc) = web_sys::window().and_then(|w| w.document()) {
+            let _ = doc.document_element().map(|el| el.set_attribute("lang", lang.as_str()));
+        }
     }
 
     /// Toggle entre FR/EN (et autres langues à l'avenir)

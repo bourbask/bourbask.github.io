@@ -18,8 +18,8 @@ pub fn NotFound404() -> impl IntoView {
     view! {
         <div class="error-page">
             // Floating elements
-            <div class="floating-element floating-404-1">"🔍"</div>
-            <div class="floating-element floating-404-2">"🤖"</div>
+            <div class="floating-element floating-404-1" aria-hidden="true">"🔍"</div>
+            <div class="floating-element floating-404-2" aria-hidden="true">"🤖"</div>
 
             <div class="error-container">
                 <div class="error-code">"404"</div>
