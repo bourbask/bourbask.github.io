@@ -21,7 +21,7 @@ pub fn ProjectsSection() -> impl IntoView {
                     // Featured Project
                     <div class="project-card featured">
                         <div class="project-image">
-                            <div class="project-placeholder">"🖨️"</div>
+                            <div class="project-placeholder" aria-hidden="true">"🖨️"</div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -75,7 +75,7 @@ pub fn ProjectsSection() -> impl IntoView {
                     // Project 2
                     <div class="project-card">
                         <div class="project-image">
-                            <div class="project-placeholder">"🤖"</div>
+                            <div class="project-placeholder" aria-hidden="true">"🤖"</div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
@@ -121,7 +121,7 @@ pub fn ProjectsSection() -> impl IntoView {
                     // Project 3
                     <div class="project-card">
                         <div class="project-image">
-                            <div class="project-placeholder">"⌨️"</div>
+                            <div class="project-placeholder" aria-hidden="true">"⌨️"</div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">

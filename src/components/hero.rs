@@ -28,7 +28,7 @@ pub fn HeroSection() -> impl IntoView {
     };
 
     view! {
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="hero-container">
                 // Hero Content
                 <div class="hero-content">
