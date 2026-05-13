@@ -52,7 +52,8 @@
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  overflow: hidden;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .veille-filter-btn:hover {
@@ -62,14 +63,13 @@
 
 .veille-filter-btn-active {
   background: var(--accent-gradient);
-  border: 1px solid transparent;
+  border-color: transparent;
   color: white;
   font-weight: 600;
 }
 
 .veille-filter-btn:focus-visible {
   outline-offset: 3px;
-  border-radius: 50px;
 }
 
 /* ===== STATUS ===== */
