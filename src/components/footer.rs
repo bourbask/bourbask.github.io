@@ -17,7 +17,10 @@ pub fn Footer() -> impl IntoView {
                         <span data-key="by">
                             {move || i18n.t("by")}
                         </span>
-                        " Kévin Bourbasquet"
+                        " "
+                        <span data-key="name">
+                            {move || i18n.t("name")}
+                        </span>
                     </p>
                     <p class="footer-links">
                         <a
@@ -33,8 +36,9 @@ pub fn Footer() -> impl IntoView {
                             href="https://github.com/bourbask/bourbask.github.io/blob/main/LICENSE"
                             target="_blank"
                             rel="noopener noreferrer"
+                            data-key="mitLicense"
                         >
-                            "MIT License"
+                            {move || i18n.t("mitLicense")}
                         </a>
                     </p>
                 </div>

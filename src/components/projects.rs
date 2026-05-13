@@ -25,8 +25,8 @@ pub fn ProjectsSection() -> impl IntoView {
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
-                                <span class="project-tag">"Startup"</span>
-                                <span class="project-tag">"Full-Stack"</span>
+                                <span class="project-tag">{move || i18n.t("tag.startup")}</span>
+                                <span class="project-tag">{move || i18n.t("tag.fullStack")}</span>
                             </div>
                             <div class="project-header">
                                 <h3 class="project-title">
@@ -79,7 +79,7 @@ pub fn ProjectsSection() -> impl IntoView {
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
-                                <span class="project-tag">"Bot"</span>
+                                <span class="project-tag">{move || i18n.t("tag.bot")}</span>
                                 <span class="project-tag">"Rust"</span>
                             </div>
                             <div class="project-header">
@@ -125,8 +125,8 @@ pub fn ProjectsSection() -> impl IntoView {
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
-                                <span class="project-tag">"Hardware"</span>
-                                <span class="project-tag">"DIY"</span>
+                                <span class="project-tag">{move || i18n.t("tag.hardware")}</span>
+                                <span class="project-tag">{move || i18n.t("tag.diy")}</span>
                             </div>
                             <div class="project-header">
                                 <h3 class="project-title">
