@@ -346,9 +346,9 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
 
     // PGP contact
-    map.insert("pgpLabel", "Email chiffré");
     map.insert("pgpDownload", "Télécharger la clé");
     map.insert("pgpKeyserver", "Serveur de clés");
+    map.insert("e2eNote", "Chiffré de bout en bout par PGP");
 
     map
 }
