@@ -30,7 +30,7 @@ pub fn NotFound404() -> impl IntoView {
                         if is_blog_path() {
                             i18n.t("error404Title")
                         } else {
-                            "Page Not Found".to_string()
+                            i18n.t("pageNotFound")
                         }
                     }}
                 </h1>
@@ -41,11 +41,8 @@ pub fn NotFound404() -> impl IntoView {
                         if is_blog_path() {
                             i18n.t("error404Message")
                         } else {
-                            match i18n.current_language.get().as_str() {
-                                "fr" => "Oups ! La page que vous cherchez semble avoir disparu dans le vide numérique.",
-                                _ => "Oops! The page you're looking for seems to have vanished into the digital void."
-                            }.to_string()
-                        }.to_string()
+                            i18n.t("error404Generic")
+                        }
                     }}
                 </p>
 
@@ -55,10 +52,7 @@ pub fn NotFound404() -> impl IntoView {
                         <span id="homeBtnText">
                             {move || {
                                 let i18n = i18n.clone();
-                                match i18n.current_language.get().as_str() {
-                                    "fr" => "Accueil",
-                                    _ => "Go Home"
-                                }
+                                i18n.t("goHome")
                             }}
                         </span>
                     </a>
@@ -70,10 +64,7 @@ pub fn NotFound404() -> impl IntoView {
                                 if is_blog_path() {
                                     i18n.t("backToBlog")
                                 } else {
-                                    match i18n.current_language.get().as_str() {
-                                        "fr" => "Explorer le Blog",
-                                        _ => "Explore Blog"
-                                    }.to_string()
+                                    i18n.t("exploreBlog")
                                 }
                             }}
                         </span>

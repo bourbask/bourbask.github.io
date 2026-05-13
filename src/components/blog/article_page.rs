@@ -76,7 +76,7 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
 
                 <div class="article-meta">
                     <time class="article-date">{article.meta.date.clone()}</time>
-                    <span class="article-read-time">{article.meta.read_time}" min read"</span>
+                    <span class="article-read-time">{article.meta.read_time}" "{move || i18n.t("minRead")}</span>
                     <div class="article-tags">
                         {article.meta.tags.iter().cloned()
                             .map(|tag| view! {
@@ -91,7 +91,7 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
 
                 {move || content.get().map(|c| view! {
                     <div class="article-tldr">
-                        <strong>"TL;DR: "</strong> {c.tldr.clone()}
+                        <strong>{move || i18n.t("tldr")}</strong> {c.tldr.clone()}
                     </div>
                 })}
 
@@ -110,7 +110,7 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
                             view! {
                                 <>
                                     <div class="article-toc">
-                                        <h3>"Table of Contents"</h3>
+                                        <h3>{move || i18n.t("tableOfContents")}</h3>
                                         <ul>
                                             {content.sections.iter()
                                                 .map(|section| {
@@ -145,7 +145,7 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
                         None => {
                             view! {
                                 <div class="article-error">
-                                    <p>"Content not available in this language."</p>
+                                    <p>{move || i18n.t("contentNotAvailable")}</p>
                                 </div>
                             }.into_any()
                         }

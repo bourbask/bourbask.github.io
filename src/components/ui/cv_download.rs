@@ -69,11 +69,11 @@ pub fn CVDownloadButton() -> impl IntoView {
                     class
                 }}
                 attr:aria-label={move || if is_downloading.get() {
-                    "Downloading CV…".to_string()
+                    i18n.t("cv.downloading")
                 } else if is_success.get() {
-                    "CV downloaded".to_string()
+                    i18n.t("cv.downloaded")
                 } else {
-                    "Download CV".to_string()
+                    i18n.t("action")
                 }}
                 disabled=move || is_downloading.get()
                 on:click=handle_download
