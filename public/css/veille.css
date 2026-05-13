@@ -52,6 +52,8 @@
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
