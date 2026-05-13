@@ -6,6 +6,7 @@ Outputs public/news.json consumed by the Leptos frontend.
 """
 import hashlib
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -21,7 +22,7 @@ except ImportError:
 
 # Patterns for low-quality posts (regex, case-insensitive)
 NOISE_PATTERNS = [
-    r"day \d+ of",          # #100DaysOfCode
+    r"day \d+ of",
     r"#\d+daysof",
     r"week \d+ of",
     r"part \d+:",
@@ -30,23 +31,71 @@ NOISE_PATTERNS = [
     r"my first ",
     r"i built a ",
     r"i made a ",
+    r"top \d+ ",
+    r"how to get started",
+    r"for beginners",
+    r"my journey",
+    r"hello world",
+    r"tutorial for",
+    r"step[\s-]by[\s-]step",
+    r"complete guide",
+    r"ultimate guide",
+    r"you need to know",
+    r"everything you",
+    r"getting started with",
+    r"introduction to",
+    r"beginner.s guide",
+    r"#showdev",
+    r"show dev",
 ]
 _NOISE_RE = re.compile("|".join(NOISE_PATTERNS), re.IGNORECASE)
 
+# no_filter=True: content is inherently authoritative, skip noise check
 SOURCES = [
-    {"name": "dev.to — Symfony",  "type": "rss", "url": "https://dev.to/feed/tag/symfony",  "lang": "en"},
-    {"name": "dev.to — React",    "type": "rss", "url": "https://dev.to/feed/tag/react",    "lang": "en"},
-    {"name": "dev.to — Rust",     "type": "rss", "url": "https://dev.to/feed/tag/rust",     "lang": "en"},
-    {"name": "dev.to — PHP",      "type": "rss", "url": "https://dev.to/feed/tag/php",      "lang": "en"},
-    {"name": "dev.to — DevOps",   "type": "rss", "url": "https://dev.to/feed/tag/devops",   "lang": "en"},
-    {"name": "dev.to — AI",       "type": "rss", "url": "https://dev.to/feed/tag/ai",       "lang": "en"},
-    {"name": "Lobste.rs",         "type": "rss", "url": "https://lobste.rs/rss",             "lang": "en"},
-    {"name": "Symfony Blog",      "type": "rss", "url": "https://symfony.com/blog/feed/atom","lang": "en"},
-    {"name": "Rust Blog",         "type": "rss", "url": "https://blog.rust-lang.org/feed.xml","lang": "en"},
-    {"name": "React Blog",        "type": "rss", "url": "https://react.dev/blog/rss.xml",   "lang": "en"},
-    {"name": "PHP.net",           "type": "rss", "url": "https://www.php.net/feed.atom",    "lang": "en"},
-    {"name": "CNCF Blog",         "type": "rss", "url": "https://www.cncf.io/feed/",        "lang": "en"},
-    {"name": "r/programming",     "type": "rss", "url": "https://www.reddit.com/r/programming/.rss", "lang": "en"},
+    # Academic / Research
+    {"name": "ArXiv CS.AI",       "url": "https://arxiv.org/rss/cs.AI",                                     "lang": "en", "no_filter": True, "max_items": 8},
+    {"name": "ArXiv CS.SE",       "url": "https://arxiv.org/rss/cs.SE",                                     "lang": "en", "no_filter": True, "max_items": 8},
+    {"name": "ArXiv CS.CR",       "url": "https://arxiv.org/rss/cs.CR",                                     "lang": "en", "no_filter": True, "max_items": 8},
+    {"name": "ArXiv CS.PL",       "url": "https://arxiv.org/rss/cs.PL",                                     "lang": "en", "no_filter": True, "max_items": 8},
+    {"name": "ACM Tech News",     "url": "https://technews.acm.org/feed.xml",                               "lang": "en"},
+    {"name": "IEEE Spectrum",     "url": "https://spectrum.ieee.org/feeds/feed.rss",                        "lang": "en"},
+    {"name": "Papers With Code",  "url": "https://paperswithcode.com/blog/feed/",                           "lang": "en", "no_filter": True},
+
+    # Government / Standards
+    {"name": "CISA Advisories",   "url": "https://www.cisa.gov/cybersecurity-advisories/feed",              "lang": "en", "no_filter": True},
+    {"name": "NIST CSRC",         "url": "https://csrc.nist.gov/News/feed",                                 "lang": "en", "no_filter": True},
+    {"name": "W3C Blog",          "url": "https://www.w3.org/blog/news/feed",                               "lang": "en", "no_filter": True},
+    {"name": "IETF Blog",         "url": "https://www.ietf.org/blog/feed/",                                 "lang": "en", "no_filter": True},
+    {"name": "ENISA",             "url": "https://www.enisa.europa.eu/news/enisa-news/rss",                 "lang": "en", "no_filter": True},
+
+    # Official language / platform blogs
+    {"name": "Rust Blog",         "url": "https://blog.rust-lang.org/feed.xml",                             "lang": "en", "no_filter": True},
+    {"name": "Go Blog",           "url": "https://go.dev/blog/feed.atom",                                   "lang": "en", "no_filter": True},
+    {"name": "Python Blog",       "url": "https://blog.python.org/feeds/posts/default",                     "lang": "en", "no_filter": True},
+    {"name": "Node.js Blog",      "url": "https://nodejs.org/en/feed/blog.xml",                             "lang": "en", "no_filter": True},
+    {"name": "Mozilla Hacks",     "url": "https://hacks.mozilla.org/feed/",                                 "lang": "en", "no_filter": True},
+    {"name": "WebKit Blog",       "url": "https://webkit.org/feed/",                                        "lang": "en", "no_filter": True},
+    {"name": "Chromium Blog",     "url": "https://blog.chromium.org/feeds/posts/default",                   "lang": "en", "no_filter": True},
+    {"name": "GitHub Engineering","url": "https://github.blog/engineering/feed/",                           "lang": "en", "no_filter": True},
+    {"name": "OpenSSF Blog",      "url": "https://openssf.org/feed/",                                      "lang": "en", "no_filter": True},
+    {"name": "This Week in Rust", "url": "https://this-week-in-rust.org/atom.xml",                          "lang": "en", "no_filter": True},
+    {"name": "Linux Foundation",  "url": "https://www.linuxfoundation.org/blog/feed/",                      "lang": "en", "no_filter": True},
+    {"name": "Symfony Blog",      "url": "https://symfony.com/blog/feed/atom",                              "lang": "en", "no_filter": True},
+    {"name": "PHP.net",           "url": "https://www.php.net/feed.atom",                                   "lang": "en", "no_filter": True},
+    {"name": "React Blog",        "url": "https://react.dev/blog/rss.xml",                                  "lang": "en", "no_filter": True},
+
+    # Quality aggregators
+    {"name": "CNCF Blog",         "url": "https://www.cncf.io/feed/",                                      "lang": "en"},
+    {"name": "LWN.net",           "url": "https://lwn.net/headlines/rss",                                   "lang": "en"},
+    {"name": "InfoQ",             "url": "https://feed.infoq.com/",                                         "lang": "en"},
+    {"name": "The Register Dev",  "url": "https://www.theregister.com/software/developer/headlines.atom",   "lang": "en"},
+    {"name": "Lobste.rs",         "url": "https://lobste.rs/rss",                                           "lang": "en"},
+
+    # Multilingual
+    {"name": "LinuxFr.org",       "url": "https://linuxfr.org/news.atom",                                   "lang": "fr"},
+    {"name": "Framablog",         "url": "https://framablog.org/feed/",                                     "lang": "fr"},
+    {"name": "Golem.de",          "url": "https://rss.golem.de/rss.php?feed=RSS2.0",                        "lang": "de"},
+    {"name": "Zenn",              "url": "https://zenn.dev/feed",                                           "lang": "ja"},
 ]
 
 KEYWORDS: dict[str, list[str]] = {
@@ -79,7 +128,9 @@ KEYWORDS: dict[str, list[str]] = {
     ],
 }
 
-MAX_HN_STORIES = 40
+MAX_HN_FETCH = 60   # fetch this many IDs to filter by score
+MAX_HN_KEEP  = 20   # keep at most this many after filtering
+MIN_HN_SCORE = 100
 MAX_RSS_ITEMS = 10
 
 
@@ -95,7 +146,6 @@ def item_id(url: str) -> str:
 
 
 def classify(title: str, summary: str = "") -> list[str]:
-    # Use full title but cap summary to reduce false positives from long articles
     text = (title + " " + summary[:200]).lower()
     cats = [cat for cat, kws in KEYWORDS.items() if any(kw in text for kw in kws)]
     return cats or ["general"]
@@ -120,18 +170,23 @@ def fetch_hn() -> list[dict]:
             timeout=10,
         )
         resp.raise_for_status()
-        story_ids = resp.json()[:MAX_HN_STORIES]
+        story_ids = resp.json()[:MAX_HN_FETCH]
     except Exception as e:
         print(f"[HN] top stories fetch failed: {e}", file=sys.stderr)
         return items
 
+    kept = 0
     for sid in story_ids:
+        if kept >= MAX_HN_KEEP:
+            break
         try:
             story = requests.get(
                 f"https://hacker-news.firebaseio.com/v0/item/{sid}.json",
                 timeout=5,
             ).json()
             if not story or story.get("type") != "story" or not story.get("url"):
+                continue
+            if story.get("score", 0) < MIN_HN_SCORE:
                 continue
             url = story["url"]
             if not is_safe_url(url):
@@ -148,6 +203,7 @@ def fetch_hn() -> list[dict]:
                 ).isoformat(),
                 "lang": "en",
             })
+            kept += 1
         except Exception:
             continue
 
@@ -156,19 +212,20 @@ def fetch_hn() -> list[dict]:
 
 def fetch_rss(source: dict) -> list[dict]:
     items: list[dict] = []
+    no_filter = source.get("no_filter", False)
+    max_items = source.get("max_items", MAX_RSS_ITEMS)
     try:
         feed = feedparser.parse(source["url"])
-        for entry in feed.entries[:MAX_RSS_ITEMS]:
+        for entry in feed.entries[:max_items]:
             url = entry.get("link", "")
             title = entry.get("title", "")
             if not url or not title:
                 continue
             if not is_safe_url(url):
                 continue
-            if _NOISE_RE.search(title):
+            if not no_filter and _NOISE_RE.search(title):
                 continue
             summary = entry.get("summary", "") or entry.get("description", "")
-            # Strip HTML tags from summary for keyword matching
             summary_clean = re.sub(r"<[^>]+>", " ", summary) if summary else ""
             items.append({
                 "id": item_id(url),
@@ -182,6 +239,84 @@ def fetch_rss(source: dict) -> list[dict]:
     except Exception as e:
         print(f"[RSS] {source['name']} failed: {e}", file=sys.stderr)
     return items
+
+
+def generate_synthesis(items: list[dict]) -> dict | None:
+    """Generate bilingual EN/FR synthesis via Claude API. Returns None if key absent or call fails."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return None
+    try:
+        import anthropic
+    except ImportError:
+        print("[synthesis] anthropic package not installed, skipping", file=sys.stderr)
+        return None
+
+    client = anthropic.Anthropic(api_key=api_key)
+
+    by_cat: dict[str, list[str]] = {}
+    for item in items[:80]:
+        for cat in item["categories"]:
+            by_cat.setdefault(cat, []).append(
+                f"[{item['source']}][{item['lang']}] {item['title']}"
+            )
+
+    context_lines: list[str] = []
+    for cat, titles in by_cat.items():
+        context_lines.append(f"\n## {cat.upper()}")
+        context_lines.extend(titles[:12])
+    context = "\n".join(context_lines)
+
+    prompt = f"""You are a critical tech analyst. Analyze these categorized tech articles from today and generate a bilingual (EN + FR) synthesis.
+
+ARTICLES BY CATEGORY:
+{context}
+
+TOTAL: {len(items)} items collected from institutional, academic, and curated sources.
+
+Generate a JSON object with this EXACT structure (pure JSON only, no markdown fences):
+{{
+  "en": {{
+    "headline": "One punchy headline (the single most important story today)",
+    "tldr": "2-3 sentence essential summary. Be specific: mention real names, version numbers, CVE IDs.",
+    "sections": [
+      {{"category": "urgent", "summary": "Concise summary for urgent/security items"}},
+      {{"category": "good_news", "summary": "Concise summary for releases and good news"}},
+      {{"category": "future_watch", "summary": "Concise summary for emerging tech items"}},
+      {{"category": "stack_alt", "summary": "Concise summary for comparison/alternatives items"}}
+    ],
+    "key_takeaways": ["Actionable point 1", "Actionable point 2", "Actionable point 3"],
+    "signal_vs_noise": "Honest 1-sentence assessment of today's signal quality"
+  }},
+  "fr": {{
+    "headline": "...",
+    "tldr": "...",
+    "sections": [...],
+    "key_takeaways": [...],
+    "signal_vs_noise": "..."
+  }}
+}}
+
+Rules:
+- Only include sections for categories that have substantive content (omit empty ones)
+- Be critical: distinguish real releases/discoveries from marketing/hype
+- key_takeaways must be actionable (what a developer should know or do today)
+- Respond ONLY with valid JSON, no text before or after"""
+
+    try:
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=2500,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = response.content[0].text.strip()
+        # Strip markdown code fences if Claude adds them
+        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
+        text = re.sub(r"\n?```\s*$", "", text)
+        return json.loads(text)
+    except Exception as e:
+        print(f"[synthesis] generation failed: {e}", file=sys.stderr)
+        return None
 
 
 def main() -> None:
@@ -204,9 +339,18 @@ def main() -> None:
 
     all_items.sort(key=lambda x: x["published_at"], reverse=True)
 
+    print(f"Generating synthesis ({len(all_items)} items)…")
+    synthesis = generate_synthesis(all_items)
+    if synthesis:
+        print("[synthesis] Generated successfully.")
+    else:
+        print("[synthesis] Skipped (no ANTHROPIC_API_KEY or generation failed).")
+
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "period": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "count": len(all_items),
+        "synthesis": synthesis,
         "items": all_items,
     }
 
