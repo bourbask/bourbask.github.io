@@ -35,7 +35,7 @@ pub fn Navigation() -> impl IntoView {
         <nav class="nav" class:scrolled=move || is_scrolled.get()>
             <div class="nav-container">
                 // Logo → projects section
-                <a href="/#projects" class="nav-logo-link">
+                <a href="/#projects" class="nav-logo-link" aria-label="Kévin Bourbasquet — Home">
                     <span class="logo-text logo-full" data-key="name">
                         {move || i18n.t("name")}
                     </span>
@@ -84,6 +84,10 @@ pub fn Navigation() -> impl IntoView {
                         class="lang-toggle"
                         id="langToggle"
                         attr:data-lang={move || i18n.current_language.get().as_str()}
+                        attr:aria-label={move || match i18n.current_language.get() {
+                            Language::En => "Switch to French",
+                            Language::Fr => "Switch to English",
+                        }}
                         on:click=move |_| {
                             let current = i18n.current_language.get();
                             let new_lang = match current {
@@ -113,6 +117,7 @@ pub fn Navigation() -> impl IntoView {
                     <button
                         class="theme-toggle"
                         id="themeToggle"
+                        aria-label="Toggle theme"
                         on:click=move |_| theme.toggle_theme()
                     >
                         <div class="theme-icon-container">

@@ -28,7 +28,7 @@ pub fn HeroSection() -> impl IntoView {
     };
 
     view! {
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="hero-container">
                 // Hero Content
                 <div class="hero-content">
@@ -98,9 +98,9 @@ pub fn HeroSection() -> impl IntoView {
 
                     <div class="floating-card card-tech">
                         <div class="tech-icons">
-                            <div class="tech-icon">"🥾"</div>
-                            <div class="tech-icon">"🌿"</div>
-                            <div class="tech-icon">"🔧"</div>
+                            <div class="tech-icon" aria-hidden="true">"🥾"</div>
+                            <div class="tech-icon" aria-hidden="true">"🌿"</div>
+                            <div class="tech-icon" aria-hidden="true">"🔧"</div>
                         </div>
                     </div>
                 </div>

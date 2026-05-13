@@ -6,7 +6,7 @@ pub fn SkillsSection() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
 
     view! {
-        <section class="section skills">
+        <section class="section skills" id="skills">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title" data-key="skillsTitle">

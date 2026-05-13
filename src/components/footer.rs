@@ -23,6 +23,7 @@ pub fn Footer() -> impl IntoView {
                         <a
                             href="https://github.com/bourbask/bourbask.github.io"
                             target="_blank"
+                            rel="noopener noreferrer"
                             data-key="sourceCode"
                         >
                             {move || i18n.t("sourceCode")}
@@ -31,6 +32,7 @@ pub fn Footer() -> impl IntoView {
                         <a
                             href="https://github.com/bourbask/bourbask.github.io/blob/main/LICENSE"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             "MIT License"
                         </a>

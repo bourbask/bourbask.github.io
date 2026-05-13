@@ -140,12 +140,37 @@ pub fn ContactSection() -> impl IntoView {
                         </p>
 
                         <div class="contact-methods">
-                            <a href="mailto:bourbasquet.k@etik.com" class="contact-method">
-                                <span class="contact-icon">"📧"</span>
-                                <span data-key="emailLabel">
-                                    {move || i18n.t("emailLabel")}
-                                </span>
-                            </a>
+                            <div class="contact-method contact-method--email">
+                                <a href="mailto:bourbasquet.k@etik.com" class="contact-method-email">
+                                    <span class="contact-icon">"📧"</span>
+                                    <span data-key="emailLabel">
+                                        {move || i18n.t("emailLabel")}
+                                    </span>
+                                </a>
+                                <div class="contact-method-pgp">
+                                    <code class="pgp-fingerprint">
+                                        "82CF 6083 611B D74D D316  27B6 47EC 8770 75A8 2BB5"
+                                    </code>
+                                    <div class="pgp-links">
+                                        <a
+                                            href="/bourbasquet-pgp.asc"
+                                            download="bourbasquet-pgp.asc"
+                                            class="pgp-link"
+                                        >
+                                            {move || i18n.t("pgpDownload")}
+                                        </a>
+                                        <span class="pgp-link-sep">"·"</span>
+                                        <a
+                                            href="https://keys.openpgp.org/search?q=bourbasquet.k%40etik.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="pgp-link"
+                                        >
+                                            {move || i18n.t("pgpKeyserver")}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <a
                                 href="https://github.com/bourbask"
                                 class="contact-method"
@@ -182,30 +207,40 @@ pub fn ContactSection() -> impl IntoView {
                             <input
                                 type="text"
                                 name="name"
+                                id="contactName"
                                 prop:value=name
                                 on:input=move |ev| set_name.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("nameLabel")}
+                                attr:aria-label={move || i18n.t("nameLabel")}
                                 required
                                 prop:disabled=is_sending
                             />
                             <input
                                 type="email"
                                 name="email"
+                                id="contactEmail"
                                 prop:value=email
                                 on:input=move |ev| set_email.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("emailPlaceholder")}
+                                attr:aria-label={move || i18n.t("emailPlaceholder")}
                                 required
                                 prop:disabled=is_sending
                             />
                             <textarea
                                 name="message"
+                                id="contactMessage"
                                 prop:value=message
                                 on:input=move |ev| set_message.set(event_target_value(&ev))
                                 placeholder={move || i18n.t("messageLabel")}
+                                attr:aria-label={move || i18n.t("messageLabel")}
                                 rows="4"
                                 required
                                 prop:disabled=is_sending
                             ></textarea>
+                            <p class="form-e2e-note">
+                                "🔐 "
+                                {move || i18n.t("e2eNote")}
+                            </p>
                             <button
                                 type="submit"
                                 class="btn btn-primary"
