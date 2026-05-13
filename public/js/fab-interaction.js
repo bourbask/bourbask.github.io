@@ -1,6 +1,7 @@
 // FAB radial drag interaction
-// Long-press opens drag mode; finger moves FAB toward arc items;
-// magnetic snap + glassy center label on confirm; release triggers action.
+// Long-press (or mousedown hold) opens drag mode; pointer moves FAB toward arc
+// items; magnetic snap + glassy center label on confirm; release triggers action.
+// Works on both touch (mobile) and mouse (desktop).
 (function () {
   'use strict';
 
@@ -10,13 +11,19 @@
   var MAX_DRAG_RADIUS = 185;   // px — clamp FAB travel
 
   var fab, navItemsEl, overlay, glassyLabel;
-  var isDragging       = false;
-  var tapOpen          = false;
-  var pressTimer       = null;
-  var fabOriginX       = 0;
-  var fabOriginY       = 0;
-  var confirmedEl      = null;
-  var touchStartedOnFab = false;  // guards against page-scroll triggering FAB
+  var isDragging      = false;
+  var tapOpen         = false;
+  var pressTimer      = null;
+  var fabOriginX      = 0;
+  var fabOriginY      = 0;
+  var confirmedEl     = null;
+  var pointerActive   = false;  // set only on FAB start — guards stray move/end
+
+  // ── Coordinate helper ──────────────────────────────────────────────────────
+  function getXY(e) {
+    if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    return { x: e.clientX, y: e.clientY };
+  }
 
   // ── Init ──────────────────────────────────────────────────────────────────
   function init() {
@@ -34,17 +41,23 @@
       glassyLabel = document.getElementById('fabGlassyLabel');
     }
 
-    fab.addEventListener('touchstart',   onTouchStart,  { passive: false });
-    document.addEventListener('touchmove',    onTouchMove,   { passive: false });
-    document.addEventListener('touchend',     onTouchEnd);
-    document.addEventListener('touchcancel',  onTouchEnd);
+    // Touch (mobile)
+    fab.addEventListener('touchstart',  onStart, { passive: false });
+    document.addEventListener('touchmove',   onMove,  { passive: false });
+    document.addEventListener('touchend',    onEnd);
+    document.addEventListener('touchcancel', onEnd);
+
+    // Mouse (desktop)
+    fab.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onEnd);
 
     overlay && overlay.addEventListener('click', function () {
       if (tapOpen && !isDragging) closeTapMenu();
     });
   }
 
-  // ── Tap mode (short press) ─────────────────────────────────────────────────
+  // ── Tap mode ──────────────────────────────────────────────────────────────
   function openTapMenu() {
     tapOpen = true;
     fab.classList.add('active');
@@ -61,7 +74,7 @@
     document.body.classList.remove('mobile-nav-open');
   }
 
-  // ── Drag mode (long press) ─────────────────────────────────────────────────
+  // ── Drag mode ─────────────────────────────────────────────────────────────
   function openDragMenu(cx, cy) {
     isDragging = true;
     fabOriginX = cx;
@@ -78,7 +91,6 @@
     isDragging  = false;
     confirmedEl = null;
 
-    // Animate FAB back to origin
     fab.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
     fab.style.transform  = '';
 
@@ -103,10 +115,13 @@
     }
   }
 
-  // ── Touch handlers ─────────────────────────────────────────────────────────
-  function onTouchStart(e) {
-    e.preventDefault();
-    touchStartedOnFab = true;
+  // ── Unified pointer handlers ───────────────────────────────────────────────
+  function onStart(e) {
+    if (e.type === 'touchstart') e.preventDefault();
+    // Ignore right-click on desktop
+    if (e.button && e.button !== 0) return;
+
+    pointerActive = true;
     fab.classList.add('touched');
 
     var rect = fab.getBoundingClientRect();
@@ -116,38 +131,40 @@
     pressTimer = setTimeout(function () { openDragMenu(cx, cy); }, LONG_PRESS_MS);
   }
 
-  function onTouchMove(e) {
-    var touch = e.touches[0];
+  function onMove(e) {
+    if (!pointerActive) return;
+
+    // Prevent browser from capturing the touch as a scroll gesture
+    // while we're holding a press on the FAB (before or during drag mode).
+    if (e.type === 'touchmove') e.preventDefault();
+
+    var pt = getXY(e);
 
     if (!isDragging) {
-      // Cancel long press if finger drifted
+      // Slide while holding → enter drag mode immediately, no need to wait
       if (pressTimer) {
         var rect = fab.getBoundingClientRect();
-        var ddx  = touch.clientX - (rect.left + rect.width  / 2);
-        var ddy  = touch.clientY - (rect.top  + rect.height / 2);
-        if (Math.hypot(ddx, ddy) > 12) {
+        var cx   = rect.left + rect.width  / 2;
+        var cy   = rect.top  + rect.height / 2;
+        if (Math.hypot(pt.x - cx, pt.y - cy) > 12) {
           clearTimeout(pressTimer);
           pressTimer = null;
-          fab.classList.remove('touched');
+          openDragMenu(cx, cy);
         }
       }
       return;
     }
 
-    e.preventDefault();
-
-    var rawDx   = touch.clientX - fabOriginX;
-    var rawDy   = touch.clientY - fabOriginY;
+    var rawDx   = pt.x - fabOriginX;
+    var rawDy   = pt.y - fabOriginY;
     var rawDist = Math.hypot(rawDx, rawDy);
     var clamp   = rawDist > MAX_DRAG_RADIUS ? MAX_DRAG_RADIUS / rawDist : 1;
     var movX    = rawDx * clamp;
     var movY    = rawDy * clamp;
 
-    // Visual center of dragged FAB
     var fabCx = fabOriginX + movX;
     var fabCy = fabOriginY + movY;
 
-    // Find closest item
     var closest  = null;
     var closestD = Infinity;
     document.querySelectorAll('.mobile-nav-item').forEach(function (el) {
@@ -161,7 +178,6 @@
     var finalX = movX, finalY = movY;
 
     if (closest && closestD < TRIGGER_DIST) {
-      // SNAP — lock on item
       finalX = closest.ix - fabOriginX;
       finalY = closest.iy - fabOriginY;
       fab.style.transition = 'transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -170,7 +186,6 @@
       confirmedEl = closest.el;
 
     } else if (closest && closestD < MAGNETIC_DIST) {
-      // MAGNETIC pull — partial lerp toward item
       fab.style.transition = 'none';
       var t    = 1 - closestD / MAGNETIC_DIST;
       var pull = t * t * 0.55;
@@ -183,7 +198,6 @@
       confirmedEl = null;
 
     } else {
-      // Free drag
       fab.style.transition = 'none';
       setItemState('none', null);
       glassyLabel && glassyLabel.classList.remove('active', 'confirmed');
@@ -193,18 +207,17 @@
     fab.style.transform = 'translate(' + finalX + 'px,' + finalY + 'px) scale(1.22)';
   }
 
-  function onTouchEnd() {
+  function onEnd() {
     clearTimeout(pressTimer);
     pressTimer = null;
 
-    // Ignore touchend events that didn't start on the FAB (e.g. page scroll)
-    if (!touchStartedOnFab) return;
-    touchStartedOnFab = false;
+    if (!pointerActive) return;
+    pointerActive = false;
+
 
     fab.classList.remove('touched');
 
     if (!isDragging) {
-      // Short tap → toggle
       if (tapOpen) closeTapMenu(); else openTapMenu();
       return;
     }

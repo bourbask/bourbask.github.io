@@ -80,6 +80,29 @@
 
 .contact-form textarea { resize: vertical; min-height: 120px; }
 
+.contact-form input:disabled,
+.contact-form textarea:disabled,
+.contact-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-feedback {
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-feedback--success {
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: var(--accent-primary);
+}
+
+.form-feedback--error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .contact-content { grid-template-columns: 1fr; gap: 2rem; }

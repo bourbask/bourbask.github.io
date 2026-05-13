@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * *'  # daily 06:00 UTC
   workflow_dispatch:      # manual trigger
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
@@ -24,7 +27,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install feedparser requests
+        run: pip install -r scripts/requirements.txt
 
       - name: Fetch and classify news
         run: python scripts/fetch_news.py
