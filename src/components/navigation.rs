@@ -3,8 +3,9 @@ use crate::{
     data::translations::Language,
     services::{I18nService, ThemeService},
 };
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::A;
+use leptos_router::hooks::use_location;
 use wasm_bindgen::prelude::*;
 
 #[component]
@@ -14,9 +15,9 @@ pub fn Navigation() -> impl IntoView {
     let location = use_location();
     let pathname = move || location.pathname.get();
 
-    let is_scrolled = create_rw_signal(false);
+    let is_scrolled = RwSignal::new(false);
 
-    create_effect(move |_| {
+    Effect::new(move |_| {
         let closure = Closure::wrap(Box::new(move || {
             let scrolled = web_sys::window()
                 .and_then(|w| w.scroll_y().ok())
@@ -46,7 +47,7 @@ pub fn Navigation() -> impl IntoView {
                 <div class="nav-links">
                     <A
                         href="/"
-                        class=move || if pathname() == "/" {
+                        attr:class=move || if pathname() == "/" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"
@@ -56,7 +57,7 @@ pub fn Navigation() -> impl IntoView {
                     </A>
                     <A
                         href="/blog"
-                        class=move || if pathname() == "/blog" {
+                        attr:class=move || if pathname() == "/blog" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"
@@ -66,7 +67,7 @@ pub fn Navigation() -> impl IntoView {
                     </A>
                     <A
                         href="/veille"
-                        class=move || if pathname() == "/veille" {
+                        attr:class=move || if pathname() == "/veille" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"

@@ -6,7 +6,6 @@ mod data;
 mod services;
 
 use app::App;
-use leptos::*;
 use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen(start)]
@@ -17,5 +16,5 @@ pub fn hydrate() {
     #[cfg(not(debug_assertions))]
     console_log::init_with_level(log::Level::Error).expect("Failed to initialize logger");
 
-    leptos::mount_to_body(App);
+    leptos::mount::mount_to_body(App);
 }

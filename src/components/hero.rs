@@ -1,5 +1,5 @@
 use crate::services::I18nService;
-use leptos::*;
+use leptos::prelude::*;
 
 #[component]
 pub fn HeroSection() -> impl IntoView {

@@ -1,8 +1,9 @@
 use crate::components::{ArticlePage, Footer, Navigation};
 use crate::data::articles::{get_category_emoji, Article};
 use crate::services::{BlogService, I18nService};
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::A;
+use leptos_router::hooks::use_query_map;
 
 #[component]
 pub fn BlogPage() -> impl IntoView {
@@ -12,7 +13,7 @@ pub fn BlogPage() -> impl IntoView {
 
     // Query params pour les articles
     let query = use_query_map();
-    let article_id = move || query.with(|q| q.get("article").cloned().unwrap_or_default());
+    let article_id = move || query.with(|q| q.get("article").unwrap_or_default());
 
     view! {
         <div class="blog-container">
@@ -23,10 +24,10 @@ pub fn BlogPage() -> impl IntoView {
                     let current_article = article_id();
                     if current_article.is_empty() {
                         // Afficher l'index du blog
-                        view! { <BlogIndex /> }.into_view()
+                        view! { <BlogIndex /> }.into_any()
                     } else {
                         // Afficher l'article spécifique
-                        view! { <ArticlePage article_id=current_article /> }.into_view()
+                        view! { <ArticlePage article_id=current_article /> }.into_any()
                     }
                 }}
             </main>
@@ -42,19 +43,19 @@ pub fn BlogIndex() -> impl IntoView {
     let blog_service = use_context::<BlogService>().expect("Blog service not found");
 
     // ✅ Créer des signaux pour toutes les données réactives
-    let articles = create_rw_signal(blog_service.get_articles());
-    let latest_article = create_rw_signal(blog_service.get_latest_article());
-    let categories = create_rw_signal(blog_service.get_categories());
-    let total_read_time = create_rw_signal(blog_service.get_total_read_time());
+    let articles = RwSignal::new(blog_service.get_articles());
+    let latest_article = RwSignal::new(blog_service.get_latest_article());
+    let categories = RwSignal::new(blog_service.get_categories());
+    let total_read_time = RwSignal::new(blog_service.get_total_read_time());
 
-    let (category_filter, set_category_filter) = create_signal(String::new());
-    let (sort_filter, set_sort_filter) = create_signal("newest".to_string());
+    let (category_filter, set_category_filter) = signal(String::new());
+    let (sort_filter, set_sort_filter) = signal("newest".to_string());
 
     // ✅ Cloner le service pour l'utiliser dans l'effect
     let blog_service_cloned = blog_service.clone();
 
     // Apply filters when they change
-    create_effect(move |_| {
+    Effect::new(move |_| {
         blog_service_cloned.apply_filters(category_filter.get(), sort_filter.get());
         articles.set(blog_service_cloned.get_articles());
         // Mettre à jour aussi le temps de lecture total si nécessaire
@@ -140,10 +141,10 @@ pub fn BlogIndex() -> impl IntoView {
                         match latest_article.get() {
                             Some(article) => {
                                 let lang = i18n.current_lang_code();
-                                view! { <LatestArticleCard article=article lang=lang /> }.into_view()
+                                view! { <LatestArticleCard article=article lang=lang /> }.into_any()
                             }
                             None => {
-                                view! { <div></div> }.into_view()
+                                view! { <div></div> }.into_any()
                             }
                         }
                     }}
@@ -180,7 +181,7 @@ pub fn BlogIndex() -> impl IntoView {
                             {move || {
                                 categories.get().into_iter()
                                     .map(|cat| view! {
-                                        <option value={cat.clone()}>{cat}</option>
+                                        <option value={cat.clone()}>{cat.clone()}</option>
                                     })
                                     .collect::<Vec<_>>()
                             }}
@@ -257,24 +258,24 @@ pub fn LatestArticleCard(article: Article, lang: String) -> impl IntoView {
                     {get_category_emoji(&article.meta.category)}
                 </div>
                 <div class="latest-article-overlay">
-                    <span class="latest-article-category">{&article.meta.category}</span>
+                    <span class="latest-article-category">{article.meta.category.clone()}</span>
                 </div>
             </div>
 
             <div class="latest-article-content">
                 <h3 class="latest-article-title">
-                    <A href={format!("/blog?article={}", article.meta.id)} class="latest-article-link">
+                    <A href={format!("/blog?article={}", article.meta.id)} attr:class="latest-article-link">
                         {title}
                     </A>
                 </h3>
                 <p class="latest-article-description">{description}</p>
 
                 <div class="latest-article-meta">
-                    <time class="latest-article-date">{&article.meta.date}</time>
+                    <time class="latest-article-date">{article.meta.date.clone()}</time>
                     <span class="latest-article-read-time">{article.meta.read_time}" min"</span>
                 </div>
 
-                <A href={format!("/blog?article={}", article.meta.id)} class="latest-article-cta">
+                <A href={format!("/blog?article={}", article.meta.id)} attr:class="latest-article-cta">
                     <span data-key="readArticle">
                         {move || {
                             let i18n = i18n.clone();
@@ -301,11 +302,14 @@ pub fn ArticleListItem(article: Article, lang: String) -> impl IntoView {
         .cloned()
         .unwrap_or_default();
 
+    let category = article.meta.category.clone();
+    let date = article.meta.date.clone();
+    let tags: Vec<String> = article.meta.tags.iter().take(3).cloned().collect();
     view! {
         <article
             class="article-list-item"
-            data-category={&article.meta.category}
-            data-date={&article.meta.date}
+            data-category={category.clone()}
+            data-date={date.clone()}
         >
             <div class="article-list-image">
                 <div class="article-placeholder">
@@ -315,8 +319,8 @@ pub fn ArticleListItem(article: Article, lang: String) -> impl IntoView {
 
             <div class="article-list-content">
                 <div class="article-list-meta">
-                    <time class="article-list-date">{&article.meta.date}</time>
-                    <span class="article-list-category">{&article.meta.category}</span>
+                    <time class="article-list-date">{date.clone()}</time>
+                    <span class="article-list-category">{category.clone()}</span>
                     <span class="article-list-read-time">{article.meta.read_time}" min"</span>
                 </div>
 
@@ -327,7 +331,7 @@ pub fn ArticleListItem(article: Article, lang: String) -> impl IntoView {
                 <p class="article-list-description">{description}</p>
 
                 <div class="article-list-tags">
-                    {article.meta.tags.iter().take(3)
+                    {tags.into_iter()
                         .map(|tag| view! {
                             <span class="article-list-tag">{tag}</span>
                         })
