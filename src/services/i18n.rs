@@ -105,19 +105,9 @@ impl I18nService {
         self.current_language.get().as_str().to_string()
     }
 
-    /// Vérifier si une langue est supportée
-    pub fn is_language_supported(&self, lang_code: &str) -> bool {
-        matches!(lang_code, "en" | "fr")
-    }
-
     /// Vérifier si la langue courante est l'anglais
     pub fn is_english(&self) -> bool {
         matches!(self.current_language.get(), Language::En)
-    }
-
-    /// Vérifier si la langue courante est le français
-    pub fn is_french(&self) -> bool {
-        matches!(self.current_language.get(), Language::Fr)
     }
 
     /// Définir la langue depuis un string (utile pour URL params)

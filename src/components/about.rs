@@ -1,4 +1,4 @@
-use crate::services::{I18nService, ThemeService};
+use crate::services::I18nService;
 use leptos::*;
 
 #[component]

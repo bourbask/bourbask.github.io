@@ -1,10 +1,8 @@
 use crate::data::cv::*;
-use crate::data::translations::Language;
 use crate::services::I18nService;
 use leptos::*;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen_futures::spawn_local;
-use web_sys::{window, Document, Element, HtmlElement};
+use web_sys::window;
 
 #[derive(Clone)]
 pub struct CVService {
@@ -647,7 +645,7 @@ impl CVService {
     }
 
     fn render_skills(&self, data: &CVData) -> String {
-        let skill_sections = vec![
+        let skill_sections = [
             ("backend", &data.skills.backend),
             ("frontend", &data.skills.frontend),
             ("database", &data.skills.database),

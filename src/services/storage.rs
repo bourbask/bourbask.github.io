@@ -24,7 +24,4 @@ impl StorageService {
         let _ = LocalStorage::set("portfolio_theme", theme);
     }
 
-    pub fn clear_all(&self) {
-        let _ = LocalStorage::clear();
-    }
 }
