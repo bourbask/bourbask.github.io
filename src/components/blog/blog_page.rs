@@ -15,6 +15,15 @@ pub fn BlogPage() -> impl IntoView {
     let query = use_query_map();
     let article_id = move || query.with(|q| q.get("article").unwrap_or_default());
 
+    // Scroll to top whenever navigating to an article
+    Effect::new(move |_| {
+        if !article_id().is_empty() {
+            if let Some(window) = web_sys::window() {
+                window.scroll_to_with_x_and_y(0.0, 0.0);
+            }
+        }
+    });
+
     view! {
         <div class="blog-container">
             <Navigation />

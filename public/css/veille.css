@@ -62,9 +62,14 @@
 
 .veille-filter-btn-active {
   background: var(--accent-gradient);
-  border-color: transparent;
+  border: 1px solid transparent;
   color: white;
   font-weight: 600;
+}
+
+.veille-filter-btn:focus-visible {
+  outline-offset: 3px;
+  border-radius: 50px;
 }
 
 /* ===== STATUS ===== */

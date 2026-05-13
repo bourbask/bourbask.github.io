@@ -112,7 +112,14 @@ pub fn Navigation() -> impl IntoView {
                         >
                             "FR"
                         </span>
-                        <div class="lang-slider"></div>
+                        <div
+                            class="lang-slider"
+                            style:transform=move || if i18n.current_language.get().as_str() == "fr" {
+                                "translateX(100%)"
+                            } else {
+                                "translateX(0)"
+                            }
+                        ></div>
                     </button>
 
                     <button
