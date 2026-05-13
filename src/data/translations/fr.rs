@@ -76,6 +76,9 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("emailPlaceholder", "votre.email@domaine.com");
     map.insert("messageLabel", "Qu'est-ce qui vous trotte dans la tête ?");
     map.insert("sendMessage", "Envoyer le message");
+    map.insert("formSending", "Envoi en cours…");
+    map.insert("formSuccess", "Message envoyé ! Je vous répondrai bientôt.");
+    map.insert("formError", "Une erreur est survenue. Réessayez ou contactez-moi directement par email.");
 
     // CV Button
     map.insert("action", "Télécharger CV");
