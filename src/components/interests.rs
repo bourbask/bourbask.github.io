@@ -6,7 +6,7 @@ pub fn InterestsSection() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
 
     view! {
-        <section class="section interests">
+        <section class="section interests" id="interests">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title" data-key="interestsTitle">
@@ -19,7 +19,7 @@ pub fn InterestsSection() -> impl IntoView {
 
                 <div class="interests-grid">
                     <div class="interest-card">
-                        <div class="interest-icon">"📸"</div>
+                        <div class="interest-icon" aria-hidden="true">"📸"</div>
                         <h3 data-key="photographyTitle">
                             {move || i18n.t("photographyTitle")}
                         </h3>
@@ -29,7 +29,7 @@ pub fn InterestsSection() -> impl IntoView {
                     </div>
 
                     <div class="interest-card">
-                        <div class="interest-icon">"🎵"</div>
+                        <div class="interest-icon" aria-hidden="true">"🎵"</div>
                         <h3 data-key="musicTitle">
                             {move || i18n.t("musicTitle")}
                         </h3>
@@ -39,7 +39,7 @@ pub fn InterestsSection() -> impl IntoView {
                     </div>
 
                     <div class="interest-card">
-                        <div class="interest-icon">"🥾"</div>
+                        <div class="interest-icon" aria-hidden="true">"🥾"</div>
                         <h3 data-key="trekkingTitle">
                             {move || i18n.t("trekkingTitle")}
                         </h3>
@@ -49,7 +49,7 @@ pub fn InterestsSection() -> impl IntoView {
                     </div>
 
                     <div class="interest-card">
-                        <div class="interest-icon">"🐧"</div>
+                        <div class="interest-icon" aria-hidden="true">"🐧"</div>
                         <h3 data-key="linuxTitle">
                             {move || i18n.t("linuxTitle")}
                         </h3>
