@@ -1,0 +1,10 @@
+name = "bourbask-contact"
+main = "build/worker/shim.mjs"
+compatibility_date = "2024-01-15"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "2343d3a9314f4c16b7150e5e56d6e49e"

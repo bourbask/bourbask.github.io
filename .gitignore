@@ -1,7 +1,7 @@
 # Rust
 /target/
 **/*.rs.bk
-Cargo.lock  # Si c'est une library, décommenter cette ligne
+# Cargo.lock — committed (binary/app, not a library)
 
 # WebAssembly / Leptos
 /dist/
@@ -52,6 +52,9 @@ lcov.info
 # Backup files
 *.bak
 *.orig
+
+# PGP key exports — never commit
+*.asc
 
 # OS generated files
 .DS_Store
