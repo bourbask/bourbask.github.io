@@ -108,7 +108,7 @@ pub fn ContactSection() -> impl IntoView {
             let result = Request::post(WORKER_URL)
                 .header("Content-Type", "application/json")
                 .json(&payload)
-                .and_then(|req| Ok(req.send()));
+                .map(|req| req.send());
 
             match result {
                 Ok(fut) => match fut.await {

@@ -1,0 +1,4 @@
+[future-incompat-report]
+# leptos_macro 0.5.7 uses `quote!` which became private in newer Rust.
+# Suppressed here — known upstream issue, fixed in leptos 0.6+.
+frequency = "never"

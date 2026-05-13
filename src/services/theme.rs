@@ -64,11 +64,9 @@ impl ThemeService {
     /// Détecte le thème système
     fn detect_system_theme() -> Theme {
         if let Some(window) = web_sys::window() {
-            if let Ok(media_query) = window.match_media("(prefers-color-scheme: dark)") {
-                if let Some(media_query) = media_query {
-                    if media_query.matches() {
-                        return Theme::Dark;
-                    }
+            if let Ok(Some(media_query)) = window.match_media("(prefers-color-scheme: dark)") {
+                if media_query.matches() {
+                    return Theme::Dark;
                 }
             }
         }
@@ -110,28 +108,9 @@ impl ThemeService {
         log::info!("🎨 Theme switched to: {:?}", theme);
     }
 
-    /// Obtient le thème courant
-    pub fn get_theme(&self) -> Theme {
-        self.current_theme.get()
-    }
-
     /// Check si le thème courant est dark
     pub fn is_dark(&self) -> bool {
         matches!(self.current_theme.get(), Theme::Dark)
     }
 
-    /// Check si le thème courant est light
-    pub fn is_light(&self) -> bool {
-        matches!(self.current_theme.get(), Theme::Light)
-    }
-
-    /// Obtient le thème comme string
-    pub fn theme_str(&self) -> String {
-        self.current_theme.get().as_str().to_string()
-    }
-
-    /// Obtient les classes CSS pour le thème
-    pub fn theme_classes(&self) -> String {
-        format!("{}-theme", self.current_theme.get().as_str())
-    }
 }

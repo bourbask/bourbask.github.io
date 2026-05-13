@@ -951,20 +951,6 @@ pub fn get_article_by_id(id: &str) -> Option<Article> {
     get_all_articles().into_iter().find(|a| a.meta.id == id)
 }
 
-pub fn get_featured_articles() -> Vec<Article> {
-    get_published_articles()
-        .into_iter()
-        .filter(|a| a.meta.featured)
-        .collect()
-}
-
-pub fn get_articles_by_category(category: &str) -> Vec<Article> {
-    get_published_articles()
-        .into_iter()
-        .filter(|a| a.meta.category == category)
-        .collect()
-}
-
 pub fn get_unique_categories() -> Vec<String> {
     let mut cats: Vec<String> = get_published_articles()
         .iter()
