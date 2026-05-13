@@ -86,8 +86,8 @@ pub fn Navigation() -> impl IntoView {
                         id="langToggle"
                         attr:data-lang={move || i18n.current_language.get().as_str()}
                         attr:aria-label={move || match i18n.current_language.get() {
-                            Language::En => "Switch to French",
-                            Language::Fr => "Switch to English",
+                            Language::En => i18n.t("switchToFrench"),
+                            Language::Fr => i18n.t("switchToEnglish"),
                         }}
                         on:click=move |_| {
                             let current = i18n.current_language.get();
@@ -125,7 +125,7 @@ pub fn Navigation() -> impl IntoView {
                     <button
                         class="theme-toggle"
                         id="themeToggle"
-                        aria-label="Toggle theme"
+                        attr:aria-label={move || i18n.t("toggleTheme")}
                         on:click=move |_| theme.toggle_theme()
                     >
                         <div class="theme-icon-container">
