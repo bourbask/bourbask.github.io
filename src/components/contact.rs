@@ -1,11 +1,29 @@
 use crate::services::I18nService;
 use gloo_net::http::Request;
+use js_sys::{Function, Promise, Reflect};
 use leptos::*;
 use serde::Serialize;
-use wasm_bindgen_futures::spawn_local;
+use wasm_bindgen::{JsCast, JsValue};
+use wasm_bindgen_futures::{spawn_local, JsFuture};
+use web_sys::window;
 
-// Create a free form at https://formspree.io and paste the ID here.
-const FORMSPREE_ID: &str = "REPLACE_WITH_YOUR_FORMSPREE_ID";
+const WORKER_URL: &str = "https://bourbask-contact.bourbask.workers.dev";
+
+// Replace with: gpg --export --armor bourbasquet.k@etik.com
+const PGP_PUBLIC_KEY: &str = "-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZrtlDhYJKwYBBAHaRw8BAQdA93OZ42RBwznbudWHNbCc6QUNqe5X8hqCCQvw
+kR2EzKS0KktldmluIEJvdXJiYXNxdWV0IDxib3VyYmFzcXVldC5rQGV0aWsuY29t
+PoiTBBMWCgA7FiEEgs9gg2Eb103TFie2R+yHcHWoK7UFAma7ZQ4CGwMFCwkIBwIC
+IgIGFQoJCAsCBBYCAwECHgcCF4AACgkQR+yHcHWoK7UVkgD/fWa0kwLoBvgZXz4m
+AWkXBwZwfN7pB6L+dRd/LsT/fKoBAPmdSZtpDoGIwESrD8QwNGNDT/Moqbo/6zxr
+WuzZ8jgLuDgEZrtlDhIKKwYBBAGXVQEFAQEHQFLgJwdW/munbwI+cxAodBX40cin
+za+ds/6xF/bZciB6AwEIB4h4BBgWCgAgFiEEgs9gg2Eb103TFie2R+yHcHWoK7UF
+Ama7ZQ4CGwwACgkQR+yHcHWoK7WgFwEAnLsDyrVHQSNpS4fPmk2RTNa1qSqnsFSg
+TLqmhbuMJGAA/RiXdfh5ghX4i8q/gCTgTvYcZDIBd3bgVgscBaADQGwC
+=hoWZ
+-----END PGP PUBLIC KEY BLOCK-----
+";
 
 #[derive(Serialize, Clone)]
 struct ContactPayload {
@@ -22,14 +40,39 @@ enum FormStatus {
     Error,
 }
 
+async fn encrypt_message(plaintext: &str) -> Result<String, String> {
+    let win = window().ok_or("no window")?;
+    let encrypt_fn = Reflect::get(&win, &JsValue::from_str("encryptWithPgp"))
+        .map_err(|_| "encryptWithPgp not found")?;
+    let encrypt_fn: Function = encrypt_fn
+        .dyn_into()
+        .map_err(|_| "encryptWithPgp is not a function")?;
+
+    let promise = encrypt_fn
+        .call2(
+            &JsValue::NULL,
+            &JsValue::from_str(PGP_PUBLIC_KEY),
+            &JsValue::from_str(plaintext),
+        )
+        .map_err(|_| "encrypt call failed")?;
+
+    let result = JsFuture::from(Promise::from(promise))
+        .await
+        .map_err(|_| "encryption failed")?;
+
+    result
+        .as_string()
+        .ok_or_else(|| "encrypted result is not a string".into())
+}
+
 #[component]
 pub fn ContactSection() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
 
-    let (name, set_name)       = create_signal(String::new());
-    let (email, set_email)     = create_signal(String::new());
+    let (name, set_name) = create_signal(String::new());
+    let (email, set_email) = create_signal(String::new());
     let (message, set_message) = create_signal(String::new());
-    let (status, set_status)   = create_signal(FormStatus::Idle);
+    let (status, set_status) = create_signal(FormStatus::Idle);
 
     let handle_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();
@@ -38,21 +81,34 @@ pub fn ContactSection() -> impl IntoView {
             return;
         }
 
-        let payload = ContactPayload {
-            name: name.get_untracked(),
-            email: email.get_untracked(),
-            message: message.get_untracked(),
-        };
+        let name_val = name.get_untracked();
+        let email_val = email.get_untracked();
+        let message_val = message.get_untracked();
 
-        let endpoint = format!("https://formspree.io/f/{}", FORMSPREE_ID);
         set_status.set(FormStatus::Sending);
 
         spawn_local(async move {
-            let result = Request::post(&endpoint)
-                .header("Accept", "application/json")
+            // Build plaintext to encrypt: include sender info + message
+            let plaintext = format!("De : {} <{}>\n\n{}", name_val, email_val, message_val);
+
+            let encrypted_message = match encrypt_message(&plaintext).await {
+                Ok(c) => c,
+                Err(_) => {
+                    set_status.set(FormStatus::Error);
+                    return;
+                }
+            };
+
+            let payload = ContactPayload {
+                name: name_val,
+                email: email_val,
+                message: encrypted_message,
+            };
+
+            let result = Request::post(WORKER_URL)
+                .header("Content-Type", "application/json")
                 .json(&payload)
-                .and_then(|req| Ok(req.send()))
-                .map_err(|e| e.to_string());
+                .and_then(|req| Ok(req.send()));
 
             match result {
                 Ok(fut) => match fut.await {
@@ -84,7 +140,7 @@ pub fn ContactSection() -> impl IntoView {
                         </p>
 
                         <div class="contact-methods">
-                            <a href="mailto:k.bourbasquet@legal2digital.fr" class="contact-method">
+                            <a href="mailto:bourbasquet.k@etik.com" class="contact-method">
                                 <span class="contact-icon">"📧"</span>
                                 <span data-key="emailLabel">
                                     {move || i18n.t("emailLabel")}
@@ -110,24 +166,19 @@ pub fn ContactSection() -> impl IntoView {
                     </div>
 
                     <div class="contact-form-container">
-                        // Success banner
                         <Show when=move || status.get() == FormStatus::Success>
                             <div class="form-feedback form-feedback--success">
                                 {move || i18n.t("formSuccess")}
                             </div>
                         </Show>
 
-                        // Error banner
                         <Show when=move || status.get() == FormStatus::Error>
                             <div class="form-feedback form-feedback--error">
                                 {move || i18n.t("formError")}
                             </div>
                         </Show>
 
-                        <form
-                            class="contact-form"
-                            on:submit=handle_submit
-                        >
+                        <form class="contact-form" on:submit=handle_submit>
                             <input
                                 type="text"
                                 name="name"
