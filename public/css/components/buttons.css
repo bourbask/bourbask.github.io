@@ -29,6 +29,11 @@
   box-shadow: var(--shadow-lg);
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
 /* Green-to-amber gradient — secondary action */
 .btn-secondary {
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 50%, var(--accent-tertiary) 100%);

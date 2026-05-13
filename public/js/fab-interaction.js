@@ -36,6 +36,7 @@
       glassyLabel = document.createElement('div');
       glassyLabel.id        = 'fabGlassyLabel';
       glassyLabel.className = 'fab-glassy-label';
+      glassyLabel.setAttribute('aria-hidden', 'true');
       document.body.appendChild(glassyLabel);
     } else {
       glassyLabel = document.getElementById('fabGlassyLabel');
@@ -55,12 +56,28 @@
     overlay && overlay.addEventListener('click', function () {
       if (tapOpen && !isDragging) closeTapMenu();
     });
+
+    // Keyboard: Enter/Space toggles, Escape closes
+    fab.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (tapOpen) closeTapMenu(); else openTapMenu();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && (tapOpen || isDragging)) {
+        closeTapMenu();
+        closeDragMenu(null);
+        fab.focus();
+      }
+    });
   }
 
   // ── Tap mode ──────────────────────────────────────────────────────────────
   function openTapMenu() {
     tapOpen = true;
     fab.classList.add('active');
+    fab.setAttribute('aria-expanded', 'true');
     navItemsEl && navItemsEl.classList.add('active');
     overlay    && overlay.classList.add('active');
     document.body.classList.add('mobile-nav-open');
@@ -69,6 +86,7 @@
   function closeTapMenu() {
     tapOpen = false;
     fab.classList.remove('active');
+    fab.setAttribute('aria-expanded', 'false');
     navItemsEl && navItemsEl.classList.remove('active');
     overlay    && overlay.classList.remove('active');
     document.body.classList.remove('mobile-nav-open');

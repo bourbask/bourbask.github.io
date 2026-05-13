@@ -12,6 +12,19 @@
   box-sizing: border-box;
 }
 
+/* ===== FOCUS STYLES ===== */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
 /* ===== HTML & BODY ===== */
 html {
   scroll-behavior: smooth; /* Smooth scrolling for anchor links */
