@@ -261,7 +261,7 @@
   transition: transform 0.3s ease;
 }
 
-.lang-toggle[data-lang="fr"] .lang-slider { transform: translateX(100%); }
+/* slider position driven reactively via inline style:transform in navigation.rs */
 
 /* ----- Theme toggle ----- */
 
