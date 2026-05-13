@@ -1,6 +1,6 @@
 use crate::data::translations::Language;
 use chrono::{Datelike, NaiveDate, Utc};
-use leptos::prelude::*;
+use leptos::*;
 use std::collections::HashMap;
 use web_sys;
 
@@ -37,8 +37,8 @@ impl I18nService {
                 }
             });
 
-        let current_language = RwSignal::new(initial_lang);
-        let translations = RwSignal::new(current_language.get().get_translations());
+        let current_language = create_rw_signal(initial_lang);
+        let translations = create_rw_signal(current_language.get().get_translations());
 
         Self {
             current_language,
@@ -103,6 +103,11 @@ impl I18nService {
     /// Obtenir le code langue actuel
     pub fn current_lang_code(&self) -> String {
         self.current_language.get().as_str().to_string()
+    }
+
+    /// Vérifier si la langue courante est l'anglais
+    pub fn is_english(&self) -> bool {
+        matches!(self.current_language.get(), Language::En)
     }
 
     /// Définir la langue depuis un string (utile pour URL params)

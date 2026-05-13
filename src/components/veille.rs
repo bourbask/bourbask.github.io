@@ -2,8 +2,7 @@ use crate::components::footer::Footer;
 use crate::components::navigation::Navigation;
 use crate::services::I18nService;
 use gloo_net::http::Request;
-use leptos::prelude::*;
-use leptos::task::spawn_local;
+use leptos::*;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -48,8 +47,8 @@ fn category_label(cat: &str, i18n: &I18nService) -> String {
 #[component]
 pub fn VeillePage() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
-    let (news_state, set_news_state) = signal(NewsState::Loading);
-    let (active_filter, set_active_filter) = signal("all".to_string());
+    let (news_state, set_news_state) = create_signal(NewsState::Loading);
+    let (active_filter, set_active_filter) = create_signal("all".to_string());
 
     spawn_local(async move {
         match Request::get("/public/news.json").send().await {
@@ -90,9 +89,9 @@ pub fn VeillePage() -> impl IntoView {
                                     {move || i18n.t("veille.updatedAt")}
                                     {" "}{date.clone()}
                                 </p>
-                            }.into_any()
+                            }.into_view()
                         }
-                        _ => view! { <p></p> }.into_any(),
+                        _ => view! { <p></p> }.into_view(),
                     }}
                 </div>
             </section>
@@ -127,13 +126,13 @@ pub fn VeillePage() -> impl IntoView {
                             <div class="veille-status">
                                 <p>{move || i18n.t("veille.loading")}</p>
                             </div>
-                        }.into_any(),
+                        }.into_view(),
 
                         NewsState::Error => view! {
                             <div class="veille-status veille-error">
                                 <p>{move || i18n.t("veille.error")}</p>
                             </div>
-                        }.into_any(),
+                        }.into_view(),
 
                         NewsState::Loaded(data) => {
                             let filter = active_filter.get();
@@ -148,7 +147,7 @@ pub fn VeillePage() -> impl IntoView {
                                     <div class="veille-status">
                                         <p>{move || i18n.t("veille.noItems")}</p>
                                     </div>
-                                }.into_any()
+                                }.into_view()
                             } else {
                                 view! {
                                     <div class="veille-list">
@@ -160,9 +159,9 @@ pub fn VeillePage() -> impl IntoView {
                                                         <span class="veille-source">{item.source.clone()}</span>
                                                         <span class="veille-date">{format_date(&item.published_at)}</span>
                                                         {if item.lang == "fr" {
-                                                            view! { <span class="veille-lang">"🇫🇷"</span> }.into_any()
+                                                            view! { <span class="veille-lang">"🇫🇷"</span> }.into_view()
                                                         } else {
-                                                            view! { <span class="veille-lang">"🇬🇧"</span> }.into_any()
+                                                            view! { <span class="veille-lang">"🇬🇧"</span> }.into_view()
                                                         }}
                                                     </div>
                                                     <h3 class="veille-card-title">
@@ -184,7 +183,7 @@ pub fn VeillePage() -> impl IntoView {
                                             }
                                         }).collect::<Vec<_>>()}
                                     </div>
-                                }.into_any()
+                                }.into_view()
                             }
                         }
                     }}

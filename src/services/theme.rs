@@ -1,5 +1,5 @@
 use crate::services::StorageService;
-use leptos::prelude::*;
+use leptos::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Theme {
@@ -50,7 +50,7 @@ impl ThemeService {
         // Sauvegarder le thème détecté
         storage.set_theme(initial_theme.as_str());
 
-        let current_theme = RwSignal::new(initial_theme);
+        let current_theme = create_rw_signal(initial_theme);
 
         // Appliquer le thème au DOM
         Self::apply_theme_to_dom(initial_theme);
@@ -106,6 +106,11 @@ impl ThemeService {
         Self::apply_theme_to_dom(theme);
 
         log::info!("🎨 Theme switched to: {:?}", theme);
+    }
+
+    /// Check si le thème courant est dark
+    pub fn is_dark(&self) -> bool {
+        matches!(self.current_theme.get(), Theme::Dark)
     }
 
 }

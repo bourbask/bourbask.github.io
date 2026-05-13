@@ -1,7 +1,7 @@
 use crate::components::NotFound404;
 use crate::data::articles::Article;
 use crate::services::{BlogService, I18nService};
-use leptos::prelude::*;
+use leptos::*;
 
 #[component]
 pub fn ArticlePage(article_id: String) -> impl IntoView {
@@ -14,9 +14,9 @@ pub fn ArticlePage(article_id: String) -> impl IntoView {
         {move || {
             if let Some(article) = &article {
                 let lang = i18n.current_lang_code();
-                view! { <ArticleView article=article.clone() lang=lang /> }.into_any()
+                view! { <ArticleView article=article.clone() lang=lang /> }.into_view()
             } else {
-                view! { <NotFound404 /> }.into_any()
+                view! { <NotFound404 /> }.into_view()
             }
         }}
     }
@@ -26,8 +26,8 @@ pub fn ArticlePage(article_id: String) -> impl IntoView {
 pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
 
-    let title = RwSignal::new(article.meta.title.get(&lang).cloned().unwrap_or_default());
-    let subtitle = RwSignal::new(
+    let title = create_rw_signal(article.meta.title.get(&lang).cloned().unwrap_or_default());
+    let subtitle = create_rw_signal(
         article
             .meta
             .subtitle
@@ -35,11 +35,11 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
             .cloned()
             .unwrap_or_default(),
     );
-    let content = RwSignal::new(article.content.get(&lang).cloned());
-    let _meta = RwSignal::new(article.meta.clone());
+    let content = create_rw_signal(article.content.get(&lang).cloned());
+    let _meta = create_rw_signal(article.meta.clone());
 
     // Mettre à jour quand la langue change
-    Effect::new(move |_| {
+    create_effect(move |_| {
         let current_lang = i18n.current_lang_code();
         title.set(
             article
@@ -75,10 +75,10 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
                 </nav>
 
                 <div class="article-meta">
-                    <time class="article-date">{article.meta.date.clone()}</time>
+                    <time class="article-date">{&article.meta.date}</time>
                     <span class="article-read-time">{article.meta.read_time}" min read"</span>
                     <div class="article-tags">
-                        {article.meta.tags.iter().cloned()
+                        {article.meta.tags.iter()
                             .map(|tag| view! {
                                 <span class="tag">{tag}</span>
                             })
@@ -89,9 +89,9 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
                 <h1 class="article-title">{move || title.get()}</h1>
                 <p class="article-subtitle">{move || subtitle.get()}</p>
 
-                {move || content.get().map(|c| view! {
+                {move || content.get().as_ref().map(|c| view! {
                     <div class="article-tldr">
-                        <strong>"TL;DR: "</strong> {c.tldr.clone()}
+                        <strong>"TL;DR: "</strong> {&c.tldr}
                     </div>
                 })}
 
@@ -113,14 +113,10 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
                                         <h3>"Table of Contents"</h3>
                                         <ul>
                                             {content.sections.iter()
-                                                .map(|section| {
-                                                    let href = format!("#{}", section.id);
-                                                    let title = section.title.clone();
-                                                    view! {
-                                                        <li>
-                                                            <a href={href}>{title}</a>
-                                                        </li>
-                                                    }
+                                                .map(|section| view! {
+                                                    <li>
+                                                        <a href={format!("#{}", section.id)}>{&section.title}</a>
+                                                    </li>
                                                 })
                                                 .collect::<Vec<_>>()}
                                         </ul>
@@ -128,26 +124,22 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
 
                                     <div class="article-body">
                                         {content.sections.iter()
-                                            .map(|section| {
-                                                let id = section.id.clone();
-                                                let html = parse_markdown(&section.content);
-                                                view! {
-                                                    <section id={id} class="article-section">
-                                                        <div inner_html={html}></div>
-                                                    </section>
-                                                }
+                                            .map(|section| view! {
+                                                <section id={&section.id} class="article-section">
+                                                    <div inner_html={parse_markdown(&section.content)}></div>
+                                                </section>
                                             })
                                             .collect::<Vec<_>>()}
                                     </div>
                                 </>
-                            }.into_any()
+                            }.into_view()
                         }
                         None => {
                             view! {
                                 <div class="article-error">
                                     <p>"Content not available in this language."</p>
                                 </div>
-                            }.into_any()
+                            }.into_view()
                         }
                     }
                 }}

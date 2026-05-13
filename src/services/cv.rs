@@ -1,5 +1,6 @@
 use crate::data::cv::*;
 use crate::services::I18nService;
+use leptos::*;
 use wasm_bindgen::prelude::*;
 use web_sys::window;
 

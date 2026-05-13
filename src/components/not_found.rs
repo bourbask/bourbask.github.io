@@ -1,5 +1,5 @@
 use crate::services::I18nService;
-use leptos::prelude::*;
+use leptos::*;
 
 #[component]
 pub fn NotFound404() -> impl IntoView {

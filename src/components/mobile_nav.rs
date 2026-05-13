@@ -1,5 +1,5 @@
 use crate::services::{CVService, I18nService, ThemeService};
-use leptos::prelude::*;
+use leptos::*;
 
 #[component]
 pub fn MobileFloatingNav() -> impl IntoView {

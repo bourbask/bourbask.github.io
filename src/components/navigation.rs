@@ -3,9 +3,8 @@ use crate::{
     data::translations::Language,
     services::{I18nService, ThemeService},
 };
-use leptos::prelude::*;
-use leptos_router::components::A;
-use leptos_router::hooks::use_location;
+use leptos::*;
+use leptos_router::*;
 use wasm_bindgen::prelude::*;
 
 #[component]
@@ -15,9 +14,9 @@ pub fn Navigation() -> impl IntoView {
     let location = use_location();
     let pathname = move || location.pathname.get();
 
-    let is_scrolled = RwSignal::new(false);
+    let is_scrolled = create_rw_signal(false);
 
-    Effect::new(move |_| {
+    create_effect(move |_| {
         let closure = Closure::wrap(Box::new(move || {
             let scrolled = web_sys::window()
                 .and_then(|w| w.scroll_y().ok())
@@ -47,7 +46,7 @@ pub fn Navigation() -> impl IntoView {
                 <div class="nav-links">
                     <A
                         href="/"
-                        attr:class=move || if pathname() == "/" {
+                        class=move || if pathname() == "/" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"
@@ -57,7 +56,7 @@ pub fn Navigation() -> impl IntoView {
                     </A>
                     <A
                         href="/blog"
-                        attr:class=move || if pathname() == "/blog" {
+                        class=move || if pathname() == "/blog" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"
@@ -67,7 +66,7 @@ pub fn Navigation() -> impl IntoView {
                     </A>
                     <A
                         href="/veille"
-                        attr:class=move || if pathname() == "/veille" {
+                        class=move || if pathname() == "/veille" {
                             "nav-link nav-link-active"
                         } else {
                             "nav-link"
@@ -112,14 +111,7 @@ pub fn Navigation() -> impl IntoView {
                         >
                             "FR"
                         </span>
-                        <div
-                            class="lang-slider"
-                            style:transform=move || if i18n.current_language.get().as_str() == "fr" {
-                                "translateX(100%)"
-                            } else {
-                                "translateX(0)"
-                            }
-                        ></div>
+                        <div class="lang-slider"></div>
                     </button>
 
                     <button

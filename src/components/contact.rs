@@ -1,11 +1,10 @@
 use crate::services::I18nService;
 use gloo_net::http::Request;
 use js_sys::{Function, Promise, Reflect};
-use leptos::prelude::*;
+use leptos::*;
 use serde::Serialize;
 use wasm_bindgen::{JsCast, JsValue};
-use wasm_bindgen_futures::JsFuture;
-use leptos::task::spawn_local;
+use wasm_bindgen_futures::{spawn_local, JsFuture};
 use web_sys::window;
 
 const WORKER_URL: &str = "https://bourbask-contact.bourbask.workers.dev";
@@ -70,10 +69,10 @@ async fn encrypt_message(plaintext: &str) -> Result<String, String> {
 pub fn ContactSection() -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
 
-    let (name, set_name) = signal(String::new());
-    let (email, set_email) = signal(String::new());
-    let (message, set_message) = signal(String::new());
-    let (status, set_status) = signal(FormStatus::Idle);
+    let (name, set_name) = create_signal(String::new());
+    let (email, set_email) = create_signal(String::new());
+    let (message, set_message) = create_signal(String::new());
+    let (status, set_status) = create_signal(FormStatus::Idle);
 
     let handle_submit = move |ev: leptos::ev::SubmitEvent| {
         ev.prevent_default();

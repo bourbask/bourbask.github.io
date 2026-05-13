@@ -1,5 +1,5 @@
 use crate::services::{CVService, I18nService};
-use leptos::prelude::*;
+use leptos::*;
 use wasm_bindgen::closure::Closure;
 use wasm_bindgen::JsCast;
 
@@ -8,8 +8,8 @@ pub fn CVDownloadButton() -> impl IntoView {
     let i18n = expect_context::<I18nService>();
     let cv_service = CVService::new(i18n.clone());
 
-    let (is_downloading, set_downloading) = signal(false);
-    let (is_success, set_success) = signal(false);
+    let (is_downloading, set_downloading) = create_signal(false);
+    let (is_success, set_success) = create_signal(false);
 
     let handle_download = move |_| {
         if is_downloading.get() {
