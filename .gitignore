@@ -53,8 +53,9 @@ lcov.info
 *.bak
 *.orig
 
-# PGP key exports — never commit
+# PGP key exports — never commit (exception: public keys in public/)
 *.asc
+!public/*.asc
 
 # OS generated files
 .DS_Store

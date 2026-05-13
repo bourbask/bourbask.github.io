@@ -334,5 +334,10 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.filterGeneral", "General");
     map.insert("veille.noItems", "No items in this category.");
 
+    // PGP contact
+    map.insert("pgpLabel", "Encrypted email");
+    map.insert("pgpDownload", "Download key");
+    map.insert("pgpKeyserver", "Keyserver");
+
     map
 }

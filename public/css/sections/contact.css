@@ -103,6 +103,59 @@
   color: #ef4444;
 }
 
+.pgp-info {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-secondary);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pgp-info-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pgp-icon { font-size: 1rem; }
+
+.pgp-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.pgp-fingerprint {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--text-secondary);
+  word-break: break-all;
+  line-height: 1.5;
+  user-select: all;
+}
+
+.pgp-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pgp-link {
+  font-size: 0.78rem;
+  color: var(--accent-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.pgp-link:hover { border-bottom-color: var(--accent-secondary); }
+
 /* Responsive */
 @media (max-width: 768px) {
   .contact-content { grid-template-columns: 1fr; gap: 2rem; }

@@ -163,6 +163,35 @@ pub fn ContactSection() -> impl IntoView {
                                 <span>"LinkedIn"</span>
                             </a>
                         </div>
+
+                        <div class="pgp-info">
+                            <div class="pgp-info-header">
+                                <span class="pgp-icon">"🔐"</span>
+                                <span class="pgp-label">
+                                    {move || i18n.t("pgpLabel")}
+                                </span>
+                            </div>
+                            <code class="pgp-fingerprint">
+                                "82CF 6083 611B D74D D316  27B6 47EC 8770 75A8 2BB5"
+                            </code>
+                            <div class="pgp-actions">
+                                <a
+                                    href="/bourbasquet-pgp.asc"
+                                    download="bourbasquet-pgp.asc"
+                                    class="pgp-link"
+                                >
+                                    {move || i18n.t("pgpDownload")}
+                                </a>
+                                <a
+                                    href="https://keys.openpgp.org/search?q=bourbasquet.k%40etik.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="pgp-link"
+                                >
+                                    {move || i18n.t("pgpKeyserver")}
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="contact-form-container">
