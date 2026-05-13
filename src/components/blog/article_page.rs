@@ -36,7 +36,7 @@ pub fn ArticleView(article: Article, lang: String) -> impl IntoView {
             .unwrap_or_default(),
     );
     let content = create_rw_signal(article.content.get(&lang).cloned());
-    let meta = create_rw_signal(article.meta.clone());
+    let _meta = create_rw_signal(article.meta.clone());
 
     // Mettre à jour quand la langue change
     create_effect(move |_| {

@@ -1,3 +1,5 @@
+#![allow(unexpected_cfgs, clippy::clone_on_copy)]
+
 mod app;
 mod components;
 mod data;

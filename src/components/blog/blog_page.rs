@@ -1,12 +1,12 @@
 use crate::components::{ArticlePage, Footer, Navigation};
 use crate::data::articles::{get_category_emoji, Article};
-use crate::services::{BlogService, I18nService, ThemeService};
+use crate::services::{BlogService, I18nService};
 use leptos::*;
 use leptos_router::*;
 
 #[component]
 pub fn BlogPage() -> impl IntoView {
-    let i18n = use_context::<I18nService>().expect("I18n service not found");
+    let _i18n = use_context::<I18nService>().expect("I18n service not found");
     let blog_service = BlogService::new();
     provide_context(blog_service.clone());
 
@@ -292,7 +292,7 @@ pub fn LatestArticleCard(article: Article, lang: String) -> impl IntoView {
 
 #[component]
 pub fn ArticleListItem(article: Article, lang: String) -> impl IntoView {
-    let i18n = use_context::<I18nService>().expect("I18n service not found");
+    let _i18n = use_context::<I18nService>().expect("I18n service not found");
     let title = article.meta.title.get(&lang).cloned().unwrap_or_default();
     let description = article
         .meta

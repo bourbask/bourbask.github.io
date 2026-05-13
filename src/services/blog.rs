@@ -1,7 +1,6 @@
 use crate::data::articles::{
     get_article_by_id, get_published_articles, get_unique_categories, Article,
 };
-use crate::services::I18nService;
 use leptos::*;
 
 #[derive(Debug, Clone)]
@@ -63,9 +62,9 @@ impl BlogService {
                 articles.sort_by(|a, b| a.meta.date.cmp(&b.meta.date));
             }
             "reading-time" => {
-                articles.sort_by(|a, b| a.meta.read_time.cmp(&b.meta.read_time));
+                articles.sort_by_key(|a| a.meta.read_time);
             }
-            "newest" | _ => {
+            _ => {
                 articles.sort_by(|a, b| b.meta.date.cmp(&a.meta.date));
             }
         }
@@ -73,8 +72,4 @@ impl BlogService {
         self.filtered_articles.set(articles);
     }
 
-    pub fn format_date(&self, date_str: &str, lang: &str) -> String {
-        // Simple date formatting - tu peux utiliser chrono pour plus de sophistication
-        date_str.to_string()
-    }
 }
