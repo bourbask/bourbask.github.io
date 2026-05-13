@@ -64,7 +64,8 @@
 
 .veille-filter-btn-active {
   background: var(--accent-gradient);
-  border-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: calc(0.4rem + 1px) calc(1rem + 1px);
   color: white;
   font-weight: 600;
 }
