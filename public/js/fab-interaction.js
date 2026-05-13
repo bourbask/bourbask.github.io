@@ -214,6 +214,7 @@
     if (!pointerActive) return;
     pointerActive = false;
 
+
     fab.classList.remove('touched');
 
     if (!isDragging) {
