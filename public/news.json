@@ -1,71 +1,467 @@
 {
-  "generated_at": "2026-05-13T23:28:50.633423+00:00",
-  "period": "2026-05-13",
-  "count": 264,
+  "generated_at": "2026-05-14T06:55:35.568901+00:00",
+  "period": "2026-05-14",
+  "count": 263,
   "synthesis": {
     "en": {
-      "headline": "US AI commercialization dominance grows as security vulnerabilities (Fragnesia, jailbreaks) emerge alongside agent infrastructure maturation",
-      "tldr": "The US leads in AI commercialization with AWS expanding AI agent capabilities to legacy systems; meanwhile, new vulnerability classes (Fragnesia type exploits, multi-turn jailbreak benchmarks) and specification verification techniques highlight growing security debt. Node.js 22.22.3 LTS released. Sovereign Tech Fund backs KDE; Anthropic's Claude launches on AWS.",
+      "headline": "Microsoft BitLocker zero-day and systemic LLM vulnerabilities dominate security discourse as AI agent benchmarks prove unreliable",
+      "tldr": "Microsoft BitLocker faces a critical YellowKey zero-day exploit with an ongoing mystery leaker releasing additional zero-days. Simultaneously, AI safety research reveals fundamental flaws in agent evaluation frameworks (BenchJack), LLM-generated code vulnerabilities, and multiple attack vectors including backdoor injection (BackFlush) and adversarial prompting (PCAP). The U.S. commercialization lead in AI contrasts sharply with concerning security and reliability gaps.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Critical security research emerges: Fragnesia (yet another Dirty Frag variant), MT-JailBench documenting multi-turn jailbreak attacks, and DCVD dual-channel vulnerability detection methods. Natural language specification/verification tools address the growing gap between intent and implementation in AI systems."
+          "summary": "Microsoft BitLocker zero-day (YellowKey) under active exploitation with unidentified leaker continuing to release additional zero-days. Code-centric vulnerability detection benchmarking shows inadequate identification of security-fixing commits. OverrideFuzz discovers script-runtime vulnerabilities through semantic-aware fuzzing. Fragnesia represents another memory corruption vector joining existing Dirty Frag-class vulnerabilities."
         },
         {
           "category": "good_news",
-          "summary": "Anthropic launches Claude Platform on AWS; Sovereign Tech Fund invests in KDE; open source sustenance initiatives gain traction. Deming, an open-source ISMS (Information Security Management System), targets security practitioners. AWS WorkSpaces AI agent integration provides bridge to legacy systems without API rewrites."
+          "summary": "Anthropic launches Claude Platform on AWS, expanding enterprise accessibility. Sovereign Tech Fund invests in KDE, supporting open-source desktop infrastructure. Deming, an open-source ISMS (Information Security Management System), addresses CISO/RSSI needs in French-speaking regions."
         },
         {
           "category": "future_watch",
-          "summary": "Multi-agent system frameworks solidify: research benchmarks (executable tool-using agents, code semantic reasoning) validate emerging patterns. LLM optimization accelerates—SkillLens and MemQ reduce agent costs via adaptive skill reuse and memory integration. Fedora faces internal friction over AI developer desktop initiatives. KubeCon Japan 2026 announced."
+          "summary": "AI agent benchmarks exposed as fundamentally flawed (BenchJack paper). CHAL (Council of Hierarchical Agentic Language) and AgentLens frameworks attempting to address agent evaluation and program analysis limitations. LLM-based approaches to usability requirements extraction emerging. Fedora community friction over AI developer desktop initiative signals organizational resistance to AI tooling integration."
         },
         {
           "category": "stack_alt",
-          "summary": "Execution-verified multi-language benchmarks and tool-using agent suites establish reproducible comparison baselines. MacBook Neo analysis explores ARM economics. Chart-data extraction improves via spatial priming over semantic prompting—practical refinement of LLM inference."
+          "summary": "DisaBench framework for evaluating disability harms in language models establishes participatory evaluation methodology. MacBook Neo analysis questions 8GB memory baseline adequacy for modern ML workloads and wafer economics. Code-centric vulnerability detection benchmarking provides empirical foundation for comparing detection methodologies."
         }
       ],
       "key_takeaways": [
-        "Patch systems immediately for Fragnesia vulnerabilities; audit memory-safety boundaries in fragmentation-prone code paths",
-        "Monitor jailbreak research (MT-JailBench): multi-turn attacks bypass single-prompt defenses; invest in behavioral guardrails and input composition limits",
-        "Leverage AWS WorkSpaces + AI agents for legacy system modernization without API rewrites—significant cost play for enterprises locked into 20-year-old stacks",
-        "Evaluate SkillLens/MemQ for production agents; naive multi-agent systems waste 60%+ compute on redundant skill invocations"
+        "Immediately audit BitLocker deployment status and apply mitigations; zero-day chain indicates sophisticated threat actor with sustained access to Microsoft internals",
+        "Treat AI-generated code as untrusted—evaluate security-focused LLM fine-tuning (automated code review feedback) and vulnerability detection benchmarks before deployment",
+        "Question AI agent benchmark results fundamentally; BenchJack demonstrates 'lucky pass' phenomenon invalidates many published evaluations—require transparency on evaluation methodology"
       ],
-      "signal_vs_noise": "Strong signal: real security disclosures, reproducible benchmarks, and commercial AI infrastructure maturation; noise: generic e-commerce ads and local regulatory changes dominate volume."
+      "signal_vs_noise": "Strong signal today: real zero-days, methodological papers exposing AI evaluation failures, and polarizing enterprise adoption decisions outweigh incremental research papers."
     },
     "fr": {
-      "headline": "La domination commerciale IA des États-Unis s'accélère tandis que de nouvelles vulnérabilités (Fragnesia, jailbreaks) émergent parallèlement à la maturation de l'infrastructure des agents",
-      "tldr": "Les États-Unis dominent la commercialisation de l'IA avec AWS étendant les capacités des agents IA aux systèmes existants ; parallèlement, de nouvelles classes de vulnérabilités (exploits Fragnesia, benchmarks de jailbreak multi-tours) et des techniques de vérification de spécification révèlent une dette de sécurité croissante. Node.js 22.22.3 LTS publié. Sovereign Tech Fund soutient KDE ; Claude d'Anthropic se lance sur AWS.",
+      "headline": "Le zéro-jour BitLocker de Microsoft et les vulnérabilités systémiques des LLM dominent le débat sécurité tandis que l'évaluation des agents IA s'avère peu fiable",
+      "tldr": "Microsoft BitLocker fait face à un exploit zéro-jour critique (YellowKey) avec un mystérieux divulgateur continuant à publier des zéro-jours additionnels. Simultanément, la recherche en sécurité IA révèle des défauts fondamentaux dans l'évaluation des agents (BenchJack), des vulnérabilités dans le code généré par LLM, et plusieurs vecteurs d'attaque incluant l'injection de portes dérobées (BackFlush) et l'incitation adversarielle (PCAP). L'avance commerciale américaine en IA contraste fortement avec des lacunes préoccupantes en sécurité et fiabilité.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Recherche en sécurité critique : Fragnesia (une nouvelle variante Dirty Frag), MT-JailBench documentant les attaques de jailbreak multi-tours, et méthodes DCVD de détection de vulnérabilités bi-canal. Les outils de spécification/vérification en langage naturel comblent le fossé croissant entre l'intention et l'implémentation dans les systèmes IA."
+          "summary": "Zéro-jour BitLocker (YellowKey) en exploitation active avec divulgateur non identifié continuant à publier des zéro-jours supplémentaires. La détection centrée sur le code identifie inadéquatement les commits corrigeant les vulnérabilités. OverrideFuzz découvre des vulnérabilités runtime script via fuzzing conscient de la sémantique. Fragnesia représente un autre vecteur de corruption mémoire rejoignant les vulnérabilités Dirty Frag existantes."
         },
         {
           "category": "good_news",
-          "summary": "Anthropic lance la plateforme Claude sur AWS ; Sovereign Tech Fund investit dans KDE ; les initiatives de pérennité de l'open source gagnent du terrain. Deming, un SMSI open source (Système de Management de la Sécurité de l'Information), cible les praticiens de la sécurité. Intégration des agents IA AWS WorkSpaces offre un pont vers les systèmes existants sans réécritures d'API."
+          "summary": "Anthropic lance Claude Platform sur AWS, élargissant l'accessibilité entreprise. Sovereign Tech Fund investit dans KDE, soutenant l'infrastructure bureautique open-source. Deming, un SMSI open-source (Système de Management de la Sécurité de l'Information), répond aux besoins des RSSI francophones."
         },
         {
           "category": "future_watch",
-          "summary": "Les cadres multi-agents se solidifient : benchmarks de recherche (agents utilisant des outils exécutables, raisonnement sémantique de code) valident les modèles émergents. L'optimisation LLM s'accélère—SkillLens et MemQ réduisent les coûts des agents via réutilisation adaptative des compétences et intégration mémoire. Fedora affronte des frictions internes sur les initiatives AI desktop. KubeCon Japan 2026 annoncé."
+          "summary": "Les benchmarks d'agents IA exposés comme fondamentalement défectueux (article BenchJack). CHAL et AgentLens tentent d'adresser les limitations d'évaluation et d'analyse de programmes. Les approches basées LLM pour l'extraction de requirements d'usabilité émergent. Les frictions Fedora autour de l'initiative desktop développeur IA signalent une résistance organisationnelle à l'intégration d'outils IA."
         },
         {
           "category": "stack_alt",
-          "summary": "Les benchmarks multi-langages vérifiés par exécution et les suites d'agents utilisant des outils établissent des bases de comparaison reproductibles. L'analyse MacBook Neo explore l'économie ARM. L'extraction de données de graphiques s'améliore via l'amorçage spatial par rapport à l'amorçage sémantique—affinement pratique de l'inférence LLM."
+          "summary": "DisaBench établit une méthodologie d'évaluation participative pour les préjudices aux personnes handicapées dans les LLM. L'analyse MacBook Neo questionne l'adéquation de la baseline 8GB pour les charges ML modernes et l'économie des wafers. La détection centrée code fournit une base empirique comparant les méthodologies de détection."
         }
       ],
       "key_takeaways": [
-        "Patcher immédiatement pour les vulnérabilités Fragnesia ; auditer les limites de sécurité mémoire dans les chemins sensibles à la fragmentation",
-        "Monitorer la recherche sur le jailbreak (MT-JailBench) : les attaques multi-tours contournent les défenses à invite unique ; investir dans les garde-fous comportementaux et les limites de composition des entrées",
-        "Exploiter AWS WorkSpaces + agents IA pour la modernisation des systèmes existants sans réécritures d'API—enjeu de coût significatif pour les entreprises verrouillées dans des architectures vieilles de 20 ans",
-        "Évaluer SkillLens/MemQ pour les agents en production ; les systèmes multi-agents naïfs gaspillent 60%+ de calcul sur des invocations de compétences redondantes"
+        "Auditez immédiatement le déploiement de BitLocker et appliquez les atténuations ; la chaîne zéro-jour indique un acteur de menace sophistiqué avec accès soutenu aux internals Microsoft",
+        "Traitez le code généré par IA comme non fiable—évaluez le fine-tuning LLM axé sécurité (retour automatisé sur revue code) et les benchmarks de détection vulnérabilités avant déploiement",
+        "Questionnez fondamentalement les résultats des benchmarks d'agents IA ; BenchJack démontre le phénomène du 'lucky pass' invalide de nombreuses évaluations publiées—exigez la transparence méthodologique"
       ],
-      "signal_vs_noise": "Signal fort : divulgations de sécurité réelles, benchmarks reproductibles et maturation de l'infrastructure IA commerciale ; bruit : les publicités de commerce électronique générique et les changements réglementaires locaux dominent le volume."
+      "signal_vs_noise": "Signal fort aujourd'hui : des zéro-jours réels, des articles méthodologiques exposant l'insuffisance d'évaluation IA, et des décisions d'adoption entreprise polarisantes surpassent les articles de recherche itératifs."
     }
   },
   "items": [
     {
+      "id": "a71bb99cb299",
+      "title": "Think Twice, Act Once: Verifier-Guided Action Selection For Embodied Agents",
+      "url": "https://arxiv.org/abs/2605.12620",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "297b0312d017",
+      "title": "Macro-Action Based Multi-Agent Instruction Following through Value Cancellation",
+      "url": "https://arxiv.org/abs/2605.12655",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6cdb39ac3489",
+      "title": "Do Androids Dream of Breaking the Game? Systematically Auditing AI Agent Benchmarks with BenchJack",
+      "url": "https://arxiv.org/abs/2605.12673",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "deb1d47c99cc",
+      "title": "Revealing Interpretable Failure Modes of VLMs",
+      "url": "https://arxiv.org/abs/2605.12674",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0b1f373efa41",
+      "title": "Learning Transferable Latent User Preferences for Human-Aligned Decision Making",
+      "url": "https://arxiv.org/abs/2605.12682",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4c648816d8d0",
+      "title": "On the Size Complexity and Decidability of First-Order Progression",
+      "url": "https://arxiv.org/abs/2605.12691",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "876448c1c2a5",
+      "title": "DisaBench: A Participatory Evaluation Framework for Disability Harms in Language Models",
+      "url": "https://arxiv.org/abs/2605.12702",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e4136b098c39",
+      "title": "CHAL: Council of Hierarchical Agentic Language",
+      "url": "https://arxiv.org/abs/2605.12718",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "86194aaa840d",
+      "title": "Fine-Tuning Models for Automated Code Review Feedback",
+      "url": "https://arxiv.org/abs/2605.12610",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "50befb850392",
+      "title": "User Reviews as a Source for Usability Requirements: A Precursor Study on Using Large Language Models",
+      "url": "https://arxiv.org/abs/2605.12657",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a39d61956c9d",
+      "title": "Agentic Interpretation: Lattice-Structured Evidence for LLM-Based Program Analysis",
+      "url": "https://arxiv.org/abs/2605.12694",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1f440d629330",
+      "title": "Finding a Crab in the C: Assured Translation via Comparative Symbolic Execution",
+      "url": "https://arxiv.org/abs/2605.12731",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "41011881aadb",
+      "title": "Project Life Cycles in Open-Source Software",
+      "url": "https://arxiv.org/abs/2605.12738",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "907608406d53",
+      "title": "AgentLens: Revealing The Lucky Pass Problem in SWE-Agent Evaluation",
+      "url": "https://arxiv.org/abs/2605.12925",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9e104d53e535",
+      "title": "Protocol-Driven Development: Governing Generated Software Through Invariants and Evidence",
+      "url": "https://arxiv.org/abs/2605.12981",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4dcb6ef415b2",
+      "title": "Code-Centric Detection of Vulnerability-Fixing Commits: A Unified Benchmark and Empirical Study",
+      "url": "https://arxiv.org/abs/2605.13138",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "urgent",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ed053748b8ea",
+      "title": "BackFlush: Knowledge-Free Backdoor Detection and Elimination with Watermark Preservation in Large Language Models",
+      "url": "https://arxiv.org/abs/2605.12529",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d3d869b832e3",
+      "title": "Ghost in the Context: Measuring Policy-Carriage Failures in Decision-Time Assembly",
+      "url": "https://arxiv.org/abs/2605.12535",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ce2ed6192310",
+      "title": "OverrideFuzz: Semantic-Aware Grammar Fuzzing for Script-Runtime Vulnerabilities",
+      "url": "https://arxiv.org/abs/2605.12563",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c834c7080b8d",
+      "title": "Persona-Conditioned Adversarial Prompting (PCAP): Multi-Identity Red-Teaming for Enhanced Adversarial Prompt Discovery",
+      "url": "https://arxiv.org/abs/2605.12565",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1ed446b47de3",
+      "title": "Still Camouflage, Moving Illusion: View-Induced Trajectory Manipulation in Autonomous Driving",
+      "url": "https://arxiv.org/abs/2605.12743",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7130c464b165",
+      "title": "CoT-Guard: Small Models for Strong Monitoring",
+      "url": "https://arxiv.org/abs/2605.12746",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9dc3f0652450",
+      "title": "GraphIP-Bench: How Hard Is It to Steal a Graph Neural Network, and Can We Stop It?",
+      "url": "https://arxiv.org/abs/2605.12827",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "90f195339195",
+      "title": "HE-PIM: Demystifying Homomorphic Operations on a Real-world Processing-in-Memory System",
+      "url": "https://arxiv.org/abs/2605.12841",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "70e60813de51",
+      "title": "Divergent Multi-Version Execution (DME): Canonical Instruction-Trace Fault Detection via Structural Address-Space Decorrelation",
+      "url": "https://arxiv.org/abs/2605.12576",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f9dcbef66db5",
+      "title": "Language-Based Agent Control",
+      "url": "https://arxiv.org/abs/2605.12863",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7e9c739afe9b",
+      "title": "LFPL: Revisited and Mechanized",
+      "url": "https://arxiv.org/abs/2605.12893",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "343b8db1310e",
+      "title": "Liquid Tree Automata",
+      "url": "https://arxiv.org/abs/2605.13456",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f8ba063e5983",
+      "title": "On the Complexity of Checking Soundness of Natural Reductions (Extended Version)",
+      "url": "https://arxiv.org/abs/2605.13780",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "167ac94a30ab",
+      "title": "First Steps Towards Probabilistic Iris: Harmonizing Independence, Conditioning, and Dynamic Heap Allocation",
+      "url": "https://arxiv.org/abs/2605.13765",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ecdcbbeb912b",
+      "title": "Claude for Small Business",
+      "url": "https://www.anthropic.com/news/claude-for-small-business",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T03:59:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6a83e0232aea",
+      "title": "Microsoft BitLocker – YellowKey zero-day exploit",
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/microsoft-bitlocker-protected-drives-can-now-be-opened-with-just-some-files-on-a-usb-stick-yellowkey-zero-day-exploit-demonstrates-an-apparent-backdoor",
+      "source": "HackerNews",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-14T02:45:08+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e7382e37dd0a",
+      "title": "Cisco workforce reductions",
+      "url": "https://blogs.cisco.com/news/our-path-forward",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T01:38:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bc7ba1abdf13",
+      "title": "[$] LWN.net Weekly Edition for May 14, 2026",
+      "url": "https://lwn.net/Articles/1071535/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-14T01:04:18+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cf253b071370",
+      "title": "Mystery Microsoft bug leaker keeps the zero-days coming",
+      "url": "https://www.theregister.com/security/2026/05/13/disgruntled-researcher-releases-two-more-microsoft-zero-days/5239758",
+      "source": "HackerNews",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-14T00:54:18+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6b1323cafb96",
+      "title": "Scorched Earth 2000 – Web",
+      "url": "http://www.scorch2000.com/web/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T00:41:29+00:00",
+      "lang": "en"
+    },
+    {
       "id": "aab9bbeb44ac",
-      "title": "In-person examinations at Princeton will be proctored starting July 1",
+      "title": "Princeton mandates proctoring for in-person exams, upending 133 year precedent",
       "url": "https://www.dailyprincetonian.com/article/2026/05/princeton-news-adpol-proctoring-in-person-examinations-passed-faculty-133-years-precedent",
       "source": "HackerNews",
       "categories": [
@@ -83,17 +479,6 @@
         "good_news"
       ],
       "published_at": "2026-05-13T19:20:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3891bc356f75",
-      "title": "\"Not Medically Necessary\": Helping America's Health Insurers Deny Coverage",
-      "url": "https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T19:01:54+00:00",
       "lang": "en"
     },
     {
@@ -196,6 +581,17 @@
       "lang": "en"
     },
     {
+      "id": "aa8b1d3502d1",
+      "title": "S-100 Virtual Workbench",
+      "url": "https://grantmestrength.github.io/S100/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-13T15:52:00+00:00",
+      "lang": "en"
+    },
+    {
       "id": "52917f3797f2",
       "title": "Bundesregierung: Änderungen bei Heizungen und Ladeinfrastruktur beschlossen",
       "url": "https://www.golem.de/news/bundesregierung-aenderungen-bei-heizungen-und-ladeinfrastruktur-beschlossen-2605-208662.html",
@@ -229,17 +625,6 @@
       "lang": "de"
     },
     {
-      "id": "f3dcddc2e9a6",
-      "title": "Kickstarter is forced to ban adult content by payment processors",
-      "url": "https://kotaku.com/kickstarter-is-the-latest-platform-seemingly-forced-to-ban-adult-content-by-payment-processors-2000695648",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T15:26:27+00:00",
-      "lang": "en"
-    },
-    {
       "id": "672903ab00cd",
       "title": "Yet another Dirty Frag type vulnerability: Fragnesia",
       "url": "https://lwn.net/Articles/1072647/",
@@ -260,17 +645,6 @@
       ],
       "published_at": "2026-05-13T15:20:01+00:00",
       "lang": "de"
-    },
-    {
-      "id": "225e4f1e8616",
-      "title": "Open Source Resistance: keep OSS alive on company time",
-      "url": "https://ossresistance.com/",
-      "source": "HackerNews",
-      "categories": [
-        "good_news"
-      ],
-      "published_at": "2026-05-13T15:13:37+00:00",
-      "lang": "en"
     },
     {
       "id": "0f45f2310c99",
@@ -449,15 +823,15 @@
       "lang": "en"
     },
     {
-      "id": "9c00eb2d3bd8",
-      "title": "I moved my digital stack to Europe",
-      "url": "https://monokai.com/articles/how-i-moved-my-digital-stack-to-europe/",
-      "source": "HackerNews",
+      "id": "f4f40cbcf80e",
+      "title": "Qt 6 を Zephyr で動くようにしました",
+      "url": "https://zenn.dev/tasuku/articles/04f39f7e31c1d0",
+      "source": "Zenn",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-13T11:42:20+00:00",
-      "lang": "en"
+      "published_at": "2026-05-13T11:34:06+00:00",
+      "lang": "ja"
     },
     {
       "id": "b1a898c07c29",
@@ -493,6 +867,17 @@
       "lang": "en"
     },
     {
+      "id": "e40bf8898c89",
+      "title": "ログイン済みの Chrome をそのまま Claude Code から操作する — playwright-cli attach",
+      "url": "https://zenn.dev/optimisuke/articles/40529cd970cbf0",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-13T11:00:05+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "5f10364673f8",
       "title": "MacBook Neo Review: The Laptop For The Rest Of Us",
       "url": "https://fireborn.mataroa.blog/blog/macbook-neo-review-the-laptop-for-the-rest-of-us/",
@@ -515,6 +900,17 @@
       "lang": "en"
     },
     {
+      "id": "a1672f0dbc8e",
+      "title": "JavaScriptCore のデフォルト派生コンストラクタ呼び出しに関するバグを修正した",
+      "url": "https://zenn.dev/itsu_dev/articles/311a9a28a41ed3",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-13T08:54:48+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "9a1239ea5192",
       "title": "Deming — un SMSI Open Source par et pour des RSSI",
       "url": "https://linuxfr.org/news/deming-un-smsi-open-source-par-et-pour-des-rssi",
@@ -524,6 +920,17 @@
       ],
       "published_at": "2026-05-13T08:46:28+00:00",
       "lang": "fr"
+    },
+    {
+      "id": "7291f2d816ca",
+      "title": "AIエージェント時代にゼロ知識証明が必要な理由",
+      "url": "https://zenn.dev/komlock_lab/articles/zero-knowledge-proof-2026",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-13T08:40:05+00:00",
+      "lang": "ja"
     },
     {
       "id": "1da73bd32247",
@@ -571,10 +978,10 @@
       "lang": "fr"
     },
     {
-      "id": "a7b8fa7f70a4",
-      "title": "Where Reliability Lives in Vision-Language Models: A Mechanistic Study of Attention, Hidden States, and Causal Circuits",
-      "url": "https://arxiv.org/abs/2605.08200",
-      "source": "ArXiv CS.AI",
+      "id": "d64c7dfe44fd",
+      "title": "This Week in Rust 651",
+      "url": "https://this-week-in-rust.org/blog/2026/05/13/this-week-in-rust-651/",
+      "source": "This Week in Rust",
       "categories": [
         "general"
       ],
@@ -582,335 +989,27 @@
       "lang": "en"
     },
     {
-      "id": "49928d3fdf0e",
-      "title": "Spatial Priming Outperforms Semantic Prompting: A Grid-Based Approach to Improving LLM Accuracy on Chart Data Extraction",
-      "url": "https://arxiv.org/abs/2605.08220",
-      "source": "ArXiv CS.AI",
+      "id": "c9ba8cc6e998",
+      "title": "Rust(Yew) vs JavaScript(React) — マンデルブロ集合で実測したWebAssemblyのリアルな速度差",
+      "url": "https://zenn.dev/milabo/articles/rust_yew_vs_react_fractal",
+      "source": "Zenn",
       "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5a4023840cab",
-      "title": "Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria",
-      "url": "https://arxiv.org/abs/2605.08354",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5b2d28f31b68",
-      "title": "Embeddings for Preferences, Not Semantics",
-      "url": "https://arxiv.org/abs/2605.08360",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "04499fb6a6d9",
-      "title": "On Distinguishing Capability Elicitation from Capability Creation in Post-Training: A Free-Energy Perspective",
-      "url": "https://arxiv.org/abs/2605.08368",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "2b8f9704a059",
-      "title": "MemQ: Integrating Q-Learning into Self-Evolving Memory Agents over Provenance DAGs",
-      "url": "https://arxiv.org/abs/2605.08374",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "93ee8a54b2c9",
-      "title": "SkillLens: Adaptive Multi-Granularity Skill Reuse for Cost-Efficient LLM Agents",
-      "url": "https://arxiv.org/abs/2605.08386",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3a73f3bdccf6",
-      "title": "PLACO: A Multi-Stage Framework for Cost-Effective Performance in Human-AI Teams",
-      "url": "https://arxiv.org/abs/2605.08388",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "e44dfab50f79",
-      "title": "Skill Drift Is Contract Violation: Proactive Maintenance for LLM Agent Skill Libraries",
-      "url": "https://arxiv.org/abs/2605.10990",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "d504349924ff",
-      "title": "An Execution-Verified Multi-Language Benchmark for Code Semantic Reasoning",
-      "url": "https://arxiv.org/abs/2605.11006",
-      "source": "ArXiv CS.SE",
-      "categories": [
+        "future_watch",
         "stack_alt"
       ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
+      "published_at": "2026-05-13T03:59:32+00:00",
+      "lang": "ja"
     },
     {
-      "id": "ced752f47260",
-      "title": "From Code-Centric to Intent-Centric Software Engineering: A Reflexive Thematic Analysis of Generative AI, Agentic Systems, and Engineering Accountability",
-      "url": "https://arxiv.org/abs/2605.11027",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "d80f97cc2da5",
-      "title": "An Executable Benchmarking Suite for Tool-Using Agents",
-      "url": "https://arxiv.org/abs/2605.11030",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "stack_alt"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "0481be49bd35",
-      "title": "Read, Extract, Classify: A Tool for Smarter Requirements Engineering",
-      "url": "https://arxiv.org/abs/2605.11045",
-      "source": "ArXiv CS.SE",
+      "id": "5534df582c14",
+      "title": "Mini Shai-Hulud 第二波をきっかけに、個人開発向けの npm / OSS サプライチェーン攻撃対策を整理した話",
+      "url": "https://zenn.dev/n_tong/articles/3e1ed84f54c827",
+      "source": "Zenn",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5fc67c686392",
-      "title": "On Problems of Implicit Context Compression for Software Engineering Agents",
-      "url": "https://arxiv.org/abs/2605.11051",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "9c9dd1913d59",
-      "title": "SHIA: A Direct SysML-Hardware Interface Architecture for Model-Centric Verification",
-      "url": "https://arxiv.org/abs/2605.11248",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "1b7a146e55c3",
-      "title": "Natural Language based Specification and Verification",
-      "url": "https://arxiv.org/abs/2605.11315",
-      "source": "ArXiv CS.SE",
-      "categories": [
-        "urgent"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "9caee34d1df5",
-      "title": "PASA: A Principled Embedding-Space Watermarking Approach for LLM-Generated Text under Semantic-Invariant Attacks",
-      "url": "https://arxiv.org/abs/2605.10977",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "549ea68f6c7c",
-      "title": "Few-Shot Truly Benign DPO Attack for Jailbreaking LLMs",
-      "url": "https://arxiv.org/abs/2605.10998",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "9f11d13201b4",
-      "title": "MT-JailBench: A Modular Benchmark for Understanding Multi-Turn Jailbreak Attacks",
-      "url": "https://arxiv.org/abs/2605.11002",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "urgent",
-        "stack_alt"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "a2c55620f839",
-      "title": "The Authorization-Execution Gap Is a Major Safety and Security Problem in Open-World Agents",
-      "url": "https://arxiv.org/abs/2605.11003",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5f91e6bcee5c",
-      "title": "DCVD: Dual-Channel Cross-Modal Fusion for Joint Vulnerability Detection and Localization",
-      "url": "https://arxiv.org/abs/2605.11015",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "urgent"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "898a77a68a90",
-      "title": "AgentShield: Deception-based Compromise Detection for Tool-using LLM Agents",
-      "url": "https://arxiv.org/abs/2605.11026",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "966a84bf89d1",
-      "title": "FragBench: Cross-Session Attacks Hidden in Benign-Looking Fragments",
-      "url": "https://arxiv.org/abs/2605.11029",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5f9789281915",
-      "title": "Portable Agent Memory: A Protocol for Cryptographically-Verified Memory Transfer Across Heterogeneous AI Agents",
-      "url": "https://arxiv.org/abs/2605.11032",
-      "source": "ArXiv CS.CR",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3fcf8cbe71b6",
-      "title": "Automated Amortised Analysis of Skew Heaps and Leftist Heaps (Extended Version)",
-      "url": "https://arxiv.org/abs/2605.12091",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "b9d7aba56692",
-      "title": "Harness Engineering as Categorical Architecture",
-      "url": "https://arxiv.org/abs/2605.12239",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "da6306f3275d",
-      "title": "Minimalistic Terminal Editor for Julia Programming -- MinTEJ: A Friendly Approach for a Scientific Programmer",
-      "url": "https://arxiv.org/abs/2605.12275",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "79e99d58c31f",
-      "title": "Partial Orders for Precise and Efficient Dynamic Deadlock Prediction",
-      "url": "https://arxiv.org/abs/2502.20070",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5879575dab37",
-      "title": "TileLoom: Automatic Dataflow Planning for Tile-Based Languages on Spatial Dataflow Accelerators",
-      "url": "https://arxiv.org/abs/2512.22168",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3f18c3cab1c1",
-      "title": "SpotIt+: Verification-based Text-to-SQL Evaluation with Database Constraints",
-      "url": "https://arxiv.org/abs/2603.04334",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "448cd946bd9a",
-      "title": "CktFormalizer: Autoformalization of Natural Language into Circuit Representations",
-      "url": "https://arxiv.org/abs/2605.07782",
-      "source": "ArXiv CS.PL",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
+      "published_at": "2026-05-13T03:50:35+00:00",
+      "lang": "ja"
     },
     {
       "id": "11bfbe2dd776",
@@ -924,15 +1023,15 @@
       "lang": "en"
     },
     {
-      "id": "93e65b9858f3",
-      "title": "When “idle” isn't idle: how a Linux kernel optimization became a QUIC bug",
-      "url": "https://blog.cloudflare.com/quic-death-spiral-fix/",
-      "source": "HackerNews",
+      "id": "661e5f0efe21",
+      "title": "AIにQAエンジニアとして思考させるエージェントQA設計の思想",
+      "url": "https://zenn.dev/edash_tech_blog/articles/383410d9a1afba",
+      "source": "Zenn",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-12T23:46:28+00:00",
-      "lang": "en"
+      "published_at": "2026-05-13T01:10:30+00:00",
+      "lang": "ja"
     },
     {
       "id": "b8681bffb326",
@@ -1020,17 +1119,6 @@
         "general"
       ],
       "published_at": "2026-05-12T14:08:30+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "7b357a4726a8",
-      "title": "AI と一緒に開発するときにも便利な Aspire の好きなところ",
-      "url": "https://zenn.dev/microsoft/articles/aspire-favorite-points",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T13:47:40+00:00",
       "lang": "ja"
     },
     {
@@ -1124,6 +1212,17 @@
       "lang": "en"
     },
     {
+      "id": "b220c677d690",
+      "title": "普段Drawioで画面設計を作ってる非デザイナーがPencilを触ってみた",
+      "url": "https://zenn.dev/levtech/articles/e7827feac11a36",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-12T08:56:20+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "bd95c3452053",
       "title": "A new suite of modern tools coming for editing and publishing RFCs",
       "url": "http://www.ietf.org/blog/new-tools-coming-for-editing-and-publishing-rfcs/",
@@ -1190,83 +1289,6 @@
       "lang": "fr"
     },
     {
-      "id": "39580a2a2543",
-      "title": "コードレビューのボトルネックを\"する側\"と\"される側\"の両面から解消する",
-      "url": "https://zenn.dev/atamaplus/articles/resolve-review-bottleneck",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T04:30:52+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "30a7706fdb07",
-      "title": "【RAG】「キーワード検索1回」だけで、精度を出す。",
-      "url": "https://zenn.dev/knowledgesense/articles/67370650799bc6",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T03:46:33+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "246598fd5292",
-      "title": "コンパニオンAIの記憶を、普通のRAGじゃない設計にした話",
-      "url": "https://zenn.dev/haru0416/articles/843c6c29c04c7c",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T02:05:57+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "5920f96e7e5e",
-      "title": "手を動かして学ぶ Claude Code 入門ワークショップを公開しました〜！",
-      "url": "https://zenn.dev/aws_japan/articles/introduction-to-claude-code-workshop",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T01:45:14+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "15a40347ea6f",
-      "title": "AIのハーネスを徹底的に整えたら、レビューもシステム運用も自動化され、非エンジニアも開発に参加できるようになった話 ── 連載総論",
-      "url": "https://zenn.dev/aircloset/articles/d416342f46f16b",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T00:31:05+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "2037a0aff369",
-      "title": "大学システムのアーキテクチャを見直した話",
-      "url": "https://zenn.dev/xtm_blog/articles/91099d48d8f130",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-12T00:04:43+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "bf185bfa569e",
-      "title": "30日後にサービスをリリースして不労所得を得る開発者 (1日目) ― Claude Code 全活用で楽したい開発者の基盤構築",
-      "url": "https://zenn.dev/tempeso/articles/900ea8ade4c165",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-11T23:50:57+00:00",
-      "lang": "ja"
-    },
-    {
       "id": "b2f88d6dd84a",
       "title": "Longhorn PHP 2026 - Call For Papers",
       "url": "https://www.php.net/conferences/index.php#2026-05-11-1",
@@ -1300,25 +1322,14 @@
       "lang": "en"
     },
     {
-      "id": "e818cb6bc60d",
-      "title": "Stenberg: Mythos finds a curl vulnerability",
-      "url": "https://lwn.net/Articles/1072325/",
-      "source": "LWN.net",
-      "categories": [
-        "urgent"
-      ],
-      "published_at": "2026-05-11T14:35:53+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "694776fae962",
-      "title": "An idiot's guide to lead optimisation for proteins",
-      "url": "https://magnusross.github.io/posts/protein-lead-optimisation-1/",
+      "id": "17180054bc45",
+      "title": "Chess puzzle I found in my dad's old book",
+      "url": "https://ardoedo.it/kempelen/",
       "source": "HackerNews",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-11T11:21:33+00:00",
+      "published_at": "2026-05-11T16:00:19+00:00",
       "lang": "en"
     },
     {
@@ -1386,17 +1397,6 @@
       ],
       "published_at": "2026-05-11T05:42:04+00:00",
       "lang": "fr"
-    },
-    {
-      "id": "f8e760cab5c3",
-      "title": "New stainless steel can survive conditions for hydrogen production in seawater",
-      "url": "https://www.sciencedaily.com/releases/2026/05/260510030950.htm",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-11T01:05:59+00:00",
-      "lang": "en"
     },
     {
       "id": "1ca095dff411",
@@ -2077,17 +2077,6 @@
         "future_watch"
       ],
       "published_at": "2026-04-15T14:28:48+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "e764dfdb6fd2",
-      "title": "This Week in Rust 647",
-      "url": "https://this-week-in-rust.org/blog/2026/04/15/this-week-in-rust-647/",
-      "source": "This Week in Rust",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-04-15T04:00:00+00:00",
       "lang": "en"
     },
     {
