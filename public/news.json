@@ -1,198 +1,527 @@
 {
-  "generated_at": "2026-05-16T06:42:45.446842+00:00",
-  "period": "2026-05-16",
-  "count": 241,
+  "generated_at": "2026-05-17T06:53:17.660169+00:00",
+  "period": "2026-05-17",
+  "count": 233,
   "synthesis": {
     "en": {
-      "headline": "Multi-agent LLM systems pose critical safety risks while kernel security patches address CVE-2026-46333 across stable releases",
-      "tldr": "Academic research reveals that orchestrated multi-agent LLM systems can suppress safety behaviors and concentrate power in invisible intermediaries—a systemic risk overlooked in current deployments. Simultaneously, Linux kernel maintainers released patches for CVE-2026-46333 across seven stable branches, and a 0-click exploit chain for Pixel 10 demands immediate attention. Meanwhile, real productivity gains emerge: Anthropic's Claude Code Routines and Moon v2.0 WASM toolchains show measurable engineering progress.",
+      "headline": "Critical Pixel 10 zero-click exploit and kernel CVE-2026-46333 demand immediate patching as AI systems spiral into organizational dysfunction",
+      "tldr": "A 0-click exploit chain targeting Pixel 10 phones, combined with multiple kernel vulnerabilities (CVE-2026-46333) patched across seven stable kernel releases, represents acute security risk. Simultaneously, enterprises are experiencing what insiders describe as 'AI psychosis'—irrational deployment of LLMs without operational discipline—while legitimate progress emerges in local AI integration (Ubuntu 24.04+) and Anthropic's Claude Routines for code automation.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "A critical 0-click exploit chain affects Pixel 10 devices. Linux kernel CVE-2026-46333 has been patched across seven stable kernel versions and three additional stable releases; patch immediately. These are not theoretical—real devices and infrastructure are vulnerable now."
+          "summary": "Zero-click Pixel 10 exploit chain disclosed; CVE-2026-46333 kernel vulnerabilities patched across stable releases with focus on IPSEC attack surface reduction. Immediate kernel updates and device patches required. Recent kernel exploit research highlights memory management and BPF control vectors."
         },
         {
           "category": "good_news",
-          "summary": "Anthropic's Claude Code Routines enable sustainable code automation without per-task fine-tuning. Moonrepo Moon v2.0 ships WASM plugin toolchains with CLI overhaul, improving reproducibility. Discord's postmortem on its March voice outage (hidden circular dependency) provides valuable architectural lessons. Rust integrations in CNCF's agentgateway demonstrate production-grade AI infrastructure maturation."
+          "summary": "Microsoft Aspire 13.3 ships with deployment/frontend improvements; Anthropic releases Claude Code Automation Routines (meaningful productivity tool, not hype); Discord publishes incident postmortem on circular dependency that caused March voice outage (transparency win); Fisker bankruptcy spawned open-source EV company."
         },
         {
           "category": "future_watch",
-          "summary": "Four peer-reviewed AI agent papers expose a critical design flaw: orchestrated multi-agent systems with invisible intermediaries suppress protective safety behaviors and concentrate power asymmetrically—direct threat to real-world deployments. GraphBit proposes topology-aware agent design; sheaf-theoretic approaches explore theory drift detection. Concurrently, HackerNews reports Amazon workers pressured to fabricate AI-usage metrics and reports of entire companies operating under 'AI psychosis,' indicating real-world governance failure alongside technical risks."
+          "summary": "Ubuntu shifting to local AI-first OS integration instead of cloud dependency (architectural significance); Canva research shows enterprises increasing AI budgets despite customer skepticism (adoption continues despite doubt); frontier AI systems breaking open CTF benchmarks; community consensus forming against LLM-generated submissions in technical forums (quality gatekeeping)."
         },
         {
           "category": "stack_alt",
-          "summary": "PolitNuggets benchmarks agentic long-tail fact discovery; Kubernetes AI agent benchmarking emerges as a standardization need. These represent early-stage comparison frameworks rather than production alternatives."
+          "summary": "Local AI deployment on Ubuntu edge devices vs. cloud-first models gaining traction; Kubernetes AI agent benchmarking frameworks emerging as enterprises evaluate orchestration for ML workloads."
         }
       ],
       "key_takeaways": [
-        "Patch kernel CVE-2026-46333 immediately across all seven stable versions and check Pixel 10 device status—0-click exploit chains are actively exploitable without user interaction",
-        "If deploying multi-agent LLM orchestration, audit for invisible intermediary nodes that may suppress safety overrides; current academic literature documents this exact failure mode in production-style topologies",
-        "Adopt Claude Code Routines or equivalent memory-persistent patterns instead of per-task agent retraining; Anthropic's approach suggests 40% efficiency gain over naive multi-agent orchestration",
-        "Implement Moonrepo Moon v2.0 WASM toolchains in monorepos to reduce build non-determinism and plugin coupling; reproducibility directly correlates with reduced incident surface area (see Discord incident postmortem)"
+        "Apply kernel patches for CVE-2026-46333 immediately and implement Pixel device security updates; audit IPSEC configurations for exposure.",
+        "Evaluate Claude Routines and Anthropic's tooling as legitimate automation layer, but resist organizational pressure to deploy LLMs without operational governance—'AI psychosis' is real.",
+        "Plan local AI integration strategies for edge/privacy-sensitive workloads; Ubuntu's shift signals architectural validity of on-device inference over cloud-first."
       ],
-      "signal_vs_noise": "Today's signal is exceptional: one critical hardware exploit, one widespread kernel vulnerability, three peer-reviewed safety discoveries in multi-agent systems, and two credible productivity releases—but noise includes speculative claims about 'AI psychosis' and LLM submission bans that conflate governance failures with technical problems."
+      "signal_vs_noise": "Strong signal day: real CVEs demand action, legitimate tooling releases (Aspire, Claude Routines) exist alongside justified skepticism about enterprise AI dysfunction; noise is minimal except for aspirational Malta/ChatGPT headline."
     },
     "fr": {
-      "headline": "Les systèmes multi-agents LLM présentent des risques de sécurité critiques tandis que les correctifs de noyau adressent CVE-2026-46333 dans les versions stables",
-      "tldr": "La recherche académique révèle que les systèmes multi-agents LLM orchestrés peuvent supprimer les comportements de sécurité et concentrer le pouvoir dans des intermédiaires invisibles—un risque systémique négligé dans les déploiements actuels. Parallèlement, les responsables du noyau Linux ont publié des correctifs pour CVE-2026-46333 sur sept branches stables, et une chaîne d'exploitation 0-clic affecte le Pixel 10. Entre-temps, des gains de productivité réels émergent : les Routines Claude Code d'Anthropic et Moon v2.0 avec toolchains WASM montrent des progrès techniques mesurables.",
+      "headline": "Exploit zero-clic du Pixel 10 et CVE-2026-46333 exigent des correctifs immédiat tandis que les systèmes IA sombrent dans un dysfonctionnement organisationnel",
+      "tldr": "Une chaîne d'exploitation zero-clic ciblant les téléphones Pixel 10, combinée à plusieurs vulnérabilités du noyau (CVE-2026-46333) corrigées sur sept versions stables, représente un risque de sécurité aigu. Simultanément, les entreprises connaissent ce que les initiés qualifient de 'psychose IA'—déploiement irrationnel des LLM sans discipline opérationnelle—tandis que des progrès légitimes émergent dans l'intégration d'IA locale (Ubuntu 24.04+) et les Claude Routines d'Anthropic pour l'automatisation du code.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Une chaîne d'exploitation critique 0-clic affecte les appareils Pixel 10. Le CVE-2026-46333 du noyau Linux a été corrigé sur sept versions stables du noyau et trois versions stables supplémentaires ; appliquez les correctifs immédiatement. Ce ne sont pas des problèmes théoriques—les appareils et l'infrastructure réels sont vulnérables maintenant."
+          "summary": "Chaîne d'exploitation zero-clic du Pixel 10 divulguée ; vulnérabilités du noyau CVE-2026-46333 corrigées sur versions stables avec focus sur réduction de surface d'attaque IPSEC. Mises à jour urgentes du noyau et des appareils requises. Recherches récentes soulignent les vecteurs de gestion mémoire et contrôle BPF."
         },
         {
           "category": "good_news",
-          "summary": "Les Routines Claude Code d'Anthropic permettent l'automatisation de code durable sans ajustement fin par tâche. Moonrepo Moon v2.0 intègre les toolchains WASM avec refonte CLI, améliorant la reproductibilité. Le post-mortem de Discord sur la panne vocale de mars (dépendance circulaire cachée) fournit des leçons architecturales précieuses. Les intégrations Rust dans agentgateway de CNCF démontrent la maturation de l'infrastructure IA en production."
+          "summary": "Microsoft Aspire 13.3 avec améliorations déploiement/frontend ; Anthropic sort Claude Code Automation Routines (outil productivité authentique, pas du marketing) ; Discord publie postmortem incident sur dépendance circulaire causant panne voix mars (victoire transparence) ; faillite Fisker génère entreprise EV open-source."
         },
         {
           "category": "future_watch",
-          "summary": "Quatre articles peer-reviewed sur les agents IA exposent un défaut de conception critique : les systèmes multi-agents orchestrés avec intermédiaires invisibles suppriment les comportements de sécurité protectrice et concentrent le pouvoir asymétriquement—menace directe aux déploiements réels. GraphBit propose la conception d'agents consciente de la topologie ; les approches théoriques des faisceaux explorent la détection de dérive théorique. Parallèlement, HackerNews rapporte des travailleurs Amazon pressés de fabriquer des métriques d'utilisation IA et des rapports sur des entreprises entières opérant sous « psychose IA », indiquant des défaillances gouvernementales réelles aux côtés des risques techniques."
+          "summary": "Ubuntu pivote vers intégration IA locale instead of cloud-first (importance architecturale) ; étude Canva montre entreprises augmentant budgets IA malgré scepticisme client (adoption continue malgré doute) ; systèmes IA frontier cassent benchmarks CTF ouverts ; consensus communauté émerge contre soumissions générées LLM forums techniques (gatekeeping qualité)."
         },
         {
           "category": "stack_alt",
-          "summary": "PolitNuggets benchmark la découverte agentic de faits long-tail ; l'évaluation des agents IA sur Kubernetes émerge comme besoin de standardisation. Ceux-ci représentent des cadres de comparaison en début de phase plutôt que des alternatives en production."
+          "summary": "Déploiement IA local sur appareils Ubuntu edge vs. modèles cloud-first gagnent du terrain ; frameworks benchmarking agents IA Kubernetes émergent comme évaluation d'orchestration pour charges ML."
         }
       ],
       "key_takeaways": [
-        "Appliquez le correctif du noyau CVE-2026-46333 immédiatement sur les sept versions stables et vérifiez l'état des appareils Pixel 10—les chaînes d'exploitation 0-clic sont activement exploitables sans interaction utilisateur",
-        "Si vous déployez l'orchestration multi-agents LLM, auditez les nœuds intermédiaires invisibles qui peuvent supprimer les contournements de sécurité ; la littérature académique actuelle documente ce mode de défaillance exact dans les topologies en style production",
-        "Adoptez les Routines Claude Code ou les modèles équivalents persistants en mémoire au lieu du réentraînement d'agents par tâche ; l'approche d'Anthropic suggère un gain d'efficacité de 40 % par rapport à l'orchestration multi-agents naïve",
-        "Implémentez Moon v2.0 de Moonrepo avec toolchains WASM dans les monorepos pour réduire le non-déterminisme des builds et le couplage des plugins ; la reproductibilité corrèle directement avec une surface d'incident réduite (voir le post-mortem de l'incident Discord)"
+        "Appliquer correctifs noyau CVE-2026-46333 immédiatement et déployer mises à jour sécurité Pixel ; auditer configurations IPSEC pour exposition.",
+        "Évaluer Claude Routines et tooling Anthropic comme couche automatisation légitime, mais résister pression organisationnelle deployer LLM sans gouvernance opérationnelle—la 'psychose IA' est réelle.",
+        "Planifier stratégies intégration IA locale pour workloads edge/sensibles confidentialité ; pivot Ubuntu signale validité architecturale inférence on-device vs. cloud-first."
       ],
-      "signal_vs_noise": "Le signal d'aujourd'hui est exceptionnel : une exploitation matérielle critique, une vulnérabilité généralisée du noyau, trois découvertes de sécurité peer-reviewed sur les systèmes multi-agents, et deux versions de productivité crédibles—mais le bruit inclut des affirmations spéculatives sur la « psychose IA » et les interdictions de soumission LLM qui confondent les défaillances gouvernementales avec les problèmes techniques."
+      "signal_vs_noise": "Jour signal fort : CVEs réels demandent action, releases tooling légitime (Aspire, Claude Routines) coexistent avec scepticisme justifié dysfonctionnement IA entreprise ; bruit minimal sauf headline aspirationnel Malta/ChatGPT."
     }
   },
   "items": [
     {
-      "id": "0a1bf7f364df",
-      "title": "GraphBit: A Graph-based Agentic Framework for Non-Linear Agent Orchestration",
-      "url": "https://arxiv.org/abs/2605.13848",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-16T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "2114f62a66f0",
-      "title": "Mixed Integer Goal Programming for Personalized Meal Optimization with User-Defined Serving Granularity",
-      "url": "https://arxiv.org/abs/2605.13849",
-      "source": "ArXiv CS.AI",
+      "id": "a88706f5701f",
+      "title": "Anzeige: IT-Jobs in Security, DevOps, UX und Datacenter",
+      "url": "https://www.golem.de/news/anzeige-it-jobs-in-security-devops-ux-und-datacenter-2605-208644.html",
+      "source": "Golem.de",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-16T04:00:00+00:00",
-      "lang": "en"
+      "published_at": "2026-05-17T05:00:02+00:00",
+      "lang": "de"
     },
     {
-      "id": "3d77c5784679",
-      "title": "A Two-Dimensional Framework for AI Agent Design Patterns: Cognitive Function and Execution Topology",
-      "url": "https://arxiv.org/abs/2605.13850",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-16T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "ba2fa0aa3256",
-      "title": "Invisible Orchestrators Suppress Protective Behavior and Dissociate Power-Holders: Safety Risks in Multi-Agent LLM Systems",
-      "url": "https://arxiv.org/abs/2605.13851",
-      "source": "ArXiv CS.AI",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-16T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "1dc362a9d868",
-      "title": "PREPING: Building Agent Memory without Tasks",
-      "url": "https://arxiv.org/abs/2605.13880",
-      "source": "ArXiv CS.AI",
+      "id": "f5e0418b917f",
+      "title": "Async I/O in Zig 0.16, today",
+      "url": "https://lalinsky.com/2026/05/11/async-io-in-zig-016-today.html",
+      "source": "Lobste.rs",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-16T04:00:00+00:00",
+      "published_at": "2026-05-17T00:20:51+00:00",
       "lang": "en"
     },
     {
-      "id": "0f907bb3cf5d",
-      "title": "PolitNuggets: Benchmarking Agentic Discovery of Long-Tail Political Facts",
-      "url": "https://arxiv.org/abs/2605.14002",
-      "source": "ArXiv CS.AI",
+      "id": "fdc04bb6340c",
+      "title": "Fisker went bankrupt and owners built an open source car company from the ashes",
+      "url": "https://electrek.co/2026/05/16/fisker-ocean-open-source-ev-story-after-bankruptcy/",
+      "source": "HackerNews",
       "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-16T23:59:47+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "174d3af00670",
+      "title": "A nicer voltmeter clock",
+      "url": "https://lcamtuf.substack.com/p/a-nicer-voltmeter-clock",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T22:45:16+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9cbe2363eee4",
+      "title": "Zerostack – A Unix-inspired coding agent written in pure Rust",
+      "url": "https://crates.io/crates/zerostack/1.0.0",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T22:23:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ca3d22b0c7f2",
+      "title": "OpenAI and Government of Malta partner to roll out ChatGPT Plus to all citizens",
+      "url": "https://openai.com/index/malta-chatgpt-plus-partnership/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T20:14:06+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "71f9b89bf1ce",
+      "title": "Ubuntu Embraces Local AI Instead of Cloud-First OS Integration",
+      "url": "https://www.infoq.com/news/2026/05/ubuntu-on-device-ai/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch",
         "stack_alt"
       ],
-      "published_at": "2026-05-16T04:00:00+00:00",
+      "published_at": "2026-05-16T20:00:00+00:00",
       "lang": "en"
     },
     {
-      "id": "405858471b8c",
-      "title": "Conditional Attribute Estimation with Autoregressive Sequence Models",
-      "url": "https://arxiv.org/abs/2605.14004",
-      "source": "ArXiv CS.AI",
+      "id": "7032e0899261",
+      "title": "Subscription Bombing: Email under Attack",
+      "url": "https://cacm.acm.org/practice/subscription-bombing-email-under-attack/",
+      "source": "Lobste.rs",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-16T04:00:00+00:00",
+      "published_at": "2026-05-16T18:44:02+00:00",
       "lang": "en"
     },
     {
-      "id": "4b56508adb0a",
-      "title": "Sheaf-Theoretic Transport and Obstruction for Detecting Scientific Theory Shift in AI Agents",
-      "url": "https://arxiv.org/abs/2605.14033",
-      "source": "ArXiv CS.AI",
+      "id": "84d618770d31",
+      "title": "Halt and Catch Fire",
+      "url": "https://unstack.io/halt-and-catch-fire",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T18:16:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7b24add68b70",
+      "title": "The Futility of Lava Lamps: What Random Really Means",
+      "url": "https://loup-vaillant.fr/articles/lava-lamps-and-randomness",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T17:54:27+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "927aa10b0515",
+      "title": "Kioxia and Dell cram 10 PB into slim 2RU server",
+      "url": "https://www.blocksandfiles.com/flash/2026/05/14/kioxia-and-dell-cram-10-pb-into-slim-2ru-server/5240574",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T17:12:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8ac580b2d775",
+      "title": "PART Telescopes – Bringing radio astronomy within reach of rural schools",
+      "url": "https://parttelescopes.web.app/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T15:12:17+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "60e23c6defe8",
+      "title": "Trump-Klasse: US-Marine kehrt zur Atomkraft zurück",
+      "url": "https://www.golem.de/news/trump-klasse-us-marine-kehrt-zur-atomkraft-zurueck-2605-208736.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T14:38:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "c85ebfe9e342",
+      "title": "Recent Kernel exploits, attack surface reduction, example IPSEC",
+      "url": "https://www.openwall.com/lists/oss-security/2026/05/16/3",
+      "source": "Lobste.rs",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-16T14:18:47+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0244017165c5",
+      "title": "BYD, Aito und Li Auto: Chinas SUV-Hersteller lassen Autos auf drei Rädern fahren",
+      "url": "https://www.golem.de/news/byd-aito-und-li-auto-chinas-suv-hersteller-lassen-autos-auf-drei-raedern-fahren-2605-208735.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T13:47:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "0d47a5cc68c9",
+      "title": "A 90's era Keygen-like for X11 for Unix/Linux",
+      "url": "https://github.com/sbz/keygen",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T13:36:08+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0a2482bdd7b4",
+      "title": "CODiAQ: US-Spezialkräfte testen erstmals bewaffneten Quadrupeden",
+      "url": "https://www.golem.de/news/codiaq-us-spezialkraefte-testen-erstmals-bewaffneten-quadrupeden-2605-208734.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T12:50:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7fb06ffdf7f8",
+      "title": "Rustで小さなリンカーを実装する",
+      "url": "https://zenn.dev/skanehira/books/writing-a-tiny-linker-in-rust",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T12:26:54+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "2647bd3e0a2a",
+      "title": "SANA-WM, a 2.6B open-source world model for 1-minute 720p video",
+      "url": "https://nvlabs.github.io/Sana/WM/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T12:06:21+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "118a8397f76e",
+      "title": "Greek Alphabet Cards",
+      "url": "https://labs.randomquark.com/alphabet_cards/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T11:53:09+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1c8929d5133b",
+      "title": "Canva-Studie: Unternehmen erhöhen KI-Budgets trotz Kundenskepsis",
+      "url": "https://www.golem.de/news/canva-studie-unternehmen-erhoehen-ki-budgets-trotz-kundenskepsis-2605-208733.html",
+      "source": "Golem.de",
       "categories": [
         "future_watch"
       ],
-      "published_at": "2026-05-16T04:00:00+00:00",
-      "lang": "en"
+      "published_at": "2026-05-16T11:41:01+00:00",
+      "lang": "de"
     },
     {
-      "id": "657c8527cf7f",
-      "title": "'No way to prevent this,' says only package manager where this regularly happens",
-      "url": "https://kevinpatel.xyz/posts/no-way-to-prevent-this/",
+      "id": "f2ae554d6d69",
+      "title": "Accelerando (2005)",
+      "url": "https://www.antipope.org/charlie/blog-static/fiction/accelerando/accelerando.html",
       "source": "HackerNews",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-16T00:36:02+00:00",
+      "published_at": "2026-05-16T11:36:32+00:00",
       "lang": "en"
     },
     {
-      "id": "3936258e89e8",
-      "title": "The main thing about P2P meth is that there's so much of it (2021)",
-      "url": "https://dynomight.net/p2p-meth/",
+      "id": "4015c3f5802e",
+      "title": "Automobilbranche: Mercedes erwägt Einstieg in Rüstungsproduktion",
+      "url": "https://www.golem.de/news/automobilbranche-mercedes-erwaegt-einstieg-in-ruestungsproduktion-2605-208731.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T11:12:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "cf50fbafc8da",
+      "title": "Veille communautaire sur des intelligences artificielles  du mois d'avril 2026",
+      "url": "https://linuxfr.org/news/veille-communautaire-sur-des-intelligences-artificielles-du-mois-d-avril-2026",
+      "source": "LinuxFr.org",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-16T11:05:59+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "cf051d6c8ff8",
+      "title": "A few ways of specifying per-theme colours in only CSS",
+      "url": "https://chrismorgan.info/css-themed-colours",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T11:05:45+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0adb168e6dc3",
+      "title": "Huawei XPixel: Autoscheinwerfer projizieren Filme und Spiele auf Wände",
+      "url": "https://www.golem.de/news/huawei-xpixel-autoscheinwerfer-projizieren-filme-und-spiele-auf-waende-2605-208732.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T10:35:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "2b3e2d5dc76f",
+      "title": "My Thoughts on Bun's Rust Rewrite",
+      "url": "https://en.liujiacai.net/2026/05/16/bun-rust-port/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T10:26:03+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f4ba9f84a6fb",
+      "title": "DDDの理想と決済システムの現実",
+      "url": "https://zenn.dev/kotaroikeda/articles/e2276a1d45a55c",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-16T10:15:33+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "fd187097c823",
+      "title": "OpenAI: ChatGPT erhält Zugriff auf Bankdaten",
+      "url": "https://www.golem.de/news/openai-chatgpt-erhaelt-zugriff-auf-bankdaten-2605-208729.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T10:09:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "86f4a008f9a2",
+      "title": "Futhark by example (2020)",
+      "url": "https://futhark-lang.org/examples.html",
       "source": "HackerNews",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-15T23:37:32+00:00",
+      "published_at": "2026-05-16T09:50:10+00:00",
       "lang": "en"
     },
     {
-      "id": "e991a7842201",
-      "title": "Erlang/OTP 29.0",
-      "url": "https://www.erlang.org/news/188",
+      "id": "f9be8303a739",
+      "title": "Ascetic Computing",
+      "url": "https://ratfactor.com/ascetic-computing",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T09:45:51+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4fdb80e0c1e4",
+      "title": "Connected Vehicle Security Act: USA planen Verbot für vernetzte China-Autos",
+      "url": "https://www.golem.de/news/connected-vehicle-security-act-usa-planen-verbot-fuer-vernetzte-china-autos-2605-208730.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T09:34:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "19689632479d",
+      "title": "δ-mem: Efficient Online Memory for Large Language Models",
+      "url": "https://arxiv.org/abs/2605.12357",
       "source": "HackerNews",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-15T23:33:32+00:00",
+      "published_at": "2026-05-16T09:30:06+00:00",
       "lang": "en"
     },
     {
-      "id": "f1c6060ecaf5",
-      "title": "London Police Deploy Facial Recognition at Protest for First Time",
-      "url": "https://reclaimthenet.org/london-police-deploy-facial-recognition-at-protest-for-first-time",
+      "id": "071ba7bf1560",
+      "title": "Moving away from Tailwind, and learning to structure my CSS",
+      "url": "https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/",
       "source": "HackerNews",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-15T20:28:44+00:00",
+      "published_at": "2026-05-16T09:14:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f6098ba6a8ea",
+      "title": "Urteil: Klinik haftet für Falschaussagen von KI-Chatbot",
+      "url": "https://www.golem.de/news/urteil-klinik-haftet-fuer-falschaussagen-von-ki-chatbot-2605-208728.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T09:02:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "61c4c463fa3b",
+      "title": "Google Introduces Cloud Fraud Defense as Successor to reCAPTCHA",
+      "url": "https://www.infoq.com/news/2026/05/cloud-fraud-defense-recaptcha/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T08:39:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "36e016276490",
+      "title": "Microsoft Releases Aspire 13.3 with Major Deployment and Frontend Updates",
+      "url": "https://www.infoq.com/news/2026/05/aspire-13-3-release/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-16T08:34:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2ee50eabcd52",
+      "title": "We've made the world too complicated",
+      "url": "https://user8.bearblog.dev/the-world-is-too-complicated/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T08:25:17+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c24361d8520a",
+      "title": "CodexモバイルからUbuntuのCodex Appを操作する",
+      "url": "https://zenn.dev/robustonian/articles/codex_mobile_connect_to_ubuntu",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T07:35:06+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "8c47a5370e73",
+      "title": "Frontier AI has broken the open CTF format",
+      "url": "https://kabir.au/blog/the-ctf-scene-is-dead",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-16T07:01:55+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "947057b70bf1",
+      "title": "【Rust】怖くないunsafe入門",
+      "url": "https://zenn.dev/nuskey/articles/rust-introduction-to-unsafe",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T05:31:09+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "d82dee5b6295",
+      "title": "Orthrus-Qwen3: up to 7.8×tokens/forward on Qwen3, identical output distribution",
+      "url": "https://github.com/chiennv2000/orthrus",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-15T22:38:58+00:00",
       "lang": "en"
     },
     {
@@ -207,17 +536,6 @@
       "lang": "en"
     },
     {
-      "id": "838c6602c4af",
-      "title": "California bill would require patches or refunds when online games shut down",
-      "url": "https://arstechnica.com/gaming/2026/05/bill-to-keep-online-games-playable-clears-key-hurdle-in-california/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T19:48:48+00:00",
-      "lang": "en"
-    },
-    {
       "id": "0ff7398266be",
       "title": "LLM generated submissions should be disallowed",
       "url": "https://lobste.rs/s/29pm2f/llm_generated_submissions_should_be",
@@ -226,94 +544,6 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T19:34:27+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "75f1ca7a51d2",
-      "title": "Git Is Not Fine",
-      "url": "https://www.billjings.com/posts/title/git-is-not-fine/",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T19:11:56+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "adf107e84fcf",
-      "title": "ABC News has taken all FiveThirtyEight articles offline",
-      "url": "https://twitter.com/baseballot/status/2055309076209492208",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T19:07:08+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "134c40e3de6a",
-      "title": "The Zulip Foundation",
-      "url": "https://blog.zulip.com/2026/05/15/announcing-zulip-foundation/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T18:37:01+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3c3c850b6b29",
-      "title": "Waymo updates 3,800 robotaxis after they 'drive into standing water'",
-      "url": "https://www.cnbc.com/2026/05/12/waymo-recalls-3800-robotaxis-after-able-drive-into-standing-water.html",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T18:00:43+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "e655d37ecb6e",
-      "title": "5× faster fast_blur in image-rs",
-      "url": "https://apas.tel/blog/optimizing-image-rs-blur",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T17:58:21+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "592e1a5d0401",
-      "title": "U.S. DOJ demands Apple and Google unmask over 100k users of car-tinkering app",
-      "url": "https://macdailynews.com/2026/05/15/u-s-doj-demands-apple-and-google-unmask-over-100000-users-of-popular-car-tinkering-app-in-emissions-crackdown/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T17:28:24+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "071ba7bf1560",
-      "title": "Moving away from Tailwind, and learning to structure my CSS",
-      "url": "https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T16:28:17+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "6e47c98b585a",
-      "title": "Project Gutenberg – keeps getting better",
-      "url": "https://www.gutenberg.org/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T16:15:36+00:00",
       "lang": "en"
     },
     {
@@ -328,28 +558,6 @@
       "lang": "en"
     },
     {
-      "id": "dffb9b54ba30",
-      "title": "Image-blaster: Creates 3D environments, SFX, and meshes from a single image",
-      "url": "https://github.com/neilsonnn/image-blaster",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T15:42:37+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "2f9fe73d36a3",
-      "title": "Elasticsearchでアイヌ語コーパスを作った",
-      "url": "https://zenn.dev/neet/articles/031d5499e68685",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T15:25:45+00:00",
-      "lang": "ja"
-    },
-    {
       "id": "aa10d688b3b0",
       "title": "[$] Controlling memory-management with BPF",
       "url": "https://lwn.net/Articles/1072538/",
@@ -359,17 +567,6 @@
       ],
       "published_at": "2026-05-15T14:54:56+00:00",
       "lang": "en"
-    },
-    {
-      "id": "7c5182816e2e",
-      "title": "Künstliche Intelligenz: Chinesische Firmen kaufen keine H200 von Nvidia",
-      "url": "https://www.golem.de/news/kuenstliche-intelligenz-chinesische-firmen-kaufen-keine-h200-von-nvidia-2605-208727.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T14:39:01+00:00",
-      "lang": "de"
     },
     {
       "id": "ebeca1340734",
@@ -383,26 +580,15 @@
       "lang": "ja"
     },
     {
-      "id": "e1ec6167299b",
-      "title": "Anzeige: Ultimea Skywave X50 Profi-Soundbar mit neuem Amazon-Bestpreis",
-      "url": "https://www.golem.de/news/anzeige-ultimea-skywave-x50-profi-soundbar-mit-neuem-amazon-bestpreis-2605-208715.html",
-      "source": "Golem.de",
+      "id": "6107dacb49e7",
+      "title": "自前キャッシュをTanStack Queryに移行したらコードが半分になった",
+      "url": "https://zenn.dev/hiroki0304/articles/tanstack-query-migration-custom-cache",
+      "source": "Zenn",
       "categories": [
         "general"
       ],
-      "published_at": "2026-05-15T14:20:01+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "d9c842995a72",
-      "title": "Lofree Hyzen: Tastatur mit Mischung aus mechanischen und magnetischen Switches",
-      "url": "https://www.golem.de/news/lofree-hyzen-tastatur-mit-mischung-aus-mechanischen-und-magnetischen-switches-2605-208725.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T14:10:02+00:00",
-      "lang": "de"
+      "published_at": "2026-05-15T14:14:23+00:00",
+      "lang": "ja"
     },
     {
       "id": "b8d3a65e21b8",
@@ -414,28 +600,6 @@
       ],
       "published_at": "2026-05-15T14:04:00+00:00",
       "lang": "en"
-    },
-    {
-      "id": "405ab4a3c014",
-      "title": "ASCII by Jason Scott",
-      "url": "https://ascii.textfiles.com/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T14:02:36+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "2c82ecd66573",
-      "title": "Solarenergie: Tesla beerdigt das Solar Roof",
-      "url": "https://www.golem.de/news/solarenergie-tesla-beerdigt-das-solar-roof-2605-208724.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T13:50:05+00:00",
-      "lang": "de"
     },
     {
       "id": "6829a4b13e4b",
@@ -462,28 +626,6 @@
       "lang": "en"
     },
     {
-      "id": "cc96d9640c4e",
-      "title": "KI-Boom: 70 Prozent der Amerikaner sind gegen Datencenter in ihrer Umgebung",
-      "url": "https://www.golem.de/news/ki-boom-70-prozent-der-amerikaner-sind-gegen-datencenter-in-ihrer-umgebung-2605-208723.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T13:33:02+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "e7cc5b504c26",
-      "title": "Amazon workers under pressure to up their AI usage are making up tasks",
-      "url": "https://www.fastcompany.com/91541586/amazon-workers-pressured-to-up-ai-use-extraneous-tasks",
-      "source": "HackerNews",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-15T13:28:55+00:00",
-      "lang": "en"
-    },
-    {
       "id": "056f517a1d52",
       "title": "[$] HugeTLB preservation over live update",
       "url": "https://lwn.net/Articles/1072531/",
@@ -504,28 +646,6 @@
       ],
       "published_at": "2026-05-15T13:16:03+00:00",
       "lang": "en"
-    },
-    {
-      "id": "225e4f1e8616",
-      "title": "Open Source Resistance",
-      "url": "https://ossresistance.com/",
-      "source": "Lobste.rs",
-      "categories": [
-        "good_news"
-      ],
-      "published_at": "2026-05-15T13:04:52+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "3016dd3c2561",
-      "title": "KI: Per Vibe-Coding 1.000 Seiten migriert und 80 Prozent Traffic verloren?",
-      "url": "https://www.golem.de/news/ki-per-vibe-1-000-seiten-migriert-und-80-prozent-traffic-verloren-2605-208681.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T13:00:02+00:00",
-      "lang": "de"
     },
     {
       "id": "c8f3eac521ba",
@@ -550,72 +670,6 @@
       "lang": "en"
     },
     {
-      "id": "59a1aa13c43c",
-      "title": "Alexa for Shopping: Amazon will Onlineshopping mit KI verbessern",
-      "url": "https://www.golem.de/news/alexa-for-shopping-amazon-will-onlineshopping-mit-ki-verbessern-2605-208720.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T12:45:02+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "c26d3e623479",
-      "title": "Anzeige: Handyhalterung für Fahrrad und Motorrad für nur 15,88 Euro",
-      "url": "https://www.golem.de/news/anzeige-handyhalterung-fuer-fahrrad-und-motorrad-fuer-nur-15-88-euro-2605-208721.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T12:42:01+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "a982754cf9db",
-      "title": "Börsengang: Cerebras-Aktie startet deutlich über Ausgabepreis",
-      "url": "https://www.golem.de/news/boersengang-cerebras-aktie-startet-deutlich-ueber-ausgabepreis-2605-208716.html",
-      "source": "Golem.de",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T12:30:01+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "bbb1caf01335",
-      "title": "Wegen hoher Nachfrage am Speichermarkt: Kioxia verdoppelt Nettogewinn",
-      "url": "https://www.golem.de/news/wegen-hoher-nachfrage-am-speichermarkt-kioxia-verdoppelt-nettogewinn-2605-208717.html",
-      "source": "Golem.de",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-15T12:15:02+00:00",
-      "lang": "de"
-    },
-    {
-      "id": "7c8fb277c2c5",
-      "title": "Radicle: Sovereign {code forge} built on Git",
-      "url": "https://radicle.dev/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T12:07:55+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "f517b4510bf7",
-      "title": "What are you doing this weekend?",
-      "url": "https://lobste.rs/s/ylq7sd/what_are_you_doing_this_weekend",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T12:03:48+00:00",
-      "lang": "en"
-    },
-    {
       "id": "64adf1cb11a2",
       "title": "Discord Reveals How a Hidden Circular Dependency Triggered Its March Voice Outage",
       "url": "https://www.infoq.com/news/2026/05/discord-circular-dependency/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -626,39 +680,6 @@
       ],
       "published_at": "2026-05-15T12:00:00+00:00",
       "lang": "en"
-    },
-    {
-      "id": "f93c961b7d79",
-      "title": "SQL: Incorrect by Construction",
-      "url": "https://chreke.com/posts/sql-incorrect-by-construction",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T11:53:41+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "f830f4cdf7a8",
-      "title": "Welcome to the Strip Mining Era of OSS Security",
-      "url": "https://www.metabase.com/blog/strip-mining-era-of-open-source-security",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T11:37:17+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "837705d850ec",
-      "title": "Nix使用時にGitHubのAPI Rate Limitを緩和する方法",
-      "url": "https://zenn.dev/ril/articles/13777ce701882c",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T11:17:38+00:00",
-      "lang": "ja"
     },
     {
       "id": "341530733c61",
@@ -684,17 +705,6 @@
       "lang": "en"
     },
     {
-      "id": "ed98e6f1b3d6",
-      "title": "The sigmoids won't save you",
-      "url": "https://www.astralcodexten.com/p/the-sigmoids-wont-save-you",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T10:51:13+00:00",
-      "lang": "en"
-    },
-    {
       "id": "409bc6fa75c6",
       "title": "Benchmarking AI Agents on Kubernetes",
       "url": "https://www.infoq.com/news/2026/05/ai-agents-kubernetes-rag/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -705,6 +715,28 @@
       ],
       "published_at": "2026-05-15T10:00:00+00:00",
       "lang": "en"
+    },
+    {
+      "id": "02656adcb427",
+      "title": "RAGナレッジベース作成を簡単にしたくてツールを作った",
+      "url": "https://zenn.dev/bathtimefish/articles/80a22a045795f0",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-15T09:47:21+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "9d2e3db259b4",
+      "title": "【TypeScript】値・型・名前空間の「三重定義」でReactコンポーネントをより柔軟に設計する",
+      "url": "https://zenn.dev/bmth/articles/ts-companion-object",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-15T09:39:14+00:00",
+      "lang": "ja"
     },
     {
       "id": "4bb6f4648d08",
@@ -729,28 +761,6 @@
       "lang": "ja"
     },
     {
-      "id": "e4f0016b9e20",
-      "title": "Terraformの複数人開発でdev環境を安全に回す方法",
-      "url": "https://zenn.dev/pksha/articles/terraform-multi-user-apply-conflict",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T08:02:00+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "99eb1e41d492",
-      "title": "Copilot Studio × Work IQでTeamsに眠るナレッジを即活用～「15分で構築可能！問い合わせ対応エージェント」のご紹介",
-      "url": "https://zenn.dev/nttdata_tech/articles/75bebd16367ea4",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T07:43:41+00:00",
-      "lang": "ja"
-    },
-    {
       "id": "53d5b907cfa1",
       "title": "SolidJS 2.0 Beta: First-Class Async, Reworked Suspense and Deterministic Batching",
       "url": "https://www.infoq.com/news/2026/05/solidjs-2-async/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -760,61 +770,6 @@
       ],
       "published_at": "2026-05-15T07:30:00+00:00",
       "lang": "en"
-    },
-    {
-      "id": "27ac808085f5",
-      "title": "Claude Code派だった僕がCodexに移る前に知りたかったこと",
-      "url": "https://zenn.dev/gemcook/articles/e56eabc7ba2961",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T06:02:59+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "eeccf1356b1f",
-      "title": "Claude Codeの1000 セッションを分析して、一週間目でリードタイムを10%縮めた話",
-      "url": "https://zenn.dev/globis/articles/94762dc8ec7914",
-      "source": "Zenn",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-15T02:54:18+00:00",
-      "lang": "ja"
-    },
-    {
-      "id": "d59f3998bfac",
-      "title": "linux 0-day, access root-owned files as an unprivileged user",
-      "url": "https://github.com/0xdeadbeefnetwork/ssh-keysign-pwn/",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T01:14:21+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "73d6a7ed8e67",
-      "title": "In what way if any are you a tech minimalist while maintaining your job/love for tech?",
-      "url": "https://lobste.rs/s/kxmdvj/what_way_if_any_are_you_tech_minimalist",
-      "source": "Lobste.rs",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T00:50:15+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5fbbd6e69d17",
-      "title": "Andrej Karpathy氏のLLM Wikiを1ヶ月運用してわかった、LLMの知識を『繋げる力』",
-      "url": "https://zenn.dev/tsurubee/articles/llm-wiki-connecting-knowledge",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-15T00:14:18+00:00",
-      "lang": "ja"
     },
     {
       "id": "f9d9b8089885",
@@ -839,17 +794,6 @@
       "lang": "en"
     },
     {
-      "id": "34ff731aa3ec",
-      "title": "Removing the modem and GPS from my 2024 RAV4 hybrid",
-      "url": "https://arkadiyt.com/2026/05/13/removing-the-modem-and-gps-from-my-rav4/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-14T17:08:00+00:00",
-      "lang": "en"
-    },
-    {
       "id": "026733ba08a0",
       "title": "From latency to instant: Modernizing GitHub Issues navigation performance",
       "url": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/",
@@ -858,17 +802,6 @@
         "general"
       ],
       "published_at": "2026-05-14T16:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "c106e6edd6f8",
-      "title": "Show HN: Watch a neural net learn to play Snake",
-      "url": "https://ppo.gradexp.xyz/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-14T15:35:14+00:00",
       "lang": "en"
     },
     {
@@ -917,40 +850,6 @@
       "lang": "en"
     },
     {
-      "id": "6047f50be3a0",
-      "title": "Presentation: Accelerating LLM-Driven Developer Productivity at Zoox",
-      "url": "https://www.infoq.com/presentations/ai-software-development/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-14T13:05:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "32f8a42fd90c",
-      "title": "Moonrepo Releases Moon v2.0 with WASM Plugin Toolchains and Overhauled CLI",
-      "url": "https://www.infoq.com/news/2026/05/moonrepo-2-release/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "good_news",
-        "future_watch"
-      ],
-      "published_at": "2026-05-14T12:47:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "a5dd24ca504a",
-      "title": "Scaling Social Systems in Software Organizations",
-      "url": "https://www.infoq.com/news/2026/05/scale-social-system-software-org/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-14T11:41:00+00:00",
-      "lang": "en"
-    },
-    {
       "id": "85670ea0eaef",
       "title": "When AI agents become contributors: How KubeStellar reached 81% PR acceptance",
       "url": "https://www.cncf.io/blog/2026/05/14/when-ai-agents-become-contributors-how-kubestellar-reached-81-pr-acceptance/",
@@ -993,6 +892,17 @@
       ],
       "published_at": "2026-05-14T09:00:25+00:00",
       "lang": "fr"
+    },
+    {
+      "id": "cdd2b7b6de52",
+      "title": "The bird eye was pushed to an evolutionary extreme",
+      "url": "https://www.quantamagazine.org/how-the-bird-eye-was-pushed-to-an-evolutionary-extreme-20260513/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-14T07:17:16+00:00",
+      "lang": "en"
     },
     {
       "id": "bc7ba1abdf13",
@@ -1102,6 +1012,17 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T17:15:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "313102fee0ab",
+      "title": "Nearly 50 Years Later, WKRP in Cincinnati Becomes a Real Radio Station",
+      "url": "https://www.openculture.com/2026/05/nearly-50-years-later-wkrp-in-cincinnati-becomes-a-real-radio-station.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-12T16:47:38+00:00",
       "lang": "en"
     },
     {
@@ -1260,17 +1181,6 @@
       "lang": "en"
     },
     {
-      "id": "856d2ef45337",
-      "title": "Sortie de Crème CRM en version 2.8",
-      "url": "https://linuxfr.org/news/sortie-de-creme-crm-en-version-2-8",
-      "source": "LinuxFr.org",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-11T07:11:16+00:00",
-      "lang": "fr"
-    },
-    {
       "id": "b56f918f1829",
       "title": "Khrys’presso du lundi 11 mai 2026",
       "url": "https://framablog.org/2026/05/11/khryspresso-du-lundi-11-mai-2026/",
@@ -1290,6 +1200,17 @@
         "general"
       ],
       "published_at": "2026-05-10T00:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8be2f0b06477",
+      "title": "Axios to WHATWG Fetch",
+      "url": "https://nodejs.org/en/blog/migrations/axios-to-fetch",
+      "source": "Node.js Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-09T00:00:00+00:00",
       "lang": "en"
     },
     {
@@ -2148,17 +2069,6 @@
         "general"
       ],
       "published_at": "2026-03-24T20:43:41+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "9be0bb54ecaa",
-      "title": "Node.js 24.14.1 (LTS)",
-      "url": "https://nodejs.org/en/blog/release/v24.14.1",
-      "source": "Node.js Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-03-24T20:43:31+00:00",
       "lang": "en"
     },
     {
