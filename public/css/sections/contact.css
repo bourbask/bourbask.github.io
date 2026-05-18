@@ -36,7 +36,7 @@
   padding: 1rem;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--text-primary);
   transition: all 0.3s ease;
@@ -73,10 +73,10 @@
 .contact-form textarea {
   padding: 1rem;
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: inherit;
+  font-family: var(--font-ui);
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -102,7 +102,8 @@
 
 .form-feedback {
   padding: 0.875rem 1.25rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
   font-size: 0.95rem;
   margin-bottom: 1.25rem;
 }
@@ -158,6 +159,7 @@
 }
 
 .pgp-link {
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   color: var(--accent-primary);
   text-decoration: none;
@@ -170,11 +172,13 @@
 }
 
 .pgp-link-sep {
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   color: var(--text-secondary);
 }
 
 .form-e2e-note {
+  font-family: var(--font-ui);
   font-size: 0.78rem;
   color: var(--text-secondary);
   margin: 0;
@@ -186,7 +190,8 @@
 
 .form-feedback {
   padding: 0.875rem 1.25rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
   font-size: 0.95rem;
   margin-bottom: 1.25rem;
 }
