@@ -3,6 +3,9 @@
  * Import order: variables → base → nav → components → sections → pages → global responsive
  */
 
+/* Fonts (must come first so @font-face is declared before use) */
+@import url("/public/css/fonts.css");
+
 /* Foundation */
 @import url("/public/css/variables.css");
 @import url("/public/css/base.css");
@@ -19,6 +22,7 @@
 @import url("/public/css/components/cards.css");
 @import url("/public/css/components/forms.css");
 @import url("/public/css/components/ui.css");
+@import url("/public/css/components/logo.css");
 
 /* Homepage sections */
 @import url("/public/css/sections/hero.css");
@@ -34,6 +38,7 @@
 @import url("/public/css/pages/blog-article.css");
 @import url("/public/css/404.css");
 @import url("/public/css/veille.css");
+@import url("/public/css/pages/veille-detail.css");
 
 /* Global responsive overrides (last = highest specificity in cascade) */
 @import url("/public/css/responsive.css");
