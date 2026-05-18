@@ -69,8 +69,9 @@
   color: var(--text-secondary);
   text-decoration: none;
   padding: 0.4rem 0.875rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
+  font-family: var(--font-ui);
   font-weight: 500;
   font-size: 0.9rem;
 }
@@ -102,7 +103,7 @@
   height: 40px;
   background: var(--bg-primary);
   border: 2px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,7 +116,7 @@
   color: white;
   border-color: var(--accent-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 8px 25px rgba(61, 186, 124, 0.3);
 }
 
 .cv-download-btn:active { transform: translateY(0); }
@@ -189,7 +190,7 @@
   background: var(--bg-secondary);
   color: var(--text-primary);
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
@@ -229,7 +230,7 @@
   align-items: center;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   padding: 0.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -237,7 +238,8 @@
 
 .lang-option {
   padding: 0.5rem 1rem;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -246,7 +248,7 @@
   transition: color 0.3s ease;
 }
 
-.lang-option.active { color: var(--text-primary); }
+.lang-option.active { color: var(--text-primary); font-weight: 600; }
 
 /* Sliding indicator */
 .lang-slider {
@@ -256,7 +258,7 @@
   width: calc(50% - 0.25rem);
   height: calc(100% - 0.5rem);
   background: var(--bg-primary);
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease;
 }
@@ -271,7 +273,7 @@
   height: 1.5rem;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;

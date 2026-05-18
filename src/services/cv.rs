@@ -178,7 +178,7 @@ impl CVService {
         }
 
         .cv-header {
-            background: #16a34a !important;
+            background: #2d6a4f !important;
             color: white;
             padding: 25px 30px;
             position: relative;
@@ -194,7 +194,7 @@ impl CVService {
             top: -15px;
             right: -5px;
             font-size: 90px;
-            color: #22c55e;
+            color: #52b788;
             opacity: 0.25;
             transform: rotate(-15deg);
             z-index: 1;
@@ -207,7 +207,7 @@ impl CVService {
             bottom: -25px;
             left: -15px;
             font-size: 70px;
-            color: #22c55e;
+            color: #52b788;
             opacity: 0.2;
             transform: rotate(25deg);
             z-index: 1;
@@ -296,7 +296,7 @@ impl CVService {
             font-size: 16px;
             font-weight: 600;
             margin: 0 0 12px 0;
-            color: #16a34a !important;
+            color: #2d6a4f !important;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -347,7 +347,7 @@ impl CVService {
 
         .exp-period {
             font-size: 11px;
-            color: #16a34a !important;
+            color: #2d6a4f !important;
             font-weight: 600;
             background: #dcfce7 !important;
             padding: 4px 8px;
@@ -398,7 +398,7 @@ impl CVService {
 
         .project-status {
             font-size: 10px;
-            color: #16a34a !important;
+            color: #2d6a4f !important;
             font-weight: 600;
             background: #dcfce7 !important;
             padding: 2px 6px;
@@ -415,7 +415,7 @@ impl CVService {
 
         .project-tech {
             font-size: 10px;
-            color: #16a34a !important;
+            color: #2d6a4f !important;
             font-weight: 500;
         }
 
@@ -461,7 +461,7 @@ impl CVService {
 
         .edu-school {
             font-size: 11px;
-            color: #16a34a !important;
+            color: #2d6a4f !important;
             font-weight: 600;
             margin-bottom: 2px;
         }
