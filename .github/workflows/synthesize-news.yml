@@ -1,15 +1,15 @@
-name: Fetch Tech News
+name: Weekly Tech Synthesis
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # daily 06:00 UTC
-  workflow_dispatch:      # manual trigger
+    - cron: '0 7 * * 1'  # every Monday 07:00 UTC
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  fetch-news:
+  synthesize:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,8 +29,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Fetch and classify news
-        run: python scripts/fetch_news.py
+      - name: Generate weekly synthesis
+        run: python scripts/synthesize_news.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Commit if changed
         run: |
@@ -38,4 +40,4 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/news.json
           git diff --staged --quiet && echo "No changes." || \
-            git commit -m "chore: update tech news feed" && git push
+            git commit -m "chore: weekly tech synthesis — $(date +%G-W%V)" && git push

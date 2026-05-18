@@ -344,14 +344,16 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.filterStackAlt", "Alternatives stack");
     map.insert("veille.filterGeneral", "Général");
     map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
-    map.insert("veille.synthesis.title", "Synthèse du jour");
-    map.insert("veille.synthesis.tldr", "En bref");
-    map.insert("veille.synthesis.keyTakeaways", "Points clés");
-    map.insert("veille.synthesis.signalVsNoise", "Signal vs bruit");
     map.insert("veille.synthesis.aiGenerated", "Généré par Claude IA");
-    map.insert("veille.synthesis.hide", "Masquer");
-    map.insert("veille.synthesis.show", "Afficher");
-    map.insert("veille.synthesis.notAvailable", "Synthèse non disponible pour cette période.");
+    map.insert("veille.synthesis.weekOf", "Semaine du");
+    map.insert("veille.synthesis.to", "au");
+    map.insert("veille.synthesis.showSources", "Sources");
+    map.insert("veille.synthesis.hideSources", "Masquer les sources");
+    map.insert("veille.synthesis.readMore", "Lire la synthèse →");
+    map.insert("veille.synthesis.basedOn", "Basé sur");
+    map.insert("veille.synthesis.articles", "articles");
+    map.insert("veille.synthesis.backToFeed", "← Retour au fil");
+    map.insert("veille.synthesis.filterLabel", "Synthèses");
 
     // PGP contact
     map.insert("pgpDownload", "Télécharger la clé");
