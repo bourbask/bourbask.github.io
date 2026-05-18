@@ -10,12 +10,13 @@
 .skill-category {
   background: var(--bg-primary);
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
 }
 
 .skill-category h3 {
+  font-family: var(--font-ui);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.5rem;

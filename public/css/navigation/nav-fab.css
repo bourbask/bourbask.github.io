@@ -48,7 +48,7 @@
   .mobile-fab {
     width: 72px;
     height: 72px;
-    border-radius: 50%;
+    border-radius: var(--radius-circle);
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     border: none;
     cursor: pointer;
@@ -74,7 +74,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 50%;
+    border-radius: var(--radius-circle);
     background: transparent;
     pointer-events: none;
     animation: fabBreath 3s ease-in-out infinite;
@@ -99,7 +99,7 @@
     content: '';
     position: absolute;
     inset: -4px;
-    border-radius: 50%;
+    border-radius: var(--radius-circle);
     border: 2px solid rgba(74, 222, 128, 0.75);
     pointer-events: none;
     animation: dragHintRipple 0.65s ease-out 0.3s 2;
@@ -213,7 +213,7 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: var(--radius-circle);
     background: var(--bg-primary);
     border: 2px solid var(--border-color);
     display: flex;
@@ -295,7 +295,8 @@
     transform: translateY(-50%) translateX(20px);
     background: var(--bg-secondary);
     padding: 8px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
+    font-family: var(--font-ui);
     font-size: 12px;
     font-weight: 600;
     white-space: nowrap;
@@ -316,7 +317,7 @@
     background: #22c55e;
     color: white;
     border-color: #22c55e;
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 20px rgba(82, 183, 136, 0.3);
   }
 
   /* ---- Animations ---- */
@@ -407,9 +408,9 @@
   z-index: 1020;
 
   padding: 0.9rem 2.5rem;
-  border-radius: 2rem;
+  border-radius: var(--radius-2xl);
 
-  font-family: inherit;
+  font-family: var(--font-ui);
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.02em;
