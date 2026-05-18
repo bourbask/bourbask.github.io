@@ -1,39 +1,39 @@
 /**
  * CSS Custom Properties - Color Palette & Design Tokens
- * 
- * Nature-inspired color scheme with green primary colors
- * and warm amber accents for a personal, organic feel.
+ *
+ * Forest & botanical identity: deep organic greens, honey amber.
+ * Radius scale unified across all interactive and container elements.
  */
 
 :root {
-  /* ===== LIGHT THEME COLORS - NATURE PALETTE ===== */
+  /* ===== LIGHT THEME COLORS ===== */
 
   /* Background Colors */
-  --bg-primary: #ffffff; /* Main background - pure white */
+  --bg-primary: #ffffff;
   --bg-primary-rgb: 255, 255, 255;
-  --bg-secondary: #f8fafc; /* Section alternates - very light gray */
-  --bg-tertiary: #f1f5f9; /* Cards and inputs - light gray */
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
 
   /* Text Colors */
-  --text-primary: #0f172a; /* Main text - dark slate */
-  --text-secondary: #475569; /* Secondary text - medium gray */
-  --text-tertiary: #64748b; /* Tertiary text - light gray */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
 
-  /* Green Nature Accents */
-  --accent-primary: #4ade80; /* Modern energetic green */
-  --accent-secondary: #059669; /* Professional dark green */
-  --accent-tertiary: #fbbf24; /* Warm amber for highlights */
+  /* Forest & Honey Accents */
+  --accent-primary: #3dba7c;   /* Forest green — medium, organic */
+  --accent-secondary: #40916c; /* Deep forest green */
+  --accent-tertiary: #e8971a;  /* Honey amber */
 
   /* Gradient Combinations */
-  --accent-gradient: linear-gradient(135deg, #4ade80 0%, #059669 100%);
-  --accent-gradient-warm: linear-gradient(135deg, #4ade80 0%, #fbbf24 100%);
+  --accent-gradient: linear-gradient(135deg, #3dba7c 0%, #40916c 100%);
+  --accent-gradient-warm: linear-gradient(135deg, #3dba7c 0%, #e8971a 100%);
 
   /* Semantic Colors */
-  --success-color: #10b981; /* Success states */
-  --warning-color: #f59e0b; /* Warning states */
+  --success-color: #3dba7c;
+  --warning-color: #e8971a;
 
   /* UI Elements */
-  --border-color: #e2e8f0; /* Borders and dividers */
+  --border-color: #e2e8f0;
 
   /* Shadow System */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -43,44 +43,100 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
 
-  /* Nature-Inspired Glow Effects */
-  --glow-green: 0 0 20px rgba(74, 222, 128, 0.3);
-  --glow-amber: 0 0 20px rgba(251, 191, 36, 0.3);
+  /* Glow Effects */
+  --glow-green: 0 0 20px rgba(61, 186, 124, 0.35);
+  --glow-amber: 0 0 20px rgba(232, 151, 26, 0.35);
+
+  /* ===== FONT STACK TOKENS ===== */
+  --font-display: "Literata", Georgia, "Times New Roman", serif; /* H1-H2 — Fougère remplacera */
+  --font-body:    "Literata", Georgia, "Times New Roman", serif;
+  --font-ui:      system-ui, -apple-system, sans-serif;
+  --font-code:    "Fira Code", "Cascadia Code", ui-monospace, monospace;
+
+  /* ===== RADIUS SCALE ===== */
+  --radius-xs: 4px;      /* inline code, micro chips */
+  --radius-sm: 8px;      /* buttons, inputs, tags, toggles, nav items */
+  --radius-md: 12px;     /* medium containers, tooltips */
+  --radius-lg: 16px;     /* standard cards */
+  --radius-xl: 20px;     /* large panels, FAB menus */
+  --radius-2xl: 2rem;    /* profile image, large decorative containers */
+  --radius-circle: 50%;  /* purely circular elements */
+
+  /* ===== SPACING SCALE ===== */
+  --space-px:  1px;
+  --space-1:   0.25rem;   /* 4px  */
+  --space-2:   0.5rem;    /* 8px  */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px */
+
+  /* ===== MOTION TOKENS ===== */
+  --duration-instant:   0ms;
+  --duration-fast:    150ms;
+  --duration-normal:  300ms;
+  --duration-slow:    500ms;
+  --duration-cinematic: 600ms;
+
+  --ease-standard:   ease;
+  --ease-enter:      ease-out;
+  --ease-exit:       ease-in;
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-mechanical: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== LOGO IDENTITY TOKENS ===== */
+  --logo-fern-green:     #52b788; /* Fougère — invariant, jamais surchargé */
+  --logo-fern-green-rgb: 82, 183, 136;
+  --logo-amber:          #e8971a; /* Détails botte — identique à --accent-tertiary */
+  --logo-boot-stroke:    #1e293b; /* Contour botte thème clair */
+  --logo-boot-stroke-width: 1.5px;
+  --logo-animation-total: 2.1s;
+  --logo-ease-organic:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --logo-ease-mechanical: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /**
  * Dark Theme Override
- * More saturated colors for better contrast in dark mode
  */
 [data-theme="dark"] {
-  /* ===== DARK THEME COLORS - NIGHT NATURE ===== */
+  /* ===== DARK THEME COLORS ===== */
 
-  /* Background Colors - Dark slate palette */
-  --bg-primary: #0f172a; /* Dark slate background */
+  /* Background Colors */
+  --bg-primary: #0f172a;
   --bg-primary-rgb: 15, 23, 42;
-  --bg-secondary: #1e293b; /* Lighter slate for sections */
-  --bg-tertiary: #334155; /* Medium slate for components */
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
 
-  /* Text Colors - Light variants for contrast */
-  --text-primary: #f8fafc; /* Light text on dark background */
-  --text-secondary: #cbd5e1; /* Medium light text */
-  --text-tertiary: #94a3b8; /* Subtle light text */
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
 
-  /* Dark Mode Nature Accents - More saturated */
-  --accent-primary: #22c55e; /* Bright saturated green */
-  --accent-secondary: #16a34a; /* Deep saturated green */
-  --accent-tertiary: #fbbf24; /* Amber stays the same for warmth */
+  /* Forest & Honey Accents — lighter for dark bg readability */
+  --accent-primary: #52c98a;   /* Light forest green */
+  --accent-secondary: #40916c; /* Medium forest green */
+  --accent-tertiary: #e8971a;  /* Honey amber — consistent across themes */
 
   /* Dark Mode Gradients */
-  --accent-gradient: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-  --accent-gradient-warm: linear-gradient(135deg, #22c55e 0%, #fbbf24 100%);
+  --accent-gradient: linear-gradient(135deg, #52c98a 0%, #40916c 100%);
+  --accent-gradient-warm: linear-gradient(135deg, #52c98a 0%, #e8971a 100%);
 
   /* Dark Mode Semantic Colors */
-  --success-color: #22c55e;
-  --warning-color: #fbbf24;
+  --success-color: #52c98a;
+  --warning-color: #e8971a;
+
+  /* Logo — seul --logo-boot-stroke change en dark */
+  --logo-boot-stroke: #f8fafc;
 
   /* Dark Mode UI Elements */
-  --border-color: #334155; /* Darker borders for contrast */
+  --border-color: #334155;
 
   /* Enhanced Shadow System for Dark Mode */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
@@ -91,6 +147,6 @@
     0 8px 10px -6px rgb(0 0 0 / 0.3);
 
   /* Enhanced Glow Effects for Dark Mode */
-  --glow-green: 0 0 25px rgba(34, 197, 94, 0.4);
-  --glow-amber: 0 0 25px rgba(251, 191, 36, 0.4);
+  --glow-green: 0 0 25px rgba(82, 201, 138, 0.4);
+  --glow-amber: 0 0 25px rgba(232, 151, 26, 0.4);
 }
