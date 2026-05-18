@@ -9,7 +9,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -320,6 +320,7 @@ Rules:
 
 
 def main() -> None:
+    out_path = Path(__file__).parent.parent / "public" / "news.json"
     all_items: list[dict] = []
     seen: set[str] = set()
 
@@ -327,6 +328,23 @@ def main() -> None:
         if item["id"] not in seen:
             seen.add(item["id"])
             all_items.append(item)
+
+    # Load existing items: keep synthesis cards (no expiry) + articles within 14-day window
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).isoformat()
+    if out_path.exists():
+        try:
+            existing = json.loads(out_path.read_text(encoding="utf-8"))
+            for item in existing.get("items", []):
+                if item.get("type") == "synthesis":
+                    if item["id"] not in seen:
+                        seen.add(item["id"])
+                        all_items.append(item)
+                elif item.get("published_at", "") >= cutoff:
+                    if item["id"] not in seen:
+                        seen.add(item["id"])
+                        all_items.append(item)
+        except Exception as e:
+            print(f"[load] Failed to load existing news.json: {e}", file=sys.stderr)
 
     print("Fetching HackerNews…")
     for item in fetch_hn():
@@ -337,7 +355,7 @@ def main() -> None:
         for item in fetch_rss(source):
             add(item)
 
-    all_items.sort(key=lambda x: x["published_at"], reverse=True)
+    all_items.sort(key=lambda x: x.get("published_at", ""), reverse=True)
 
     print(f"Generating synthesis ({len(all_items)} items)…")
     synthesis = generate_synthesis(all_items)
@@ -354,7 +372,6 @@ def main() -> None:
         "items": all_items,
     }
 
-    out_path = Path(__file__).parent.parent / "public" / "news.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Done: {len(all_items)} items → {out_path}")

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-18T07:15:11.093599+00:00",
+  "generated_at": "2026-05-18T08:00:00+00:00",
   "period": "2026-05-18",
-  "count": 260,
+  "count": 261,
   "synthesis": {
     "en": {
       "headline": "Linux maintainer Linus Torvalds warns AI integration threatens kernel manageability; security researchers release microarchitectural attack framework",
@@ -61,6 +61,772 @@
     }
   },
   "items": [
+    {
+      "id": "synthesis_2026_W21",
+      "type": "synthesis",
+      "title_fr": "Les agents IA font leurs premiers commits — et un CVE passe sous les radars",
+      "title_en": "Ubuntu Bets Local, KubeStellar's Agents Hit 81% — and a CVE Nobody Talked About Enough",
+      "period_start": "2026-05-10",
+      "period_end": "2026-05-17",
+      "published_at": "2026-05-18T08:00:00+00:00",
+      "content_fr": "# Les agents IA font leurs premiers commits — et personne ne sait vraiment si c'est une bonne idée\n\nIl y a quelque chose d'étrange à lire, dans la même semaine, que les agents IA commencent à merger des pull requests en production et qu'un article viral affirme que l'IA ne rendra pas vos processus plus rapides. La semaine du 10 au 17 mai 2026 a posé cette tension frontalement.\n\nLe projet KubeStellar a publié un bilan marquant : ses agents IA ont atteint un taux d'acceptation de 81 % sur les PRs soumises. Ce n'est pas de la démo — c'est de la gouvernance réelle, sur un projet maintenu par la CNCF. OpenAI, de son côté, a ouvert les sources de Symphony, son framework d'orchestration d'agents autonomes, accompagné d'une spécification `SPEC.md` destinée à devenir un standard de facto. Pendant ce temps, Anthropic a annoncé les *Routines* pour Claude Code, un mécanisme d'automatisation répétable qui transforme les flux de travail humains en séquences exécutables par l'IA.\n\nTrois initiatives, le même signal : les agents IA ne cherchent plus à assister les développeurs. Ils cherchent à devenir des contributeurs à part entière.\n\n## La contre-narration qui ne veut pas mourir\n\nEt pourtant. L'article *\"I don't think AI will make your processes go faster\"* a cartonné sur HackerNews cette semaine. L'argument est solide : l'IA accélère les tâches unitaires mais introduit une complexité systémique qui ralentit les équipes au niveau macro. Les boucles de revue s'allongent, la confiance dans le code diminue, la dette de compréhension s'accumule.\n\nLa vérité est probablement dans les deux camps. KubeStellar atteint 81 % d'acceptation parce que ses agents opèrent dans un périmètre strictement défini, avec des tests de régression brutaux. Laissez un agent généraliste toucher à votre codebase sans garde-fous et vous retrouvez l'incident Discord de mars — une dépendance circulaire cachée qui a provoqué une panne majeure du service vocal. Discord a publié son post-mortem cette semaine : l'origine était architecturale, pas opérationnelle. Aucun test automatisé ne l'aurait attrapée sans une revue humaine approfondie.\n\n## CVE-2026-46333 : patch immédiat requis\n\nPendant que les débats sur l'IA occupaient les fils, le kernel Linux livrait silencieusement sept mises à jour stables en quelques jours pour combler CVE-2026-46333. Le rythme inhabituel — sept releases, suivi d'une troisième vague le jeudi — suggère une surface d'exploitation plus large que prévu. Si vous maintenez des serveurs sous Linux, la mise à jour est non négociable.\n\nLe prepatch 7.1-rc4 a également été publié, avec des travaux en cours sur la gestion mémoire via BPF — fonctionnalité intéressante pour quiconque fait du tuning de performance à bas niveau. Les discussions sur les *policy groups* pour la gestion mémoire et les *buffered atomic writes* donnent un aperçu de la direction du kernel pour la seconde moitié de l'année.\n\n## Le pari d'Ubuntu sur l'IA locale\n\nUbuntu a officialisé son orientation : intégration IA locale, pas cloud-first. À 7–13B paramètres, les modèles modernes tournent raisonnablement bien sur du matériel de bureau. Pousser l'inférence vers l'edge plutôt que vers le cloud répond à des contraintes réelles de latence, de coût et de confidentialité. C'est un signal industriel important — et une réponse indirecte à la critique du \"AI will slow you down\" : si le modèle tourne en local avec une latence de 50ms, l'argument du coût cognitif perd de sa force.\n\n| Technologie | Signal | Impact développeur |\n|------------|--------|-------------------|\n| KubeStellar 81% PR | Production réelle | Agents comme contributeurs |\n| Symphony SPEC.md | Standard en formation | Orchestration multi-agents |\n| Claude Code Routines | Workflows automatisés | Réduction friction CI/CD |\n| Ubuntu IA locale | Plateforme bet | Inférence sans cloud |\n\n## Et alors ?\n\nDeux priorités concrètes : **patcher CVE-2026-46333** si ce n'est pas fait — sept kernels en quelques jours, c'est un signal fort. Ensuite, **lire le post-mortem Discord** — pas pour la solution technique, mais pour comprendre comment une dépendance circulaire passe tous les filtres automatisés pendant des mois. C'est exactement le genre de bug que les agents IA d'aujourd'hui, même à 81 % d'acceptation, ne trouvent pas encore.",
+      "content_en": "# Ubuntu Bets Local, KubeStellar's Agents Hit 81% — and a CVE Nobody Talked About Enough\n\nThe most underreported story of the week wasn't about AI. CVE-2026-46333 quietly triggered seven Linux stable kernel releases in a few days — an unusual cadence that signals the vulnerability's blast radius is larger than the initial advisory suggested. If your servers run Linux and haven't been patched, that's your first task after reading this.\n\nNow, back to the AI.\n\n## The Agent Milestone Nobody's Debating Properly\n\nKubeStellar announced that its AI agents achieved an 81% pull request acceptance rate on a real CNCF-governed project. Not a toy repo, not a benchmark — a production codebase with actual governance. That number is impressive precisely because 81% isn't 100%: human reviewers still catch roughly one in five agent PRs as insufficient. But the direction of travel is clear.\n\nThe same week, OpenAI open-sourced Symphony, a framework for autonomous coding agent orchestration, along with a `SPEC.md` intended to become a reference standard for multi-agent coordination. Anthropic shipped Routines for Claude Code, turning human workflows into repeatable, agent-executable sequences.\n\n| Initiative | Org | What it actually does |\n|-----------|-----|----------------------|\n| KubeStellar 81% PRs | CNCF | AI agents as real contributors |\n| Symphony + SPEC.md | OpenAI | Multi-agent orchestration standard |\n| Claude Code Routines | Anthropic | Repeatable automated workflows |\n| Ubuntu local AI | Canonical | Edge inference, no cloud dependency |\n\nThe pattern is clear: the industry is building scaffolding for agents to operate in production engineering environments, not just generate boilerplate in isolation.\n\n## Discord's Post-Mortem Is Required Reading\n\nDiscord published its post-mortem on the March voice outage this week. Root cause: a circular dependency hidden in the service graph that no automated test caught — and that existed for months before triggering under specific load conditions.\n\nThe lesson isn't \"write better tests.\" Discord's test suite is not unsophisticated. The lesson is that architectural blind spots compound over time and only surface under conditions that differ from your test environment. This is exactly the class of bug that current AI coding agents — including the ones hitting 81% PR acceptance — systematically miss. Agents optimize for correctness within the frame they're given. They don't question the frame.\n\n## Ubuntu's Local-First Bet\n\nUbuntu officially moved away from cloud-first AI integration toward local inference. At 7–13B parameters, modern models run acceptably on developer workstations, with lower latency, zero per-query cloud cost, and the kind of data-residency guarantees compliance teams actually care about.\n\nThe counterpoint lives in this week's IEEE Spectrum piece on AI training power paradox: the compute required to *train* frontier models is still orders of magnitude beyond local hardware. Local inference is solved. Local training isn't — and won't be for years. Ubuntu's bet is on inference, not on closing that gap.\n\n## The Skeptic in the Room\n\n*\"I don't think AI will make your processes go faster\"* trended on HackerNews this week. The argument: AI accelerates individual tasks but introduces systemic complexity that slows teams at the macro level. Review loops lengthen. Codebase comprehension debt accumulates. Trust in generated output creates a new kind of cognitive overhead.\n\nWorth engaging seriously rather than dismissing. The Discord post-mortem and the KubeStellar result sit on opposite ends of the same spectrum: agents work well in constrained, well-tested domains; they struggle with the invisible architecture that makes or breaks production systems.\n\n## So What?\n\nShort-term: patch CVE-2026-46333. Seven kernel releases in a week is a tell, not a coincidence.\n\nMedium-term: read the Discord post-mortem. If you can't automatically generate your service dependency graph, that's a risk signal worth addressing before an agent starts touching your services.\n\nLong-term: Symphony's `SPEC.md` is worth an hour. If multi-agent orchestration standardizes around it, getting ahead of the conventions now costs very little.",
+      "source_count": 94,
+      "sources": [
+        {
+          "id": "f4119d4cc86a",
+          "title": "May I recommend eww for Emacs’s innovative UI?",
+          "url": "https://www.matem.unam.mx/~omar/apropos-emacs.html#may-i-recommend-eww-for-emacs-innovative-ui",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T23:41:06+00:00"
+        },
+        {
+          "id": "61ee3009e31d",
+          "title": "WriteUp: 16 Bytes of x86 that turn Matrix rain into sound",
+          "url": "https://hellmood.111mb.de//wake_up_16b_writeup.html",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T23:10:09+00:00"
+        },
+        {
+          "id": "27ffa690abb4",
+          "title": "Two EA-18 fighter jets collide at Mountain Home airshow, pilots ejected safely",
+          "url": "https://idahonews.com/news/local/two-f-18-fighter-jets-have-crashed-during-an-airshow-at-mountain-home-air-force-base",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T21:45:30+00:00"
+        },
+        {
+          "id": "64ce35ec18b6",
+          "title": "GenCAD",
+          "url": "https://gencad.github.io/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T21:40:35+00:00"
+        },
+        {
+          "id": "f444e27fae39",
+          "title": "Kernel prepatch 7.1-rc4",
+          "url": "https://lwn.net/Articles/1073193/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-17T21:39:26+00:00"
+        },
+        {
+          "id": "c458a0eb97b7",
+          "title": "Prolog Coding Horror",
+          "url": "https://www.metalevel.at/prolog/horror",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T21:15:51+00:00"
+        },
+        {
+          "id": "b47933c92ca4",
+          "title": "Fits on a Floppy - A Manifesto for Small Software",
+          "url": "https://fitsonafloppy.com",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T21:14:23+00:00"
+        },
+        {
+          "id": "8fe9e71e396d",
+          "title": "OpenAI Open-Sources Symphony, a SPEC.md for Autonomous Coding Agent Orchestration",
+          "url": "https://www.infoq.com/news/2026/05/openai-symphony-agents/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-17T20:00:00+00:00"
+        },
+        {
+          "id": "a3b4b7464283",
+          "title": "VoIP brings back old-fashioned pay phones to rural Vermont (2025)",
+          "url": "https://spectrum.ieee.org/payphone-voip",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T19:39:10+00:00"
+        },
+        {
+          "id": "26054361bdcc",
+          "title": "RIP Peter G. Neumann",
+          "url": "https://lwn.net/Articles/1073186/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-17T19:36:06+00:00"
+        },
+        {
+          "id": "b5985a42c676",
+          "title": "New design for the FreeBSD website",
+          "url": "https://www.freebsd.org/",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T18:36:41+00:00"
+        },
+        {
+          "id": "3326b043a01e",
+          "title": "Some weekend stable kernel updates",
+          "url": "https://lwn.net/Articles/1073161/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-17T17:43:12+00:00"
+        },
+        {
+          "id": "f59c6be076f6",
+          "title": "Bun's problem may be developing in the open",
+          "url": "https://00f.net/2026/05/17/developping-in-the-open/",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T16:37:47+00:00"
+        },
+        {
+          "id": "e01585a0a59e",
+          "title": "Don't answer the first question",
+          "url": "https://lalitm.com/post/dont-answer-the-first-question/",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T16:28:54+00:00"
+        },
+        {
+          "id": "0d8a05692802",
+          "title": "Reviewing so called Pull Requests at $dayjob",
+          "url": "https://rkta.de/dayjob-pr-review.html",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T15:40:32+00:00"
+        },
+        {
+          "id": "32f963156b31",
+          "title": "Show HN: Semble – Code search for agents that uses 98% fewer tokens than grep",
+          "url": "https://github.com/MinishLab/semble",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T15:37:07+00:00"
+        },
+        {
+          "id": "92694b09d349",
+          "title": "Coding on Paper",
+          "url": "https://wickstrom.tech/2026-05-16-coding-on-paper.html",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T15:28:30+00:00"
+        },
+        {
+          "id": "460d61b192d1",
+          "title": "コーディングエージェント時代にエンジニアは必要なのか本気で考えてみる",
+          "url": "https://zenn.dev/hiromoo/articles/5f127b5459d490",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T14:50:17+00:00"
+        },
+        {
+          "id": "6aacd7aba708",
+          "title": "プロジェクトマネジメントするときのテンプレとルーティンを紹介します",
+          "url": "https://zenn.dev/levtech/articles/pjm-rutine-and-template",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T13:18:16+00:00"
+        },
+        {
+          "id": "4f830bf1e908",
+          "title": "I turned a $80 RK3562 Android tablet into a Debian Linux workstation",
+          "url": "https://github.com/tech4bot/rk3562deb",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T13:16:27+00:00"
+        },
+        {
+          "id": "cb3666403021",
+          "title": "ChatGPT Plus: Malta macht KI zum Volksgut",
+          "url": "https://www.golem.de/news/chatgpt-plus-malta-macht-ki-zum-volksgut-2605-208745.html",
+          "source": "Golem.de",
+          "lang": "de",
+          "published_at": "2026-05-17T13:07:02+00:00"
+        },
+        {
+          "id": "83224c053d57",
+          "title": "Claude Code managed to get Adobe Lightroom working on Linux",
+          "url": "https://github.com/sander110419/lightroom-cc-on-linux",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T12:58:13+00:00"
+        },
+        {
+          "id": "490fccc479b0",
+          "title": "Native all the way, until you need text",
+          "url": "https://justsitandgrin.im/posts/native-all-the-way-until-you-need-text/",
+          "source": "Lobste.rs",
+          "lang": "en",
+          "published_at": "2026-05-17T12:57:07+00:00"
+        },
+        {
+          "id": "3e20d3c9412e",
+          "title": "CUDA Books",
+          "url": "https://github.com/alternbits/awesome-cuda-books",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T12:52:06+00:00"
+        },
+        {
+          "id": "210362e86288",
+          "title": "Starship: SpaceX stellt Updates für Starship und Super Heavy V3 vor",
+          "url": "https://www.golem.de/news/starship-spacex-stellt-updates-fuer-starship-und-super-heavy-v3-vor-2605-208744.html",
+          "source": "Golem.de",
+          "lang": "de",
+          "published_at": "2026-05-17T12:22:02+00:00"
+        },
+        {
+          "id": "86722d9ad618",
+          "title": "I don't think AI will make your processes go faster",
+          "url": "https://frederickvanbrabant.com/blog/2026-05-15-i-dont-think-ai-will-make-your-processes-go-faster/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T12:13:45+00:00"
+        },
+        {
+          "id": "164f5f9b052a",
+          "title": "Snowflake AI_COMPLETE 関数で動画と音声を直接分析",
+          "url": "https://zenn.dev/snowflakejp/articles/794ce748589765",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T12:13:12+00:00"
+        },
+        {
+          "id": "42df6dba3a58",
+          "title": "Neobank Monzo Builds Governed Data Mesh Across 100 Teams and 12000 dbt Models",
+          "url": "https://www.infoq.com/news/2026/05/monzo-data-mesh/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-17T11:02:00+00:00"
+        },
+        {
+          "id": "308ac2605662",
+          "title": "XプレミアムプランでGrokとx_searchツールを使う",
+          "url": "https://zenn.dev/robustonian/articles/x_premium_grok_search",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T09:26:43+00:00"
+        },
+        {
+          "id": "d2725dda1278",
+          "title": "DuckDB ベースの新たなデータ分析基盤の選択肢 — MotherDuck の紹介",
+          "url": "https://zenn.dev/bare64/articles/c1c1c31d76ceb4",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T09:00:08+00:00"
+        },
+        {
+          "id": "efac1356dc94",
+          "title": "NestJSが好きだけどきつかったから2週間でWebフレームワーク作った ( ZeltJS )",
+          "url": "https://zenn.dev/9wick/articles/363b51112106d0",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-17T08:30:40+00:00"
+        },
+        {
+          "id": "229600b54eeb",
+          "title": "Agenda du Libre pour la semaine 21 de l'année 2026",
+          "url": "https://linuxfr.org/news/agenda-du-libre-pour-la-semaine-21-de-l-annee-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-17T07:58:30+00:00"
+        },
+        {
+          "id": "351a8c78e10c",
+          "title": "Mozilla to UK regulators: VPNs are essential privacy and security tools",
+          "url": "https://blog.mozilla.org/netpolicy/2026/05/15/mozilla-to-uk-regulators-vpns-are-essential-privacy-and-security-tools-and-should-not-be-undermined/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T06:17:26+00:00"
+        },
+        {
+          "id": "3a3c27efba15",
+          "title": "Tesla Solar Roof is on life support as it pivot to panels",
+          "url": "https://electrek.co/2026/05/14/tesla-solar-roof-promise-vs-reality-pivot-panels/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-17T04:09:52+00:00"
+        },
+        {
+          "id": "174d3af00670",
+          "title": "A nicer voltmeter clock",
+          "url": "https://lcamtuf.substack.com/p/a-nicer-voltmeter-clock",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-16T22:45:16+00:00"
+        },
+        {
+          "id": "71f9b89bf1ce",
+          "title": "Ubuntu Embraces Local AI Instead of Cloud-First OS Integration",
+          "url": "https://www.infoq.com/news/2026/05/ubuntu-on-device-ai/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-16T20:00:00+00:00"
+        },
+        {
+          "id": "21c396e1b666",
+          "title": "Markdownの表をExcelのように編集できるVS Code拡張機能を作りました",
+          "url": "https://zenn.dev/naoyuki1212/articles/20260506-visual-table-canvas-for-markdown",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-16T16:19:56+00:00"
+        },
+        {
+          "id": "3032750213db",
+          "title": "MCP が Linux Foundation 入り — 個人開発の OS レイヤがオープン化した日",
+          "url": "https://zenn.dev/creolab_dev/articles/2026-05-16-mcp-linux-foundation-indie-saas",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-16T12:34:12+00:00"
+        },
+        {
+          "id": "7fb06ffdf7f8",
+          "title": "Rustで小さなリンカーを実装する",
+          "url": "https://zenn.dev/skanehira/books/writing-a-tiny-linker-in-rust",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-16T12:26:54+00:00"
+        },
+        {
+          "id": "cf50fbafc8da",
+          "title": "Veille communautaire sur des intelligences artificielles  du mois d'avril 2026",
+          "url": "https://linuxfr.org/news/veille-communautaire-sur-des-intelligences-artificielles-du-mois-d-avril-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-16T11:05:59+00:00"
+        },
+        {
+          "id": "f4ba9f84a6fb",
+          "title": "DDDの理想と決済システムの現実",
+          "url": "https://zenn.dev/kotaroikeda/articles/e2276a1d45a55c",
+          "source": "Zenn",
+          "lang": "ja",
+          "published_at": "2026-05-16T10:15:33+00:00"
+        },
+        {
+          "id": "61c4c463fa3b",
+          "title": "Google Introduces Cloud Fraud Defense as Successor to reCAPTCHA",
+          "url": "https://www.infoq.com/news/2026/05/cloud-fraud-defense-recaptcha/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-16T08:39:00+00:00"
+        },
+        {
+          "id": "36e016276490",
+          "title": "Microsoft Releases Aspire 13.3 with Major Deployment and Frontend Updates",
+          "url": "https://www.infoq.com/news/2026/05/aspire-13-3-release/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-16T08:34:00+00:00"
+        },
+        {
+          "id": "236c0ea9cfe4",
+          "title": "Magical Realism: “Northern Exposure” 25 Years Later (2015)",
+          "url": "https://www.rogerebert.com/streaming/magical-realism-nothern-exposure-25-years-later",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-16T01:25:29+00:00"
+        },
+        {
+          "id": "3d3a95e180b7",
+          "title": "Ask an Astronaut: 333 hours of Q&A footage with astronauts",
+          "url": "https://askanastronaut.issinrealtime.org/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-15T19:25:43+00:00"
+        },
+        {
+          "id": "ad4de3314434",
+          "title": "Jank now has its own custom IR",
+          "url": "https://jank-lang.org/blog/2026-05-08-optimization/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-15T17:17:04+00:00"
+        },
+        {
+          "id": "03fd46927cd8",
+          "title": "Anthropic Introduces Routines for Claude Code Automation",
+          "url": "https://www.infoq.com/news/2026/05/anthropic-routines-claude/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-15T15:51:00+00:00"
+        },
+        {
+          "id": "aa10d688b3b0",
+          "title": "[$] Controlling memory management with BPF",
+          "url": "https://lwn.net/Articles/1072538/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-15T14:54:56+00:00"
+        },
+        {
+          "id": "b8d3a65e21b8",
+          "title": "Cloudflare Introduces Workflows V2 with Deterministic Execution and 50K Concurrent Workflows",
+          "url": "https://www.infoq.com/news/2026/05/cloudflare-workflows-v2-release/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-15T14:04:00+00:00"
+        },
+        {
+          "id": "8503ead6a0f0",
+          "title": "Seven new stable kernels with patches for CVE-2026-46333",
+          "url": "https://lwn.net/Articles/1073060/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-15T13:34:24+00:00"
+        },
+        {
+          "id": "056f517a1d52",
+          "title": "[$] HugeTLB preservation over live update",
+          "url": "https://lwn.net/Articles/1072531/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-15T13:27:42+00:00"
+        },
+        {
+          "id": "e2a0c602824d",
+          "title": "Security updates for Friday",
+          "url": "https://lwn.net/Articles/1073059/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-15T13:16:03+00:00"
+        },
+        {
+          "id": "c8f3eac521ba",
+          "title": "Striking New Views of the First Atomic Bomb Test",
+          "url": "https://spectrum.ieee.org/trinity-nuclear-test",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-15T13:00:01+00:00"
+        },
+        {
+          "id": "5cd60d4a50dd",
+          "title": "Presentation: Using AI as a Thinking Partner for Large-Scale Engineering Systems",
+          "url": "https://www.infoq.com/presentations/ai-large-scale-engineering-systems/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-15T13:00:00+00:00"
+        },
+        {
+          "id": "64adf1cb11a2",
+          "title": "Discord Reveals How a Hidden Circular Dependency Triggered Its March Voice Outage",
+          "url": "https://www.infoq.com/news/2026/05/discord-circular-dependency/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "lang": "en",
+          "published_at": "2026-05-15T12:00:00+00:00"
+        },
+        {
+          "id": "d97d7835a43b",
+          "title": "Mercurial, 20 years and counting: how are we still alive and kicking? [video]",
+          "url": "https://fosdem.org/2026/schedule/event/AGWUVH-mercurial-aint-you-dead-yet/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-15T11:39:13+00:00"
+        },
+        {
+          "id": "22f8bde30995",
+          "title": "Prolog Basics Explained with Pokémon",
+          "url": "https://unplannedobsolescence.com/blog/prolog-basics-pokemon/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-15T11:02:14+00:00"
+        },
+        {
+          "id": "341530733c61",
+          "title": "Extending AI gateways with Rust: Custom transformations in agentgateway and kgateway",
+          "url": "https://www.cncf.io/blog/2026/05/15/extending-ai-gateways-with-rust-custom-transformations-in-agentgateway-and-kgateway/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-15T11:00:00+00:00"
+        },
+        {
+          "id": "c8ee491489ac",
+          "title": "Colossus: The Forbin Project",
+          "url": "https://en.wikipedia.org/wiki/Colossus:_The_Forbin_Project",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-14T22:30:16+00:00"
+        },
+        {
+          "id": "03c9cd72acb2",
+          "title": "Hindenburg’s Smoking Room",
+          "url": "https://www.airships.net/hindenburg-smoking-room/",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-14T20:08:12+00:00"
+        },
+        {
+          "id": "f9d9b8089885",
+          "title": "[$] Policy groups for memory management",
+          "url": "https://lwn.net/Articles/1072517/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-14T19:02:35+00:00"
+        },
+        {
+          "id": "f32d6581c3cd",
+          "title": "IEEE Society Helps Researchers Meet Their Next Corporate Backer",
+          "url": "https://spectrum.ieee.org/ieee-society-pitch-sessions",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-14T18:00:02+00:00"
+        },
+        {
+          "id": "026733ba08a0",
+          "title": "From latency to instant: Modernizing GitHub Issues navigation performance",
+          "url": "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance/",
+          "source": "GitHub Engineering",
+          "lang": "en",
+          "published_at": "2026-05-14T16:00:00+00:00"
+        },
+        {
+          "id": "fc97299db818",
+          "title": "[$] Buffered atomic writes, writethrough, and more",
+          "url": "https://lwn.net/Articles/1072019/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-14T14:54:26+00:00"
+        },
+        {
+          "id": "35bce61c77af",
+          "title": "Three stable kernels for Thursday",
+          "url": "https://lwn.net/Articles/1072849/",
+          "source": "LWN.net",
+          "lang": "en",
+          "published_at": "2026-05-14T14:44:32+00:00"
+        },
+        {
+          "id": "85670ea0eaef",
+          "title": "When AI agents become contributors: How KubeStellar reached 81% PR acceptance",
+          "url": "https://www.cncf.io/blog/2026/05/14/when-ai-agents-become-contributors-how-kubestellar-reached-81-pr-acceptance/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-14T11:00:00+00:00"
+        },
+        {
+          "id": "0d1eeff2d60d",
+          "title": "High-Entropy Alloy",
+          "url": "https://en.wikipedia.org/wiki/High-entropy_alloy",
+          "source": "HackerNews",
+          "lang": "en",
+          "published_at": "2026-05-14T10:08:04+00:00"
+        },
+        {
+          "id": "398e0dfefbab",
+          "title": "Why RF Coexistence Testing Is Critical for Shared Spectrum",
+          "url": "https://content.knowledgehub.wiley.com/testing-for-coexistence-in-crowded-and-contested-rf-environments/",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-14T10:00:01+00:00"
+        },
+        {
+          "id": "571cc8721ff0",
+          "title": "Accelerating Chipmaking Innovation for the Energy-Efficient AI Era",
+          "url": "https://spectrum.ieee.org/applied-materials-epic-center",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-14T10:00:01+00:00"
+        },
+        {
+          "id": "71d91f72ed7d",
+          "title": "Reproductibilité obligatoire, tests de paquets binaires et nouvelle architecture",
+          "url": "https://linuxfr.org/news/reproductibilite-obligatoire-tests-de-paquets-binaires-et-nouvelle-architecture",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-14T09:00:25+00:00"
+        },
+        {
+          "id": "4c3127c31ca5",
+          "title": "Node.js 22.22.3 (LTS)",
+          "url": "https://nodejs.org/en/blog/release/v22.22.3",
+          "source": "Node.js Blog",
+          "lang": "en",
+          "published_at": "2026-05-13T18:45:03+00:00"
+        },
+        {
+          "id": "da21fe3b3375",
+          "title": "CNCF Debuts KubeCon + CloudNativeCon Japan 2026 Schedule",
+          "url": "https://www.cncf.io/announcements/2026/05/13/cncf-debuts-kubecon-cloudnativecon-japan-2026-schedule/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-13T16:00:00+00:00"
+        },
+        {
+          "id": "16c75657b808",
+          "title": "Building a cloud native platform from the ground up with Kairos, k0rdent, and bindy",
+          "url": "https://www.cncf.io/blog/2026/05/13/building-a-cloud-native-platform-from-the-ground-up-with-kairos-k0rdent-and-bindy/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-13T11:30:00+00:00"
+        },
+        {
+          "id": "9a1239ea5192",
+          "title": "Deming — un SMSI Open Source par et pour des RSSI",
+          "url": "https://linuxfr.org/news/deming-un-smsi-open-source-par-et-pour-des-rssi",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-13T08:46:28+00:00"
+        },
+        {
+          "id": "5de732a82647",
+          "title": "Podcast Projets Libres saison 4 épisode 17 : Mobian, Debian dans ta poche !",
+          "url": "https://linuxfr.org/news/podcast-projets-libres-saison-4-episode-17-mobian-debian-dans-ta-poche",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-13T06:49:01+00:00"
+        },
+        {
+          "id": "d64c7dfe44fd",
+          "title": "This Week in Rust 651",
+          "url": "https://this-week-in-rust.org/blog/2026/05/13/this-week-in-rust-651/",
+          "source": "This Week in Rust",
+          "lang": "en",
+          "published_at": "2026-05-13T04:00:00+00:00"
+        },
+        {
+          "id": "d4fe95896134",
+          "title": "Secure Coding Guide for Python (pyscg) First Release",
+          "url": "https://openssf.org/blog/2026/05/12/secure-coding-guide-for-python-pyscg-first-release/",
+          "source": "OpenSSF Blog",
+          "lang": "en",
+          "published_at": "2026-05-12T19:47:44+00:00"
+        },
+        {
+          "id": "81440418db69",
+          "title": "IEEE Program Aims to Connect the Billions Who Are Still Offline",
+          "url": "https://spectrum.ieee.org/ieee-connect-the-unconnected",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-12T18:00:02+00:00"
+        },
+        {
+          "id": "e237e12f49a2",
+          "title": "Neutralizing the Gigascale Problem: How to Solve the Physical Power Paradox of Extreme AI Training Loads",
+          "url": "https://spectrum.ieee.org/gigascale-ai-datacenter-power",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-12T17:15:15+00:00"
+        },
+        {
+          "id": "0b4195030342",
+          "title": "A decade of governance: Cloud Custodian at 10 and its role in the agentic AI era",
+          "url": "https://www.cncf.io/blog/2026/05/12/a-decade-of-governance-cloud-custodian-at-10-and-its-role-in-the-agentic-ai-era/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-12T11:00:00+00:00"
+        },
+        {
+          "id": "441c7177c9e2",
+          "title": "First Public Working Draft: Recognized Entities v1.0",
+          "url": "https://www.w3.org/news/2026/first-public-working-draft-recognized-entities-v1-0/",
+          "source": "W3C Blog",
+          "lang": "en",
+          "published_at": "2026-05-12T09:15:00+00:00"
+        },
+        {
+          "id": "f280cea869b7",
+          "title": "Hack to the Future: The Impact and Legacy of the DARPA AIxCC Challenge",
+          "url": "https://openssf.org/blog/2026/05/12/hack-to-the-future-the-impact-and-legacy-of-the-darpa-aixcc-challenge/",
+          "source": "OpenSSF Blog",
+          "lang": "en",
+          "published_at": "2026-05-12T09:00:49+00:00"
+        },
+        {
+          "id": "bd95c3452053",
+          "title": "A new suite of modern tools coming for editing and publishing RFCs",
+          "url": "http://www.ietf.org/blog/new-tools-coming-for-editing-and-publishing-rfcs/",
+          "source": "IETF Blog",
+          "lang": "en",
+          "published_at": "2026-05-12T08:00:00+00:00"
+        },
+        {
+          "id": "88519b2bfb9a",
+          "title": "Courrier à madame la présidente de Quimper Bretagne Occidentale (QBO) sur les dépendances numériques extra-européennes",
+          "url": "https://linuxfr.org/news/courrier-a-madame-la-presidente-de-quimper-bretagne-occidentale-qbo-sur-les-dependances-numeriques-extra-europeennes",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-12T07:46:02+00:00"
+        },
+        {
+          "id": "0495117fefbe",
+          "title": "Lettre d'information XMPP de janvier 2026",
+          "url": "https://linuxfr.org/news/lettre-d-information-xmpp-de-janvier-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-12T07:40:20+00:00"
+        },
+        {
+          "id": "0c9123ed8af2",
+          "title": "Des nouvelles de Fortran n°8 - mai 2026",
+          "url": "https://linuxfr.org/news/des-nouvelles-de-fortran-n-8-mai-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-12T07:37:09+00:00"
+        },
+        {
+          "id": "df3e2be57403",
+          "title": "🏆 Meilleures contributions LinuxFr.org : les primées d'avril 2026",
+          "url": "https://linuxfr.org/news/meilleures-contributions-linuxfr-org-les-primees-d-avril-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-12T07:35:31+00:00"
+        },
+        {
+          "id": "5808edc629dd",
+          "title": "🪶 Les journaux LinuxFr.org les mieux notés d'avril 2026",
+          "url": "https://linuxfr.org/news/les-journaux-linuxfr-org-les-mieux-notes-d-avril-2026",
+          "source": "LinuxFr.org",
+          "lang": "fr",
+          "published_at": "2026-05-12T07:33:40+00:00"
+        },
+        {
+          "id": "b2f88d6dd84a",
+          "title": "Longhorn PHP 2026 - Call For Papers",
+          "url": "https://www.php.net/conferences/index.php#2026-05-11-1",
+          "source": "PHP.net",
+          "lang": "en",
+          "published_at": "2026-05-11T22:03:37+00:00"
+        },
+        {
+          "id": "618499cd2b22",
+          "title": "WebKit Features for Safari 26.5",
+          "url": "https://webkit.org/blog/17938/webkit-features-for-safari-26-5/",
+          "source": "WebKit Blog",
+          "lang": "en",
+          "published_at": "2026-05-11T17:00:05+00:00"
+        },
+        {
+          "id": "ff4b7b31dc5c",
+          "title": "How to get engineering time back from Kubernetes upgrades",
+          "url": "https://www.cncf.io/blog/2026/05/11/how-to-get-engineering-time-back-from-kubernetes-upgrades/",
+          "source": "CNCF Blog",
+          "lang": "en",
+          "published_at": "2026-05-11T11:00:00+00:00"
+        },
+        {
+          "id": "a46a9e8d8c8c",
+          "title": "Why Mastering EVM Is Essential for Next-Generation Wireless Systems",
+          "url": "https://content.knowledgehub.wiley.com/understanding-evm-error-vector-magnitude-in-modern-wireless-communications/",
+          "source": "IEEE Spectrum",
+          "lang": "en",
+          "published_at": "2026-05-11T10:00:01+00:00"
+        },
+        {
+          "id": "b56f918f1829",
+          "title": "Khrys’presso du lundi 11 mai 2026",
+          "url": "https://framablog.org/2026/05/11/khryspresso-du-lundi-11-mai-2026/",
+          "source": "Framablog",
+          "lang": "fr",
+          "published_at": "2026-05-11T05:42:04+00:00"
+        },
+        {
+          "id": "e31fe56177c9",
+          "title": "Python 3.14.5 is out!",
+          "url": "https://blog.python.org/2026/05/python-3145-is-out/",
+          "source": "Python Blog",
+          "lang": "en",
+          "published_at": "2026-05-10T00:00:00+00:00"
+        }
+      ]
+    },
     {
       "id": "c79d96bd359f",
       "title": "Anzeige: Cola, Sprite, Pepsi und Fanta ab 58 Cent pro Dose im Angebot",
@@ -479,7 +1245,8 @@
         "general"
       ],
       "published_at": "2026-05-17T23:41:06+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "61ee3009e31d",
@@ -490,7 +1257,8 @@
         "general"
       ],
       "published_at": "2026-05-17T23:10:09+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "27ffa690abb4",
@@ -501,7 +1269,8 @@
         "general"
       ],
       "published_at": "2026-05-17T21:45:30+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "64ce35ec18b6",
@@ -512,7 +1281,8 @@
         "general"
       ],
       "published_at": "2026-05-17T21:40:35+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f444e27fae39",
@@ -523,7 +1293,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-17T21:39:26+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "c458a0eb97b7",
@@ -534,7 +1305,8 @@
         "general"
       ],
       "published_at": "2026-05-17T21:15:51+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "b47933c92ca4",
@@ -545,7 +1317,8 @@
         "general"
       ],
       "published_at": "2026-05-17T21:14:23+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "8fe9e71e396d",
@@ -556,7 +1329,8 @@
         "stack_alt"
       ],
       "published_at": "2026-05-17T20:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "a3b4b7464283",
@@ -567,7 +1341,8 @@
         "general"
       ],
       "published_at": "2026-05-17T19:39:10+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "26054361bdcc",
@@ -578,7 +1353,8 @@
         "general"
       ],
       "published_at": "2026-05-17T19:36:06+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "b5985a42c676",
@@ -589,7 +1365,8 @@
         "general"
       ],
       "published_at": "2026-05-17T18:36:41+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "3326b043a01e",
@@ -600,7 +1377,8 @@
         "good_news"
       ],
       "published_at": "2026-05-17T17:43:12+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f59c6be076f6",
@@ -611,7 +1389,8 @@
         "general"
       ],
       "published_at": "2026-05-17T16:37:47+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "e01585a0a59e",
@@ -622,7 +1401,8 @@
         "general"
       ],
       "published_at": "2026-05-17T16:28:54+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "0d8a05692802",
@@ -633,7 +1413,8 @@
         "general"
       ],
       "published_at": "2026-05-17T15:40:32+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "32f963156b31",
@@ -644,7 +1425,8 @@
         "general"
       ],
       "published_at": "2026-05-17T15:37:07+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "92694b09d349",
@@ -655,7 +1437,8 @@
         "general"
       ],
       "published_at": "2026-05-17T15:28:30+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "460d61b192d1",
@@ -666,7 +1449,8 @@
         "general"
       ],
       "published_at": "2026-05-17T14:50:17+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "6aacd7aba708",
@@ -677,7 +1461,8 @@
         "general"
       ],
       "published_at": "2026-05-17T13:18:16+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "4f830bf1e908",
@@ -688,7 +1473,8 @@
         "general"
       ],
       "published_at": "2026-05-17T13:16:27+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "cb3666403021",
@@ -699,7 +1485,8 @@
         "general"
       ],
       "published_at": "2026-05-17T13:07:02+00:00",
-      "lang": "de"
+      "lang": "de",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "83224c053d57",
@@ -710,7 +1497,8 @@
         "general"
       ],
       "published_at": "2026-05-17T12:58:13+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "490fccc479b0",
@@ -721,7 +1509,8 @@
         "general"
       ],
       "published_at": "2026-05-17T12:57:07+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "3e20d3c9412e",
@@ -732,7 +1521,8 @@
         "general"
       ],
       "published_at": "2026-05-17T12:52:06+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "210362e86288",
@@ -743,7 +1533,8 @@
         "general"
       ],
       "published_at": "2026-05-17T12:22:02+00:00",
-      "lang": "de"
+      "lang": "de",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "86722d9ad618",
@@ -755,7 +1546,8 @@
         "stack_alt"
       ],
       "published_at": "2026-05-17T12:13:45+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "164f5f9b052a",
@@ -766,7 +1558,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-17T12:13:12+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "42df6dba3a58",
@@ -777,7 +1570,8 @@
         "general"
       ],
       "published_at": "2026-05-17T11:02:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "308ac2605662",
@@ -788,7 +1582,8 @@
         "general"
       ],
       "published_at": "2026-05-17T09:26:43+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "d2725dda1278",
@@ -799,7 +1594,8 @@
         "general"
       ],
       "published_at": "2026-05-17T09:00:08+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "efac1356dc94",
@@ -811,7 +1607,8 @@
         "stack_alt"
       ],
       "published_at": "2026-05-17T08:30:40+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "229600b54eeb",
@@ -822,7 +1619,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-17T07:58:30+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "351a8c78e10c",
@@ -833,7 +1631,8 @@
         "general"
       ],
       "published_at": "2026-05-17T06:17:26+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "3a3c27efba15",
@@ -844,7 +1643,8 @@
         "general"
       ],
       "published_at": "2026-05-17T04:09:52+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "174d3af00670",
@@ -855,7 +1655,8 @@
         "general"
       ],
       "published_at": "2026-05-16T22:45:16+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "71f9b89bf1ce",
@@ -867,7 +1668,8 @@
         "stack_alt"
       ],
       "published_at": "2026-05-16T20:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "21c396e1b666",
@@ -878,7 +1680,8 @@
         "stack_alt"
       ],
       "published_at": "2026-05-16T16:19:56+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "3032750213db",
@@ -889,7 +1692,8 @@
         "general"
       ],
       "published_at": "2026-05-16T12:34:12+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "7fb06ffdf7f8",
@@ -900,7 +1704,8 @@
         "general"
       ],
       "published_at": "2026-05-16T12:26:54+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "cf50fbafc8da",
@@ -911,7 +1716,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-16T11:05:59+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f4ba9f84a6fb",
@@ -922,7 +1728,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-16T10:15:33+00:00",
-      "lang": "ja"
+      "lang": "ja",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "61c4c463fa3b",
@@ -933,7 +1740,8 @@
         "general"
       ],
       "published_at": "2026-05-16T08:39:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "36e016276490",
@@ -944,7 +1752,8 @@
         "good_news"
       ],
       "published_at": "2026-05-16T08:34:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "236c0ea9cfe4",
@@ -955,7 +1764,8 @@
         "general"
       ],
       "published_at": "2026-05-16T01:25:29+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "3d3a95e180b7",
@@ -966,7 +1776,8 @@
         "general"
       ],
       "published_at": "2026-05-15T19:25:43+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "ad4de3314434",
@@ -977,7 +1788,8 @@
         "general"
       ],
       "published_at": "2026-05-15T17:17:04+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "03fd46927cd8",
@@ -988,7 +1800,8 @@
         "good_news"
       ],
       "published_at": "2026-05-15T15:51:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "aa10d688b3b0",
@@ -999,7 +1812,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T14:54:56+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "b8d3a65e21b8",
@@ -1010,7 +1824,8 @@
         "general"
       ],
       "published_at": "2026-05-15T14:04:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "8503ead6a0f0",
@@ -1023,7 +1838,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T13:34:24+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "056f517a1d52",
@@ -1034,7 +1850,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T13:27:42+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "e2a0c602824d",
@@ -1045,7 +1862,8 @@
         "general"
       ],
       "published_at": "2026-05-15T13:16:03+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "c8f3eac521ba",
@@ -1056,7 +1874,8 @@
         "general"
       ],
       "published_at": "2026-05-15T13:00:01+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "5cd60d4a50dd",
@@ -1067,7 +1886,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T13:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "64adf1cb11a2",
@@ -1079,7 +1899,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T12:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "d97d7835a43b",
@@ -1090,7 +1911,8 @@
         "general"
       ],
       "published_at": "2026-05-15T11:39:13+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "22f8bde30995",
@@ -1101,7 +1923,8 @@
         "general"
       ],
       "published_at": "2026-05-15T11:02:14+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "341530733c61",
@@ -1113,7 +1936,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-15T11:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "c8ee491489ac",
@@ -1124,7 +1948,8 @@
         "general"
       ],
       "published_at": "2026-05-14T22:30:16+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "03c9cd72acb2",
@@ -1135,7 +1960,8 @@
         "general"
       ],
       "published_at": "2026-05-14T20:08:12+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f9d9b8089885",
@@ -1146,7 +1972,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-14T19:02:35+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f32d6581c3cd",
@@ -1157,7 +1984,8 @@
         "general"
       ],
       "published_at": "2026-05-14T18:00:02+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "026733ba08a0",
@@ -1168,7 +1996,8 @@
         "general"
       ],
       "published_at": "2026-05-14T16:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "fc97299db818",
@@ -1179,7 +2008,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-14T14:54:26+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "35bce61c77af",
@@ -1191,7 +2021,8 @@
         "good_news"
       ],
       "published_at": "2026-05-14T14:44:32+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "85670ea0eaef",
@@ -1202,7 +2033,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-14T11:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "0d1eeff2d60d",
@@ -1213,7 +2045,8 @@
         "general"
       ],
       "published_at": "2026-05-14T10:08:04+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "398e0dfefbab",
@@ -1224,7 +2057,8 @@
         "general"
       ],
       "published_at": "2026-05-14T10:00:01+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "571cc8721ff0",
@@ -1235,7 +2069,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-14T10:00:01+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "71d91f72ed7d",
@@ -1246,7 +2081,8 @@
         "general"
       ],
       "published_at": "2026-05-14T09:00:25+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "4c3127c31ca5",
@@ -1257,7 +2093,8 @@
         "general"
       ],
       "published_at": "2026-05-13T18:45:03+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "da21fe3b3375",
@@ -1268,7 +2105,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-13T16:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "16c75657b808",
@@ -1279,7 +2117,8 @@
         "general"
       ],
       "published_at": "2026-05-13T11:30:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "9a1239ea5192",
@@ -1290,7 +2129,8 @@
         "good_news"
       ],
       "published_at": "2026-05-13T08:46:28+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "5de732a82647",
@@ -1301,7 +2141,8 @@
         "general"
       ],
       "published_at": "2026-05-13T06:49:01+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "d64c7dfe44fd",
@@ -1312,7 +2153,8 @@
         "general"
       ],
       "published_at": "2026-05-13T04:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "d4fe95896134",
@@ -1323,7 +2165,8 @@
         "general"
       ],
       "published_at": "2026-05-12T19:47:44+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "81440418db69",
@@ -1334,7 +2177,8 @@
         "general"
       ],
       "published_at": "2026-05-12T18:00:02+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "e237e12f49a2",
@@ -1345,7 +2189,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T17:15:15+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "0b4195030342",
@@ -1357,7 +2202,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T11:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "441c7177c9e2",
@@ -1368,7 +2214,8 @@
         "general"
       ],
       "published_at": "2026-05-12T09:15:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "f280cea869b7",
@@ -1379,7 +2226,8 @@
         "general"
       ],
       "published_at": "2026-05-12T09:00:49+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "bd95c3452053",
@@ -1390,7 +2238,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T08:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "88519b2bfb9a",
@@ -1401,7 +2250,8 @@
         "general"
       ],
       "published_at": "2026-05-12T07:46:02+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "0495117fefbe",
@@ -1412,7 +2262,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T07:40:20+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "0c9123ed8af2",
@@ -1423,7 +2274,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T07:37:09+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "df3e2be57403",
@@ -1434,7 +2286,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T07:35:31+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "5808edc629dd",
@@ -1445,7 +2298,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T07:33:40+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "b2f88d6dd84a",
@@ -1456,7 +2310,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-11T22:03:37+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "618499cd2b22",
@@ -1467,7 +2322,8 @@
         "general"
       ],
       "published_at": "2026-05-11T17:00:05+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "ff4b7b31dc5c",
@@ -1478,7 +2334,8 @@
         "general"
       ],
       "published_at": "2026-05-11T11:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "a46a9e8d8c8c",
@@ -1489,7 +2346,8 @@
         "general"
       ],
       "published_at": "2026-05-11T10:00:01+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "b56f918f1829",
@@ -1500,7 +2358,8 @@
         "future_watch"
       ],
       "published_at": "2026-05-11T05:42:04+00:00",
-      "lang": "fr"
+      "lang": "fr",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "e31fe56177c9",
@@ -1511,7 +2370,8 @@
         "general"
       ],
       "published_at": "2026-05-10T00:00:00+00:00",
-      "lang": "en"
+      "lang": "en",
+      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "8be2f0b06477",

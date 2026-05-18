@@ -1,0 +1,230 @@
+/* ===== SYNTHESIS DETAIL PAGE ===== */
+
+.synthesis-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+/* Back nav */
+
+.synthesis-detail-nav {
+  margin-bottom: 2rem;
+}
+
+.synthesis-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.synthesis-back-btn:hover {
+  color: var(--accent-primary);
+}
+
+/* Header */
+
+.synthesis-detail-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.synthesis-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-ui);
+}
+
+.synthesis-detail-count {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.synthesis-detail-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Markdown body */
+
+.synthesis-detail-body {
+  margin-bottom: 2.5rem;
+}
+
+.synthesis-detail-content {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.synthesis-detail-content h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
+  line-height: 1.25;
+}
+
+.synthesis-detail-content h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0 0.75rem;
+}
+
+.synthesis-detail-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.synthesis-detail-content p {
+  margin: 0 0 1.1rem;
+}
+
+.synthesis-detail-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.synthesis-detail-content em {
+  font-style: italic;
+}
+
+.synthesis-detail-content a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.synthesis-detail-content a:hover {
+  color: var(--accent-secondary);
+}
+
+/* Tables */
+
+.synthesis-detail-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  display: block;
+}
+
+.synthesis-detail-content th,
+.synthesis-detail-content td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.synthesis-detail-content th {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.synthesis-detail-content td {
+  color: var(--text-secondary);
+}
+
+.synthesis-detail-content tr:hover td {
+  background: color-mix(in srgb, var(--bg-tertiary) 60%, transparent);
+}
+
+/* Blockquotes */
+
+.synthesis-detail-content blockquote {
+  border-left: 4px solid var(--accent-primary);
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--bg-secondary);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Code */
+
+.synthesis-detail-content code {
+  font-family: "Fira Code", "Cascadia Code", monospace;
+  font-size: 0.875em;
+  background: var(--bg-tertiary);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+}
+
+.synthesis-detail-content pre {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.synthesis-detail-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+/* Lists */
+
+.synthesis-detail-content ul,
+.synthesis-detail-content ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.5rem;
+}
+
+.synthesis-detail-content li {
+  margin-bottom: 0.35rem;
+}
+
+/* Sources section */
+
+.synthesis-detail-sources {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .synthesis-detail {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .synthesis-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .synthesis-detail-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .synthesis-detail-content h2 {
+    font-size: 1.1rem;
+  }
+}

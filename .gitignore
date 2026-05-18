@@ -80,3 +80,6 @@ target/doc/
 
 # Cache
 .cache/
+
+# Design guide exports — keep .md sources, ignore generated PDFs
+design/*.pdf

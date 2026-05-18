@@ -18,6 +18,7 @@
 }
 
 .veille-updated {
+  font-family: var(--font-ui);
   font-size: 0.85rem;
   color: var(--text-tertiary);
   margin-top: 0.75rem;
@@ -46,9 +47,10 @@
 .veille-filter-btn {
   padding: 0.4rem 1rem;
   border: 1px solid var(--border-color);
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   background: var(--bg-secondary);
   color: var(--text-secondary);
+  font-family: var(--font-ui);
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -97,7 +99,7 @@
 .veille-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
   transition: all 0.2s ease;
 }
@@ -117,20 +119,23 @@
 }
 
 .veille-source {
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--accent-secondary);
   background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .veille-date {
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   color: var(--text-tertiary);
 }
 
 .veille-lang {
+  font-family: var(--font-ui);
   font-size: 0.85rem;
   margin-left: auto;
 }
@@ -161,10 +166,11 @@
 /* ===== CATEGORY BADGES ===== */
 
 .veille-cat {
+  font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 600;
   padding: 0.2rem 0.6rem;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -214,6 +220,192 @@
 [data-theme="dark"] .veille-cat-stack_alt {
   background: rgba(168, 85, 247, 0.2);
   color: #a78bfa;
+}
+
+/* ===== WEEKLY SYNTHESIS CARD (preview) ===== */
+
+.veille-synthesis-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.veille-synthesis-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.veille-synthesis-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.veille-synthesis-badge {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background: var(--accent-gradient);
+  color: white;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.veille-synthesis-card-period {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.veille-synthesis-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.veille-synthesis-source-count {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.veille-synthesis-excerpt {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.veille-synthesis-cta {
+  margin-top: 0.25rem;
+}
+
+.veille-synthesis-read-more {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--accent-gradient);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.veille-synthesis-read-more:hover {
+  opacity: 0.85;
+}
+
+/* ===== SYNTHESIS WEEK TAG on article cards ===== */
+
+.veille-synth-tag {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+  color: var(--accent-secondary);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: background 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.veille-synth-tag:hover {
+  background: color-mix(in srgb, var(--accent-primary) 25%, transparent);
+}
+
+/* ===== SYNTHESIS FILTER LABEL ===== */
+
+.veille-filter-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  align-self: center;
+  white-space: nowrap;
+}
+
+.veille-filters-synthesis {
+  margin-top: -1rem;
+}
+
+/* Sources toggle */
+
+.veille-synthesis-sources {
+  margin-top: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.veille-synthesis-sources-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.veille-synthesis-sources-toggle:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.veille-synthesis-sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.veille-synthesis-sources-list li {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.veille-synthesis-sources-list a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.veille-synthesis-sources-list a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
 }
 
 /* ===== RESPONSIVE ===== */

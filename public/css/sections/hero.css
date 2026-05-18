@@ -40,7 +40,8 @@
   background: var(--accent-tertiary);
   color: white;
   border: 1px solid var(--accent-tertiary);
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 2rem;
@@ -81,7 +82,7 @@
   position: absolute;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
   padding: 1.5rem;
 }
