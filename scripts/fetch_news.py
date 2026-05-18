@@ -9,7 +9,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -241,85 +241,8 @@ def fetch_rss(source: dict) -> list[dict]:
     return items
 
 
-def generate_synthesis(items: list[dict]) -> dict | None:
-    """Generate bilingual EN/FR synthesis via Claude API. Returns None if key absent or call fails."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        return None
-    try:
-        import anthropic
-    except ImportError:
-        print("[synthesis] anthropic package not installed, skipping", file=sys.stderr)
-        return None
-
-    client = anthropic.Anthropic(api_key=api_key)
-
-    by_cat: dict[str, list[str]] = {}
-    for item in items[:80]:
-        for cat in item["categories"]:
-            by_cat.setdefault(cat, []).append(
-                f"[{item['source']}][{item['lang']}] {item['title']}"
-            )
-
-    context_lines: list[str] = []
-    for cat, titles in by_cat.items():
-        context_lines.append(f"\n## {cat.upper()}")
-        context_lines.extend(titles[:12])
-    context = "\n".join(context_lines)
-
-    prompt = f"""You are a critical tech analyst. Analyze these categorized tech articles from today and generate a bilingual (EN + FR) synthesis.
-
-ARTICLES BY CATEGORY:
-{context}
-
-TOTAL: {len(items)} items collected from institutional, academic, and curated sources.
-
-Generate a JSON object with this EXACT structure (pure JSON only, no markdown fences):
-{{
-  "en": {{
-    "headline": "One punchy headline (the single most important story today)",
-    "tldr": "2-3 sentence essential summary. Be specific: mention real names, version numbers, CVE IDs.",
-    "sections": [
-      {{"category": "urgent", "summary": "Concise summary for urgent/security items"}},
-      {{"category": "good_news", "summary": "Concise summary for releases and good news"}},
-      {{"category": "future_watch", "summary": "Concise summary for emerging tech items"}},
-      {{"category": "stack_alt", "summary": "Concise summary for comparison/alternatives items"}}
-    ],
-    "key_takeaways": ["Actionable point 1", "Actionable point 2", "Actionable point 3"],
-    "signal_vs_noise": "Honest 1-sentence assessment of today's signal quality"
-  }},
-  "fr": {{
-    "headline": "...",
-    "tldr": "...",
-    "sections": [...],
-    "key_takeaways": [...],
-    "signal_vs_noise": "..."
-  }}
-}}
-
-Rules:
-- Only include sections for categories that have substantive content (omit empty ones)
-- Be critical: distinguish real releases/discoveries from marketing/hype
-- key_takeaways must be actionable (what a developer should know or do today)
-- Respond ONLY with valid JSON, no text before or after"""
-
-    try:
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=2500,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = response.content[0].text.strip()
-        # Strip markdown code fences if Claude adds them
-        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
-        text = re.sub(r"\n?```\s*$", "", text)
-        return json.loads(text)
-    except Exception as e:
-        print(f"[synthesis] generation failed: {e}", file=sys.stderr)
-        return None
-
-
 def main() -> None:
+    out_path = Path(__file__).parent.parent / "public" / "news.json"
     all_items: list[dict] = []
     seen: set[str] = set()
 
@@ -327,6 +250,23 @@ def main() -> None:
         if item["id"] not in seen:
             seen.add(item["id"])
             all_items.append(item)
+
+    # Load existing items: keep synthesis cards (no expiry) + articles within 14-day window
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).isoformat()
+    if out_path.exists():
+        try:
+            existing = json.loads(out_path.read_text(encoding="utf-8"))
+            for item in existing.get("items", []):
+                if item.get("type") == "synthesis":
+                    if item["id"] not in seen:
+                        seen.add(item["id"])
+                        all_items.append(item)
+                elif item.get("published_at", "") >= cutoff:
+                    if item["id"] not in seen:
+                        seen.add(item["id"])
+                        all_items.append(item)
+        except Exception as e:
+            print(f"[load] Failed to load existing news.json: {e}", file=sys.stderr)
 
     print("Fetching HackerNews…")
     for item in fetch_hn():
@@ -337,24 +277,15 @@ def main() -> None:
         for item in fetch_rss(source):
             add(item)
 
-    all_items.sort(key=lambda x: x["published_at"], reverse=True)
-
-    print(f"Generating synthesis ({len(all_items)} items)…")
-    synthesis = generate_synthesis(all_items)
-    if synthesis:
-        print("[synthesis] Generated successfully.")
-    else:
-        print("[synthesis] Skipped (no ANTHROPIC_API_KEY or generation failed).")
+    all_items.sort(key=lambda x: x.get("published_at", ""), reverse=True)
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "period": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "count": len(all_items),
-        "synthesis": synthesis,
         "items": all_items,
     }
 
-    out_path = Path(__file__).parent.parent / "public" / "news.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Done: {len(all_items)} items → {out_path}")

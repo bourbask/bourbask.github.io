@@ -39,6 +39,7 @@ gloo-net = { version = "0.6", features = ["http"] }
 gloo-storage = "0.3"
 chrono = "0.4"
 wasm-bindgen-futures = "0.4"
+pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
 
 [profile.release]
 opt-level = "z"
