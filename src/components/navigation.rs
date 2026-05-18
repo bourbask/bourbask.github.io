@@ -27,7 +27,8 @@ pub fn Navigation() -> impl IntoView {
         }) as Box<dyn Fn()>);
 
         if let Some(win) = web_sys::window() {
-            let _ = win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+            let _ =
+                win.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
         }
         closure.forget();
     });
