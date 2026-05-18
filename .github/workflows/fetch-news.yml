@@ -31,6 +31,8 @@ jobs:
 
       - name: Fetch and classify news
         run: python scripts/fetch_news.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Commit if changed
         run: |
