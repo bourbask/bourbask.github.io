@@ -1,0 +1,98 @@
+/* ===== LOGO SYSTEM =====
+ * Three variants: Mark (icon), Standard (header), Display (hero/animated).
+ * Tokens: --logo-fern-green (invariant), --logo-boot-stroke (theme-adaptive).
+ * SVGs not yet created — this file anticipates Phase 3.
+ */
+
+/* ----- Shared container ----- */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.logo:hover { opacity: 0.8; }
+
+/* ----- Mark variant (favicon / avatar / small icon) ----- */
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.logo-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ----- Standard variant (header navigation) ----- */
+
+.logo-standard {
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.logo-standard svg {
+  width: auto;
+  height: 100%;
+}
+
+/* Boot stroke adapts to theme; fern fill never changes */
+.logo-standard .logo-boot  { stroke: var(--logo-boot-stroke); fill: none; stroke-width: var(--logo-boot-stroke-width); }
+.logo-standard .logo-fern  { fill: var(--logo-fern-green); stroke: none; }
+
+/* ----- Display variant (hero / large format / animated) ----- */
+
+.logo-display {
+  width: 200px;
+  height: auto;
+}
+
+.logo-display svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.logo-display .logo-boot   { stroke: var(--logo-boot-stroke); fill: none; stroke-width: var(--logo-boot-stroke-width); }
+.logo-display .logo-ground { fill: color-mix(in srgb, var(--logo-fern-green) 20%, transparent); }
+.logo-display .logo-stem   { stroke: var(--logo-fern-green); fill: none; stroke-width: 2px; }
+.logo-display .logo-frond  { fill: var(--logo-fern-green); opacity: 0.9; }
+
+/* ----- Animation (Phase 4 — paths not yet created) ----- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-display[data-animate] .logo-boot,
+  .logo-display[data-animate] .logo-stem {
+    stroke-dasharray: var(--_dash-len, 1000);
+    stroke-dashoffset: var(--_dash-len, 1000);
+    animation: logoDrawStroke var(--logo-animation-total) var(--logo-ease-mechanical) forwards;
+  }
+
+  .logo-display[data-animate] .logo-frond {
+    opacity: 0;
+    animation: logoFadeIn var(--duration-slow) var(--logo-ease-organic) forwards;
+  }
+}
+
+@keyframes logoDrawStroke {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes logoFadeIn {
+  to { opacity: 0.9; }
+}
+
+/* Reduced motion: show final state immediately */
+@media (prefers-reduced-motion: reduce) {
+  .logo-display[data-animate] * {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+}
