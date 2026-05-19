@@ -1,66 +1,935 @@
 {
-  "generated_at": "2026-05-18T08:00:00+00:00",
-  "period": "2026-05-18",
-  "count": 261,
-  "synthesis": {
-    "en": {
-      "headline": "Linux maintainer Linus Torvalds warns AI integration threatens kernel manageability; security researchers release microarchitectural attack framework",
-      "tldr": "Linus Torvalds publicly cautions that unchecked AI adoption risks making Linux kernel development \"nearly unmanageable,\" while academic researchers publish uGen, an agentic framework for generating microarchitectural attack proofs-of-concept. Meanwhile, Microsoft releases Aspire 13.3 with deployment improvements and OpenAI open-sources Symphony for autonomous coding agent orchestration.",
-      "sections": [
-        {
-          "category": "urgent",
-          "summary": "uGen framework enables automated generation of microarchitectural attack PoCs—a significant security research contribution requiring immediate evaluation by CPU vendors and system architects. No CVE specified but represents novel attack surface automation."
-        },
-        {
-          "category": "good_news",
-          "summary": "Microsoft Aspire 13.3 released with major deployment and frontend updates. OpenAI open-sources Symphony, a specification for autonomous coding agent orchestration. LWN reports stable kernel updates available."
-        },
-        {
-          "category": "future_watch",
-          "summary": "Emerging AI-in-infrastructure theme: papers on LLM bias in high-stakes decisions (hidden bias vs. fair outputs), theory-of-mind limits in human-AI interaction, privacy leak probing in LLM code generation, and systematic review of agentic AI across SDLC. Navigation API reaches browser baseline as History API replacement. Research suggests AI performance optimization benchmarking (PerfCodeBench) and property-based testing agents (PBT-Bench) becoming critical evaluation tools."
-        },
-        {
-          "category": "stack_alt",
-          "summary": "Ubuntu moving toward local AI integration over cloud-first OS design. New alternatives emerging: developer created ZeltJS web framework in 2 weeks as NestJS alternative. VS Code extensions enabling Excel-like Markdown table editing. Hacker News discourse questions whether AI actually accelerates software processes. Multiple benchmarking frameworks (PerfCodeBench, PBT-Bench) compare LLM performance on code tasks."
-        }
-      ],
-      "key_takeaways": [
-        "Monitor uGen framework implications: if microarchitectural attacks become trivial to generate, CPU mitigations and firmware updates will require acceleration—audit your infrastructure's speculative execution protections now",
-        "Linus Torvalds' warning signals incoming friction: AI-assisted Linux kernel patches may face stricter review criteria; if you maintain kernel drivers, expect stricter driver verification rules (Windows 11 precedent already enforces this) and prepare for upstream skepticism of AI-generated code",
-        "Evaluate local AI deployment: Ubuntu's shift and research on LLM privacy leaks suggest cloud-dependent AI assistants present unacceptable data exfiltration risk for regulated workloads—assess on-premise alternatives (Symphony orchestration, local LLM inference) for your CI/CD"
-      ],
-      "signal_vs_noise": "Strong signal-to-noise ratio today: Torvalds' warning reflects genuine architectural concern, uGen represents real security research advance, and Symphony/Aspire are substantive releases; marketing content (beverage offers, subscription promos) easily filtered."
-    },
-    "fr": {
-      "headline": "Linus Torvalds avertit que l'IA menace la maintenabilité du noyau Linux ; des chercheurs en sécurité publient un framework d'attaques microarchitecturales",
-      "tldr": "Linus Torvalds met publiquement en garde : l'intégration sans contrôle de l'IA risque de rendre le développement du noyau Linux « quasi ingérable ». En parallèle, des chercheurs académiques publient uGen, un framework agentic pour générer automatiquement des preuves de concept d'attaques microarchitecturales. Microsoft lance Aspire 13.3 avec améliorations de déploiement et OpenAI open-source Symphony pour l'orchestration d'agents de codage autonomes.",
-      "sections": [
-        {
-          "category": "urgent",
-          "summary": "Le framework uGen permet la génération automatisée de PoCs d'attaques microarchitecturales—contribution de recherche en sécurité significative exigeant une évaluation immédiate par les fabricants de CPU et les architectes système. Aucun CVE spécifié mais représente une nouvelle surface d'attaque automatisée."
-        },
-        {
-          "category": "good_news",
-          "summary": "Microsoft Aspire 13.3 publié avec mises à jour majeures de déploiement et frontend. OpenAI open-source Symphony, une spécification pour l'orchestration d'agents de codage autonomes. LWN rapporte la disponibilité de mises à jour stables du noyau."
-        },
-        {
-          "category": "future_watch",
-          "summary": "Thème émergent IA-en-infrastructure : articles sur le biais des LLM dans les décisions critiques (biais caché vs. résultats équitables), limites du « theory of mind » dans l'interaction humain-IA, fuites de confidentialité dans la génération de code par LLM, et revue systématique de l'IA agentive sur tout le cycle de vie logiciel. L'API Navigation atteint la compatibilité de base du navigateur comme remplaçant de l'API History. Les recherches suggèrent que les benchmarks d'optimisation de performance IA (PerfCodeBench) et les agents de test basés propriétés (PBT-Bench) deviennent des outils d'évaluation critiques."
-        },
-        {
-          "category": "stack_alt",
-          "summary": "Ubuntu se tourne vers l'intégration IA locale plutôt que la conception OS cloud-first. De nouvelles alternatives émergent : un développeur a créé ZeltJS en 2 semaines comme alternative à NestJS. Les extensions VS Code permettent l'édition de tableaux Markdown type Excel. Les discussions Hacker News questionnent si l'IA accélère réellement les processus logiciels. Plusieurs frameworks de benchmarking (PerfCodeBench, PBT-Bench) comparent les performances des LLM sur les tâches de codage."
-        }
-      ],
-      "key_takeaways": [
-        "Surveiller les implications du framework uGen : si les attaques microarchitecturales deviennent triviales à générer, les atténuations CPU et mises à jour firmware devront s'accélérer—auditez les protections contre l'exécution spéculative de votre infrastructure maintenant",
-        "L'avertissement de Torvalds signale des frictions imminentes : les patches du noyau Linux assistés par IA pourraient faire face à des critères d'examen plus stricts (Windows 11 applique déjà des règles de vérification des pilotes plus strictes). Si vous maintenez des pilotes noyau, préparez-vous au scepticisme upstream envers le code généré par IA",
-        "Évaluer le déploiement IA local : le virage d'Ubuntu et les recherches sur les fuites de confidentialité des LLM suggèrent que les assistants IA dépendant du cloud présentent un risque inacceptable d'exfiltration de données pour les charges de travail réglementées—évaluez les alternatives on-premise (orchestration Symphony, inférence LLM locale) pour votre CI/CD"
-      ],
-      "signal_vs_noise": "Ratio signal-bruit fort aujourd'hui : l'avertissement de Torvalds reflète une préoccupation architecturale authentique, uGen représente une avancée de recherche en sécurité réelle, et Symphony/Aspire sont des versions substantielles ; le contenu marketing (offres de boissons, promos d'abonnement) se filtre facilement."
-    }
-  },
+  "generated_at": "2026-05-19T07:06:38.317136+00:00",
+  "period": "2026-05-19",
+  "count": 354,
+  "synthesis": null,
   "items": [
+    {
+      "id": "1c808dd119a1",
+      "title": "Sony: Playstation Plus wird teurer",
+      "url": "https://www.golem.de/news/sony-playstation-plus-wird-teurer-2605-208797.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T07:05:03+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "68405998ce40",
+      "title": "Anzeige: Neuer Stromspeicher erleichtert Nachrüsten per Plug-and-Play",
+      "url": "https://www.golem.de/news/anzeige-neuer-stromspeicher-erleichtert-nachruesten-per-plug-and-play-2605-208752.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T07:05:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "3397089ae227",
+      "title": "Low-Latency Docsis: Vodafone will Latenz beim Kabelinternet verbessern",
+      "url": "https://www.golem.de/news/low-latency-docsis-vodafone-will-latenz-beim-kabelinternet-verbessern-2605-208787.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T07:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "39778e725b16",
+      "title": "Vite Version 8: Unified Rust-Based Bundler and Up to 30x Faster Builds",
+      "url": "https://www.infoq.com/news/2026/05/vite-v8-rust/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T06:57:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "379b1c9bce7a",
+      "title": "Fragwürdige KI im Klette-Prozess: Blackbox im Gerichtssaal",
+      "url": "https://www.golem.de/news/fragwuerdige-ki-im-klette-prozess-blackbox-im-gerichtssaal-2605-208718.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T06:55:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "4993429769bb",
+      "title": "Trump Mobile: Erste Testgeräte des Trump-Smartphones ausgeliefert",
+      "url": "https://www.golem.de/news/trump-mobile-erste-testgeraete-des-trump-smartphones-ausgeliefert-2605-208794.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T06:38:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "214c1b8bc7b5",
+      "title": "Eine Billion Euro: So will die SPD Europas KI-Rückstand aufholen",
+      "url": "https://www.golem.de/news/eine-billion-euro-so-will-die-spd-europas-ki-rueckstand-aufholen-2605-208792.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T06:11:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "62d2b6500779",
+      "title": "In eigener Sache: Golem als bevorzugte Quelle in Google einrichten",
+      "url": "https://www.golem.de/news/in-eigener-sache-golem-als-bevorzugte-quelle-in-google-einrichten-2605-208759.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T06:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "d1157999a13e",
+      "title": "Straße von Hormus: Iran testet Bitcoin als Währung für Schiffsdurchfahrt",
+      "url": "https://www.golem.de/news/strasse-von-hormus-iran-testet-bitcoin-als-waehrung-fuer-schiffsdurchfahrt-2605-208791.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T05:59:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "af2693d50fc6",
+      "title": "Freie Kapazitäten: VW verhandelte mit China schon 2024 über seine Werke",
+      "url": "https://www.golem.de/news/freie-kapazitaeten-vw-verhandelte-mit-china-schon-2024-ueber-seine-werke-2605-208790.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T05:46:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "fda44c66b2ee",
+      "title": "Gaming: Sony macht Schluss mit PC-Portierungen großer PS5-Spiele",
+      "url": "https://www.golem.de/news/gaming-sony-macht-schluss-mit-pc-portierungen-grosser-ps5-spiele-2605-208789.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T05:18:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "6d2504674e42",
+      "title": "AgentWall: A Runtime Safety Layer for Local AI Agents",
+      "url": "https://arxiv.org/abs/2605.16265",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e40ebaaf48aa",
+      "title": "ANNEAL: Adapting LLM Agents via Governed Symbolic Patch Learning",
+      "url": "https://arxiv.org/abs/2605.16309",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9898e88c7e95",
+      "title": "From Prompts to Protocols: An AI Agent for Laboratory Automation",
+      "url": "https://arxiv.org/abs/2605.16552",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "779ce4b5ec98",
+      "title": "Skim: Speculative Execution for Fast and Efficient Web Agents",
+      "url": "https://arxiv.org/abs/2605.16565",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "63731ad4c357",
+      "title": "Scalable Uncertainty Reasoning in Knowledge Graphs",
+      "url": "https://arxiv.org/abs/2605.16568",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f346ce4272f5",
+      "title": "Counterparty Modeling is Not Strategy: The Limits of LLM Negotiators",
+      "url": "https://arxiv.org/abs/2605.16575",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4e55acd90265",
+      "title": "PRISMat: Policy-Driven, Permutation-Invariant Autoregressive Material Generation",
+      "url": "https://arxiv.org/abs/2605.16612",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a7dc71e99aba",
+      "title": "TTE-Flash: Accelerating Reasoning-based Multimodal Representations via Think-Then-Embed Tokens",
+      "url": "https://arxiv.org/abs/2605.16638",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4795a176230c",
+      "title": "ACE: Self-Evolving LLM Coding Framework via Adversarial Unit Test Generation and Preference Optimization",
+      "url": "https://arxiv.org/abs/2605.16299",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d3274061dc5f",
+      "title": "Customizing an LLM for Enterprise Software Engineering",
+      "url": "https://arxiv.org/abs/2605.16517",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "aaae31b5fd22",
+      "title": "TARIPlay: A Test Framework for AR Applications based on Interactive Area Tracking in Playback Videos",
+      "url": "https://arxiv.org/abs/2605.16544",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ceabf8fe5a67",
+      "title": "LLM-based vs. Search-based Merge Conflict Resolution: An Empirical Study of Competing Paradigms",
+      "url": "https://arxiv.org/abs/2605.16646",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "de921b8f8991",
+      "title": "Optimizing an IDE for an Evolving Language Ecosystem",
+      "url": "https://arxiv.org/abs/2605.16664",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a46f9ec5dd50",
+      "title": "What's Inside a GitHub Repository? An Empirical Study on the Contents of 10K Projects",
+      "url": "https://arxiv.org/abs/2605.16701",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "efed17795ce6",
+      "title": "AI Policy, Disclosure, and Human in the Loop: How Are Contribution Guidelines Adapting to GenAI?",
+      "url": "https://arxiv.org/abs/2605.16706",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ec9a793c0f7e",
+      "title": "Low-Code Paradox in DevOps: Security and Governance Insights from Practitioners",
+      "url": "https://arxiv.org/abs/2605.16971",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ed3488d688fa",
+      "title": "Detecting Verbatim LLM Copy-Paste in Homework",
+      "url": "https://arxiv.org/abs/2605.16336",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c634382d65fc",
+      "title": "The End of Trust: How Agentic AI Breaks Security Assumptions",
+      "url": "https://arxiv.org/abs/2605.16436",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "df7ad0cad707",
+      "title": "MalwarePT: A Binary-Level Foundation Model for Malware Analysis",
+      "url": "https://arxiv.org/abs/2605.16455",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5e70ad2ed0a9",
+      "title": "Asking Back: Interaction-Layer Antidistillation Watermarks",
+      "url": "https://arxiv.org/abs/2605.16462",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "29feea0a6e87",
+      "title": "From AI-Generated Content to Agentic Action: Security and Safety Threats in Generative AI",
+      "url": "https://arxiv.org/abs/2605.16471",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "98eb62e87cdb",
+      "title": "Post-Quantum Discovery as a Governance Capability: Evidence-Based Cryptographic Visibility and Exposure Prioritisation in a Critical Service Provider",
+      "url": "https://arxiv.org/abs/2605.16549",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bd1e60c5a87e",
+      "title": "A Method for Securely Transmitting Large Video Files Using Chaotic Compression and Encryption",
+      "url": "https://arxiv.org/abs/2605.16563",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2015552d5435",
+      "title": "STRIKE: A Structured Taxonomy of Cybercrime for Risk, Impact, Knowledge, and Evolution",
+      "url": "https://arxiv.org/abs/2605.16589",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b38c68d24756",
+      "title": "Compile-time Security Analysis and Optimization of Sensitive String Producers",
+      "url": "https://arxiv.org/abs/2605.16561",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fe80f6a64c38",
+      "title": "The IsalProgram Programming Language",
+      "url": "https://arxiv.org/abs/2605.17008",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "81af35df16de",
+      "title": "Reconsidering \"Reconsidering Custom Memory Allocation\"",
+      "url": "https://arxiv.org/abs/2605.17119",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b58772089ff1",
+      "title": "Optimizing Optimizations, Declaratively: Optimizing the Higher-Order Functions in Mathematical Optimization with egglog",
+      "url": "https://arxiv.org/abs/2605.17884",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6b5928963321",
+      "title": "Guiding LLM-based Loop Invariant Synthesis via Feedback on Local Reasoning Errors",
+      "url": "https://arxiv.org/abs/2605.17914",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9bc681931e2b",
+      "title": "Proof-Carrying Certificates for LLM Pipelines: A Trust-Boundary Architecture",
+      "url": "https://arxiv.org/abs/2605.16407",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9b9c38ef9cbd",
+      "title": "Constrained Code Generation with Discrete Diffusion",
+      "url": "https://arxiv.org/abs/2605.16829",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "dd5529210075",
+      "title": "Escape from Callback Hell! A New Programming Paradigm for Network Simulation",
+      "url": "https://arxiv.org/abs/2605.16897",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "719ffb96306b",
+      "title": "Peter Salus has died",
+      "url": "https://www.tuhs.org/pipermail/tuhs/2026-May/033750.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T02:56:42+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "868f0629097b",
+      "title": "The last six months in LLMs in five minutes",
+      "url": "https://simonwillison.net/2026/May/19/5-minute-llms/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-19T01:30:42+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0cb88f747704",
+      "title": "Pope Leo XIV’s first encyclical Magnifica humanitas to be published May 25",
+      "url": "https://www.vaticannews.va/en/pope/news/2026-05/pope-leo-xiv-first-encyclical-magnifica-humanitas.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T23:18:10+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9e54a0e4977f",
+      "title": "Introducing Casuarina Linux: A glibc-Based Chimera Linux Derivative",
+      "url": "https://casuarina.org/news/introducing-casuarina-linux/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T23:04:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5560ebecee3e",
+      "title": "Click (2016)",
+      "url": "https://clickclickclick.click/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T23:03:02+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c909e12f1885",
+      "title": "Comprehensive Response to Bambu's AGPLv3 Violations",
+      "url": "https://sfconservancy.org/news/2026/may/18/bambu-studio-3d-printer-agpl-violation-response/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T22:24:09+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a26f2cd197b7",
+      "title": "Programming as Theory Building (1985)",
+      "url": "https://gwern.net/doc/cs/algorithm/1985-naur.pdf",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T21:42:46+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3ebd705e7226",
+      "title": "Report from the  2026 RPC Retreat",
+      "url": "http://www.ietf.org/blog/rpc-retreat-2026/",
+      "source": "IETF Blog",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T20:56:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f9d4f63fb302",
+      "title": "The FBI Wants to Buy Nationwide Access to License Plate Readers",
+      "url": "https://www.404media.co/the-fbi-wants-to-buy-nationwide-access-to-license-plate-readers/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T19:28:59+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cb5914692fbd",
+      "title": "Hyperpolyglot Lisp: Common Lisp, Racket, Clojure, Emacs Lisp",
+      "url": "https://hyperpolyglot.org/lisp",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T19:27:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a835146d2db2",
+      "title": "Agora-1: The Multi-Agent World Model",
+      "url": "https://odyssey.ml/introducing-agora-1",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T18:43:30+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2101f497bd6c",
+      "title": "Haiku OS runs on M1 Macs now",
+      "url": "https://www.osnews.com/story/144985/haiku-os-runs-on-m1-macs-now/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T18:29:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b03404556914",
+      "title": "Misconceptions about the UNIX Philosophy (2024)",
+      "url": "https://posixcafe.org/blogs/2024/01/05/0/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T18:27:37+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a1061118ae98",
+      "title": "We let AIs run radio stations",
+      "url": "https://andonlabs.com/blog/andon-fm",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T18:12:18+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "819136877d49",
+      "title": "Manchester Code Made Bits Behave",
+      "url": "https://spectrum.ieee.org/manchester-code-ieee-milestone",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T18:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f568df07558f",
+      "title": "Elon Musk has lost his lawsuit against Sam Altman and OpenAI",
+      "url": "https://techcrunch.com/2026/05/18/elon-musk-has-lost-his-lawsuit-against-sam-altman-and-openai/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T17:38:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9bfa77f43449",
+      "title": "Cursor Introduces Composer 2.5",
+      "url": "https://cursor.com/blog/composer-2-5",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T17:20:43+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "81beda6aea68",
+      "title": "Anthropic acquires Stainless",
+      "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T17:01:21+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d983714ca987",
+      "title": "CNCF Welcomes CVS Health as a Platinum Member To Expand Cloud Native Collaboration",
+      "url": "https://www.cncf.io/announcements/2026/05/18/cncf-welcomes-cvs-health-as-a-platinum-member-to-expand-cloud-native-collaboration/",
+      "source": "CNCF Blog",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T16:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e2c8ab9ad08d",
+      "title": "We stopped AI bot spam in our GitHub repo using Git's –author flag",
+      "url": "https://archestra.ai/blog/only-responsible-ai",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T15:24:19+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e05efcd0bb51",
+      "title": "Swiggy Improves Search Autocomplete Using Real Time Machine Learning Ranking",
+      "url": "https://www.infoq.com/news/2026/05/swiggy-autocomplete-rt-ranking/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T14:38:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "121a173052d0",
+      "title": "1024000^2 Blocks, 2B2T Minecraft Server World Download Project, and Discoveries",
+      "url": "https://github.com/2b2tplace/1m_release",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T14:13:07+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d052632ad8b3",
+      "title": "De‐bloating Javascript",
+      "url": "https://github.com/naver/lispe/wiki/6.23-De%E2%80%90bloating-Javascript",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T13:55:20+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ece95afd786c",
+      "title": "【fate】Async React 時代のフレームワークを試してみた",
+      "url": "https://zenn.dev/sc30gsw/articles/5414fe7efb29c7",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T13:47:18+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "adec4ae5403c",
+      "title": "Show HN: Files.md – Open-source alternative to Obsidian",
+      "url": "https://github.com/zakirullin/files.md",
+      "source": "HackerNews",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-18T13:33:33+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "65be78ea12a6",
+      "title": "[$] Swap tables, flash-friendly swap, swap_ops, and more",
+      "url": "https://lwn.net/Articles/1072657/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T13:16:04+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7894b3c236ef",
+      "title": "Anthropic's Code With Claude Announces  Managed Agents, Proactive Workflows, Capability Curve",
+      "url": "https://www.infoq.com/news/2026/05/code-with-claude/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T13:14:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b9e1da4d4ba2",
+      "title": "What Makes a Job Dull, Dirty, or Dangerous?",
+      "url": "https://spectrum.ieee.org/dull-dirty-dangerous-robots",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T13:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "35f56e6f11eb",
+      "title": "Security updates for Monday",
+      "url": "https://lwn.net/Articles/1073356/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T12:59:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8b6352c28fd9",
+      "title": "AI eats the world (Spring 26) [pdf]",
+      "url": "https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6a0af5d0484fbf5fe9a7743e/1779103184855/2026-Spring-AI.pdf",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T12:49:28+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1d2b5e067cf6",
+      "title": "Java News Roundup: OpenJDK JEPs, Azul Payara, WildFly, LangChain4j, OpenXava, Google ADK",
+      "url": "https://www.infoq.com/news/2026/05/java-news-roundup-may11-2026/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T12:45:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3567aa63a0ba",
+      "title": "What kubectl debug doesn’t tell you: The silent evidence gap",
+      "url": "https://www.cncf.io/blog/2026/05/18/what-kubectl-debug-doesnt-tell-you-the-silent-evidence-gap/",
+      "source": "CNCF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fc8f349fa7a0",
+      "title": "Article: Building a Secure MCP Server on AWS for a Million-Company B2B Platform",
+      "url": "https://www.infoq.com/articles/secure-mcp-server-aws/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3556a797ea23",
+      "title": "Podcast: Context is the Key to the Agentic Architecture Revolution: A Conversation with Baruch Sadogursky",
+      "url": "https://www.infoq.com/podcasts/context-key-agentic-architecture-revolution/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8a306299bb59",
+      "title": "Presentation: Product Thinking for Cloud Native Engineers",
+      "url": "https://www.infoq.com/presentations/product-cloud-native/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T10:06:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "843518204fcf",
+      "title": "How Melbourne’s AI and Data Center Flywheel Is Accelerating Research Innovation",
+      "url": "https://spectrum.ieee.org/melbourne-ai-data-center-innovation",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T10:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a9386e58a535",
+      "title": "Agentic AI for Robot Teams",
+      "url": "https://events.bizzabo.com/867156",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T10:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bc5063920084",
+      "title": "「EC2って何？」レベルだった私を救ったAWS学習本・講座まとめ",
+      "url": "https://zenn.dev/collabostyle/articles/ddf499ba0d818a",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T09:41:01+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "eee5618c84a8",
+      "title": "Cloudflare and Stripe Let AI Agents Create Accounts, Buy Domains, and Deploy to Production",
+      "url": "https://www.infoq.com/news/2026/05/cloudflare-stripe-agent-commerce/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T09:41:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "97c673fc605c",
+      "title": "検索機能 vs 推薦機能のカニバリゼーションに関する新考察",
+      "url": "https://zenn.dev/dmmdata/articles/1e2bc59c66f158",
+      "source": "Zenn",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-18T08:17:02+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "021d1d4d03ba",
+      "title": "Taking Stock of the State of European Cyber Resilience Act (CRA) Compliance: An Urgent Wake-up Call for the Open Source Ecosystem",
+      "url": "https://openssf.org/blog/2026/05/18/taking-stock-of-the-state-of-european-cyber-resilience-act-cra-compliance-an-urgent-wake-up-call-for-the-open-source-ecosystem/",
+      "source": "OpenSSF Blog",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-18T08:00:46+00:00",
+      "lang": "en"
+    },
     {
       "id": "synthesis_2026_W21",
       "type": "synthesis",
@@ -1237,6 +2106,39 @@
       "lang": "en"
     },
     {
+      "id": "aa59478bdf09",
+      "title": "パソコンが「なんか変」と感じたら、Microsoftの無料セキュリティ(msertツール)を使おう",
+      "url": "https://zenn.dev/arumenoy/articles/2e1985c168ed97",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T01:11:05+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "9810a3771fe7",
+      "title": "設計の境界線と、その手前にあるもの",
+      "url": "https://zenn.dev/katzchang/articles/2786bf33bbed42",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T01:08:21+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "e4c7a214dbd4",
+      "title": "Project goals update — April 2026 (end of 2025H2)",
+      "url": "https://blog.rust-lang.org/2026/05/18/project-goals-2026-04/",
+      "source": "Rust Blog",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-18T00:00:00+00:00",
+      "lang": "en"
+    },
+    {
       "id": "f4119d4cc86a",
       "title": "May I recommend eww for Emacs’s innovative UI?",
       "url": "https://www.matem.unam.mx/~omar/apropos-emacs.html#may-i-recommend-eww-for-emacs-innovative-ui",
@@ -1249,6 +2151,17 @@
       "synthesis_id": "synthesis_2026_W21"
     },
     {
+      "id": "45c9e4b9c3ce",
+      "title": "技術的負債という言葉を本来の意味以外で使わないようにしよう",
+      "url": "https://zenn.dev/masakura/articles/f0c65cfc06ce1e",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-17T23:40:20+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "61ee3009e31d",
       "title": "WriteUp: 16 Bytes of x86 that turn Matrix rain into sound",
       "url": "https://hellmood.111mb.de//wake_up_16b_writeup.html",
@@ -1259,6 +2172,17 @@
       "published_at": "2026-05-17T23:10:09+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "76b47cb6c78b",
+      "title": "技術書を買わずに Claude Code を 1 ヶ月で実用化した学習法",
+      "url": "https://zenn.dev/cnative_tkb/articles/2982caf77c4e1c",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-17T22:38:55+00:00",
+      "lang": "ja"
     },
     {
       "id": "27ffa690abb4",
@@ -1319,6 +2243,17 @@
       "published_at": "2026-05-17T21:14:23+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "8c9619c452e4",
+      "title": "1日あたり平均PR作成数 15.8 件を実現した AI 駆動開発",
+      "url": "https://zenn.dev/kauche/articles/20260518_ai_driven_development_kauche_farm_mini",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-17T21:00:15+00:00",
+      "lang": "ja"
     },
     {
       "id": "8fe9e71e396d",
@@ -1451,6 +2386,17 @@
       "published_at": "2026-05-17T14:50:17+00:00",
       "lang": "ja",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "9b6f93f458e4",
+      "title": "新卒エンジニアがG検定を受けた話",
+      "url": "https://zenn.dev/pepabo/articles/6bb718cc0fbac5",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-17T14:40:14+00:00",
+      "lang": "ja"
     },
     {
       "id": "6aacd7aba708",
@@ -1659,6 +2605,17 @@
       "synthesis_id": "synthesis_2026_W21"
     },
     {
+      "id": "2712f407c808",
+      "title": "The quiet renovation at Bitwarden",
+      "url": "https://blog.ppb1701.com/the-quiet-renovation-at-bitwarden",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T20:13:41+00:00",
+      "lang": "en"
+    },
+    {
       "id": "71f9b89bf1ce",
       "title": "Ubuntu Embraces Local AI Instead of Cloud-First OS Integration",
       "url": "https://www.infoq.com/news/2026/05/ubuntu-on-device-ai/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -1670,6 +2627,28 @@
       "published_at": "2026-05-16T20:00:00+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "f59e233fc10b",
+      "title": "The Fil-C Optimized Calling Convention",
+      "url": "https://fil-c.org/calling_convention",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T19:10:08+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5f11cfa94123",
+      "title": "What Is Date:Italy?",
+      "url": "http://aesthetikx.info/blog/date_italy.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T17:31:35+00:00",
+      "lang": "en"
     },
     {
       "id": "21c396e1b666",
@@ -1754,6 +2733,17 @@
       "published_at": "2026-05-16T08:34:00+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "10106fc6f84d",
+      "title": "Two computers, one monitor, zero fiddling (2025)",
+      "url": "https://alexplescan.com/posts/2025/08/16/kvm/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-16T02:13:19+00:00",
+      "lang": "en"
     },
     {
       "id": "236c0ea9cfe4",
@@ -2107,6 +3097,17 @@
       "published_at": "2026-05-13T16:00:00+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "e336c4b4946d",
+      "title": "Show HN: Number Gacha, a gacha game distilled to its essence",
+      "url": "https://isabisabel.com/gacha/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-13T15:39:41+00:00",
+      "lang": "en"
     },
     {
       "id": "16c75657b808",
@@ -2944,18 +3945,6 @@
       "lang": "fr"
     },
     {
-      "id": "6dcea2d612d1",
-      "title": "Security Slam 2026: Celebrating Our Security Champions and Project Milestones",
-      "url": "https://openssf.org/blog/2026/04/10/security-slam-2026-celebrating-our-security-champions-and-project-milestones/",
-      "source": "OpenSSF Blog",
-      "categories": [
-        "good_news",
-        "future_watch"
-      ],
-      "published_at": "2026-04-10T19:36:20+00:00",
-      "lang": "en"
-    },
-    {
       "id": "108e488bc530",
       "title": "PHP 8.4.20 Released!",
       "url": "https://www.php.net/index.php#2026-04-09-2",
@@ -3288,17 +4277,6 @@
       "lang": "en"
     },
     {
-      "id": "c5a51b197638",
-      "title": "Call for Testing: Build Dir Layout v2",
-      "url": "https://blog.rust-lang.org/2026/03/13/call-for-testing-build-dir-layout-v2/",
-      "source": "Rust Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-03-13T00:00:00+00:00",
-      "lang": "en"
-    },
-    {
       "id": "bf62ae44f263",
       "title": "Release Notes for Safari Technology Preview 239",
       "url": "https://webkit.org/blog/17852/release-notes-for-safari-technology-preview-239/",
@@ -3606,17 +4584,6 @@
         "future_watch"
       ],
       "published_at": "2025-12-23T22:34:52+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "0a751f063e5b",
-      "title": "IETF Administration LLC 2026 Draft Budget",
-      "url": "http://www.ietf.org/blog/ietf-administration-llc-2026-draft-budget/",
-      "source": "IETF Blog",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2025-12-19T01:40:00+00:00",
       "lang": "en"
     },
     {
