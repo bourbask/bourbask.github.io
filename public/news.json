@@ -1,9 +1,905 @@
 {
-  "generated_at": "2026-05-20T07:06:15.106287+00:00",
-  "period": "2026-05-20",
-  "count": 447,
-  "synthesis": null,
+  "generated_at": "2026-05-21T07:11:10.266112+00:00",
+  "period": "2026-05-21",
+  "count": 524,
+  "synthesis": {
+    "en": {
+      "headline": "Chromium's 4-Year-Old 'Fixed' Exploit Actually Remains Unfixed, Exposing Critical Vulnerability Window",
+      "tldr": "A critical Chromium security vulnerability patched in 2020 was republished by Google only to be discovered as still exploitable, raising questions about patch validation processes. Simultaneously, Pip 26.1 introduces dependency cooldowns to combat supply chain attacks, while OpenAI and SpaceX race toward IPOs despite massive operational losses.",
+      "sections": [
+        {
+          "category": "urgent",
+          "summary": "Chromium's exploit publication reveals a patched vulnerability from 2020 remains unfixed—a serious breach of responsible disclosure. Pip 26.1 ships dependency cooldowns and experimental lockfile support specifically targeting supply chain attack vectors, indicating the ecosystem acknowledges growing threats. OpenBSD 60 released with standard maintenance updates."
+        },
+        {
+          "category": "good_news",
+          "summary": "Pip 26.1 introduces meaningful supply chain security improvements including cooldown periods for dependencies and lockfile support, directly addressing attack surface reduction. Academic research on malicious-code prompt corpora provides systematic frameworks for evaluating LLM refusal mechanisms across 13 distinct attack scenarios (2023-2025)."
+        },
+        {
+          "category": "future_watch",
+          "summary": "LLM agents are emerging as double-edged tools: ProcBench reveals process-level defects in LLM coding agents; research documents optimization-triggered backdoor attacks on LLMs; concurrent work on adaptive jailbreaking techniques and refusal evaluation. Anthropic nearing first quarterly profit ahead of potential IPO. Infrastructure advances include event-driven code smell detection and causal verification for distributed LLM workflows."
+        },
+        {
+          "category": "stack_alt",
+          "summary": "Fine-tuned local LLMs are proving viable for security-specific tasks like document classification, with open-source benchmarking emerging. Empirical analysis compares stdlib versus third-party LLM-assisted libraries on performance and correctness metrics."
+        }
+      ],
+      "key_takeaways": [
+        "Audit your Chromium/Electron deployments immediately—assume the 2020 'patch' is ineffective and treat as unpatched until verified independently",
+        "Upgrade to Pip 26.1+ and evaluate lockfile adoption; implement dependency cooldown policies to increase friction for supply chain compromise tactics",
+        "Question LLM agent reliability in production code paths: ProcBench and backdoor research indicate systematic control-flow and optimization vulnerabilities remain unsolved"
+      ],
+      "signal_vs_noise": "High signal: one critical security regression + two concrete defensive improvements; moderate noise: speculative IPO announcements and academic LLM security papers lacking immediate deployment guidance."
+    },
+    "fr": {
+      "headline": "L'exploit Chromium 'corrigé' il y a 4 ans s'avère toujours exploitable, exposant une faille critique de validation",
+      "tldr": "Une vulnérabilité Chromium critique considérée comme corrigée en 2020 a été republié par Google et s'avère toujours exploitable, révélant des lacunes graves dans la validation des correctifs. Simultanément, Pip 26.1 introduit des délais de dépendance pour combattre les attaques de chaîne d'approvisionnement, tandis qu'OpenAI et SpaceX se précipitent vers une introduction en bourse malgré des pertes opérationnelles massives.",
+      "sections": [
+        {
+          "category": "urgent",
+          "summary": "La republication d'un exploit Chromium révèle qu'une vulnérabilité corrigée en 2020 reste exploitable—une violation grave de la divulgation responsable. Pip 26.1 déploie des améliorations de sécurité concrètes : délais de dépendance et support de fichier verrou ciblant spécifiquement les vecteurs d'attaque de chaîne d'approvisionnement. OpenBSD 60 publié avec mises à jour de maintenance standard."
+        },
+        {
+          "category": "good_news",
+          "summary": "Pip 26.1 introduit des améliorations significatives de sécurité incluant périodes de ralentissement pour les dépendances et support de fichier verrou, réduisant directement la surface d'attaque. La recherche académique sur les corpus de prompts malveillants fournit des cadres systématiques pour évaluer les mécanismes de refus des LLM sur 13 scénarios d'attaque distincts (2023-2025)."
+        },
+        {
+          "category": "future_watch",
+          "summary": "Les agents LLM émergent comme des outils à double tranchant : ProcBench révèle des défauts au niveau du processus ; recherche documentant les attaques par porte dérobée déclenchées par optimisation ; travail parallèle sur techniques de jailbreak adaptatif. Anthropic approche du premier profit trimestriel avant IPO potentielle. Avancées d'infrastructure : détection d'odeur de code pilotée par événements et vérification causale pour workflows LLM distribués."
+        },
+        {
+          "category": "stack_alt",
+          "summary": "Les LLM affinés localement s'avèrent viables pour des tâches de sécurité spécifiques comme la classification de documents, avec l'émergence d'étalonnage open-source. Analyse empirique comparant performance et correction des bibliothèques Python assistées par LLM."
+        }
+      ],
+      "key_takeaways": [
+        "Auditez immédiatement vos déploiements Chromium/Electron—considérez le 'correctif' 2020 comme inefficace et traitez comme non corrigé jusqu'à vérification indépendante",
+        "Mettez à niveau vers Pip 26.1+ et évaluez l'adoption du fichier verrou ; implémentez des politiques de délai de dépendance pour augmenter la friction des tactiques de compromission de chaîne d'approvisionnement",
+        "Questionnez la fiabilité des agents LLM dans les chemins de code production : ProcBench et la recherche sur les portes dérobées indiquent que des vulnérabilités de flux de contrôle et d'optimisation systématiques restent non résolues"
+      ],
+      "signal_vs_noise": "Signal fort : une régression de sécurité critique + deux améliorations défensives concrètes ; bruit modéré : annonces spéculatives d'IPO et articles académiques sur la sécurité des LLM manquant de guidance de déploiement immédiat."
+    }
+  },
   "items": [
+    {
+      "id": "157d2d58aee6",
+      "title": "Miese Softwarequalität, neue Abos: Apple goes Enshittification",
+      "url": "https://www.golem.de/news/miese-softwarequalitaet-neue-abos-apple-goes-enshittification-2605-208722.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T07:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7040e5e3cf57",
+      "title": "Satelliteninternet: Starlink erhöht die Preise, pausieren wird doppelt so teuer",
+      "url": "https://www.golem.de/news/satelliteninternet-starlink-erhoeht-die-preise-pausieren-wird-doppelt-so-teuer-2605-208903.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T06:52:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "79adf767abec",
+      "title": "Künstliche Intelligenz: OpenAI-Modell widerlegt jahrzehntealte Mathematik-Vermutung",
+      "url": "https://www.golem.de/news/kuenstliche-intelligenz-openai-modell-widerlegt-jahrzehntealte-mathematik-vermutung-2605-208902.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T06:37:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "783af5fb844e",
+      "title": "Möglicher Börsengang: Anthropic steht kurz vor erstem Quartalsgewinn",
+      "url": "https://www.golem.de/news/moeglicher-boersengang-anthropic-steht-kurz-vor-erstem-quartalsgewinn-2605-208901.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T06:21:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7e2d794f450d",
+      "title": "Trotz Milliardenverlusten: SpaceX strebt an die Börse",
+      "url": "https://www.golem.de/news/trotz-milliardenverlusten-spacex-strebt-an-die-boerse-2605-208900.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T05:54:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "763539a9e91e",
+      "title": "IPO-Unterlagen eingereicht: OpenAI will an die Börse",
+      "url": "https://www.golem.de/news/ipo-unterlagen-eingereicht-openai-will-an-die-boerse-2605-208899.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T05:31:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "56b31ced41cb",
+      "title": "Polizei: Fakeshop-Betrüger wäscht Millionen Euro",
+      "url": "https://www.golem.de/news/polizei-fakeshop-betrueger-waescht-millionen-euro-2605-208898.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T05:15:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "f6a8ea956543",
+      "title": "ProcBench: Evaluating Process-Level Defects and Control Preservation in LLM Coding Agents",
+      "url": "https://arxiv.org/abs/2605.20251",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8fcc42e5f9a0",
+      "title": "Combined Program Analysis Techniques: A Systematic Mapping Study",
+      "url": "https://arxiv.org/abs/2605.20310",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fac736607621",
+      "title": "A Semantic-Web Oriented Competency Model for Engineering Programs",
+      "url": "https://arxiv.org/abs/2605.20401",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7d0bfe191371",
+      "title": "Agentic Agile-V: From Vibe Coding to Verified Engineering in Software and Hardware Development",
+      "url": "https://arxiv.org/abs/2605.20456",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2755ce533210",
+      "title": "Code Generation by Differential Test Time Scaling",
+      "url": "https://arxiv.org/abs/2605.20473",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4f1199dad586",
+      "title": "A Multi-Layer Testing Framework for Automated Data Quality Assurance in Cloud-Native ELT Pipelines",
+      "url": "https://arxiv.org/abs/2605.20500",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9c12e893235c",
+      "title": "Privacy-by-Design Adaptive Group Assignment for Digital Lifestyle Coaching at Scale",
+      "url": "https://arxiv.org/abs/2605.20505",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fa685dc12796",
+      "title": "An Event-Driven Tool for Context-Aware Code Smell Detection Using SmellDSL",
+      "url": "https://arxiv.org/abs/2605.20675",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "23c716f801ea",
+      "title": "Artificial Pancreas Implantables -- How Healthcare Professionals May Deal With DIY Bio Cases",
+      "url": "https://arxiv.org/abs/2605.20208",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "de27efd68b1f",
+      "title": "Adaptive Probe-based Steering for Robust LLM Jailbreaking",
+      "url": "https://arxiv.org/abs/2605.20286",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "917e8028b5e8",
+      "title": "Pramana: A Protocol-Layer Treatment of Claim Verification in Autonomous Agent Networks",
+      "url": "https://arxiv.org/abs/2605.20312",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3a15352bd55e",
+      "title": "Refusal Evaluation in Coding LLMs and Code Agents: A Systematic Review of Thirteen Malicious-Code Prompt Corpora (2023-2025)",
+      "url": "https://arxiv.org/abs/2605.20351",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f0bbbcc323ae",
+      "title": "Security Document Classification with a Fine-Tuned Local Large Language Model: Benchmark Data and an Open-Source System",
+      "url": "https://arxiv.org/abs/2605.20368",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "492e6a33d99c",
+      "title": "Latent Geometry as a Structural Monitor: Eigenspace Alignment for Anomaly Detection in Anonymity Networks",
+      "url": "https://arxiv.org/abs/2605.20391",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "70484d462ff5",
+      "title": "Detecting Data Exfiltration through I2P Anonymity Networks: A Two-Phase Machine Learning Approach",
+      "url": "https://arxiv.org/abs/2605.20546",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "53be43528610",
+      "title": "Trusted Weights, Treacherous Optimizations? Optimization-Triggered Backdoor Attacks on LLMs",
+      "url": "https://arxiv.org/abs/2605.20641",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "59bbae055469",
+      "title": "Multicategorical Semantics for Untyped Effects",
+      "url": "https://arxiv.org/abs/2605.21337",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ddfb6d528df5",
+      "title": "Clove: Object-Level CXL Memory Management in Managed Runtimes",
+      "url": "https://arxiv.org/abs/2605.20370",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "71b6af3fbdaf",
+      "title": "Sutra: Tensor-Op RNNs as a Compilation Target for Vector Symbolic Architectures",
+      "url": "https://arxiv.org/abs/2605.20919",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a34a1d1ec24a",
+      "title": "Causal Past Logic for Runtime Verification of Distributed LLM Agent Workflows",
+      "url": "https://arxiv.org/abs/2605.20923",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "afd0cc46df88",
+      "title": "Stdlib or Third-Party? Empirical Performance and Correctness of LLM-Assisted Zero-Dependency Python Libraries",
+      "url": "https://arxiv.org/abs/2605.21405",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d6fcc134da4d",
+      "title": "Charon: A Unified and Fine-Grained Simulator for Large-Scale LLM Training and Inference",
+      "url": "https://arxiv.org/abs/2605.17164",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "608744f9cf42",
+      "title": "Aggressive AI scrapers are making it kinda suck to run wikis",
+      "url": "https://weirdgloop.org/blog/clankers",
+      "source": "Lobste.rs",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T03:51:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9e43a717cdfe",
+      "title": "[$] LWN.net Weekly Edition for May 21, 2026",
+      "url": "https://lwn.net/Articles/1072730/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T02:27:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "17ffc53a7177",
+      "title": "OpenAI to confidentially file for IPO as soon as Friday",
+      "url": "https://www.cnbc.com/2026/05/20/openai-ipo-filing.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T02:24:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6e56061a8de1",
+      "title": "Intuit to lay off over 3k employees to refocus on AI",
+      "url": "https://techcrunch.com/2026/05/20/intuit-to-lay-off-over-3000-employees-to-refocus-on-ai/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-21T00:36:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2539f8450934",
+      "title": "The Letter S, by Donald Knuth (1980) [pdf]",
+      "url": "https://gwern.net/doc/design/typography/1980-knuth.pdf",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T23:58:51+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e998b93166d8",
+      "title": "Show HN: I reverse engineered Apple's video wallpapers",
+      "url": "https://github.com/kageroumado/phosphene",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T23:54:06+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "67d6d0b79394",
+      "title": "DOS Zone",
+      "url": "https://dos.zone/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T22:53:27+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b67fe42649da",
+      "title": "Anthropic is expanding to Colossus2. Will use GB200",
+      "url": "https://twitter.com/nottombrown/status/2057194829986300375",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T20:55:52+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ea5d76aae771",
+      "title": "New RFC Editor website is live",
+      "url": "http://www.ietf.org/blog/rfc-editor-website-launch/",
+      "source": "IETF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T20:50:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "adf39505c339",
+      "title": "SpaceX S-1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T20:49:59+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "94bf0031ad22",
+      "title": "Chromium publishes fixed exploit 4 years later, turns out it's actually unfixed",
+      "url": "https://infosec.exchange/@rebane2001/116606719764376414",
+      "source": "Lobste.rs",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-20T20:29:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "841f255e4a2d",
+      "title": "Why does the arrow (->) operator in C exist?",
+      "url": "https://stackoverflow.com/questions/13366083/why-does-the-arrow-operator-in-c-exist",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T20:12:38+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0480087f9834",
+      "title": "XSS Is Deadly for Passkeys: The Hidden Risk of Attestation None",
+      "url": "https://scotthelme.co.uk/xss-is-deadly-for-passkeys-the-hidden-risk-of-attestation-none/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T19:20:32+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4f1c14c36cac",
+      "title": "Sortie de la 60ᵉ version d’OpenBSD",
+      "url": "https://linuxfr.org/news/sortie-de-la-60-version-d-openbsd",
+      "source": "LinuxFr.org",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-20T19:10:59+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "a563cf462305",
+      "title": "An OpenAI model has disproved a central conjecture in discrete geometry",
+      "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T19:05:30+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "737a39080d7e",
+      "title": "Flipper One Tech Specs",
+      "url": "https://docs.flipper.net/one/general/tech-specs",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T18:33:56+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6c4b3e1f663e",
+      "title": "Qian Xuesen: The missile genius America lost and China gained (2025)",
+      "url": "https://www.usni.org/magazines/naval-history/2025/december/missile-genius-america-lost-and-china-gained",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T17:48:52+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "13871fa6d70c",
+      "title": "Why is Inkwell stuck in review",
+      "url": "https://www.manton.org/2026/05/19/why-is-inkwell-stuck-in.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T17:30:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8e05c198180f",
+      "title": "Open RAN: 1&1-Mobilfunkchef plädiert für Wettbewerb bei Ausrüstern",
+      "url": "https://www.golem.de/news/open-ran-1-1-mobilfunk-chef-fuer-wettbewerb-bei-ausruestern-2605-208897.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T17:05:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "1b1224624898",
+      "title": "Anzeige: Knipex-Mini-Zangen-Set befristet im Amazon-Angebot",
+      "url": "https://www.golem.de/news/anzeige-knipex-mini-zangen-set-befristet-im-amazon-angebot-2605-208896.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T16:51:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "943cac4219ed",
+      "title": "Anzeige: Xiaomi Redmi Watch 6 für nur 99 Euro | Mit 24-Tage-Akku, 150+ Sportmodi und mehr",
+      "url": "https://www.golem.de/news/anzeige-xiaomi-redmi-watch-6-fuer-nur-99-euro-mit-24-tage-akku-150-sportmodi-und-mehr-2605-208895.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T16:29:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "b75071d489c2",
+      "title": "複数集約を跨ぐ処理を1つのDBトランザクションで括る前に読む記事",
+      "url": "https://zenn.dev/j5ik2o/articles/59de072b6728ff",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T16:20:43+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "6fb288a9c842",
+      "title": "Detecting Malicious Packages using the OSV API",
+      "url": "https://openssf.org/blog/2026/05/20/detecting-malicious-packages-using-the-osv-api/",
+      "source": "OpenSSF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T15:56:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "dcb2b4ef866c",
+      "title": "SBCL: the ultimate assembly code breadboard (2014)",
+      "url": "https://pvk.ca/Blog/2014/03/15/sbcl-the-ultimate-assembly-code-breadboard/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T15:39:48+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e52bbeec9d38",
+      "title": "Designing a Multi-Agent System for Engineering Support at Scale: A Case Study From Grab",
+      "url": "https://www.infoq.com/news/2026/05/grab-multi-agent-support-system/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T14:38:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1f59308b2bab",
+      "title": "Erasing Existentials",
+      "url": "https://wolfgirl.dev/blog/2026-05-20-erasing-existentials/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:45:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2590d53291e0",
+      "title": "GitHub confirms breach of 3,800 repos via malicious VSCode extension",
+      "url": "https://www.bleepingcomputer.com/news/security/github-confirms-breach-of-3-800-repos-via-malicious-vscode-extension/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:43:37+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bca0f20d3c6d",
+      "title": "人生で初めて OSS にコントリビュートした話",
+      "url": "https://zenn.dev/ashunar0/articles/e8ac42e4e77eb4",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:17:14+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "466e25ac74e8",
+      "title": "[$] What is to be done about MGLRU?",
+      "url": "https://lwn.net/Articles/1072866/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:14:51+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8e076081f179",
+      "title": "Security updates for Wednesday",
+      "url": "https://lwn.net/Articles/1073713/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:04:17+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "59fc6af70089",
+      "title": "Node.js 26.2.0 (Current)",
+      "url": "https://nodejs.org/en/blog/release/v26.2.0",
+      "source": "Node.js Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T13:03:28+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "18027588f369",
+      "title": "GoogleのModern Web Guidanceスキル登場。AIが古いCSS・JSを書く問題を解決する",
+      "url": "https://zenn.dev/ubie_dev/articles/modern-web-guidance",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T12:51:02+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "5a8707e4e91e",
+      "title": "Presentation: The AI Gateway: Scaling Centralized Inference Across Decentralized Teams",
+      "url": "https://www.infoq.com/presentations/ai-gateway-scalability/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T12:40:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d5668087893c",
+      "title": "OpenAI Outlines WebRTC Architecture for Low-Latency Voice AI at Scale",
+      "url": "https://www.infoq.com/news/2026/05/openai-voice-ai-scale/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T12:30:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "554f37190091",
+      "title": "スタックチャン開発に必要な情報まとめ",
+      "url": "https://zenn.dev/karaage0703/articles/f14b27ccb22737",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T12:24:06+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "9add03218fb7",
+      "title": "Saying goodbye to asm.js",
+      "url": "https://spidermonkey.dev/blog/2026/05/20/saying-goodbye-to-asmjs.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T12:01:56+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c20fce84aa60",
+      "title": "toC プラットフォームの  AIチャット を支える技術",
+      "url": "https://zenn.dev/kawason/articles/7118acbf3b07f1",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T11:44:26+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "26f32f3f1c37",
+      "title": "[$] The tenth OpenPGP email summit",
+      "url": "https://lwn.net/Articles/1072870/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T11:00:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "984ab86ec85d",
+      "title": "Will Robotics Have a ChatGPT Moment?",
+      "url": "https://spectrum.ieee.org/robotics-ai-breakthrough",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T11:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7ca4221a82f8",
+      "title": "Introducing Prempti: Policy and visibility for AI coding agents",
+      "url": "https://www.cncf.io/blog/2026/05/20/introducing-prempti-policy-and-visibility-for-ai-coding-agents/",
+      "source": "CNCF Blog",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b41d6bc595e7",
+      "title": "Google's AI is being manipulated. The search giant is quietly fighting back",
+      "url": "https://www.bbc.com/future/article/20260519-google-tackles-attempts-to-hack-its-ai-results",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T10:57:09+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b35c18d48fd9",
+      "title": "Learnings from 100K lines of Rust with AI (2025)",
+      "url": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T10:04:28+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "73105fa6998b",
+      "title": "Pip 26.1 Ships Dependency Cooldowns and Experimental Lockfile Support to Combat Supply Chain Attacks",
+      "url": "https://www.infoq.com/news/2026/05/pip-261-dependency-cooldowns/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T10:04:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6488d343c573",
+      "title": "tfstateに平文を残さずに秘密情報を管理する",
+      "url": "https://zenn.dev/dely_jp/articles/terraform-ephemeral-write-only-secrets",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T09:00:00+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "7f9c14ee2dba",
+      "title": "Incident Report: May 19, 2026 – GCP Account Suspension",
+      "url": "https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T08:37:55+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "41139b71d3e6",
+      "title": "スカッシュマージをマージコミットに置き換える",
+      "url": "https://zenn.dev/socialdog/articles/inflate-squashed-commit",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T07:40:46+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "4c213b725dec",
+      "title": "GitHub Source Code Breach - TeamPCP Claims Access to Internal Source Code",
+      "url": "https://cybersecuritynews.com/github-source-code-breach/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T07:08:51+00:00",
+      "lang": "en"
+    },
     {
       "id": "380c648c5cd1",
       "title": "C3A-Kriterien des BSI: \"Eine Einladung fürs Souveränitätswashing\"",
@@ -446,6 +1342,28 @@
       "lang": "en"
     },
     {
+      "id": "6c40d5337384",
+      "title": "This Week in Rust 652",
+      "url": "https://this-week-in-rust.org/blog/2026/05/20/this-week-in-rust-652/",
+      "source": "This Week in Rust",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "157526355baf",
+      "title": "dialogやPopover APIは「お前ら開発者に任せておけねえ」というWeb標準からのメッセージなのでは？",
+      "url": "https://zenn.dev/estie/articles/79b2db0586a0b9",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T02:41:47+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "da884ccc9cf3",
       "title": "FiveThirtyEight articles on the Internet Archive",
       "url": "https://fivethirtyeightindex.com/",
@@ -457,6 +1375,17 @@
       "lang": "en"
     },
     {
+      "id": "c9b0ccfbd841",
+      "title": "Local Coding Agent が身近なタスクをどれくらいこなせるのかを検証した",
+      "url": "https://zenn.dev/aishift/articles/5b048ff347fd7b",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-20T00:26:49+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "689d7913ffa3",
       "title": "Railway Blocked by Google Cloud",
       "url": "https://status.railway.com/?date=20260519",
@@ -466,6 +1395,17 @@
       ],
       "published_at": "2026-05-20T00:23:54+00:00",
       "lang": "en"
+    },
+    {
+      "id": "3154de80edbd",
+      "title": "Claude Code の skill-creator で既存 skill を検証してみた",
+      "url": "https://zenn.dev/redamoon/articles/article45-claude-code-skill-creator-benchmark",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T00:13:25+00:00",
+      "lang": "ja"
     },
     {
       "id": "7e7149bdab57",
@@ -1767,6 +2707,17 @@
         "general"
       ],
       "published_at": "2026-05-18T14:13:07+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "561fd417b4a7",
+      "title": "Sharla Boehm, the programmer whose code underpins the Internet",
+      "url": "https://www.scientificamerican.com/article/the-programmer-whose-code-underpins-the-internet/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T14:10:50+00:00",
       "lang": "en"
     },
     {
@@ -3154,6 +4105,17 @@
       "lang": "en"
     },
     {
+      "id": "4d18fc43ae61",
+      "title": "How fast is N tokens per second really?",
+      "url": "https://mikeveerman.github.io/tokenspeed/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-18T02:04:38+00:00",
+      "lang": "en"
+    },
+    {
       "id": "aa59478bdf09",
       "title": "パソコンが「なんか変」と感じたら、Microsoftの無料セキュリティ(msertツール)を使おう",
       "url": "https://zenn.dev/arumenoy/articles/2e1985c168ed97",
@@ -3815,6 +4777,17 @@
       "published_at": "2026-05-16T01:25:29+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W21"
+    },
+    {
+      "id": "f094925177fc",
+      "title": "Archaeologists find Egyptian mummy buried with the 'Iliad'",
+      "url": "https://www.openculture.com/2026/05/archaeologists-discover-ancient-egyptian-mummy-buried-with-pages-from-homers-iliad.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-15T22:31:45+00:00",
+      "lang": "en"
     },
     {
       "id": "3d3a95e180b7",
@@ -4594,28 +5567,6 @@
       "lang": "en"
     },
     {
-      "id": "5d5ef0e51857",
-      "title": "Learn What It Takes to Become a Cybersecurity Consultant",
-      "url": "https://spectrum.ieee.org/ieee-guide-cybersecurity-consultant",
-      "source": "IEEE Spectrum",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-06T18:00:01+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "803d1addc686",
-      "title": "The tools are ready. So why are most cloud native teams still running three observability stacks?",
-      "url": "https://www.cncf.io/blog/2026/05/06/the-tools-are-ready-so-why-are-most-cloud-native-teams-still-running-three-observability-stacks/",
-      "source": "CNCF Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-06T11:00:00+00:00",
-      "lang": "en"
-    },
-    {
       "id": "64ea759f4ef6",
       "title": "Open Infrastructure Is Not Free, Part II: The Hidden Cost of Running Package Registries",
       "url": "https://openssf.org/blog/2026/05/06/open-infrastructure-is-not-free-part-ii-the-hidden-cost-of-running-package-registries/",
@@ -4859,17 +5810,6 @@
       "lang": "en"
     },
     {
-      "id": "b656ff4be0f7",
-      "title": "This Week in Rust 648",
-      "url": "https://this-week-in-rust.org/blog/2026/04/22/this-week-in-rust-648/",
-      "source": "This Week in Rust",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-04-22T04:00:00+00:00",
-      "lang": "en"
-    },
-    {
       "id": "ffaeedfbb37e",
       "title": "OpenSSF Newsletter – April 2026",
       "url": "https://openssf.org/newsletter/2026/04/21/openssf-newsletter-april-2026/",
@@ -4902,17 +5842,6 @@
       ],
       "published_at": "2026-04-20T05:42:24+00:00",
       "lang": "fr"
-    },
-    {
-      "id": "273b0c7f663e",
-      "title": "Why Third-Party Notices Are Breaking at Scale: What the Ecosystem Needs Next",
-      "url": "https://openssf.org/blog/2026/04/17/why-third-party-notices-are-breaking-at-scale-what-the-ecosystem-needs-next/",
-      "source": "OpenSSF Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-04-17T13:44:55+00:00",
-      "lang": "en"
     },
     {
       "id": "2742efdf1cb0",
@@ -5246,17 +6175,6 @@
       "lang": "en"
     },
     {
-      "id": "275b87a12097",
-      "title": "Node.js 25.8.2 (Current)",
-      "url": "https://nodejs.org/en/blog/release/v25.8.2",
-      "source": "Node.js Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-03-24T20:43:41+00:00",
-      "lang": "en"
-    },
-    {
       "id": "1cf4dd26fcb8",
       "title": "WebKit Features for Safari 26.4",
       "url": "https://webkit.org/blog/17862/webkit-features-for-safari-26-4/",
@@ -5587,17 +6505,6 @@
         "stack_alt"
       ],
       "published_at": "2026-01-21T00:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "c455e28f6860",
-      "title": "IETF@40",
-      "url": "http://www.ietf.org/blog/ietf-40/",
-      "source": "IETF Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-01-16T18:08:00+00:00",
       "lang": "en"
     },
     {
