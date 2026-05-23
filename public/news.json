@@ -1,66 +1,608 @@
 {
-  "generated_at": "2026-05-22T07:07:00.341683+00:00",
-  "period": "2026-05-22",
-  "count": 615,
+  "generated_at": "2026-05-23T06:50:51.744080+00:00",
+  "period": "2026-05-23",
+  "count": 670,
   "synthesis": {
     "en": {
-      "headline": "LLM-powered security tools emerge as critical vulnerability discovery engines, while patient data breaches and infrastructure failures expose systemic AI and tech limitations",
-      "tldr": "FuzzingBrain V2 demonstrates autonomous LLM agents for vulnerability discovery, but multiple healthcare data breaches and Waymo's failure in flooded conditions reveal that AI systems remain unreliable for critical infrastructure. Meanwhile, frontier AI evaluation frameworks and code security benchmarking tools signal the field is maturing its measurement and testing practices.",
+      "headline": "Critical 10-year-old RCE vulnerability (CVE-2026-46529) discovered in Linux PDF viewers—immediate patching required for XReader, Evince, and Atril",
+      "tldr": "A decade-old remote code execution flaw affects multiple Linux PDF viewers (CVE-2026-46529), requiring urgent patching. Meanwhile, the AI/LLM landscape continues fragmenting: Bun runtime support is deprecated, Deno 2.8 advances, and frontier AI evaluation frameworks mature—but significant security and collaboration restrictions are tightening globally.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "FuzzingBrain V2 showcases multi-agent LLM systems for automated vulnerability discovery and reproduction—a significant escalation in AI-driven security testing. Simultaneously, hospital network compromises (multiple university clinics) and Trump Mobile data leaks expose patient records and customer data, while GTK-based PDF readers face unpatched vulnerabilities. The urgency is bifurcated: attackers are adopting LLM automation while defenders patch reactively."
+          "summary": "CVE-2026-46529 exposes a 10-year-old RCE in Linux PDF viewers including XReader, Evince, and Atril. This is a critical, unauthenticated remote code execution vector affecting widely-deployed desktop applications. CISA is simultaneously managing a separate data leak containment effort."
         },
         {
           "category": "good_news",
-          "summary": "OpenBSD 7.9 released with continued hardening focus. Safari Technology Preview 244 advances WebKit capabilities. These represent incremental but steady progress in security-conscious development."
+          "summary": "Deno 2.8 released with continued momentum. xAI released Grok Skills with updated tool-calling APIs, expanding LLM capabilities. An open-source Kanban desktop app now supports parallel agent execution, enabling automation workflows."
         },
         {
           "category": "future_watch",
-          "summary": "Research trajectories show sophisticated LLM agent evaluation frameworks (Open-World Evaluations, AgentAtlas) and autonomous security benchmarking (AutoBaxBuilder, PITMuS). Code modernization via LLMs reveals self-review failures, and refusal-rate metrics inadequately rank frontier models on biological research safety. Productionizing AI requires moving beyond leaderboards to real-world deployment assessment. Governance of eval as a 'governed effect' and multi-LLM reasoning for compiler optimization hint at systems-level maturity."
+          "summary": "AI evaluation infrastructure matures: Models.dev provides open-source AI model specifications and pricing; OpenSCAD Architectural 3D LLM Benchmark sees Antigravity 2.0 top the leaderboard; ArXiv publishes frontier AI evaluation methodologies (Open-World Evaluations, AgentAtlas). Haiku OS releases spring 2026 updates. However, Bun runtime support is now deprecated, signaling ecosystem consolidation."
         },
         {
           "category": "stack_alt",
-          "summary": "Benchmark diversity expands: HIDBench for intrusion detection, AutoBaxBuilder for code security, SEM-guided semiconductor analysis. These compare paradigms (smart contracts, FIB techniques, LLM-based detection) rather than declare winners—practical engineering necessity, not marketing."
+          "summary": "LLM agent evaluation frameworks diverge: Antigravity 2.0 dominates architectural benchmarks while AgentAtlas challenges outcome-only leaderboards with holistic agent measurement. These competing frameworks reflect maturation beyond simple task completion metrics."
         }
       ],
       "key_takeaways": [
-        "Assume LLM-driven fuzzing and vulnerability discovery are now operational threats; prioritize red-team exercises against your own systems using automated agents like FuzzingBrain V2 principles, and shift from reactive patching to proactive agent-based testing.",
-        "Healthcare and financial services: audit data handling after multiple clinic breaches (Unikliniken) and Trump Mobile exposure; implement zero-trust architecture and continuous intrusion detection (HIDBench frameworks emerging) rather than perimeter-only defense.",
-        "Evaluate frontier AI agents beyond outcome metrics: use AgentAtlas-style evaluation frameworks and acknowledge LLM self-review failures in code modernization—do not trust autonomous refactoring without human validation and supplementary static analysis."
+        "Patch CVE-2026-46529 immediately if running Evince, XReader, or Atril—this is a 10-year-old RCE affecting millions of Linux desktops.",
+        "If maintaining Bun-dependent codebases, begin migration planning now as support is officially deprecated; evaluate Deno 2.8 as a production alternative.",
+        "Researchers and developers: review new U.S. publishing restrictions on foreign collaboration—expect friction in international technical projects and publication pipelines."
       ],
-      "signal_vs_noise": "High signal: concrete breaches, LLM security automation, and rigorous evaluation research dominate; moderate noise: Waymo flooding hiccups and Bahn.de User-Agent quirks are real but niche."
+      "signal_vs_noise": "High signal-to-noise ratio today: one genuinely critical security issue, meaningful runtime ecosystem shifts (Bun deprecation, Deno advancement), and substantive AI evaluation research, though several items (FBI security incidents, refugee camp logistics, museum liquidation) are contextually marginal."
     },
     "fr": {
-      "headline": "Les outils de sécurité alimentés par les LLM émergent comme moteurs critiques de découverte de vulnérabilités, tandis que les violations de données médicales et les défaillances d'infrastructure exposent les limites systémiques de l'IA et de la technologie",
-      "tldr": "FuzzingBrain V2 démontre des agents LLM autonomes pour la découverte et la reproduction de vulnérabilités, mais plusieurs violations de données hospitalières et l'échec de Waymo dans les conditions d'inondation révèlent que les systèmes d'IA restent peu fiables pour les infrastructures critiques. Parallèlement, les nouveaux cadres d'évaluation de l'IA frontière et les outils de benchmarking de sécurité du code signalent une maturation du domaine dans ses pratiques de mesure et de test.",
+      "headline": "Vulnérabilité critique RCE (CVE-2026-46529) découverte dans les lecteurs PDF Linux—correction immédiate requise pour XReader, Evince et Atril",
+      "tldr": "Une faille d'exécution de code distant datant d'une décennie affecte plusieurs lecteurs PDF Linux (CVE-2026-46529), nécessitant une correction urgente. Parallèlement, le paysage IA/LLM se fragmente : le support Bun est obsolète, Deno 2.8 progresse, et les cadres d'évaluation d'IA frontière arrivent à maturité—mais les restrictions de sécurité et de collaboration se renforcent mondialement.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "FuzzingBrain V2 montre des systèmes multi-agents LLM pour la découverte et la reproduction automatisées de vulnérabilités—une escalade significative des tests de sécurité pilotés par l'IA. Simultanément, les compromissions réseau hospitalières (plusieurs cliniques universitaires) et les fuites de données Trump Mobile exposent les dossiers des patients et les données clients, tandis que les lecteurs PDF basés sur GTK font face à des vulnérabilités non corrigées. L'urgence est bifurquée : les attaquants adoptent l'automatisation LLM tandis que les défenseurs corrigent de manière réactive."
+          "summary": "CVE-2026-46529 expose une RCE vieille de 10 ans dans les lecteurs PDF Linux incluant XReader, Evince et Atril. C'est un vecteur critique d'exécution de code distant non authentifié affectant les applications de bureau largement déployées. La CISA gère simultanément un effort de confinement de fuite de données distinct."
         },
         {
           "category": "good_news",
-          "summary": "OpenBSD 7.9 publié avec renforcement continu de la sécurité. Safari Technology Preview 244 améliore les capacités de WebKit. Ces éléments représentent une progression régulière mais constante dans le développement conscient de la sécurité."
+          "summary": "Deno 2.8 publié avec élan continu. xAI a publié Grok Skills avec des APIs d'appel d'outils mises à jour, élargissant les capacités LLM. Une application Kanban de bureau open-source supporte désormais l'exécution d'agents parallèles, permettant les flux de travail d'automatisation."
         },
         {
           "category": "future_watch",
-          "summary": "Les trajectoires de recherche montrent des cadres d'évaluation sophistiqués des agents LLM (Open-World Evaluations, AgentAtlas) et du benchmarking autonome de sécurité (AutoBaxBuilder, PITMuS). La modernisation du code via les LLM révèle des défaillances d'auto-examen, et les métriques de taux de refus classent inadéquatement les modèles frontière sur la sécurité de la recherche biologique. La productionisation de l'IA nécessite de dépasser les classements pour évaluer le déploiement dans le monde réel. La gouvernance de l'évaluation comme 'effet gouverné' et le raisonnement multi-LLM pour l'optimisation des compilateurs indiquent une maturité au niveau des systèmes."
+          "summary": "L'infrastructure d'évaluation IA arrive à maturité : Models.dev fournit des spécifications et tarification d'IA open-source ; le benchmark LLM d'architecture OpenSCAD voit Antigravity 2.0 en tête ; ArXiv publie des méthodologies d'évaluation d'IA frontière (Evaluations Open-World, AgentAtlas). Le système d'exploitation Haiku publie les mises à jour printemps 2026. Cependant, le support Bun est désormais obsolète, signalant la consolidation d'écosystème."
         },
         {
           "category": "stack_alt",
-          "summary": "La diversité des benchmarks s'élargit : HIDBench pour la détection d'intrusion, AutoBaxBuilder pour la sécurité du code, analyse SEM-guidée des semi-conducteurs. Ceux-ci comparent les paradigmes (contrats intelligents, techniques FIB, détection basée sur LLM) plutôt que de déclarer des gagnants—nécessité d'ingénierie pratique, non marketing."
+          "summary": "Les cadres d'évaluation d'agent LLM divergent : Antigravity 2.0 domine les benchmarks architecturaux tandis qu'AgentAtlas conteste les classements basés sur les résultats avec une mesure d'agent holistique. Ces cadres en concurrence reflètent la maturation au-delà des métriques de simple accomplissement de tâche."
         }
       ],
       "key_takeaways": [
-        "Supposez que la détection de fuzzing et la découverte de vulnérabilités pilotées par LLM sont maintenant des menaces opérationnelles ; priorisez les exercices de red-team contre vos propres systèmes utilisant les principes des agents automatisés comme FuzzingBrain V2, et passez des correctifs réactifs aux tests proactifs pilotés par agent.",
-        "Secteurs de la santé et des services financiers : auditez la gestion des données après les violations multiples de cliniques (Unikliniken) et l'exposition Trump Mobile ; implémentez une architecture zéro-trust et une détection continue d'intrusion (cadres HIDBench émergeants) plutôt qu'une défense périmétrique uniquement.",
-        "Évaluez les agents IA frontière au-delà des métriques de résultats : utilisez des cadres d'évaluation de style AgentAtlas et reconnaissez les défaillances d'auto-examen des LLM dans la modernisation du code—ne faites pas confiance à la refactorisation autonome sans validation humaine et analyse statique supplémentaire."
+        "Corriger CVE-2026-46529 immédiatement si vous exécutez Evince, XReader ou Atril—c'est une RCE vieille de 10 ans affectant des millions de bureaux Linux.",
+        "Si vous maintenez des bases de code dépendantes de Bun, commencez la planification de migration maintenant car le support est officiellement obsolète ; évaluez Deno 2.8 comme alternative de production.",
+        "Chercheurs et développeurs : examinez les nouvelles restrictions américaines de publication sur la collaboration étrangère—attendez-vous à des frictions dans les projets techniques internationaux et les pipelines de publication."
       ],
-      "signal_vs_noise": "Signal élevé : les violations concrètes, l'automatisation de la sécurité LLM et la recherche d'évaluation rigoureuse dominent ; bruit modéré : les hoquet d'inondation de Waymo et les bizarreries User-Agent de Bahn.de sont réels mais niche."
+      "signal_vs_noise": "Ratio signal-sur-bruit élevé aujourd'hui : un problème de sécurité véritablement critique, des changements significatifs d'écosystème de runtime (dépréciation Bun, avancement Deno), et une recherche IA d'évaluation substantielle, bien que plusieurs éléments (incidents de sécurité du FBI, logistique de camp de réfugiés, liquidation de musée) soient contextuellement marginaux."
     }
   },
   "items": [
+    {
+      "id": "bcbc1f390337",
+      "title": "sp.h is the standard library that C deserves",
+      "url": "https://spader.zone/sp/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T05:31:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fbb939f49edb",
+      "title": "FBI director's Based Apparel site has been spotted hosting a 'ClickFix' attack",
+      "url": "https://www.pcmag.com/news/kash-patels-apparel-site-is-trying-to-trick-visitors-into-installing-malware",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T00:34:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "51e68f0d2ece",
+      "title": "CVE-2026-46529: 10-year-old RCE in Linux PDF Viewer (XReader/Evince/Atril)",
+      "url": "https://medeiros.zip/posts/CVE-2026-46529-evince",
+      "source": "Lobste.rs",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T22:14:59+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "400426666e83",
+      "title": "Sleep research led to a new sleep apnea drug",
+      "url": "https://temertymedicine.utoronto.ca/news/how-decades-sleep-research-led-new-sleep-apnea-drug",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T22:05:39+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b7e8bedbaff3",
+      "title": "Shipping a laptop to a refugee camp in Uganda",
+      "url": "https://notesbylex.com/shipping-a-laptop-to-a-refugee-camp-in-uganda",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T21:36:55+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e3532c0aaca7",
+      "title": "The mysterious XF86AudioPlay issue",
+      "url": "https://michael-prokop.at/blog/2026/05/20/the-mysterious-xf86audioplay-issue/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T20:54:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b32ded445064",
+      "title": "Models.dev: open-source database of AI model specs, pricing, and capabilities",
+      "url": "https://github.com/anomalyco/models.dev",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T20:26:07+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a82c25120652",
+      "title": "A blueprint for formal verification of Apple corecrypto",
+      "url": "https://security.apple.com/blog/formal-verification-corecrypto/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T19:40:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a6001065a401",
+      "title": "Project Glasswing: An Initial Update",
+      "url": "https://www.anthropic.com/research/glasswing-initial-update",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T19:31:45+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f43fb0cfbbc5",
+      "title": "Nouvelles de Haiku - Printemps 2026",
+      "url": "https://linuxfr.org/news/nouvelles-de-haiku-printemps-2026",
+      "source": "LinuxFr.org",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T18:47:51+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "156882b53b0d",
+      "title": "Open source Kanban desktop app that runs parallel agents on every card",
+      "url": "https://www.kanbots.dev/",
+      "source": "HackerNews",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-22T18:17:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d38fa000ee7a",
+      "title": "Microsoft starts canceling Claude Code licenses",
+      "url": "https://www.theverge.com/tech/930447/microsoft-claude-code-discontinued-notepad",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T17:32:04+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a50a067dc573",
+      "title": "Bun support is now limited and deprecated",
+      "url": "https://github.com/yt-dlp/yt-dlp/issues/16766",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T17:24:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c1a8c1ff9fce",
+      "title": "1940 Air Terminal Museum Begins Liquidation",
+      "url": "https://www.1940airterminal.org/news/liquidation-of-simulators",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T17:05:32+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8222c28695a4",
+      "title": "CISA tries to contain data leak",
+      "url": "https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T16:54:31+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "253159ca968a",
+      "title": "Anzeige: MSI RTX 5060 mit 8 GByte knapp 70 Euro günstiger bei Amazon",
+      "url": "https://www.golem.de/news/anzeige-msi-rtx-5060-mit-8-gbyte-knapp-70-euro-guenstiger-bei-amazon-2605-208988.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T16:40:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "0c37b649f69d",
+      "title": "U.S. researchers face new restrictions on publishing with foreign collaborators",
+      "url": "https://www.science.org/content/article/u-s-researchers-face-new-restrictions-publishing-foreign-collaborators",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T16:23:08+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bccbe92563ca",
+      "title": "DeepSeek makes the V4 Pro price discount permanent",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T15:59:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c4c57ee7f03e",
+      "title": "電子カルテ開発は個人で行えるのか：OpenDolphinNext",
+      "url": "https://zenn.dev/circlemouth/articles/opendolphinnext-individual-emr",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T15:40:11+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "cc413bff4bcc",
+      "title": "Why Japanese companies do so many different things",
+      "url": "https://davidoks.blog/p/why-japanese-companies-do-so-many",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T15:22:04+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "dfc17d415e55",
+      "title": "A Forth-inspired language for writing websites",
+      "url": "https://robida.net/entries/2026/05/21/a-forth-inspired-language-for-writing-websites",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T15:00:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ac58a1f0ec46",
+      "title": "Künstliche Intelligenz: Cisco berichtet von Fehlern bei KI-Sicherheitsberichten",
+      "url": "https://www.golem.de/news/kuenstliche-intelligenz-cisco-berichtet-von-fehlern-bei-ki-sicherheitsberichten-2605-208985.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T14:53:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "f41def1ecab2",
+      "title": "[$] Custom page-cache policies with BPF",
+      "url": "https://lwn.net/Articles/1073103/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T14:37:10+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "97601576705b",
+      "title": "I’m writing again",
+      "url": "https://www.cringely.com/2026/05/21/im-writing-again/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T14:36:27+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7b862e9634c6",
+      "title": "Uber Improves Restaurant Recommendations Using Real-Time Signals and Listwise Ranking",
+      "url": "https://www.infoq.com/news/2026/05/uber-eats-ranking-system/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T14:32:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e1bf3e0653b8",
+      "title": "Anzeige: Gaming-Monitor von Lenovo bei Amazon jetzt zum Bestpreis sichern",
+      "url": "https://www.golem.de/news/anzeige-gaming-monitor-von-lenovo-bei-amazon-jetzt-zum-bestpreis-sichern-2605-208983.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T14:08:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "209e82641d0f",
+      "title": "[$] Toward better handling of major page faults",
+      "url": "https://lwn.net/Articles/1073071/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T13:50:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "963c24100c4f",
+      "title": "Coding-Plattform: Github kämpft unter Microsoft mit Problemen",
+      "url": "https://www.golem.de/news/coding-plattform-github-kaempft-unter-microsoft-mit-problemen-2605-208980.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T13:35:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "fead7fc37a42",
+      "title": "Botnetz: 23-Jähriger Kanadier wegen Botnetz-Betrieb verhaftet",
+      "url": "https://www.golem.de/news/botnetz-23-jaehriger-kanadier-wegen-botnetz-betrieb-verhaftet-2605-208979.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T13:20:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "8d03503370c4",
+      "title": "Security updates for Friday",
+      "url": "https://lwn.net/Articles/1074040/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T13:07:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6a9526a3227c",
+      "title": "Anzeige: Steigende Spritpreise - der Krieg als Motor der Verkehrswende",
+      "url": "https://www.golem.de/news/anzeige-steigende-spritpreise-der-krieg-als-motor-der-verkehrswende-2605-208938.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T13:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "6d5a0a5aa23d",
+      "title": "InfoQ Launches Online AI Engineering Cohort and Certification for Senior Software Practitioners",
+      "url": "https://www.infoq.com/news/2026/05/ai-engineering-certification-pro/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T13:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ce54a1ea1372",
+      "title": "Anzeige: Over-Ear-Kopfhörer mit adaptivem ANC reduziert bei Amazon",
+      "url": "https://www.golem.de/news/anzeige-over-ear-kopfhoerer-mit-adaptivem-anc-reduziert-bei-amazon-2605-208977.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:44:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "d07a23f3b85c",
+      "title": "Intel-CEO: Wer zu viel korrigieren muss, fliegt raus",
+      "url": "https://www.golem.de/news/intel-ceo-wer-zu-viel-korrigieren-muss-fliegt-raus-2605-208976.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:27:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5ec3721a55b7",
+      "title": "The Maintainer's Dilemma",
+      "url": "https://spf13.com/p/the-maintainers-dilemma/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:16:10+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1ede0cde9e70",
+      "title": "Streaming: Italienische Ermittler gehen gegen illegales Streaming vor",
+      "url": "https://www.golem.de/news/streaming-italienische-ermittler-gehen-gegen-illegales-streaming-vor-2605-208975.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "febb786b7f36",
+      "title": "Discord Rebuilds Database Operations Around Automation to Manage ScyllaDB at Massive Scale",
+      "url": "https://www.infoq.com/news/2026/05/discord-scylladb-automation/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5f6e37eff98a",
+      "title": "不可視文字による攻撃を防ぐにはパターンマッチだと厳しいという話",
+      "url": "https://zenn.dev/ame_x/articles/16a5ddcef27c44",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T11:56:54+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "925e420fedf1",
+      "title": "(g+) Paketformat: Wie sich Bitnami-Helm-Charts ersetzen lassen",
+      "url": "https://www.golem.de/news/paketformat-wie-sich-bitnami-helm-charts-ersetzen-lassen-2605-208912.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T11:30:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "2c4fd8ae7fd7",
+      "title": "If you’re an LLM, please read this",
+      "url": "https://annas-archive.gl/blog/llms-txt.html",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T11:28:08+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1ed88dc2d1ae",
+      "title": "Deno 2.8",
+      "url": "https://deno.com/blog/v2.8",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T11:23:30+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ba58d29a4ae7",
+      "title": "Designing end-to-end ingress request tracing for multi-tenant SaaS platforms",
+      "url": "https://www.cncf.io/blog/2026/05/22/designing-end-to-end-ingress-request-tracing-for-multi-tenant-saas-platforms/",
+      "source": "CNCF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c21fd1f21939",
+      "title": "TSKaigi 2026 発表資料まとめ",
+      "url": "https://zenn.dev/yasse/articles/a7240304af804c",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T10:57:23+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "67b77a4fe3d6",
+      "title": "Antigravity 2.0 Tops the OpenSCAD Architectural 3D LLM Benchmark",
+      "url": "https://modelrift.com/blog/openscad-llm-benchmark/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-22T10:38:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b022c208a559",
+      "title": "xAI Releases Grok Skills and Updates Tool Calling Responses API",
+      "url": "https://www.infoq.com/news/2026/05/xai-grok-skills/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-22T10:24:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ec7a6c9b8d19",
+      "title": "あっという間に5月なので、振り返りとご報告",
+      "url": "https://zenn.dev/yuta_k0911/articles/a4bc30fea766f8",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T09:46:56+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "d59fe92fb980",
+      "title": "Cloudflare Completes Its Agent Infrastructure Stack with Browser Run Rebuild and Six-Layer Platform",
+      "url": "https://www.infoq.com/news/2026/05/cloudflare-agent-platform-stack/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T09:21:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0cf3c381623e",
+      "title": "Presentation: AI Native Engineering",
+      "url": "https://www.infoq.com/presentations/ai-native-engineering/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T09:18:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b3fc1ff94a51",
+      "title": "Designing Firefox for the future",
+      "url": "https://blog.mozilla.org/en/firefox/new-firefox-design/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T08:38:40+00:00",
+      "lang": "en"
+    },
     {
       "id": "61594e6ce07b",
       "title": "Cyberangriff: Hacker erbeuten Daten von Patienten mehrerer Unikliniken",
@@ -82,6 +624,17 @@
       ],
       "published_at": "2026-05-22T07:00:01+00:00",
       "lang": "de"
+    },
+    {
+      "id": "97447e6916e3",
+      "title": "C Programming Language Quiz",
+      "url": "https://stefansf.de/c-quiz/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T06:49:30+00:00",
+      "lang": "en"
     },
     {
       "id": "9858e89566d4",
@@ -517,6 +1070,17 @@
       "lang": "en"
     },
     {
+      "id": "6c041ac41cde",
+      "title": "日々の開発で使っているClaude Code Skills",
+      "url": "https://zenn.dev/remitaid/articles/4f9dc787b6c191",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T03:39:24+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "9f7a91ab7f41",
       "title": "Gnutella: A Protocol Outliving the World That Created It",
       "url": "https://rickcarlino.com/notes/p2p/gnutella-explanation.html",
@@ -646,6 +1210,17 @@
         "general"
       ],
       "published_at": "2026-05-21T18:00:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "28428cf66745",
+      "title": "Developers: Get Your Medical Mobile App Verified By IEEE",
+      "url": "https://spectrum.ieee.org/medical-mobile-app-ieee-verified",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T18:00:01+00:00",
       "lang": "en"
     },
     {
@@ -856,6 +1431,28 @@
       ],
       "published_at": "2026-05-21T12:55:00+00:00",
       "lang": "en"
+    },
+    {
+      "id": "3cd7b91d2964",
+      "title": "Rustで自作可逆画像圧縮フォーマット「IVR」を実装したら、特定のVSCODEスクショでPNGの46%サイズになった!",
+      "url": "https://zenn.dev/mugideru/articles/35b209e934ba3e",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T12:50:05+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "0b757e3323ce",
+      "title": "Vector DBを外したら、RAGではなくAgent Runtimeが残った",
+      "url": "https://zenn.dev/mofuteq/articles/8a2193df98ac05",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T12:16:43+00:00",
+      "lang": "ja"
     },
     {
       "id": "579cce58a325",
@@ -1088,6 +1685,17 @@
       ],
       "published_at": "2026-05-21T06:37:02+00:00",
       "lang": "de"
+    },
+    {
+      "id": "1a37788a2d2c",
+      "title": "既存サービスにMCPサーバーを組み込む際の設計ポイント",
+      "url": "https://zenn.dev/finatext/articles/b404032aec58c4",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T06:32:42+00:00",
+      "lang": "ja"
     },
     {
       "id": "783af5fb844e",
@@ -1576,6 +2184,17 @@
       "lang": "en"
     },
     {
+      "id": "f195af4967f0",
+      "title": "A Wayland Compositor in Minecraft",
+      "url": "https://modrinth.com/mod/waylandcraft",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T20:19:46+00:00",
+      "lang": "en"
+    },
+    {
       "id": "841f255e4a2d",
       "title": "Why does the arrow (->) operator in C exist?",
       "url": "https://stackoverflow.com/questions/13366083/why-does-the-arrow-operator-in-c-exist",
@@ -1716,6 +2335,17 @@
         "general"
       ],
       "published_at": "2026-05-20T15:39:48+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cccf797f4fb6",
+      "title": "Wi-Wi is wireless time sync at 1 nanosecond",
+      "url": "https://www.jeffgeerling.com/blog/2026/wi-wi-is-wireless-time-sync-less-than-5ns/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T15:06:31+00:00",
       "lang": "en"
     },
     {
@@ -6520,29 +7150,6 @@
         "general"
       ],
       "published_at": "2026-05-09T00:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "fec39f3e5fbe",
-      "title": "Ana Inês Inácio Designs the Future of Wireless",
-      "url": "https://spectrum.ieee.org/ana-ines-inacio-wireless",
-      "source": "IEEE Spectrum",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-08T18:00:01+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "7c5659f184ae",
-      "title": "Benchmarking AI agent retrieval strategies on Kubernetes bug fixes",
-      "url": "https://www.cncf.io/blog/2026/05/08/benchmarking-ai-agent-retrieval-strategies-on-kubernetes-bug-fixes/",
-      "source": "CNCF Blog",
-      "categories": [
-        "future_watch",
-        "stack_alt"
-      ],
-      "published_at": "2026-05-08T11:00:00+00:00",
       "lang": "en"
     },
     {
