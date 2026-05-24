@@ -1,66 +1,452 @@
 {
-  "generated_at": "2026-05-23T06:50:51.744080+00:00",
-  "period": "2026-05-23",
-  "count": 670,
+  "generated_at": "2026-05-24T07:01:06.517646+00:00",
+  "period": "2026-05-24",
+  "count": 714,
   "synthesis": {
     "en": {
-      "headline": "Critical 10-year-old RCE vulnerability (CVE-2026-46529) discovered in Linux PDF viewers—immediate patching required for XReader, Evince, and Atril",
-      "tldr": "A decade-old remote code execution flaw affects multiple Linux PDF viewers (CVE-2026-46529), requiring urgent patching. Meanwhile, the AI/LLM landscape continues fragmenting: Bun runtime support is deprecated, Deno 2.8 advances, and frontier AI evaluation frameworks mature—but significant security and collaboration restrictions are tightening globally.",
+      "headline": "Critical 10-Year-Old RCE Vulnerability Discovered in Linux PDF Viewers; Microsoft Patches Internal Account Abuse Vector",
+      "tldr": "CVE-2026-46529 exposes a decade-old remote code execution flaw in XReader/Evince/Atril PDF viewers requiring immediate patching. Separately, Microsoft's internal accounts are being exploited for spam distribution, highlighting credential hygiene failures at scale.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "CVE-2026-46529 exposes a 10-year-old RCE in Linux PDF viewers including XReader, Evince, and Atril. This is a critical, unauthenticated remote code execution vector affecting widely-deployed desktop applications. CISA is simultaneously managing a separate data leak containment effort."
+          "summary": "CVE-2026-46529 represents a critical RCE vulnerability in Linux PDF viewers that has existed undetected for 10 years. Additionally, attackers are actively abusing Microsoft internal accounts to distribute spam and phishing links, indicating compromised credential infrastructure."
         },
         {
           "category": "good_news",
-          "summary": "Deno 2.8 released with continued momentum. xAI released Grok Skills with updated tool-calling APIs, expanding LLM capabilities. An open-source Kanban desktop app now supports parallel agent execution, enabling automation workflows."
+          "summary": "Google Cloud expanded BigQuery with cross-engine Iceberg support, enabling unified data lakehouse queries. Linux kernel received a large batch of stable updates. Open-source Kanban tools with parallel task execution continue maturing the productivity software ecosystem."
         },
         {
           "category": "future_watch",
-          "summary": "AI evaluation infrastructure matures: Models.dev provides open-source AI model specifications and pricing; OpenSCAD Architectural 3D LLM Benchmark sees Antigravity 2.0 top the leaderboard; ArXiv publishes frontier AI evaluation methodologies (Open-World Evaluations, AgentAtlas). Haiku OS releases spring 2026 updates. However, Bun runtime support is now deprecated, signaling ecosystem consolidation."
+          "summary": "AI model specification databases (Models.dev) are consolidating pricing and capability metadata. Uber's ML advances in real-time restaurant ranking using listwise learning signal sophistication in recommendation systems. Mercedes accelerates Level 2++ autonomous driving deployment in Germany. Haiku OS and TypeScript ecosystem continue incremental progress. However, Bun's support is being deprecated, signaling consolidation pressures in the JS runtime space."
         },
         {
           "category": "stack_alt",
-          "summary": "LLM agent evaluation frameworks diverge: Antigravity 2.0 dominates architectural benchmarks while AgentAtlas challenges outcome-only leaderboards with holistic agent measurement. These competing frameworks reflect maturation beyond simple task completion metrics."
+          "summary": "Go panic-based flow control patterns document unconventional but functional approaches to error handling. Deep learning optimization techniques remain actively discussed despite being archived from 2022, indicating lasting relevance."
         }
       ],
       "key_takeaways": [
-        "Patch CVE-2026-46529 immediately if running Evince, XReader, or Atril—this is a 10-year-old RCE affecting millions of Linux desktops.",
-        "If maintaining Bun-dependent codebases, begin migration planning now as support is officially deprecated; evaluate Deno 2.8 as a production alternative.",
-        "Researchers and developers: review new U.S. publishing restrictions on foreign collaboration—expect friction in international technical projects and publication pipelines."
+        "Patch PDF viewers immediately: CVE-2026-46529 affects XReader, Evince, and Atril with 10-year exploitation window—verify your Linux desktop software versions today",
+        "Audit Microsoft account access logs and enforce MFA/conditional access policies if using Microsoft services for any production integration",
+        "Monitor Bun deprecation status if using it in development workflows; plan migration to Node.js or Deno for long-term stability"
       ],
-      "signal_vs_noise": "High signal-to-noise ratio today: one genuinely critical security issue, meaningful runtime ecosystem shifts (Bun deprecation, Deno advancement), and substantive AI evaluation research, though several items (FBI security incidents, refugee camp logistics, museum liquidation) are contextually marginal."
+      "signal_vs_noise": "Moderate signal with one genuine critical vulnerability offsetting heavy marketing content (AI certifications, job listings, retrospective articles); actionable items are sparse but serious."
     },
     "fr": {
-      "headline": "Vulnérabilité critique RCE (CVE-2026-46529) découverte dans les lecteurs PDF Linux—correction immédiate requise pour XReader, Evince et Atril",
-      "tldr": "Une faille d'exécution de code distant datant d'une décennie affecte plusieurs lecteurs PDF Linux (CVE-2026-46529), nécessitant une correction urgente. Parallèlement, le paysage IA/LLM se fragmente : le support Bun est obsolète, Deno 2.8 progresse, et les cadres d'évaluation d'IA frontière arrivent à maturité—mais les restrictions de sécurité et de collaboration se renforcent mondialement.",
+      "headline": "Faille RCE Critique de 10 Ans Découverte dans les Lecteurs PDF Linux ; Microsoft Corrige les Abus de Comptes Internes",
+      "tldr": "CVE-2026-46529 expose une vulnérabilité d'exécution de code distant décennale dans les lecteurs PDF XReader/Evince/Atril nécessitant un correctif immédiat. Parallèlement, les comptes internes de Microsoft sont exploités pour distribuer des liens de spam, révélant des défaillances critiques d'hygiène des identifiants.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "CVE-2026-46529 expose une RCE vieille de 10 ans dans les lecteurs PDF Linux incluant XReader, Evince et Atril. C'est un vecteur critique d'exécution de code distant non authentifié affectant les applications de bureau largement déployées. La CISA gère simultanément un effort de confinement de fuite de données distinct."
+          "summary": "CVE-2026-46529 représente une vulnérabilité RCE critique dans les lecteurs PDF Linux existant depuis 10 ans sans détection. Des attaquants abusent activement des comptes internes Microsoft pour distribuer du spam et des liens de phishing, indiquant une infrastructure d'identifiants compromise."
         },
         {
           "category": "good_news",
-          "summary": "Deno 2.8 publié avec élan continu. xAI a publié Grok Skills avec des APIs d'appel d'outils mises à jour, élargissant les capacités LLM. Une application Kanban de bureau open-source supporte désormais l'exécution d'agents parallèles, permettant les flux de travail d'automatisation."
+          "summary": "Google Cloud a étendu BigQuery avec le support cross-engine Iceberg, permettant des requêtes unifiées sur lakehouses de données. Le noyau Linux a reçu un important lot de mises à jour stables. Les outils Kanban open-source avec exécution parallèle des tâches continuent de renforcer l'écosystème logiciel de productivité."
         },
         {
           "category": "future_watch",
-          "summary": "L'infrastructure d'évaluation IA arrive à maturité : Models.dev fournit des spécifications et tarification d'IA open-source ; le benchmark LLM d'architecture OpenSCAD voit Antigravity 2.0 en tête ; ArXiv publie des méthodologies d'évaluation d'IA frontière (Evaluations Open-World, AgentAtlas). Le système d'exploitation Haiku publie les mises à jour printemps 2026. Cependant, le support Bun est désormais obsolète, signalant la consolidation d'écosystème."
+          "summary": "Les bases de données de spécifications de modèles IA (Models.dev) consolident les métadonnées de tarification et capacité. Les avancées ML d'Uber en classement de restaurants en temps réel signalent la sophistication du machine learning appliqué. Mercedes accélère le déploiement de la conduite autonome Level 2++ en Allemagne. Les écosystèmes Haiku OS et TypeScript progressent graduellement. Cependant, le support Bun est déprécié, signalant une consolidation des runtimes JavaScript."
         },
         {
           "category": "stack_alt",
-          "summary": "Les cadres d'évaluation d'agent LLM divergent : Antigravity 2.0 domine les benchmarks architecturaux tandis qu'AgentAtlas conteste les classements basés sur les résultats avec une mesure d'agent holistique. Ces cadres en concurrence reflètent la maturation au-delà des métriques de simple accomplissement de tâche."
+          "summary": "Les patterns Go utilisant les panics pour le contrôle de flux documentent des approches non-conventionnelles mais fonctionnelles de gestion d'erreurs. Les techniques d'optimisation du deep learning restent activement discutées malgré une archivage de 2022, indiquant une pertinence durable."
         }
       ],
       "key_takeaways": [
-        "Corriger CVE-2026-46529 immédiatement si vous exécutez Evince, XReader ou Atril—c'est une RCE vieille de 10 ans affectant des millions de bureaux Linux.",
-        "Si vous maintenez des bases de code dépendantes de Bun, commencez la planification de migration maintenant car le support est officiellement obsolète ; évaluez Deno 2.8 comme alternative de production.",
-        "Chercheurs et développeurs : examinez les nouvelles restrictions américaines de publication sur la collaboration étrangère—attendez-vous à des frictions dans les projets techniques internationaux et les pipelines de publication."
+        "Corrigez immédiatement les lecteurs PDF : CVE-2026-46529 affecte XReader, Evince et Atril avec une fenêtre d'exploitation de 10 ans—vérifiez les versions de vos logiciels desktop Linux aujourd'hui",
+        "Auditez les journaux d'accès aux comptes Microsoft et imposez l'authentification multifacteur et les politiques d'accès conditionnel si vous utilisez les services Microsoft en production",
+        "Surveillez l'état de dépréciation de Bun si vous l'utilisez dans vos workflows de développement ; planifiez une migration vers Node.js ou Deno pour la stabilité à long terme"
       ],
-      "signal_vs_noise": "Ratio signal-sur-bruit élevé aujourd'hui : un problème de sécurité véritablement critique, des changements significatifs d'écosystème de runtime (dépréciation Bun, avancement Deno), et une recherche IA d'évaluation substantielle, bien que plusieurs éléments (incidents de sécurité du FBI, logistique de camp de réfugiés, liquidation de musée) soient contextuellement marginaux."
+      "signal_vs_noise": "Signal modéré avec une vulnérabilité critique authentique compensant le contenu marketing abondant (certifications IA, offres d'emploi, articles rétrospectifs) ; les éléments actionnables sont rares mais sérieux."
     }
   },
   "items": [
+    {
+      "id": "a2a9796e3df5",
+      "title": "Anzeige: IT-Jobs in DevOps, Administration und Security",
+      "url": "https://www.golem.de/news/anzeige-it-jobs-in-devops-administration-und-security-2605-208645.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T05:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7af9cc2f01a0",
+      "title": "Amazon Web Services – Four Years and Out",
+      "url": "https://www.adventuresinoss.com/aws-four-years/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T04:51:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "722666ff1f7f",
+      "title": "Microsoft open-sources \"the earliest DOS source code discovered to date\"",
+      "url": "https://arstechnica.com/gadgets/2026/04/microsoft-open-sources-the-earliest-dos-source-code-discovered-to-date/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T01:21:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f04fcf35fd97",
+      "title": "Scammers are abusing an internal Microsoft account to send spam links",
+      "url": "https://techcrunch.com/2026/05/21/scammers-are-abusing-an-internal-microsoft-account-to-send-spam/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T00:51:32+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "316215f7caae",
+      "title": "Wake up! 16b",
+      "url": "https://hellmood.111mb.de/wake_up_16b_writeup.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T00:30:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "82d3a13f76f9",
+      "title": "ICE Awards $25M Iris-Scanning Contract to Bi2 Technologies",
+      "url": "https://www.projectsaltbox.com/p/ice-awards-25-million-iris-scanning",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T23:39:43+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "859132f0759f",
+      "title": "Procedural Fascicle for R7RS Large Scheme",
+      "url": "https://r7rs.org/large/fascicles/proc/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T20:11:14+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c09122c6d64f",
+      "title": "Jira is Turing-Complete",
+      "url": "https://seriot.ch/computation/jira.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T18:55:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "68a8e104ebe8",
+      "title": "Time to talk about my writerdeck",
+      "url": "https://veronicaexplains.net/my-first-writerdeck/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T18:45:37+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "99931d8a742f",
+      "title": "【アーキテクチャ】大量の類似 Feature を持つ Enterprise なフロントエンド設計",
+      "url": "https://zenn.dev/yuitonn/articles/f88ddcf21ce172",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T17:17:57+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "f03bd4b74a5a",
+      "title": "Reverse engineering circuitry in a Spacelab computer from 1980",
+      "url": "https://www.righto.com/2026/05/reverse-engineering-spacelab-computer.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T16:24:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5a0dc92da862",
+      "title": "Hershey is a textual vector font format",
+      "url": "https://wiki.xxiivv.com/site/hershey.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T15:50:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e701115d5a57",
+      "title": "Wayland compositor implemented as a mod in Minecraft",
+      "url": "https://modrinth.com/project/9yAfrPwH",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T14:07:31+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "73b9dad0e939",
+      "title": "A large set of stable kernel updates",
+      "url": "https://lwn.net/Articles/1074117/",
+      "source": "LWN.net",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-23T13:55:30+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0457ab484a6a",
+      "title": "Arbeit: Wenn KI die Jobs frisst, was bleibt vom Menschen?",
+      "url": "https://www.golem.de/news/arbeit-wenn-ki-die-jobs-frisst-was-bleibt-vom-menschen-2605-208991.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T13:30:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "35eb6d094774",
+      "title": "On The <dl> (2021)",
+      "url": "https://benmyers.dev/blog/on-the-dl/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T13:03:43+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c007cfaf839d",
+      "title": "The Art of Money Getting",
+      "url": "https://kk.org/cooltools/book-freak-210-the-art-of-money-getting/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T12:48:02+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b8bde4ad6560",
+      "title": "Autonomes Fahren: Xpeng startet Chinas erste Serienproduktion von Robotaxis",
+      "url": "https://www.golem.de/news/autonomes-fahren-xpeng-startet-chinas-erste-serienproduktion-von-robotaxis-2605-208996.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T12:46:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "05eabd88ba5a",
+      "title": "80386 microcode disassembled",
+      "url": "https://www.reenigne.org/blog/80386-microcode-disassembled/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T12:11:43+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9a1b460d3617",
+      "title": "Elektro-Kleinwagen: Citroën bringt die Ente zurück",
+      "url": "https://www.golem.de/news/elektro-kleinwagen-citroen-bringt-die-ente-zurueck-2605-208997.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T12:10:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "b583956b2cde",
+      "title": "AIコーディングエージェントの本当の攻撃面は設定ファイルだった",
+      "url": "https://zenn.dev/ju571n/articles/ai-agent-config-attack-surface",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T11:51:21+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "5b51f0847714",
+      "title": "Making deep learning go brrrr from first principles (2022)",
+      "url": "https://horace.io/brrr_intro.html",
+      "source": "HackerNews",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-23T11:50:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c5081c95eaf9",
+      "title": "SpaceX: Neue Super-Heavy-Konstruktion versagt bei Starship-Start",
+      "url": "https://www.golem.de/news/spacex-neue-super-heavy-konstruktion-versagt-bei-starship-start-2605-208995.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T11:45:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "6e8c8b7d474a",
+      "title": "Ukraine: Kamikaze-Drohnen werden mit Ballons zur Front getrieben",
+      "url": "https://www.golem.de/news/ukraine-kamikaze-drohnen-werden-mit-ballons-zur-front-getrieben-2605-208989.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T11:15:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "830be69c91a4",
+      "title": "KI-Einsatz extrem: Clickup feuert jeden Fünften und zahlt dem Rest Millionen",
+      "url": "https://www.golem.de/news/ki-einsatz-extrem-clickup-feuert-jeden-fuenften-und-zahlt-dem-rest-millionen-2605-208994.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T10:45:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "c8eef6d564c7",
+      "title": "日本人たるもの、業務BOTを武士とすべし。",
+      "url": "https://zenn.dev/ralutet/articles/20260523_samurai",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T10:29:06+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "450b84f47f73",
+      "title": "Künstliche Intelligenz: Google verwechselt Suchwörter mit Prompts",
+      "url": "https://www.golem.de/news/kuenstliche-intelligenz-google-verwechselt-suchwoerter-mit-prompts-2605-208990.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T10:15:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "9c4b8df7406e",
+      "title": "That one time I used Go panics for flow control",
+      "url": "https://noncrab.net/posts/panic-as-flow-control/",
+      "source": "Lobste.rs",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-23T09:57:28+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f0a6ca46c2a0",
+      "title": "-​-dangerously-skip-reading-code",
+      "url": "https://olano.dev/blog/dangerously-skip/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T09:37:16+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d17a49992925",
+      "title": "US-Regierung: Antrag auf Green Card nur noch aus dem Ausland möglich",
+      "url": "https://www.golem.de/news/us-regierung-antrag-auf-green-card-nur-noch-aus-dem-ausland-moeglich-2605-208993.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T09:30:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "d4ee3ef82699",
+      "title": "トークン84%減 + 長時間連続自走を実現したAIワーカーのCycle運用 (Codex CLI)",
+      "url": "https://zenn.dev/marvelousu/articles/codex-cli-cycle-ops",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T09:13:41+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "4c0d0369de7a",
+      "title": "Überwachtes autonomes Fahren: Mercedes bringt Level 2++ früher nach Deutschland",
+      "url": "https://www.golem.de/news/ueberwachtes-autonomes-fahren-mercedes-bringt-level-2-frueher-nach-deutschland-2605-208992.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-23T08:45:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5367e58c8558",
+      "title": "Google Cloud Introduces Cross-Engine Iceberg Support in BigQuery",
+      "url": "https://www.infoq.com/news/2026/05/google-cross-engine-iceberg/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-23T08:42:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "61d447685de3",
+      "title": "Don't Roll Your Own …",
+      "url": "https://susam.net/do-not-roll-your-own.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T07:44:27+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "44b3fc3b6638",
+      "title": "Spanish court declines to fine NordVPN over LaLiga piracy blocking order",
+      "url": "https://torrentfreak.com/spanish-court-declines-to-fine-nordvpn-over-laliga-piracy-blocking-order/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-23T06:54:49+00:00",
+      "lang": "en"
+    },
     {
       "id": "bcbc1f390337",
       "title": "sp.h is the standard library that C deserves",
@@ -81,6 +467,17 @@
         "general"
       ],
       "published_at": "2026-05-23T00:34:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "639cc20b3515",
+      "title": "SpaceX launches Starship v3 rocket",
+      "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-v3-megarocket-first-test-flight",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T23:41:55+00:00",
       "lang": "en"
     },
     {
@@ -118,6 +515,17 @@
       "lang": "en"
     },
     {
+      "id": "35c2148d40f5",
+      "title": "Green card seekers must leave U.S. to apply, Trump administration says",
+      "url": "https://www.nytimes.com/2026/05/22/us/politics/green-card-changes-trump.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T21:27:12+00:00",
+      "lang": "en"
+    },
+    {
       "id": "e3532c0aaca7",
       "title": "The mysterious XF86AudioPlay issue",
       "url": "https://michael-prokop.at/blog/2026/05/20/the-mysterious-xf86audioplay-issue/",
@@ -126,6 +534,17 @@
         "general"
       ],
       "published_at": "2026-05-22T20:54:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a82fff79a9b6",
+      "title": "Hengefinder: Finding when the sun aligns with your street",
+      "url": "https://victoriaritvo.com/blog/hengefinder/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T20:39:42+00:00",
       "lang": "en"
     },
     {
@@ -394,6 +813,17 @@
       "lang": "en"
     },
     {
+      "id": "5a50cc7c2f22",
+      "title": "TSKaigi 2026に行ってきた〜〜〜〜……よ！！！！Day 1",
+      "url": "https://zenn.dev/koyo_k0/articles/3b08a6f60ecb76",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-22T13:05:23+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "6a9526a3227c",
       "title": "Anzeige: Steigende Spritpreise - der Krieg als Motor der Verkehrswende",
       "url": "https://www.golem.de/news/anzeige-steigende-spritpreise-der-krieg-als-motor-der-verkehrswende-2605-208938.html",
@@ -425,6 +855,17 @@
       ],
       "published_at": "2026-05-22T12:44:02+00:00",
       "lang": "de"
+    },
+    {
+      "id": "578e4b08de33",
+      "title": ".NET (OK, C#) finally gets union types",
+      "url": "https://andrewlock.net/exploring-the-dotnet-11-preview-2-dotnet-gets-union-types/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T12:28:50+00:00",
+      "lang": "en"
     },
     {
       "id": "d07a23f3b85c",
@@ -602,6 +1043,17 @@
       ],
       "published_at": "2026-05-22T08:38:40+00:00",
       "lang": "en"
+    },
+    {
+      "id": "c354cfac7790",
+      "title": "自分専用AIエージェントを作ってわかった、LLMとプログラムの責務分離",
+      "url": "https://zenn.dev/shingoirie/articles/5e063ccee38a5b",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T08:33:41+00:00",
+      "lang": "ja"
     },
     {
       "id": "61594e6ce07b",
@@ -2140,6 +2592,17 @@
       "lang": "ja"
     },
     {
+      "id": "6dcc1b2375dd",
+      "title": "My two-part desk setup (2025)",
+      "url": "https://arslan.io/2025/11/18/my-two-part-desk-setup/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-20T21:21:14+00:00",
+      "lang": "en"
+    },
+    {
       "id": "b67fe42649da",
       "title": "Anthropic is expanding to Colossus2. Will use GB200",
       "url": "https://twitter.com/nottombrown/status/2057194829986300375",
@@ -3154,6 +3617,17 @@
       "lang": "de"
     },
     {
+      "id": "1c5adfd04f8b",
+      "title": "PHP's Oddities",
+      "url": "https://flowtwo.io/post/php%27s-oddities",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T20:41:48+00:00",
+      "lang": "en"
+    },
+    {
       "id": "54e19648ddfd",
       "title": "I am not a Software Engineer",
       "url": "https://huronbikes.mataroa.blog/blog/i-am-not-a-software-engineer/",
@@ -3349,6 +3823,17 @@
         "general"
       ],
       "published_at": "2026-05-19T15:43:19+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "25b3e5a88483",
+      "title": "Kindle loyalists scramble as Amazon turns page on old e-readers",
+      "url": "https://www.reuters.com/business/retail-consumer/kindle-loyalists-scramble-amazon-turns-page-old-e-readers-2026-05-19/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-19T15:30:01+00:00",
       "lang": "en"
     },
     {
@@ -7138,8 +7623,7 @@
         "general"
       ],
       "published_at": "2026-05-10T00:00:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
+      "lang": "en"
     },
     {
       "id": "8be2f0b06477",
