@@ -1,66 +1,974 @@
 {
-  "generated_at": "2026-05-24T07:01:06.517646+00:00",
-  "period": "2026-05-24",
-  "count": 714,
+  "generated_at": "2026-05-25T07:25:52.795841+00:00",
+  "period": "2026-05-25",
+  "count": 800,
   "synthesis": {
     "en": {
-      "headline": "Critical 10-Year-Old RCE Vulnerability Discovered in Linux PDF Viewers; Microsoft Patches Internal Account Abuse Vector",
-      "tldr": "CVE-2026-46529 exposes a decade-old remote code execution flaw in XReader/Evince/Atril PDF viewers requiring immediate patching. Separately, Microsoft's internal accounts are being exploited for spam distribution, highlighting credential hygiene failures at scale.",
+      "headline": "AI Security and Code Safety Emerge as Critical Enterprise Concerns Amid Rapid LLM Integration",
+      "tldr": "Academic research reveals alarming gaps in LLM-generated code security and agentic AI systems, while enterprises race to implement governance frameworks. AWS MCP Server reaches GA with IAM-based controls, and the open-source community doubles down on digital sovereignty alternatives to US-based platforms.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "CVE-2026-46529 represents a critical RCE vulnerability in Linux PDF viewers that has existed undetected for 10 years. Additionally, attackers are actively abusing Microsoft internal accounts to distribute spam and phishing links, indicating compromised credential infrastructure."
+          "summary": "Security research surfaces critical vulnerabilities in LLM-assisted development: PoisonForge benchmark demonstrates task-level targeted poisoning attacks on instruction-tuned models, while memory poisoning can masquerade as model failures in agentic systems (The Misattribution Gap). Database performance issues lurk in dormant code paths. Memory-safe alternatives like Go rsync implementations are gaining traction as practical defenses."
         },
         {
           "category": "good_news",
-          "summary": "Google Cloud expanded BigQuery with cross-engine Iceberg support, enabling unified data lakehouse queries. Linux kernel received a large batch of stable updates. Open-source Kanban tools with parallel task execution continue maturing the productivity software ecosystem."
+          "summary": "AWS MCP Server achieves GA status with full API coverage and IAM-based governance, addressing enterprise security requirements for managed infrastructure. Open-source communities celebrate Scenari's May 2026 updates and feed-repeat v1.0 releases, with Linux adoption accelerating through grassroots digital sovereignty movements."
         },
         {
           "category": "future_watch",
-          "summary": "AI model specification databases (Models.dev) are consolidating pricing and capability metadata. Uber's ML advances in real-time restaurant ranking using listwise learning signal sophistication in recommendation systems. Mercedes accelerates Level 2++ autonomous driving deployment in Germany. Haiku OS and TypeScript ecosystem continue incremental progress. However, Bun's support is being deprecated, signaling consolidation pressures in the JS runtime space."
+          "summary": "Academic breakthroughs span agentic AI systems architecture: BOHM enables zero-cost hierarchical attribution for compound AI, SciAtlas builds large-scale knowledge graphs for automated research, and Energy per Successful Goal framework introduces sustainability metrics. Neurosymbolic approaches (NeuroNL2LTL, ImProver 2, EVE-Agent) show promise for interpretable AI systems. Security research (Beyond Zero, AI Assurance frameworks) maturationgs for enterprise deployment."
         },
         {
           "category": "stack_alt",
-          "summary": "Go panic-based flow control patterns document unconventional but functional approaches to error handling. Deep learning optimization techniques remain actively discussed despite being archived from 2022, indicating lasting relevance."
+          "summary": "Go-to-Rust migration narratives gain momentum citing memory safety advantages, while minimal implementations (Go rsync) prove security-by-design principles. Misleading microbenchmarks on JVMs warn against performance assumption shortcuts."
         }
       ],
       "key_takeaways": [
-        "Patch PDF viewers immediately: CVE-2026-46529 affects XReader, Evince, and Atril with 10-year exploitation window—verify your Linux desktop software versions today",
-        "Audit Microsoft account access logs and enforce MFA/conditional access policies if using Microsoft services for any production integration",
-        "Monitor Bun deprecation status if using it in development workflows; plan migration to Node.js or Deno for long-term stability"
+        "Audit LLM-generated code with specialized security tools before production—PoisonForge research proves instruction-tuned models are vulnerable to targeted attacks that standard testing misses",
+        "Implement energy/resource accounting for agentic AI systems now rather than retroactively; Goal-Level Energy Accounting frameworks show measurable efficiency gains",
+        "Adopt IAM-governed infrastructure patterns (AWS MCP Server GA model) to separate development velocity from security compliance in AI-assisted workflows"
       ],
-      "signal_vs_noise": "Moderate signal with one genuine critical vulnerability offsetting heavy marketing content (AI certifications, job listings, retrospective articles); actionable items are sparse but serious."
+      "signal_vs_noise": "Strong signal: research-backed security gaps and practical enterprise solutions (AWS MCP GA) dominate; weak signal: aspirational neurosymbolic frameworks lack production evidence at scale."
     },
     "fr": {
-      "headline": "Faille RCE Critique de 10 Ans Découverte dans les Lecteurs PDF Linux ; Microsoft Corrige les Abus de Comptes Internes",
-      "tldr": "CVE-2026-46529 expose une vulnérabilité d'exécution de code distant décennale dans les lecteurs PDF XReader/Evince/Atril nécessitant un correctif immédiat. Parallèlement, les comptes internes de Microsoft sont exploités pour distribuer des liens de spam, révélant des défaillances critiques d'hygiène des identifiants.",
+      "headline": "La sécurité de l'IA et du code généré s'impose comme priorité critique d'entreprise face à l'intégration rapide des LLM",
+      "tldr": "La recherche académique révèle des lacunes alarmantes dans la sécurité du code généré par LLM et les systèmes IA agentiques, tandis que les entreprises se précipitent pour mettre en place des cadres de gouvernance. AWS MCP Server atteint la GA avec des contrôles basés sur IAM, et la communauté open-source renforce ses alternatives de souveraineté numérique aux plateformes US.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "CVE-2026-46529 représente une vulnérabilité RCE critique dans les lecteurs PDF Linux existant depuis 10 ans sans détection. Des attaquants abusent activement des comptes internes Microsoft pour distribuer du spam et des liens de phishing, indiquant une infrastructure d'identifiants compromise."
+          "summary": "La recherche en sécurité expose des vulnérabilités critiques dans le développement assisté par LLM : PoisonForge démontre des attaques d'empoisonnement ciblées au niveau des tâches sur les modèles affinés, tandis que l'empoisonnement mémoire peut se présenter comme des défaillances de modèle (The Misattribution Gap). Les problèmes de performance de base de données se cachent dans les chemins de code dormants. Les alternatives sûres en mémoire comme les implémentations Go rsync gagnent du terrain."
         },
         {
           "category": "good_news",
-          "summary": "Google Cloud a étendu BigQuery avec le support cross-engine Iceberg, permettant des requêtes unifiées sur lakehouses de données. Le noyau Linux a reçu un important lot de mises à jour stables. Les outils Kanban open-source avec exécution parallèle des tâches continuent de renforcer l'écosystème logiciel de productivité."
+          "summary": "AWS MCP Server atteint le statut GA avec couverture API complète et gouvernance basée sur IAM, répondant aux exigences de sécurité des entreprises pour l'infrastructure gérée. Les communautés open-source célèbrent les mises à jour de mai 2026 de Scenari et les versions 1.0 de feed-repeat, l'adoption Linux s'accélérant grâce aux mouvements de souveraineté numérique."
         },
         {
           "category": "future_watch",
-          "summary": "Les bases de données de spécifications de modèles IA (Models.dev) consolident les métadonnées de tarification et capacité. Les avancées ML d'Uber en classement de restaurants en temps réel signalent la sophistication du machine learning appliqué. Mercedes accélère le déploiement de la conduite autonome Level 2++ en Allemagne. Les écosystèmes Haiku OS et TypeScript progressent graduellement. Cependant, le support Bun est déprécié, signalant une consolidation des runtimes JavaScript."
+          "summary": "Les percées académiques couvrent l'architecture des systèmes IA agentiques : BOHM enables attribution hiérarchique sans coût pour IA composée, SciAtlas construit des graphes de connaissances à grande échelle pour la recherche automatisée, et Energy per Successful Goal introduit des métriques de durabilité. Les approches neurosymboliques (NeuroNL2LTL, ImProver 2, EVE-Agent) montrent du potentiel pour les systèmes IA interprétables. La maturation de la sécurité (Beyond Zero, cadres d'assurance IA) prépare le déploiement d'entreprise."
         },
         {
           "category": "stack_alt",
-          "summary": "Les patterns Go utilisant les panics pour le contrôle de flux documentent des approches non-conventionnelles mais fonctionnelles de gestion d'erreurs. Les techniques d'optimisation du deep learning restent activement discutées malgré une archivage de 2022, indiquant une pertinence durable."
+          "summary": "Les récits de migration Go-vers-Rust gagnent en momentum citant les avantages de la sécurité mémoire, tandis que les implémentations minimales (Go rsync) prouvent les principes de sécurité par conception. Les microbenchmarks trompeurs sur JVM avertissent contre les raccourcis d'hypothèses de performance."
         }
       ],
       "key_takeaways": [
-        "Corrigez immédiatement les lecteurs PDF : CVE-2026-46529 affecte XReader, Evince et Atril avec une fenêtre d'exploitation de 10 ans—vérifiez les versions de vos logiciels desktop Linux aujourd'hui",
-        "Auditez les journaux d'accès aux comptes Microsoft et imposez l'authentification multifacteur et les politiques d'accès conditionnel si vous utilisez les services Microsoft en production",
-        "Surveillez l'état de dépréciation de Bun si vous l'utilisez dans vos workflows de développement ; planifiez une migration vers Node.js ou Deno pour la stabilité à long terme"
+        "Auditez le code généré par LLM avec des outils de sécurité spécialisés avant la production—la recherche PoisonForge prouve que les modèles affinés sont vulnérables aux attaques ciblées que les tests standards manquent",
+        "Implémentez dès maintenant la comptabilité énergétique/ressources pour les systèmes IA agentiques plutôt que rétroactivement ; les cadres de comptabilité énergétique au niveau des objectifs montrent des gains d'efficacité mesurables",
+        "Adoptez des modèles d'infrastructure gouvernée par IAM (modèle AWS MCP Server GA) pour séparer la vélocité de développement de la conformité sécurité dans les flux de travail assistés par IA"
       ],
-      "signal_vs_noise": "Signal modéré avec une vulnérabilité critique authentique compensant le contenu marketing abondant (certifications IA, offres d'emploi, articles rétrospectifs) ; les éléments actionnables sont rares mais sérieux."
+      "signal_vs_noise": "Signal fort : les lacunes de sécurité soutenues par la recherche et les solutions d'entreprise pratiques (AWS MCP GA) dominent ; signal faible : les cadres neurosymboliques aspirationnels manquent de preuves de production à l'échelle."
     }
   },
   "items": [
+    {
+      "id": "ec990749a817",
+      "title": "Abschied von Windows und US-Big-Tech: Linux-Partys feiern digitale Souveränität",
+      "url": "https://www.golem.de/news/abschied-von-windows-und-us-big-tech-linux-partys-feiern-digitale-souveraenitaet-2605-208959.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T07:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "fe3dbc5d4bbc",
+      "title": "Announcing feed-repeat v1.0",
+      "url": "https://abhinavsarkar.net/notes/2026-feed-repeat/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T06:24:53+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d9e75df6a374",
+      "title": "NodeJS Proposes Built-In Virtual File System, Sparking Debate Over AI-Generated Contributions",
+      "url": "https://www.infoq.com/news/2026/05/node-js-file-system/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T06:24:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "32605b951100",
+      "title": "Building Pi with Pi",
+      "url": "https://lucumr.pocoo.org/2026/5/24/pi-oss/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T05:50:44+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "719fcc32a044",
+      "title": "Khrys’presso du lundi 25 mai 2026",
+      "url": "https://framablog.org/2026/05/25/khryspresso-du-lundi-25-mai-2026/",
+      "source": "Framablog",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T05:42:11+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "4a7f42164fcc",
+      "title": "Anzeige: OWASP Top 10: IT-Sicherheit in der Webentwicklung",
+      "url": "https://www.golem.de/news/anzeige-owasp-top-10-it-sicherheit-in-der-webentwicklung-2605-208670.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T05:15:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "e28f83a2a8e2",
+      "title": "BOHM: Zero-Cost Hierarchical Attribution for Compound AI Systems",
+      "url": "https://arxiv.org/abs/2605.22866",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "aa00ebb04452",
+      "title": "NeuroNL2LTL: A Neurosymbolic Framework for Natural Language Translation of Linear Temporal Logic",
+      "url": "https://arxiv.org/abs/2605.22874",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4b63eac18469",
+      "title": "RMA: an Agentic System for Research-Level Mathematical Problems",
+      "url": "https://arxiv.org/abs/2605.22875",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "869a67bf9e4a",
+      "title": "SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research",
+      "url": "https://arxiv.org/abs/2605.22878",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4891ed0c0e4e",
+      "title": "Energy per Successful Goal: Goal-Level Energy Accounting for Agentic AI Systems",
+      "url": "https://arxiv.org/abs/2605.22883",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f2c64063531b",
+      "title": "ImProver 2: Iteratively Self-Improving LMs for Neurosymbolic Proof Optimization",
+      "url": "https://arxiv.org/abs/2605.22885",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e1ba6cf62909",
+      "title": "Mediative Fuzzy Logic: From Type-1 Foundations to Type-2, Type-3 and Quantum Extensions",
+      "url": "https://arxiv.org/abs/2605.22900",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3a2534b957ae",
+      "title": "EVE-Agent: Evidence-Verifiable Self-Evolving Agents",
+      "url": "https://arxiv.org/abs/2605.22905",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f89eb87ca994",
+      "title": "LLM Code Smells: A Taxonomy and Detection Approach",
+      "url": "https://arxiv.org/abs/2605.22976",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5fde2bea4da7",
+      "title": "Finding Performance Issues in Database Systems by Exploiting Dormant Code Paths",
+      "url": "https://arxiv.org/abs/2605.22992",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e1ba6d1b52ab",
+      "title": "On the Reliability of Code Comprehension Proxies",
+      "url": "https://arxiv.org/abs/2605.23008",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "64e6715c2739",
+      "title": "A measurement substrate for agentic Kubernetes operations: Methodology and a case study in retrieval-compounding falsification",
+      "url": "https://arxiv.org/abs/2605.23058",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "94a906205f6d",
+      "title": "Security of LLM-generated Code: A Comparative Analysis",
+      "url": "https://arxiv.org/abs/2605.23091",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e4052a9d1ad8",
+      "title": "Philosophical Dispositions as Behavioral Constraints for AI-Assisted Code Review: An Empirical Study",
+      "url": "https://arxiv.org/abs/2605.23108",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "aea7f39e3e06",
+      "title": "The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study",
+      "url": "https://arxiv.org/abs/2605.23135",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "60e4a62950a9",
+      "title": "AI Assurance: A Comprehensive Testing Strategy for Enterprise AI Systems",
+      "url": "https://arxiv.org/abs/2605.23459",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5ddeed04171f",
+      "title": "The Misattribution Gap: When Memory Poisoning Looks Like Model Failure in Agentic AI Systems",
+      "url": "https://arxiv.org/abs/2605.22842",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d154166a6a16",
+      "title": "Beyond Zero: Enterprise Security for the AI Era",
+      "url": "https://arxiv.org/abs/2605.22985",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1b3642848a26",
+      "title": "Botnet Detection on CTU-13 Using Lightweight Machine Learning Models",
+      "url": "https://arxiv.org/abs/2605.23004",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7021d7e9585f",
+      "title": "BYOT-CPS: A Hybrid Cyber-Physical Systems Testbed for IoT Security Assessment and Platform Evaluation",
+      "url": "https://arxiv.org/abs/2605.23059",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "528b0f9f4cd8",
+      "title": "Encrypted Neural Networks without Overflows",
+      "url": "https://arxiv.org/abs/2605.23096",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2d351506048f",
+      "title": "What Does the Server See? Understanding Privacy Leakage from Large Language Models in Split Inference",
+      "url": "https://arxiv.org/abs/2605.23158",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9ea1558e7ae0",
+      "title": "PoisonForge: Task-Level Targeted Poisoning Benchmark for Instruction-Tuned LLMs",
+      "url": "https://arxiv.org/abs/2605.23168",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "urgent",
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "34cd01285f24",
+      "title": "Robust LLM Watermarking with Minimal Semantic Distortion for IP Protection",
+      "url": "https://arxiv.org/abs/2605.23175",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "137f0efb6a74",
+      "title": "Step in Tine: Forking Processes in Functional Choreographies",
+      "url": "https://arxiv.org/abs/2605.23031",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b17c120c4d90",
+      "title": "MileStone: A Multi-Objective Compiler Phase Ordering Framework for Graph-based IR-Level Optimization",
+      "url": "https://arxiv.org/abs/2605.23435",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "94f05ccc9786",
+      "title": "JEDI: Java Evaluation of Declarative and Imperative Queries",
+      "url": "https://arxiv.org/abs/2605.23543",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d6b3540c31ed",
+      "title": "Misleading Microbenchmarks on the Java Virtual Machines",
+      "url": "https://arxiv.org/abs/2605.23570",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2087fa6ce2e5",
+      "title": "Complete first-order reasoning for functional programs",
+      "url": "https://arxiv.org/abs/2605.23022",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a28b0e8af1eb",
+      "title": "YASPS: A Symbolic Framework for Extensible, High-Performance IPC Simulation",
+      "url": "https://arxiv.org/abs/2605.23088",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1bcdd308f79e",
+      "title": "Inductive Deductive Synthesis: Enabling AI to Generate Formally Verified Systems",
+      "url": "https://arxiv.org/abs/2605.23109",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a9dc5bce43da",
+      "title": "A Compilation Framework for Quantum Simulation of Non-unitary Dynamics",
+      "url": "https://arxiv.org/abs/2605.23358",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "06dfb1d86547",
+      "title": "The Eternal Sloptember",
+      "url": "https://geohot.github.io//blog/jekyll/update/2026/05/24/the-eternal-sloptember.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T03:47:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e627981761e5",
+      "title": "OpenJDK News Roundup: Vector API, Compact Object Headers and G1GC as Default in JDK 27",
+      "url": "https://www.infoq.com/news/2026/05/jdk-news-roundup-may18-2026/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T02:30:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6271169cd398",
+      "title": "AIで加速するプロダクトの変化を、開発チームの外に届ける仕組みづくり",
+      "url": "https://zenn.dev/nstock/articles/ui-change-notifier",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T23:58:20+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "6f1e6ab20256",
+      "title": "JS Crossword - a crossword where the clue = eval(answer)",
+      "url": "https://lyra.horse/fun/jscrossword/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T23:38:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e5d0f892a3cd",
+      "title": "Kernel prepatch 7.1-rc5",
+      "url": "https://lwn.net/Articles/1074172/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T22:59:14+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2f3124db69da",
+      "title": "Discussion about C array type semantics",
+      "url": "https://anselmschueler.com/blogposts/2025-c-pointers/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T22:57:46+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "524678232d24",
+      "title": "Flatpak will depend on systemd",
+      "url": "https://www.osnews.com/story/145071/flatpak-will-depend-on-systemd/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T21:24:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9f97873cc7c7",
+      "title": "The Soul of Maintaining a New Machine",
+      "url": "https://books.worksinprogress.co/book/maintenance-of-everything/communities-of-practice/the-soul-of-maintaining-a-new-machine/3",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T21:00:34+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4643d2a919c2",
+      "title": "CBP Directive 3340-049B: Border Search of Electronic Devices",
+      "url": "https://www.cbp.gov/document/directives/cbp-directive-no-3340-049b-border-search-electronic-devices",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T19:12:46+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b0e9fdc381b9",
+      "title": "A fundamental principle of aeronautical engineering has been overturned",
+      "url": "https://www.wired.com/story/a-fundamental-principle-of-aeronautical-engineering-has-been-overturned/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T19:10:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "26e7c487f9f9",
+      "title": "Migrating from Go to Rust",
+      "url": "https://corrode.dev/learn/migration-guides/go-to-rust/",
+      "source": "HackerNews",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-24T18:31:42+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8dbbee886c66",
+      "title": "Google Introduces Middleware Architecture for Genkit Applications",
+      "url": "https://www.infoq.com/news/2026/05/google-genkit-middleware/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T17:55:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "83a721700af6",
+      "title": "WhisperローカルとGemini 2.5 Flashで講義録アプリを作った──構成と技術選定の解説",
+      "url": "https://zenn.dev/haruto_miyakawa/articles/4b7754712b7585",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T17:51:56+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "87abc35db05d",
+      "title": "Nouveautés de mai 2026 de la communauté Scenari",
+      "url": "https://linuxfr.org/news/nouveautes-de-mai-2026-de-la-communaute-scenari",
+      "source": "LinuxFr.org",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T17:22:25+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "9c8e2a8fc51f",
+      "title": "Memory has grown to nearly two-thirds of AI chip component costs",
+      "url": "https://epoch.ai/data-insights/ai-chip-component-cost-shares",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T16:31:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b84703144dfa",
+      "title": "Show HN: Audiomass – a free, open-source multitrack audio editor for the web",
+      "url": "https://audiomass.co/?multitrack=1",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T15:25:43+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "17ab76e29a9d",
+      "title": "omarchy is not a distro",
+      "url": "https://abyss.fish/your_dotfiles_are_not_a_distro",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T15:03:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a2986f8df121",
+      "title": "No Linux support on free version of Vivado 2026.1",
+      "url": "https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado/vivado-licensing-options.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T14:41:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "729bdbfc0b58",
+      "title": "How my minimal, memory-safe Go rsync steers clear of vulnerabilities",
+      "url": "https://michael.stapelberg.ch/posts/2026-05-24-minimal-memory-safe-go-rsync-vulns/",
+      "source": "Lobste.rs",
+      "categories": [
+        "urgent",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-24T14:38:34+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1d1c383a9abd",
+      "title": "DeepSeek reasonix, DeepSeek native coding agent with high caching and low cost",
+      "url": "https://esengine.github.io/DeepSeek-Reasonix/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T13:02:06+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7f7af92fbb42",
+      "title": "Constraint Decay: The Fragility of LLM Agents in Back End Code Generation",
+      "url": "https://arxiv.org/abs/2605.06445",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T12:55:53+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c32c66a115ed",
+      "title": "Dresden: Infineon will erst einmal keine neue Fab errichten",
+      "url": "https://www.golem.de/news/dresden-infineon-will-erst-einmal-keine-neue-fab-errichten-2605-209004.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T12:30:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "917ada3ec459",
+      "title": "GitHub サプライチェーン攻撃が怖すぎるので Socket.dev を試してみた",
+      "url": "https://zenn.dev/tomodo_ysys/articles/socket-github-supply-chain-attack",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T12:22:46+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "6b030c634aa7",
+      "title": "Childhood Computing",
+      "url": "https://susam.net/childhood-computing.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T12:07:34+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e661fea8b2c0",
+      "title": "Perceptual Image Codec: What Matters in Practical Learned Image Compression",
+      "url": "https://apple.github.io/ml-pico/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T12:01:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d06bb205b270",
+      "title": "Angebot: Erstmals kostengünstiges Roaming auf Fernreisen",
+      "url": "https://www.golem.de/news/angebot-erstmals-kostenguenstiges-roaming-auf-fernreisen-2605-209003.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T12:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "745c34c7e96a",
+      "title": "Mastering Dyalog APL",
+      "url": "https://mastering.dyalog.com/README.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T11:42:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1b3d54be0b53",
+      "title": "Piloten: EU beklagt GPS-Störungen durch Russland als hybriden Angriff",
+      "url": "https://www.golem.de/news/piloten-eu-beklagt-gps-stoerungen-durch-russland-als-hybriden-angriff-2605-209002.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T11:30:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5a168d9c8ac9",
+      "title": "いまさら聞けない CancellationToken",
+      "url": "https://zenn.dev/poipoionigiri/articles/eafa9efa99be11",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T11:00:05+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "8a65d18e9751",
+      "title": "2026年4月のIMEに関するできごと",
+      "url": "https://zenn.dev/komatsuh/articles/komatsuh_ime_news_2026_04",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T11:00:05+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "1d3c0cd5b5d7",
+      "title": "Fehlende Strategie: KI in deutschen Unternehmen startet nicht durch",
+      "url": "https://www.golem.de/news/fehlende-strategie-ki-in-deutschen-unternehmen-startet-nicht-durch-2605-209001.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T11:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5dfac6aee322",
+      "title": "AWS資格の価値は「誰が取ったか」で変わる",
+      "url": "https://zenn.dev/philosophum/articles/6e5bcf90d33aed",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T10:58:20+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "51315a5136a8",
+      "title": "Bundesnetzagentur: SMS-Nutzung bricht ein",
+      "url": "https://www.golem.de/news/bundesnetzagentur-sms-nutzung-bricht-ein-2605-209000.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T10:30:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "34531b12db6c",
+      "title": "Agenda du Libre pour la semaine 22 de l'année 2026",
+      "url": "https://linuxfr.org/news/agenda-du-libre-pour-la-semaine-22-de-l-annee-2026",
+      "source": "LinuxFr.org",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T10:10:15+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "e8cce9276c77",
+      "title": "Portabase : un outil libre de sauvegarde et restauration pour bases de données",
+      "url": "https://linuxfr.org/news/portabase-un-outil-libre-de-sauvegarde-et-restauration-pour-bases-de-donnees",
+      "source": "LinuxFr.org",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T10:10:01+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "cff9fddc0179",
+      "title": "Neue Pflicht ab Juli: Jedes EU-Auto muss künftig atemalkohol-sperrfähig sein",
+      "url": "https://www.golem.de/news/neue-pflicht-ab-juli-jedes-eu-auto-muss-kuenftig-atemalkohol-sperrfaehig-sein-2605-208998.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T10:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "fd2e05fbf33e",
+      "title": "Maintal: Widerstand gegen Rechenzentrum in Deutschland",
+      "url": "https://www.golem.de/news/maintal-widerstand-gegen-rechenzentrum-in-deutschland-2605-208999.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T09:15:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "8f480f5214ad",
+      "title": "AWS MCP Server Reaches GA with Full API Coverage and IAM-Based Governance",
+      "url": "https://www.infoq.com/news/2026/05/aws-mcp-ga/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T08:53:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "76be3574aff2",
+      "title": "AIエージェントが毎回データを取りに行く設計の限界",
+      "url": "https://zenn.dev/knowledge_graph/articles/kg-agent-memory-first-design",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T08:44:07+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "944d7c02626c",
+      "title": "Anzeige: Höhenverstellbarer Schreibtisch für unter 65 Euro bei Amazon",
+      "url": "https://www.golem.de/news/anzeige-hoehenverstellbarer-schreibtisch-fuer-unter-65-euro-bei-amazon-2605-208982.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T08:40:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5c2b3c297cd4",
+      "title": "Greg Brockman interview [video]",
+      "url": "https://fs.blog/knowledge-project-podcast/greg-brockman/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T08:29:38+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1d67389ee69a",
+      "title": "AIに投げても解けなかったGPSアート自動生成を、最適化問題として組み立て直した話",
+      "url": "https://zenn.dev/jiro3141/articles/9ad0cd28b076e9",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T07:57:08+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "ad723dd4ef26",
+      "title": "AI時代で返り咲いたtmuxの活用",
+      "url": "https://zenn.dev/nana/articles/ccf7e548f2cb4e",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T07:47:07+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "4bab586bcf67",
+      "title": "DevOps を閉じる ―― オブザーバビリティとは何か",
+      "url": "https://zenn.dev/ntk221/articles/ff6f235208cfcd",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T06:55:30+00:00",
+      "lang": "ja"
+    },
     {
       "id": "a2a9796e3df5",
       "title": "Anzeige: IT-Jobs in DevOps, Administration und Security",
@@ -81,6 +989,29 @@
         "general"
       ],
       "published_at": "2026-05-24T04:51:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "58dfa91a7344",
+      "title": "Why is Vivado 2026.1 dropping Linux support for free tier?",
+      "url": "https://adaptivesupport.amd.com/s/question/0D5Pd00001YQLdMKAX/why-is-vivado-20261-dropping-linux-support-for-free-tier-?language=en_US",
+      "source": "HackerNews",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-24T04:14:52+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0c9f8d24c41a",
+      "title": "The C64 Dead Test Font",
+      "url": "https://www.masswerk.at/nowgobang/2026/c64-dead-test-font",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-24T03:57:01+00:00",
       "lang": "en"
     },
     {
@@ -1056,6 +1987,17 @@
       "lang": "ja"
     },
     {
+      "id": "45fe134170bf",
+      "title": "I keep bouncing off the Scheme language",
+      "url": "https://www.sicpers.info/2026/05/i-keep-bouncing-off-the-scheme-language/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T08:32:39+00:00",
+      "lang": "en"
+    },
+    {
       "id": "61594e6ce07b",
       "title": "Cyberangriff: Hacker erbeuten Daten von Patienten mehrerer Unikliniken",
       "url": "https://www.golem.de/news/cyberangriff-hacker-erbeuten-daten-von-patienten-mehrerer-unikliniken-2605-208955.html",
@@ -1533,6 +2475,17 @@
       "lang": "ja"
     },
     {
+      "id": "7cb6576abe2f",
+      "title": "Build Adafruit projects right from Firefox",
+      "url": "https://www.firefox.com/en-US/landing/adafruit/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T03:13:07+00:00",
+      "lang": "en"
+    },
+    {
       "id": "9f7a91ab7f41",
       "title": "Gnutella: A Protocol Outliving the World That Created It",
       "url": "https://rickcarlino.com/notes/p2p/gnutella-explanation.html",
@@ -1761,6 +2714,17 @@
         "general"
       ],
       "published_at": "2026-05-21T15:09:32+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5f7903eb8521",
+      "title": "I spent 50 hours drawing a line graph",
+      "url": "https://www.dougmacdowell.com/50-hours-to-draw-some-lines.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-21T15:05:28+00:00",
       "lang": "en"
     },
     {
@@ -7611,8 +8575,7 @@
         "future_watch"
       ],
       "published_at": "2026-05-11T05:42:04+00:00",
-      "lang": "fr",
-      "synthesis_id": "synthesis_2026_W21"
+      "lang": "fr"
     },
     {
       "id": "e31fe56177c9",
@@ -8247,17 +9210,6 @@
       ],
       "published_at": "2026-03-31T16:00:00+00:00",
       "lang": "en"
-    },
-    {
-      "id": "dc55732e7151",
-      "title": "Khrys’presso du lundi 30 mars 2026",
-      "url": "https://framablog.org/2026/03/30/khryspresso-du-lundi-30-mars-2026/",
-      "source": "Framablog",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-03-30T05:42:15+00:00",
-      "lang": "fr"
     },
     {
       "id": "37cdd1d60805",
