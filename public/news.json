@@ -1,66 +1,1008 @@
 {
-  "generated_at": "2026-05-25T08:36:50.473605+00:00",
-  "period": "2026-05-25",
-  "count": 801,
+  "generated_at": "2026-05-26T07:05:49.630858+00:00",
+  "period": "2026-05-26",
+  "count": 890,
   "synthesis": {
     "en": {
-      "headline": "AI Security and Code Safety Emerge as Critical Enterprise Concerns Amid Rapid LLM Integration",
-      "tldr": "Academic research reveals alarming gaps in LLM-generated code security and agentic AI systems, while enterprises race to implement governance frameworks. AWS MCP Server reaches GA with IAM-based controls, and the open-source community doubles down on digital sovereignty alternatives to US-based platforms.",
+      "headline": "LLM Reliability Crisis: AI Agents Fail Under Pressure While Apple's Zero-Trust Architecture Faces Poisoning Attacks",
+      "tldr": "Critical research reveals LLMs collapse epistemic integrity under clinical/adversarial pressure, multiple studies expose hallucinations in code generation and bug reports, and CVE-2026-28952 (Apple macOS kernel) discovered by Claude highlights both AI-assisted security wins and new attack vectors against LLM-based systems. Java ecosystem gains Spring AI while kernel patch review faces automation challenges.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Security research surfaces critical vulnerabilities in LLM-assisted development: PoisonForge benchmark demonstrates task-level targeted poisoning attacks on instruction-tuned models, while memory poisoning can masquerade as model failures in agentic systems (The Misattribution Gap). Database performance issues lurk in dormant code paths. Memory-safe alternatives like Go rsync implementations are gaining traction as practical defenses."
+          "summary": "CVE-2026-28952 in Apple macOS 26.5 kernel discovered via Claude highlights dual-use risk: AI accelerates vulnerability discovery but also enables new MCP poisoning attacks. Breaking changes in software ecosystems remain systematically understudied. Microsoft's MDASH framework addresses large-scale AI vulnerability research gaps."
         },
         {
           "category": "good_news",
-          "summary": "AWS MCP Server achieves GA status with full API coverage and IAM-based governance, addressing enterprise security requirements for managed infrastructure. Open-source communities celebrate Scenari's May 2026 updates and feed-repeat v1.0 releases, with Linux adoption accelerating through grassroots digital sovereignty movements."
+          "summary": "Java ecosystem stability improves with WildFly, Micronaut, and Spring AI releases. Open Liberty and GlassFish plugins advance enterprise tooling. Incremental progress in framework maturity without major breaking changes."
         },
         {
           "category": "future_watch",
-          "summary": "Academic breakthroughs span agentic AI systems architecture: BOHM enables zero-cost hierarchical attribution for compound AI, SciAtlas builds large-scale knowledge graphs for automated research, and Energy per Successful Goal framework introduces sustainability metrics. Neurosymbolic approaches (NeuroNL2LTL, ImProver 2, EVE-Agent) show promise for interpretable AI systems. Security research (Beyond Zero, AI Assurance frameworks) maturationgs for enterprise deployment."
+          "summary": "Three converging crisis points: (1) LLM confidence calibration fails—models cannot reliably assess own accuracy; (2) Skill expansion paradoxically degrades agent performance (skill shadowing effect); (3) Code LLM contamination detection reveals widespread training data leakage. Kernel patch review via LLM proposed but reliability unproven. Apple's Private Cloud Compute analyzed for privacy claims—reality more complex than marketing suggests."
         },
         {
           "category": "stack_alt",
-          "summary": "Go-to-Rust migration narratives gain momentum citing memory safety advantages, while minimal implementations (Go rsync) prove security-by-design principles. Misleading microbenchmarks on JVMs warn against performance assumption shortcuts."
+          "summary": "Privacy-preserving cloud cryptography for IoT healthcare workloads benchmarked. MCP poisoning attacks against LLM agents modeled. Epistemic resilience under clinical pressure tested—models fail catastrophically when correctness matters most."
         }
       ],
       "key_takeaways": [
-        "Audit LLM-generated code with specialized security tools before production—PoisonForge research proves instruction-tuned models are vulnerable to targeted attacks that standard testing misses",
-        "Implement energy/resource accounting for agentic AI systems now rather than retroactively; Goal-Level Energy Accounting frameworks show measurable efficiency gains",
-        "Adopt IAM-governed infrastructure patterns (AWS MCP Server GA model) to separate development velocity from security compliance in AI-assisted workflows"
+        "Do not deploy LLM agents for high-stakes decisions without manual verification layers—confidence calibration in LLMs is fundamentally broken; models cannot tell you when they're wrong.",
+        "Audit code generated by LLMs for contamination (TRACER framework); LLMs trained on public code repositories regurgitate proprietary patterns without detection.",
+        "Expand LLM skill libraries cautiously; adding more capabilities degrades overall agent performance through skill shadowing—quality > quantity in agentic design.",
+        "Treat MCP (Model Context Protocol) integrations as attack surfaces; poisoned manuals can manipulate LLM agent behavior in production systems."
       ],
-      "signal_vs_noise": "Strong signal: research-backed security gaps and practical enterprise solutions (AWS MCP GA) dominate; weak signal: aspirational neurosymbolic frameworks lack production evidence at scale."
+      "signal_vs_noise": "High signal: fundamental reliability gaps in LLMs are now quantified and reproducible; low noise overall except consumer hardware reviews (Logitech mouse is marketing filler)."
     },
     "fr": {
-      "headline": "La sécurité de l'IA et du code généré s'impose comme priorité critique d'entreprise face à l'intégration rapide des LLM",
-      "tldr": "La recherche académique révèle des lacunes alarmantes dans la sécurité du code généré par LLM et les systèmes IA agentiques, tandis que les entreprises se précipitent pour mettre en place des cadres de gouvernance. AWS MCP Server atteint la GA avec des contrôles basés sur IAM, et la communauté open-source renforce ses alternatives de souveraineté numérique aux plateformes US.",
+      "headline": "Crise de Fiabilité des LLM : Les Agents IA s'Effondrent sous Pression tandis que l'Architecture Zero-Trust d'Apple Fait Face à des Attaques par Empoisonnement",
+      "tldr": "La recherche critique révèle que les LLM s'effondrent en intégrité épistémique sous pression clinique/adversariale, plusieurs études exposent des hallucinations dans la génération de code et les résumés de bugs, et CVE-2026-28952 (noyau macOS Apple) découvert par Claude met en évidence à la fois les victoires de sécurité assistées par IA et les nouveaux vecteurs d'attaque contre les systèmes basés sur LLM. L'écosystème Java gagne Spring AI tandis que l'examen des patches du noyau fait face à des défis d'automatisation.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "La recherche en sécurité expose des vulnérabilités critiques dans le développement assisté par LLM : PoisonForge démontre des attaques d'empoisonnement ciblées au niveau des tâches sur les modèles affinés, tandis que l'empoisonnement mémoire peut se présenter comme des défaillances de modèle (The Misattribution Gap). Les problèmes de performance de base de données se cachent dans les chemins de code dormants. Les alternatives sûres en mémoire comme les implémentations Go rsync gagnent du terrain."
+          "summary": "CVE-2026-28952 dans le noyau Apple macOS 26.5 découvert via Claude met en évidence le risque double usage : l'IA accélère la découverte de vulnérabilités mais permet aussi de nouvelles attaques par empoisonnement MCP. Les changements radicaux dans les écosystèmes logiciels restent systématiquement peu étudiés. Le framework MDASH de Microsoft comble les lacunes en recherche de vulnérabilités IA à grande échelle."
         },
         {
           "category": "good_news",
-          "summary": "AWS MCP Server atteint le statut GA avec couverture API complète et gouvernance basée sur IAM, répondant aux exigences de sécurité des entreprises pour l'infrastructure gérée. Les communautés open-source célèbrent les mises à jour de mai 2026 de Scenari et les versions 1.0 de feed-repeat, l'adoption Linux s'accélérant grâce aux mouvements de souveraineté numérique."
+          "summary": "La stabilité de l'écosystème Java s'améliore avec les versions de WildFly, Micronaut et Spring AI. Open Liberty et les plugins GlassFish avancent les outils d'entreprise. Progrès régulier dans la maturité des frameworks sans changements radicaux majeurs."
         },
         {
           "category": "future_watch",
-          "summary": "Les percées académiques couvrent l'architecture des systèmes IA agentiques : BOHM enables attribution hiérarchique sans coût pour IA composée, SciAtlas construit des graphes de connaissances à grande échelle pour la recherche automatisée, et Energy per Successful Goal introduit des métriques de durabilité. Les approches neurosymboliques (NeuroNL2LTL, ImProver 2, EVE-Agent) montrent du potentiel pour les systèmes IA interprétables. La maturation de la sécurité (Beyond Zero, cadres d'assurance IA) prépare le déploiement d'entreprise."
+          "summary": "Trois points de crise convergents : (1) L'étalonnage de confiance du LLM échoue—les modèles ne peuvent pas évaluer fiablement leur propre précision ; (2) L'expansion des compétences dégrade paradoxalement les performances des agents (effet d'ombrage des compétences) ; (3) La détection de contamination des LLM de code révèle des fuites de données d'entraînement généralisées. L'examen des patches du noyau via LLM proposé mais fiabilité non prouvée. Apple's Private Cloud Compute analysé pour les revendications de confidentialité—la réalité plus complexe que le marketing."
         },
         {
           "category": "stack_alt",
-          "summary": "Les récits de migration Go-vers-Rust gagnent en momentum citant les avantages de la sécurité mémoire, tandis que les implémentations minimales (Go rsync) prouvent les principes de sécurité par conception. Les microbenchmarks trompeurs sur JVM avertissent contre les raccourcis d'hypothèses de performance."
+          "summary": "Cryptographie cloud préservant la confidentialité pour les charges de travail IoT de santé benchmarkées. Attaques par empoisonnement MCP contre les agents LLM modélisées. Résilience épistémique sous pression clinique testée—les modèles échouent catastrophiquement quand la correction compte vraiment."
         }
       ],
       "key_takeaways": [
-        "Auditez le code généré par LLM avec des outils de sécurité spécialisés avant la production—la recherche PoisonForge prouve que les modèles affinés sont vulnérables aux attaques ciblées que les tests standards manquent",
-        "Implémentez dès maintenant la comptabilité énergétique/ressources pour les systèmes IA agentiques plutôt que rétroactivement ; les cadres de comptabilité énergétique au niveau des objectifs montrent des gains d'efficacité mesurables",
-        "Adoptez des modèles d'infrastructure gouvernée par IAM (modèle AWS MCP Server GA) pour séparer la vélocité de développement de la conformité sécurité dans les flux de travail assistés par IA"
+        "Ne déployez pas d'agents LLM pour les décisions à enjeux élevés sans couches de vérification manuelle—l'étalonnage de confiance dans les LLM est fondamentalement cassé ; les modèles ne peuvent pas vous dire quand ils se trompent.",
+        "Auditez le code généré par LLM pour la contamination (framework TRACER) ; les LLM entraînés sur les référentiels de code publics régurgitent des modèles propriétaires sans détection.",
+        "Élargissez les bibliothèques de compétences LLM avec prudence ; ajouter plus de capacités dégrade les performances globales de l'agent par ombrage de compétences—la qualité > la quantité dans la conception des agents.",
+        "Traitez les intégrations MCP (Model Context Protocol) comme des surfaces d'attaque ; les manuels empoisonnés peuvent manipuler le comportement des agents LLM dans les systèmes de production."
       ],
-      "signal_vs_noise": "Signal fort : les lacunes de sécurité soutenues par la recherche et les solutions d'entreprise pratiques (AWS MCP GA) dominent ; signal faible : les cadres neurosymboliques aspirationnels manquent de preuves de production à l'échelle."
+      "signal_vs_noise": "Signal élevé : les lacunes de fiabilité fondamentales des LLM sont désormais quantifiées et reproductibles ; bruit faible globalement sauf examens de matériel grand public (la souris Logitech est du remplissage marketing)."
     }
   },
   "items": [
+    {
+      "id": "b49a850c02a0",
+      "title": "Signature Comfort Plus im Hands-On: Diese Logitech-Maus hat ein Hand-Sofa integriert",
+      "url": "https://www.golem.de/news/signature-comfort-plus-im-hands-on-diese-logitech-maus-hat-ein-hand-sofa-integriert-2605-208961.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T07:01:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "9f5ed0f6f5d7",
+      "title": "Künstliche Intelligenz: Führungskräfte lassen sich durch KI klonen",
+      "url": "https://www.golem.de/news/kuenstliche-intelligenz-fuehrungskraefte-lassen-sich-durch-ki-klonen-2605-209018.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T06:28:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "994ab7394347",
+      "title": "Reichweitenverluste: Politik-Streamer werfen Youtube Zensur vor",
+      "url": "https://www.golem.de/news/reichweitenverluste-politik-streamer-werfen-youtube-zensur-vor-2605-209016.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T05:59:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "e759909b39ef",
+      "title": "Spielebranche: Destiny-Fans machen Druck auf Sony und Bungie",
+      "url": "https://www.golem.de/news/spielebranche-destiny-fans-machen-druck-auf-sony-und-bungie-2605-209014.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T05:18:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "3b58ad5db9f0",
+      "title": "Anzeige: C++ Clean Code: Best Practices für wartbaren Code",
+      "url": "https://www.golem.de/news/anzeige-c-clean-code-best-practices-fuer-wartbaren-code-2605-208671.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T05:15:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "c1a2b30cf77e",
+      "title": "In Search of the Ingredients of Open-Endedness: Replicating Picbreeder with Large Vision-Language Models",
+      "url": "https://arxiv.org/abs/2605.23908",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cf61c07a7f21",
+      "title": "Confidence Calibration in Large Language Models",
+      "url": "https://arxiv.org/abs/2605.23909",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "348764272f66",
+      "title": "How Much Thinking is Enough? Quantifying and Understanding Redundancy in LLM Reasoning",
+      "url": "https://arxiv.org/abs/2605.23926",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6a32a6be824e",
+      "title": "Context: Proactive Goal-Directed Intelligence via Composable Sandboxed Programs, Declarative Wiring, and Structured Interaction",
+      "url": "https://arxiv.org/abs/2605.23928",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b3e66f0dcb2f",
+      "title": "Toward Reliable Design of LLM-Enabled Agentic Workflows: Optimizing Latency-Reliability-Cost Tradeoffs",
+      "url": "https://arxiv.org/abs/2605.23929",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6169768e4e5a",
+      "title": "Quantum Frog: Emergent Cooperation and Difficulty Scaling in a Quantized-Time Cooperative Game",
+      "url": "https://arxiv.org/abs/2605.23930",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "58b052c858ef",
+      "title": "BODHI: Precise OS Kernel Specification Inference",
+      "url": "https://arxiv.org/abs/2605.23931",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "05c48720ecfa",
+      "title": "When Correct Beliefs Collapse: Epistemic Resilience of LLMs under Clinical Pressure",
+      "url": "https://arxiv.org/abs/2605.23932",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "274e0b4f4eb6",
+      "title": "Code Smells in Clojure: Initial Findings from a Grey Literature Review",
+      "url": "https://arxiv.org/abs/2605.24049",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9afa0ecf8863",
+      "title": "More Skills, Worse Agents? Skill Shadowing Degrades Performance When Expanding Skill Libraries",
+      "url": "https://arxiv.org/abs/2605.24050",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "177b553486e6",
+      "title": "TRACER: A Semantic-Aware Framework for Fine-Grained Contamination Detection in Code LLMs",
+      "url": "https://arxiv.org/abs/2605.24079",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cd739b121d8f",
+      "title": "Empirical Analysis and Detection of Hallucinations in LLM-Generated Bug Report Summaries",
+      "url": "https://arxiv.org/abs/2605.24137",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "cc51cc67be87",
+      "title": "Understanding Conversational Patterns in Multi-agent Programming: A Case Study on Fibonacci Game Development",
+      "url": "https://arxiv.org/abs/2605.24138",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b95c2ae11052",
+      "title": "Towards Evaluation Engineering: An Empirical Study of ML Evaluation Harnesses in the Wild",
+      "url": "https://arxiv.org/abs/2605.24213",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "163f390edbcc",
+      "title": "Can Graph-Based Microservice Performance Detection Be Used for Microservice Intrusion Detection?",
+      "url": "https://arxiv.org/abs/2605.24283",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6381df11c6ab",
+      "title": "Breaking Changes in Software Ecosystems: A Systematic Literature Review",
+      "url": "https://arxiv.org/abs/2605.24397",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "26f6922de78b",
+      "title": "Verifiable Secure Aggregation via Dual Servers with Linear Tags in Federated Learning",
+      "url": "https://arxiv.org/abs/2605.24054",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d0b6b24e1f2e",
+      "title": "Microbenchmarking Cloud Cryptographic Workloads for Privacy-Preserving Healthcare IoT",
+      "url": "https://arxiv.org/abs/2605.24063",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "48fa768d1a33",
+      "title": "When the Manual Lies: A Realistic Benchmark to Evaluate MCP Poisoning Attacks for LLM Agents",
+      "url": "https://arxiv.org/abs/2605.24069",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "81b5dbd01f18",
+      "title": "Cybersecurity of Electric Vehicle Charging Infrastructure: Recent Advances, Open Challenges, and Future Directions",
+      "url": "https://arxiv.org/abs/2605.24190",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bd1cd34b9b2e",
+      "title": "FALCON-C: Flow-based Analysis and Labeling for Connected Vehicular Network Cybersecurity",
+      "url": "https://arxiv.org/abs/2605.24206",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9dfae45476e9",
+      "title": "Unlocking Apple's Private Cloud Compute: An Analysis of Privacy-Preserving Artificial Intelligence",
+      "url": "https://arxiv.org/abs/2605.24239",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8dd019ef65cb",
+      "title": "Deep-Research Agents Can Be Poisoned via User-Generated Content",
+      "url": "https://arxiv.org/abs/2605.24245",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d83a370874b3",
+      "title": "Attested Tool-Server Admission: A Security Extension to the Model Context Protocol",
+      "url": "https://arxiv.org/abs/2605.24248",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8d2a6eb89c84",
+      "title": "Intent-Driven Computing: A Computational Model for Governed Autonomous Systems",
+      "url": "https://arxiv.org/abs/2605.24036",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "82486f0d678c",
+      "title": "Program Synthesis for Non-Linear Real Arithmetic: Going Beyond Realizability",
+      "url": "https://arxiv.org/abs/2605.24263",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0afcab600b04",
+      "title": "DateSAT: A Framework for Solving Date and Period Constraints",
+      "url": "https://arxiv.org/abs/2605.25180",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0ba365bacdd4",
+      "title": "Fixed Parameter Tractable Linearizability Monitoring",
+      "url": "https://arxiv.org/abs/2509.05586",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6af88aaae71a",
+      "title": "M$^\\star$: Every Task Deserves Its Own Memory Harness",
+      "url": "https://arxiv.org/abs/2604.11811",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "129c78729cb0",
+      "title": "From Reasoning to Code: GRPO Optimization for Underrepresented Languages",
+      "url": "https://arxiv.org/abs/2506.11027",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5272ca32404b",
+      "title": "Java News Roundup: WildFly, Micronaut, Spring AI, Apache Fory, GlassFish Plugin, Open Liberty",
+      "url": "https://www.infoq.com/news/2026/05/java-news-roundup-may18-2026/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-26T02:30:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "489a77ac15ef",
+      "title": "Does anybody like React?",
+      "url": "https://jsx.lol",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T01:55:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8faffa30dbcb",
+      "title": "CVE-2026-28952: Apple macOS 26.5 Kernel Vuln found by Claude",
+      "url": "https://support.apple.com/en-us/127115",
+      "source": "HackerNews",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T23:40:40+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f140c4a58e80",
+      "title": "Nobody cracks open a programming book anymore",
+      "url": "https://unix.foo/posts/nobody-cracks-open-a-programming-book/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T23:21:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fa282796bd3c",
+      "title": "Using AI to write better code more slowly",
+      "url": "https://nolanlawson.com/2026/05/25/using-ai-to-write-better-code-more-slowly/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T23:16:59+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "eeb5fe30ccb1",
+      "title": "Supersportwagen Luce präsentiert: Ein Ferrari der besonderen Art für 550.000 Euro",
+      "url": "https://www.golem.de/news/supersportwagen-luce-praesentiert-ein-ferrari-der-besonderen-art-fuer-550-000-euro-2605-209015.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T22:48:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "05f28c4af337",
+      "title": "Human proof for FOSS contributions",
+      "url": "https://dillo-browser.org/lab/human-proof/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T22:44:37+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f67bc79b6062",
+      "title": "How Shamir's Secret Sharing Works",
+      "url": "https://ente.com/blog/how-shamirs-secret-sharing-works/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T22:37:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "34f38e513c0f",
+      "title": "Taking a walk may lead to more creativity than sitting, study finds (2014)",
+      "url": "https://www.apa.org/news/press/releases/2014/04/creativity-walk",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T22:30:27+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "152e6e69b7bc",
+      "title": "Microsoft Copilot Cowork Exfiltrates Files",
+      "url": "https://www.promptarmor.com/resources/microsoft-copilot-cowork-exfiltrates-files",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T21:45:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d75adb147799",
+      "title": "[$] Reviewing kernel patches with LLMs",
+      "url": "https://lwn.net/Articles/1073583/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T21:27:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "40033e07c5d1",
+      "title": "Ferrari Luce",
+      "url": "https://www.ferrari.com/en-EN/auto/ferrari-luce",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T21:00:38+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2ca0aef7fbe9",
+      "title": "Yoti age checks share facial photos and device fingerprints with third parties",
+      "url": "https://techxplore.com/news/2026-05-online-age-pointless-privacy.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T20:30:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ab8d3ab1b191",
+      "title": "Hacker News front page as a site",
+      "url": "https://thefrontpage.dev/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T20:12:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e0040d762a99",
+      "title": "Splitting Konsole views from Helix to run tools",
+      "url": "https://akselmo.dev/posts/splitting-konsole-views-from-helix-to-run-tools/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T20:11:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ff78ef488511",
+      "title": "A successful Japanese trial of a ramjet engine designed for Mach‑5 aircraft",
+      "url": "https://www.bgr.com/2178211/japan-hypersonic-engine-ramjet-2-hour-flights-to-us/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T19:43:45+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2555fa13492d",
+      "title": "Norway's 2 petabytes of Huawei flash storage and LLM training",
+      "url": "https://www.blocksandfiles.com/flash/2026/05/22/norways-2-petabytes-of-huawei-flash-storage-and-llm-training/5244910",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T19:37:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bde34891ebab",
+      "title": "California moves to exempt Linux from its age-verification law after backlash",
+      "url": "https://www.tomshardware.com/software/linux/california-moves-to-exempt-linux-from-its-upcoming-age-verification-law-after-backlash-over-forcing-operating-systems-to-collect-users-ages-amendment-proposed-by-the-same-lawmaker-who-wrote-the-original-law",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T18:19:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "58d266d0e462",
+      "title": "IEEE TryEngineering OnCampus Program Expands to 7 Universities",
+      "url": "https://spectrum.ieee.org/tryengineering-oncampus-expansion",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T18:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "aa5225c1f3a4",
+      "title": "Exit IP VPN servers mitigation rollout",
+      "url": "https://mullvad.net/en/help/exit-ip-vpn-servers-mitigation-rollout",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T17:45:11+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "34bc3486e9fa",
+      "title": "Encyclical Letter of His Holiness Leo XIV Magnifica Humanitas",
+      "url": "http://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T17:07:48+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "db023284ede6",
+      "title": "Comprehensive Response to Bambu's AGPLv3 Violations (Software Freedom Conservancy)",
+      "url": "https://lwn.net/Articles/1074286/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T16:48:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1d3d4dea7ef7",
+      "title": "Microsoft Introduces MDASH for Large-Scale AI Vulnerability Research",
+      "url": "https://www.infoq.com/news/2026/05/microsoft-mdash/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T16:30:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "136f495df83f",
+      "title": "Toshifumi Suzuki, founder of Seven-Eleven Japan, has died",
+      "url": "https://www.referenceforbusiness.com/biography/S-Z/Suzuki-Toshifumi-1932.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T16:20:36+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c8e0aa1f08a3",
+      "title": "【Rust】2年の沈黙を破ったYewの現在",
+      "url": "https://zenn.dev/amenaruya/articles/d9718f5a25056b",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T15:07:15+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "4f93fc49a4a4",
+      "title": "[$] Tier-aware memory-controller limits",
+      "url": "https://lwn.net/Articles/1073400/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T15:03:39+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "dfa8c48fef32",
+      "title": "A Simple Makefile Tutorial (2008)",
+      "url": "https://cs.colby.edu/maxwell/courses/tutorials/maketutor/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T14:44:03+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8b5ebff6a31c",
+      "title": "Security updates for Monday",
+      "url": "https://lwn.net/Articles/1074280/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T14:40:16+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4de862ab1064",
+      "title": "What we lost when we stopped letting kids leave the front yard",
+      "url": "https://stevemagness.substack.com/p/the-cost-of-safetyism",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T14:29:52+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bfe5656f5b42",
+      "title": "[$] Dirk and Linus discuss AI and kernel development",
+      "url": "https://lwn.net/Articles/1073761/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T14:20:11+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e5e810d71133",
+      "title": "C extensions, portability, and alternative compilers",
+      "url": "https://lemon.rip/w/6-c-extensions-compilers/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T14:15:19+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "aff6f474ceb3",
+      "title": "Reclaiming Social Engineering for Good",
+      "url": "https://spectrum.ieee.org/social-engineering-good",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T13:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e917d45c26a3",
+      "title": "Article: The Schema Proliferation Problem in Kafka and Flink Pipelines: How to Solve It",
+      "url": "https://www.infoq.com/articles/schema-proliferation-problem/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T13:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "770b7ca61add",
+      "title": "The social contract of writing",
+      "url": "https://jola.dev/posts/the-social-contract-of-writing",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T12:09:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "043ff3d16443",
+      "title": "Sortie de Tryton 8.0",
+      "url": "https://linuxfr.org/news/sortie-de-tryton-8-0",
+      "source": "LinuxFr.org",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T12:05:58+00:00",
+      "lang": "fr"
+    },
+    {
+      "id": "213ad2fe0530",
+      "title": "Enzyklika: Papst erklärt Silicon Valley zum moralischen Problemfall",
+      "url": "https://www.golem.de/news/enzyklika-papst-erklaert-silicon-valley-zum-moralischen-problemfall-2605-209013.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T11:48:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "438419998a7d",
+      "title": "Presentation: From Legacy to Sovereignty: Driving the Future of Insurance through Platform Engineering",
+      "url": "https://www.infoq.com/presentations/insurance-platform-engineering/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T11:35:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "784ee5c2ce22",
+      "title": "Switching to Colemak",
+      "url": "https://pta2002.com/blog/colemak/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T11:23:24+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0a17888d477e",
+      "title": "Ohne EUV-Lithografie von TSMC: Ab 2031 will Huawei 1,4-Nanometer-Chips produzieren",
+      "url": "https://www.golem.de/news/ohne-euv-lithigrafie-von-tsmc-ab-2031-will-huawei-1-4-nanometer-chips-produzieren-2605-209012.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T11:03:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "c9b3e94b2eef",
+      "title": "Why Kubernetes policy enforcement happens too late—and what to do about it",
+      "url": "https://www.cncf.io/blog/2026/05/25/why-kubernetes-policy-enforcement-happens-too-late-and-what-to-do-about-it/",
+      "source": "CNCF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "45cc88d419e6",
+      "title": "Zero-Downtime migration from ingress NGINX to Envoy Gateway",
+      "url": "https://www.cncf.io/blog/2026/05/25/zero-downtime-migration-from-ingress-nginx-to-envoy-gateway/",
+      "source": "CNCF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "88ad6b97094c",
+      "title": "Podcast: Chasing Efficient Java Development: From 1BRC to Developing Hardwood AI Natively",
+      "url": "https://www.infoq.com/podcasts/chasing-efficient-java-development/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2b6423714fd9",
+      "title": "Elektroauto: Tesla Cybercab ist der sparsamste Stromer",
+      "url": "https://www.golem.de/news/elektroauto-tesla-cybercab-ist-der-sparsamste-stromer-2605-209011.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T10:48:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "99b0f4aa04e8",
+      "title": "Blackbird: Gezackte Rotorblätter machen Drohne 730 km/h schnell",
+      "url": "https://www.golem.de/news/blackbird-gezackte-rotorblaetter-machen-drohne-730-km-h-schnell-2605-209009.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T10:33:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "67d854956cec",
+      "title": "TypeScriptの裏側を浴びた2日間 ── TSKaigi 2026参加記",
+      "url": "https://zenn.dev/0st_ts/articles/7878ffe89b8c6a",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T10:00:07+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "f2c25518703e",
+      "title": "AI with Model-Based Design: Virtual Sensor Modeling",
+      "url": "https://content.knowledgehub.wiley.com/ai-with-model-based-design-virtual-sensor-modeling/",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T10:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5d5f9363544d",
+      "title": "IBM Spins Off the First Pure-Play Quantum Chip Foundry",
+      "url": "https://futurumgroup.com/insights/2-billion-chips-act-investment-in-quantum-bets-on-ibms-300mm-superconducting-silicon/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T09:43:03+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a8bc33f81ab8",
+      "title": "TanStack Query × Dexie.js で「プロトタイプを全部捨てる」から卒業する境界設計",
+      "url": "https://zenn.dev/dress_code/articles/5d33f06aa14582",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T09:30:05+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "5c647ad06c3b",
+      "title": "【GitHub Actions】actions/checkout には persist-credentials: false を設定するべき",
+      "url": "https://zenn.dev/kou_pg_0131/articles/gha-checkout-persist-credentials",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T09:00:07+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "024f8812b86e",
+      "title": "Gemma 4 Multi-Token Prediction Delivers Up to ~3x Faster Token Generation",
+      "url": "https://www.infoq.com/news/2026/05/gemma4-multi-token-prediction/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T09:00:00+00:00",
+      "lang": "en"
+    },
     {
       "id": "synthesis_2026_W22",
       "type": "synthesis",
@@ -4780,6 +5722,28 @@
       ]
     },
     {
+      "id": "09f2f90213b8",
+      "title": "落穂拾い(DevOps を閉じる)",
+      "url": "https://zenn.dev/ntk221/articles/94b0a4c189236d",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T08:19:21+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "46b91617bdb1",
+      "title": "Hono+Inertia+hono/jsx という選択肢",
+      "url": "https://zenn.dev/ashunar0/articles/46183ade4729f1",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T07:17:40+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "ec990749a817",
       "title": "Abschied von Windows und US-Big-Tech: Linux-Partys feiern digitale Souveränität",
       "url": "https://www.golem.de/news/abschied-von-windows-und-us-big-tech-linux-partys-feiern-digitale-souveraenitaet-2605-208959.html",
@@ -5212,6 +6176,17 @@
       "lang": "en"
     },
     {
+      "id": "3a12ff27344f",
+      "title": "フロントエンドもアーキテクチャに向き合う！",
+      "url": "https://zenn.dev/luup_developers/articles/server-isamu-20260520",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T03:12:41+00:00",
+      "lang": "ja"
+    },
+    {
       "id": "e627981761e5",
       "title": "OpenJDK News Roundup: Vector API, Compact Object Headers and G1GC as Default in JDK 27",
       "url": "https://www.infoq.com/news/2026/05/jdk-news-roundup-may18-2026/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -5220,6 +6195,52 @@
         "future_watch"
       ],
       "published_at": "2026-05-25T02:30:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e5e04bf73caf",
+      "title": "AI時代の競争優位は「統合」にしかない —— エンジニアと組織が、今投資すべきもの",
+      "url": "https://zenn.dev/peoplex_blog/articles/f2cfcd8b625202",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T02:16:42+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "6df051081b27",
+      "title": "社内の知見をAIが漏らさず拾う唯一の設計思想 ― Karpathy氏のLLM Wikiを実践して分かったこと",
+      "url": "https://zenn.dev/nori_handa/articles/llm-knowledge-base-karpathy-wiki",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-25T00:44:18+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "65a012a2bc8a",
+      "title": "Security Advisory for Cargo (CVE-2026-5223)",
+      "url": "https://blog.rust-lang.org/2026/05/25/cve-2026-5223/",
+      "source": "Rust Blog",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T00:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2c87e184efba",
+      "title": "Security Advisory for Cargo (CVE-2026-5222)",
+      "url": "https://blog.rust-lang.org/2026/05/25/cve-2026-5222/",
+      "source": "Rust Blog",
+      "categories": [
+        "urgent",
+        "future_watch"
+      ],
+      "published_at": "2026-05-25T00:00:00+00:00",
       "lang": "en"
     },
     {
@@ -6319,6 +7340,17 @@
       "published_at": "2026-05-22T19:31:45+00:00",
       "lang": "en",
       "synthesis_id": "synthesis_2026_W22"
+    },
+    {
+      "id": "80cecff1d3bb",
+      "title": "Jensen–Shannon Divergence",
+      "url": "https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-22T19:27:27+00:00",
+      "lang": "en"
     },
     {
       "id": "f43fb0cfbbc5",
@@ -13799,8 +14831,7 @@
         "future_watch"
       ],
       "published_at": "2026-05-11T22:03:37+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
+      "lang": "en"
     },
     {
       "id": "618499cd2b22",
@@ -13811,32 +14842,7 @@
         "general"
       ],
       "published_at": "2026-05-11T17:00:05+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "ff4b7b31dc5c",
-      "title": "How to get engineering time back from Kubernetes upgrades",
-      "url": "https://www.cncf.io/blog/2026/05/11/how-to-get-engineering-time-back-from-kubernetes-upgrades/",
-      "source": "CNCF Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-11T11:00:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "a46a9e8d8c8c",
-      "title": "Why Mastering EVM Is Essential for Next-Generation Wireless Systems",
-      "url": "https://content.knowledgehub.wiley.com/understanding-evm-error-vector-magnitude-in-modern-wireless-communications/",
-      "source": "IEEE Spectrum",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-11T10:00:01+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
+      "lang": "en"
     },
     {
       "id": "b56f918f1829",
@@ -14558,29 +15564,6 @@
         "general"
       ],
       "published_at": "2026-03-23T00:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "79f49ae9d933",
-      "title": "Security advisory for Cargo",
-      "url": "https://blog.rust-lang.org/2026/03/21/cve-2026-33056/",
-      "source": "Rust Blog",
-      "categories": [
-        "urgent",
-        "future_watch"
-      ],
-      "published_at": "2026-03-21T00:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "39c4e0ba517f",
-      "title": "What we heard about Rust's challenges",
-      "url": "https://blog.rust-lang.org/2026/03/20/rust-challenges/",
-      "source": "Rust Blog",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-03-20T00:00:00+00:00",
       "lang": "en"
     },
     {
