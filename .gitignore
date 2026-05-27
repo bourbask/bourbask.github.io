@@ -83,3 +83,6 @@ target/doc/
 
 # Design guide exports — keep .md sources, ignore generated PDFs
 design/*.pdf
+
+# Lighthouse CI local output
+.lighthouseci/

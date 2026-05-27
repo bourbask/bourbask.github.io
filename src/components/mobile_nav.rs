@@ -18,14 +18,14 @@ pub fn MobileFloatingNav() -> impl IntoView {
             // Arc items — class:active toggled by JS
             <div class="mobile-nav-items" id="mobileNavItems">
                 <a href="/blog" class="mobile-nav-item"
-                    attr:data-label={move || i18n.t("navigation.blog")}
-                    attr:aria-label={move || i18n.t("navigation.blog")}
+                    data-label={move || i18n.t("navigation.blog")}
+                    aria-label={move || i18n.t("navigation.blog")}
                 >
                     "📝"
                 </a>
                 <a href="/veille" class="mobile-nav-item"
-                    attr:data-label={move || i18n.t("navigation.veille")}
-                    attr:aria-label={move || i18n.t("navigation.veille")}
+                    data-label={move || i18n.t("navigation.veille")}
+                    aria-label={move || i18n.t("navigation.veille")}
                 >
                     "📡"
                 </a>
@@ -33,8 +33,8 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileCVBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.cv")}
-                    attr:aria-label={move || i18n.t("action")}
+                    data-label={move || i18n.t("navigation.cv")}
+                    aria-label={move || i18n.t("action")}
                     on:click=move |_| cv_service.generate_pdf()
                 >
                     "📄"
@@ -43,8 +43,8 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileLangBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.language")}
-                    attr:aria-label={move || match i18n.current_language.get().as_str() {
+                    data-label={move || i18n.t("navigation.language")}
+                    aria-label={move || match i18n.current_language.get().as_str() {
                         "fr" => i18n.t("switchToEnglish"),
                         _    => i18n.t("switchToFrench"),
                     }}
@@ -61,8 +61,8 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileThemeBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.theme")}
-                    attr:aria-label={move || i18n.t("toggleTheme")}
+                    data-label={move || i18n.t("navigation.theme")}
+                    aria-label={move || i18n.t("toggleTheme")}
                     on:click=move |_| theme.toggle_theme()
                 >
                     <svg class="theme-icon sun-icon"  viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -84,7 +84,7 @@ pub fn MobileFloatingNav() -> impl IntoView {
 
             // FAB — on:click intentionally absent; JS (fab-interaction.js) handles
             // all touch interaction: long-press → drag mode, short tap → tap toggle.
-            <button class="mobile-fab" id="mobileFab" type="button" attr:aria-label={move || i18n.t("navigation.menu")} aria-expanded="false">
+            <button class="mobile-fab" id="mobileFab" type="button" aria-label={move || i18n.t("navigation.menu")} aria-expanded="false">
                 <div class="fab-icon">
                     <span class="fab-icon-line"></span>
                     <span class="fab-icon-line"></span>
