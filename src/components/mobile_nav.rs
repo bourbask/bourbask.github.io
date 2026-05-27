@@ -18,13 +18,13 @@ pub fn MobileFloatingNav() -> impl IntoView {
             // Arc items — class:active toggled by JS
             <div class="mobile-nav-items" id="mobileNavItems">
                 <a href="/blog" class="mobile-nav-item"
-                    attr:data-label={move || i18n.t("navigation.blog")}
+                    data-label={move || i18n.t("navigation.blog")}
                     aria-label={move || i18n.t("navigation.blog")}
                 >
                     "📝"
                 </a>
                 <a href="/veille" class="mobile-nav-item"
-                    attr:data-label={move || i18n.t("navigation.veille")}
+                    data-label={move || i18n.t("navigation.veille")}
                     aria-label={move || i18n.t("navigation.veille")}
                 >
                     "📡"
@@ -33,7 +33,7 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileCVBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.cv")}
+                    data-label={move || i18n.t("navigation.cv")}
                     aria-label={move || i18n.t("action")}
                     on:click=move |_| cv_service.generate_pdf()
                 >
@@ -43,7 +43,7 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileLangBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.language")}
+                    data-label={move || i18n.t("navigation.language")}
                     aria-label={move || match i18n.current_language.get().as_str() {
                         "fr" => i18n.t("switchToEnglish"),
                         _    => i18n.t("switchToFrench"),
@@ -61,7 +61,7 @@ pub fn MobileFloatingNav() -> impl IntoView {
                     class="mobile-nav-item"
                     id="mobileThemeBtn"
                     type="button"
-                    attr:data-label={move || i18n.t("navigation.theme")}
+                    data-label={move || i18n.t("navigation.theme")}
                     aria-label={move || i18n.t("toggleTheme")}
                     on:click=move |_| theme.toggle_theme()
                 >
