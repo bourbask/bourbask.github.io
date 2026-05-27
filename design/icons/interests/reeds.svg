@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none"
+     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Double eighth notes with botanical stem -->
+  <!-- Note heads (filled, tilted) -->
+  <ellipse cx="12" cy="38" rx="6" ry="4" transform="rotate(-20 12 38)" fill="currentColor" stroke="none"/>
+  <ellipse cx="30" cy="34" rx="6" ry="4" transform="rotate(-20 30 34)" fill="currentColor" stroke="none"/>
+  <!-- Stems -->
+  <line x1="17.5" y1="35" x2="17.5" y2="13"/>
+  <line x1="35.5" y1="31" x2="35.5" y2="13"/>
+  <!-- Beam connecting stems (= vine/branch) -->
+  <path d="M17.5 13 C22 12 29 12 35.5 13" stroke-width="3"/>
+  <!-- Leaf growing from beam (botanical detail) -->
+  <path d="M26 12.5 C26 9 28 7.5 29.5 8.5 C30 10.5 28 12.5 26 12.5" stroke-width="1.5"/>
+  <!-- Reed node on left stem -->
+  <path d="M17.5 26 C16 25 15 25 16 26.5" stroke-width="1.5"/>
+</svg>

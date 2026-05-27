@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Padlock body -->
+  <rect x="5" y="11" width="14" height="10" rx="2"/>
+  <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+  <!-- Handle arc (slightly organic vine shape) -->
+  <path d="M8 11 C8 7 9.5 5 12 5 C14.5 5 16 7 16 11"/>
+  <!-- Leaf on handle (proper closed teardrop) -->
+  <path d="M15 7.5 C16.5 6 17.5 4.5 16.5 3.5 C15.5 4.5 14.5 6.5 15 7.5"/>
+</svg>

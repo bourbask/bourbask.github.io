@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Botanical Icon Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green: #3dba7c; --amber: #e8971a; }
+
+  body { font-family: system-ui, sans-serif; background: #1e293b; color: #e2e8f0; padding: 2rem; }
+
+  h1 { color: var(--green); font-size: 1.1rem; font-weight: 600; letter-spacing: .06em; margin-bottom: .4rem; }
+  .note { font-size: .7rem; color: #64748b; margin-bottom: 2rem; }
+  .note code { background: #0f172a; padding: .1em .35em; border-radius: 3px; font-size: .85em; }
+
+  h2 { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .15em;
+       color: #475569; margin: 2rem 0 .75rem; }
+
+  .grid { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+  .item { display: flex; flex-direction: column; align-items: center; gap: .4rem; width: 72px; }
+  .item.lg { width: 88px; }
+
+  .swatch {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-radius: 8px; overflow: hidden; width: 72px; height: 40px;
+  }
+  .item.lg .swatch { width: 88px; height: 52px; }
+
+  .bg-l { background: #f8fafc; color: #0f172a;
+          display: flex; align-items: center; justify-content: center; }
+  .bg-d { background: #0f172a; color: #e2e8f0;
+          display: flex; align-items: center; justify-content: center; }
+  .bg-l svg, .bg-d svg { width: 24px; height: 24px; }
+  .item.lg .bg-l svg, .item.lg .bg-d svg { width: 36px; height: 36px; }
+
+  .accent-g { color: var(--green) !important; }
+  .accent-a { color: var(--amber) !important; }
+
+  .label { font-size: .58rem; text-align: center; color: #64748b; line-height: 1.3; }
+  .label strong { display: block; color: #94a3b8; font-size: .62rem; }
+
+  #error { display: none; background: #7f1d1d; color: #fca5a5;
+           padding: .75rem 1rem; border-radius: 6px; font-size: .8rem; margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+
+<h1>Botanical Icon Set</h1>
+<p class="note">
+  Requires local server — run <code>cd design/icons &amp;&amp; python3 -m http.server 8000</code>
+  then open <code>http://localhost:8000/preview.html</code>.
+  Each cell: light bg left / dark bg right.
+</p>
+
+<div id="error">fetch() blocked — open via local server, not file://</div>
+
+<h2>UI Icons — 24 × 24</h2>
+<div class="grid" id="ui-grid"></div>
+
+<h2>Interest Icons — 48 × 48</h2>
+<div class="grid" id="int-grid"></div>
+
+<h2>Accent variants</h2>
+<div class="grid" id="acc-grid"></div>
+
+<script>
+const UI = [
+  { file: 'ui/flower-open.svg',    label: 'flower-open',    desc: 'light mode toggle' },
+  { file: 'ui/bud-night.svg',      label: 'bud-night',      desc: 'dark mode toggle' },
+  { file: 'ui/dandelion-seed.svg', label: 'dandelion-seed', desc: 'download CV' },
+  { file: 'ui/seed-capsule.svg',   label: 'seed-capsule',   desc: 'coming soon / lock' },
+  { file: 'ui/fiddlehead.svg',     label: 'fiddlehead',     desc: 'PGP / security' },
+  { file: 'ui/calame.svg',         label: 'calame',         desc: 'blog nav' },
+  { file: 'ui/mycelium.svg',       label: 'mycelium',       desc: 'veille nav' },
+  { file: 'ui/leaf-envelope.svg',  label: 'leaf-envelope',  desc: 'email / contact' },
+  { file: 'ui/leaf-footer.svg',    label: 'leaf-footer',    desc: 'footer heart' },
+  { file: 'ui/tendril-arrow.svg',  label: 'tendril-arrow',  desc: 'CTA arrow' },
+  { file: 'ui/herbarium-doc.svg',  label: 'herbarium-doc',  desc: 'document / CV' },
+];
+
+const INT = [
+  { file: 'interests/aperture-flower.svg',   label: 'aperture-flower',   desc: 'photography' },
+  { file: 'interests/reeds.svg',             label: 'reeds',             desc: 'music' },
+  { file: 'interests/boot-fern.svg',         label: 'boot-fern',         desc: 'trekking' },
+  { file: 'interests/terminal-botanical.svg',label: 'terminal-botanical',desc: 'linux / dev' },
+];
+
+const ACC = [
+  { file: 'ui/mycelium.svg',      label: 'mycelium',     desc: '— green',  lClass: 'accent-g', dClass: 'accent-g' },
+  { file: 'ui/tendril-arrow.svg', label: 'tendril-arrow',desc: '— amber',  lClass: 'accent-a', dClass: 'accent-a' },
+  { file: 'ui/leaf-footer.svg',   label: 'leaf-footer',  desc: '— green',  lClass: 'accent-g', dClass: 'accent-g' },
+];
+
+async function loadSVG(path) {
+  const r = await fetch(path);
+  if (!r.ok) throw new Error(r.status);
+  return r.text();
+}
+
+function setSVGSize(svgText, size) {
+  return svgText
+    .replace(/width="[^"]*"/, '')
+    .replace(/height="[^"]*"/, '')
+    .replace('<svg', `<svg width="${size}" height="${size}"`);
+}
+
+function makeItem(svgText, label, desc, size, lClass = '', dClass = '') {
+  const s = setSVGSize(svgText, size);
+  const item = document.createElement('div');
+  item.className = size > 24 ? 'item lg' : 'item';
+  item.innerHTML = `
+    <div class="swatch">
+      <div class="bg-l ${lClass}">${s}</div>
+      <div class="bg-d ${dClass}">${s}</div>
+    </div>
+    <div class="label"><strong>${label}</strong>${desc}</div>`;
+  return item;
+}
+
+async function render() {
+  try {
+    for (const { file, label, desc } of UI) {
+      const svg = await loadSVG(file);
+      document.getElementById('ui-grid').appendChild(makeItem(svg, label, desc, 24));
+    }
+    for (const { file, label, desc } of INT) {
+      const svg = await loadSVG(file);
+      document.getElementById('int-grid').appendChild(makeItem(svg, label, desc, 36));
+    }
+    for (const { file, label, desc, lClass, dClass } of ACC) {
+      const svg = await loadSVG(file);
+      document.getElementById('acc-grid').appendChild(makeItem(svg, label, desc, 24, lClass, dClass));
+    }
+  } catch (e) {
+    document.getElementById('error').style.display = 'block';
+    console.error(e);
+  }
+}
+
+render();
+</script>
+</body>
+</html>
