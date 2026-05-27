@@ -10,7 +10,7 @@ Personal portfolio and tech watch — built with Rust, Leptos, and WebAssembly.
 
 - Portfolio (about, skills, projects, contact)
 - Blog with article routing
-- Tech Watch (`/veille`) — daily news feed from RSS/HN, auto-updated via GitHub Actions
+- Tech Watch (`/veille`) — daily news feed from RSS/HN + weekly AI synthesis, auto-updated via GitHub Actions
 - Bilingual (FR/EN) with persistent language preference
 - Dark/light theme with system preference detection, no flash on load
 - Printable CV generator
@@ -22,11 +22,12 @@ Personal portfolio and tech watch — built with Rust, Leptos, and WebAssembly.
 | Layer | Tech |
 |-------|------|
 | Language | Rust (stable) |
-| Framework | Leptos 0.5 (CSR) |
-| Bundler | Trunk |
+| Framework | Leptos 0.8 (CSR) |
+| Bundler | Trunk 0.21.14 |
 | Target | wasm32-unknown-unknown |
 | Styling | CSS3 with custom properties |
 | News fetch | Python 3 + feedparser (GitHub Actions cron) |
+| News synthesis | Python 3 + Claude Haiku API (GitHub Actions, Monday 07:00 UTC) |
 
 ---
 
@@ -81,7 +82,6 @@ cargo install --locked trunk
 # Clone
 git clone https://github.com/bourbask/bourbask.github.io.git
 cd bourbask.github.io
-git checkout leptos-wasm
 
 # Start dev server (hot reload at http://127.0.0.1:9999)
 trunk serve
@@ -94,15 +94,58 @@ trunk build --release
 ### Useful commands
 
 ```bash
-trunk serve            # dev server with hot reload
-trunk serve --open     # dev server + open browser
+trunk serve            # dev server with hot reload (http://127.0.0.1:9999)
 trunk build            # debug build
 trunk build --release  # optimized build for deployment
 
-cargo clippy           # linting
+cargo clippy --release --target wasm32-unknown-unknown  # linting (matches CI)
 cargo fmt              # formatting
 cargo check            # fast type check (no binary output)
 ```
+
+---
+
+## Quality checks
+
+The CI pipeline runs accessibility, performance, HTML validity, and security header checks automatically after each deploy to `main`. Run the same checks locally before pushing to catch issues early.
+
+### Install tools (once)
+
+```bash
+npm install -g @lhci/cli pa11y
+```
+
+Docker is optional — needed only for the W3C HTML validator against localhost (the CI run uses the W3C public API instead).
+
+### Run before pushing
+
+```bash
+./scripts/quality_check.sh
+```
+
+The script starts `trunk serve` if not already running, runs all checks against `http://localhost:9999`, then exits and cleans up.
+
+```bash
+# Partial runs
+./scripts/quality_check.sh --skip-w3c          # no Docker required
+./scripts/quality_check.sh --skip-lhci         # skip Lighthouse
+./scripts/quality_check.sh --skip-a11y         # skip pa11y
+```
+
+### What each check covers
+
+| Check | Tool | Fails on |
+|-------|------|----------|
+| Performance, SEO, best practices | Lighthouse CI (`@lhci/cli`) | perf < 0.80, SEO < 0.90 |
+| Accessibility WCAG 2.1 AA | pa11y + axe-core | any WCAG2AA error |
+| HTML validity | W3C Nu Validator | any HTML error |
+| HTTP security headers | curl | missing `X-Frame-Options`, `X-Content-Type-Options`, `Strict-Transport-Security` |
+
+Thresholds are defined in `.lighthouserc.json`.
+
+### CI equivalent
+
+The same checks run in `.github/workflows/quality.yml`, triggered automatically after each successful deploy to `main`. Results are available in the Actions tab; Lighthouse reports are uploaded as artifacts (30-day retention).
 
 ---
 
@@ -113,7 +156,6 @@ src/
 ├── lib.rs                    # WASM entry point
 ├── app.rs                    # Router and top-level contexts
 ├── components/
-│   ├── mod.rs
 │   ├── hero.rs
 │   ├── about.rs
 │   ├── skills.rs
@@ -124,22 +166,18 @@ src/
 │   ├── mobile_nav.rs
 │   ├── footer.rs
 │   ├── not_found.rs
-│   ├── veille.rs             # Tech watch page (fetches /news.json)
+│   ├── veille.rs             # Tech watch page + synthesis detail
 │   ├── blog/
-│   │   ├── mod.rs
 │   │   ├── blog_page.rs
 │   │   └── article_page.rs
 │   └── ui/
-│       ├── cv_download.rs
-│       ├── lang_toggle.rs
-│       └── theme_toggle.rs
+│       └── cv_download.rs
 ├── services/
 │   ├── i18n.rs               # Language switching + localStorage persistence
 │   ├── theme.rs              # Dark/light theme
 │   ├── storage.rs            # localStorage wrapper
 │   ├── blog.rs
-│   ├── cv.rs
-│   └── animations.rs
+│   └── cv.rs
 └── data/
     ├── cv.rs
     ├── articles/
@@ -148,68 +186,70 @@ src/
         └── fr.rs
 
 scripts/
-└── fetch_news.py             # Fetches RSS + HackerNews, outputs public/news.json
+├── fetch_news.py             # Fetches RSS + HackerNews → public/news.json
+├── synthesize_news.py        # Generates weekly AI synthesis via Claude Haiku
+├── test_synthesis.py         # Local synthesis test (no file write)
+└── quality_check.sh          # Local quality checks (mirrors CI)
+
+public/
+├── news.json                 # Generated — do not edit manually
+├── css/                      # Design system (variables, components, pages)
+└── fonts/                    # Self-hosted Literata variable font (OFL-1.1)
 
 .github/workflows/
-└── fetch-news.yml            # Runs fetch_news.py daily at 06:00 UTC
+├── deploy.yml                # Build + deploy to GH Pages on push to main
+├── ci.yml                    # Clippy + cargo audit on develop / PR to main
+├── fetch-news.yml            # Daily news fetch (06:00 UTC)
+├── synthesize-news.yml       # Weekly synthesis (Monday 07:00 UTC) + workflow_dispatch
+└── quality.yml               # Post-deploy quality checks (Lighthouse, pa11y, W3C, headers)
 ```
 
 ---
 
 ## Tech Watch (Veille)
 
-The `/veille` page shows a daily-updated feed of tech news relevant to the stack (Symfony, React, Rust, PHP, DevOps, AI).
+The `/veille` page shows a daily-updated feed of tech news and a weekly AI-written synthesis.
 
-**How it works:**
+**News feed:**
 
 1. GitHub Actions runs `scripts/fetch_news.py` every day at 06:00 UTC
-2. The script fetches from HackerNews API + 13 RSS feeds
-3. Items are classified by keyword into: `urgent`, `good_news`, `future_watch`, `stack_alt`, `general`
-4. Result is committed to `public/news.json` on main
-5. The Leptos frontend fetches `/news.json` on page load
+2. Fetches from HackerNews API + 30 RSS feeds (academic, institutional, official lang/framework blogs, multilingual sources)
+3. Items are classified into: `urgent`, `good_news`, `future_watch`, `stack_alt`, `general`
+4. Result is committed to `public/news.json` on main with a 14-day sliding window
 
-**To run the fetch script locally:**
+**Weekly synthesis:**
+
+1. `synthesize-news.yml` runs every Monday at 07:00 UTC (or manually via `workflow_dispatch`)
+2. `scripts/synthesize_news.py` reads articles from the past 7 days and calls Claude Haiku
+3. Generates a bilingual Markdown article (FR + EN) in editorial style
+4. Writes a `type: "synthesis"` item to `news.json` and tags source articles with a `synthesis_id`
+5. Synthesis cards appear in the feed; clicking "Lire la synthèse" opens a full Markdown detail page
+
+**To run locally:**
 
 ```bash
+# Fetch news
 pip install feedparser requests
 python scripts/fetch_news.py
-# Output: public/news.json
+
+# Test synthesis output (no file write)
+ANTHROPIC_API_KEY=your_key python scripts/test_synthesis.py --days 7
+
+# Trigger synthesis in CI manually
+gh workflow run synthesize-news.yml --ref main
 ```
 
 ---
 
 ## Deployment
 
-The site deploys to GitHub Pages. A deploy workflow (`.github/workflows/deploy.yml`) handles the build and publish. Minimal setup:
+Push to `main` triggers `.github/workflows/deploy.yml`, which builds with Trunk and deploys to GitHub Pages.
 
-```yaml
-name: Deploy
+The CI workflow (`.github/workflows/ci.yml`) runs on every push to `develop` and every PR to `main`:
+- `cargo clippy --release --target wasm32-unknown-unknown -D warnings`
+- `cargo audit` (RUSTSEC advisory check)
 
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-unknown-unknown
-
-      - uses: jetli/trunk-action@v0.4.0
-        with:
-          version: "latest"
-
-      - run: trunk build --release
-
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
+**Important:** Do not set `data-wasm-opt` in `index.html`. `wasm-opt` without `--enable-reference-types` corrupts the wasm-bindgen externref table at runtime (blank page).
 
 ---
 
@@ -239,8 +279,7 @@ view! { <p>{move || i18n.t("my.key")}</p> }
 ## Notes
 
 - No SSR, no server functions — pure CSR WASM. Dynamic data (news feed) is pre-fetched by GitHub Actions and served as static JSON.
-- The `leptos-wasm` branch is the active development branch. `main` is what GitHub Pages deploys from.
-- Codebase is a learning project. Quality varies; a cleanup pass is planned.
+- GitHub Pages source must be set to "GitHub Actions" in repository settings (not "Deploy from branch").
 
 ---
 
