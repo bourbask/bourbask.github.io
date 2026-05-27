@@ -68,7 +68,7 @@ pub fn CVDownloadButton() -> impl IntoView {
                     if is_success.get() { class.push_str(" success"); }
                     class
                 }}
-                attr:aria-label={move || if is_downloading.get() {
+                aria-label={move || if is_downloading.get() {
                     i18n.t("cv.downloading")
                 } else if is_success.get() {
                     i18n.t("cv.downloaded")
