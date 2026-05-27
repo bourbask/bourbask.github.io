@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Greenhouse arch doorway -->
+  <!-- Arch frame (left jamb → arch → right jamb) -->
+  <path d="M5 22 L5 12 C5 7 8 4 12 4 C16 4 19 7 19 12 L19 22"/>
+  <!-- Ground line -->
+  <line x1="3" y1="22" x2="21" y2="22"/>
+  <!-- Glazing bars (suggest glass panes) -->
+  <line x1="12" y1="4"  x2="12" y2="22" stroke-width="0.75" stroke-opacity="0.5"/>
+  <line x1="5"  y1="15" x2="19" y2="15" stroke-width="0.75" stroke-opacity="0.5"/>
+  <line x1="5"  y1="9"  x2="19" y2="9"  stroke-width="0.75" stroke-opacity="0.5"/>
+  <!-- Climbing tendril on right side (botanical marker) -->
+  <path d="M19 18 C21 17 22 15 20 14" stroke-width="1.25"/>
+  <path d="M21 15.5 C22.5 14 22 12 20.5 12.5" stroke-width="1"/>
+</svg>

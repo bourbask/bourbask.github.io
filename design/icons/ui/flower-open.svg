@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Open lotus — side view -->
+  <!-- Water line -->
+  <line x1="2" y1="21" x2="22" y2="21" stroke-width="1" stroke-opacity="0.35"/>
+  <!-- Receptacle base -->
+  <ellipse cx="12" cy="20" rx="4" ry="1.25"/>
+  <!-- 5 petals, varying weight for depth illusion -->
+  <path d="M10 19.5 C7 18.5 4 17 3 15"          stroke-width="1"/>
+  <path d="M11 19   C9.5 16 9 12 9.5 9"          stroke-width="1.5"/>
+  <path d="M12 19   C11.5 15 12 10 12 6"         stroke-width="1.75"/>
+  <path d="M13 19   C14.5 16 15 12 14.5 9"       stroke-width="1.5"/>
+  <path d="M14 19.5 C17 18.5 20 17 21 15"        stroke-width="1"/>
+</svg>

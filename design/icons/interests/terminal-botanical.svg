@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none"
+     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Terminal window frame -->
+  <rect x="4" y="8" width="40" height="32" rx="3"/>
+  <!-- Title bar -->
+  <line x1="4" y1="16" x2="44" y2="16"/>
+  <!-- Window dots -->
+  <circle cx="10" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="16" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+  <circle cx="22" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+  <!-- Prompt chevron -->
+  <path d="M8 22 L11 24.5 L8 27" stroke-width="1.75"/>
+  <!-- Command text line -->
+  <line x1="13" y1="24.5" x2="22" y2="24.5"/>
+  <!-- Cursor block -->
+  <rect x="23" y="21" width="3" height="5" fill="currentColor" stroke="none" opacity="0.7"/>
+  <!-- Fern — bottom right corner of terminal window -->
+  <path d="M40 36 C39.5 33 39 30 38 28" stroke-width="1.5"/>
+  <path d="M39.5 34 C37.5 33 36.5 31.5 37 31" stroke-width="1"/>
+  <path d="M39 32 C37 31 36 29.5 36.5 29"     stroke-width="1"/>
+  <path d="M39.5 34 C41.5 33 42.5 31.5 42 31" stroke-width="1"/>
+  <path d="M39 32 C41 31 42 29.5 41.5 29"     stroke-width="1"/>
+</svg>

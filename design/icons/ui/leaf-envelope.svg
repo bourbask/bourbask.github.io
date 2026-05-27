@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Rectangular envelope (wider than tall) -->
+  <rect x="2" y="5" width="20" height="14" rx="1.5"/>
+  <!-- V flap — the fold IS a leaf: midrib goes to apex -->
+  <path d="M2 5 L12 13 L22 5"/>
+  <!-- Leaf veins on the flap (radiating from fold apex) -->
+  <path d="M12 10 L7   5.5" stroke-width="0.75" stroke-opacity="0.5"/>
+  <path d="M12 8  L9.5 5.5" stroke-width="0.75" stroke-opacity="0.4"/>
+  <path d="M12 10 L17  5.5" stroke-width="0.75" stroke-opacity="0.5"/>
+  <path d="M12 8  L14.5 5.5" stroke-width="0.75" stroke-opacity="0.4"/>
+</svg>
