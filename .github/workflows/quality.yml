@@ -1,0 +1,155 @@
+name: Quality Checks
+
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  SITE_URL: https://bourbask.github.io
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # ── Wait for GitHub Pages CDN propagation ────────────────────────────────
+  wait:
+    name: Wait for deployment
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Wait for GitHub Pages CDN
+        run: |
+          for i in $(seq 1 8); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
+            echo "Attempt $i — HTTP $STATUS"
+            [ "$STATUS" = "200" ] && exit 0
+            sleep 15
+          done
+          echo "Site unreachable after 2 minutes" && exit 1
+
+  # ── Lighthouse CI — Perf, A11y, Best Practices, SEO ─────────────────────
+  lighthouse:
+    name: Lighthouse CI
+    needs: wait
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14
+
+      - name: Run Lighthouse
+        run: lhci autorun
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 30
+
+  # ── pa11y — WCAG 2.1 AA full accessibility audit ─────────────────────────
+  a11y:
+    name: Accessibility (pa11y / WCAG2AA)
+    needs: wait
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pa11y
+        run: npm install -g pa11y
+
+      - name: Audit homepage
+        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/"
+
+      - name: Audit blog
+        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/blog"
+
+      - name: Audit veille
+        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/veille"
+
+  # ── W3C Nu HTML Validator — official W3C public API ──────────────────────
+  html-validation:
+    name: W3C HTML Validation
+    needs: wait
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate HTML (W3C Nu)
+        run: |
+          FAILED=0
+          for PATH_SUFFIX in "/" "/blog" "/veille"; do
+            URL="${SITE_URL}${PATH_SUFFIX}"
+            echo "── Validating $URL"
+
+            RESULT=$(curl -s \
+              -H "User-Agent: GitHub-Actions-CI/bourbask.github.io (quality check)" \
+              "https://validator.w3.org/nu/?doc=${URL}&out=json")
+
+            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error")] | length')
+            WARNINGS=$(echo "$RESULT" | jq '[.messages[] | select(.type != "error")] | length')
+            echo "  Errors: $ERRORS — Warnings: $WARNINGS"
+
+            if [ "$ERRORS" -gt 0 ]; then
+              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
+              FAILED=1
+            fi
+
+            # Be polite to the W3C public service
+            sleep 3
+          done
+          exit $FAILED
+
+  # ── HTTP Security Headers — curl-based, no external service ──────────────
+  security-headers:
+    name: HTTP Security Headers
+    needs: wait
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check response headers
+        run: |
+          HEADERS=$(curl -sI "$SITE_URL")
+          echo "$HEADERS"
+          echo ""
+
+          FAILED=0
+
+          require_header() {
+            local header="$1" label="$2"
+            if echo "$HEADERS" | grep -qi "^${header}:"; then
+              echo "  ✓  $label"
+            else
+              echo "  ✗  $label — MISSING (required)"
+              FAILED=1
+            fi
+          }
+
+          # GitHub Pages sets these — absence means something changed
+          echo "── Required headers"
+          require_header "x-frame-options"        "X-Frame-Options"
+          require_header "x-content-type-options" "X-Content-Type-Options"
+          require_header "strict-transport-security" "Strict-Transport-Security"
+
+          # GitHub Pages static hosting cannot set these — informational only
+          echo ""
+          echo "── Informational (GitHub Pages static hosting limitation)"
+          for h in "content-security-policy:Content-Security-Policy" \
+                   "referrer-policy:Referrer-Policy" \
+                   "permissions-policy:Permissions-Policy"; do
+            hkey="${h%%:*}"; hlabel="${h##*:}"
+            if echo "$HEADERS" | grep -qi "^${hkey}:"; then
+              echo "  ✓  $hlabel"
+            else
+              echo "  ⚠  $hlabel — not set (expected on GH Pages)"
+            fi
+          done
+
+          exit $FAILED
