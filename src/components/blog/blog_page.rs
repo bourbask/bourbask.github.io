@@ -175,6 +175,7 @@ pub fn BlogIndex() -> impl IntoView {
                         <select
                             class="category-filter"
                             id="categoryFilter"
+                            aria-label={move || { let i18n = i18n.clone(); i18n.t("blog.filter.category") }}
                             on:change=move |ev| {
                                 let value = event_target_value(&ev);
                                 set_category_filter.set(value);
@@ -198,6 +199,7 @@ pub fn BlogIndex() -> impl IntoView {
                         <select
                             class="sort-filter"
                             id="sortFilter"
+                            aria-label={move || { let i18n = i18n.clone(); i18n.t("blog.filter.sort") }}
                             on:change=move |ev| {
                                 let value = event_target_value(&ev);
                                 set_sort_filter.set(value);

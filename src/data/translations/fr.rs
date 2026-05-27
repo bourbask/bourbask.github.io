@@ -385,6 +385,10 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("goHome", "Accueil");
     map.insert("exploreBlog", "Explorer le Blog");
 
+    // Blog filters
+    map.insert("blog.filter.category", "Filtrer par catégorie");
+    map.insert("blog.filter.sort", "Trier les articles");
+
     // Footer
     map.insert("mitLicense", "Licence MIT");
 
