@@ -1,68 +1,1007 @@
 {
-  "generated_at": "2026-05-27T07:19:53.459208+00:00",
-  "period": "2026-05-27",
-  "count": 978,
+  "generated_at": "2026-05-28T07:13:22.399685+00:00",
+  "period": "2026-05-28",
+  "count": 1065,
   "synthesis": {
     "en": {
-      "headline": "Critical Nginx vulnerability threatens widespread web infrastructure as AI-powered code agents emerge as credible development alternative",
-      "tldr": "A critical, likely exploitable Nginx vulnerability endangers countless web servers demanding immediate patching. Meanwhile, academic research reveals both promise and peril in AI agents: memory poisoning attacks (MemMorph) can hijack LLM tools, while new benchmarks (VISTA, RepoMirage) expose brittleness in code generation agents under real-world conditions. DuckDuckGo sees download surge following Google's AI announcements.",
+      "headline": "AI Agent Safety and Production Readiness Emerge as Critical Focus Areas Amid Budget Constraints",
+      "tldr": "Tech companies are tightening AI tool budgets while academic research intensifies focus on agent reliability, safety, and benchmarking. Major findings include RAMP framework for runtime assessment of agentic models, HARP metrics for harm amplification in multi-agent systems, and new approaches to LLM failure modes in causal reasoning. Meanwhile, Cloudflare integrates Claude Managed Agents and YouTube tightens AI-generated content labeling.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Critical Nginx vulnerability (exploitability likely, specific CVE/version details in original source) poses immediate risk to production web servers. Requires emergency patching. Additionally, MemMorph and style manipulation attacks demonstrate that LLM agents can be compromised via memory poisoning and adversarial inputs—not theoretical threats but practical attack vectors for deployed systems."
+          "summary": "Security and safety research dominates: HARP (Harm Amplification in Multi-Agent LLM Systems) provides quantifiable metrics for agent safety risks, while RAMP framework addresses critical gap in production runtime assessment of agentic models. YouTube's stricter AI-generated content labeling and MOT tool combating AI openwashing signal industry recognition of trust issues."
         },
         {
           "category": "good_news",
-          "summary": "Datafari 7.0 released as enterprise-grade open-source search engine. formae platform engineering tool expands with Kubernetes support and native Helm integration. W3C advances Pointer Events Level 3 toward full Recommendation status, solidifying web standards."
+          "summary": "Cloudflare adds Claude Managed Agents support, expanding enterprise AI capability. Memory/storage market reaches $1B+ valuation (SK Hynix, Micron). Amazon Fire TV Stick HD promotional pricing. New open-source language models (Soro for Tajik) expand linguistic diversity in AI."
         },
         {
           "category": "future_watch",
-          "summary": "AI agent maturity accelerates: research reveals fundamental weaknesses—Can LLMs Introspect? (reality check paper), Agent Memory as Database (rethinking data foundations), Agent Lifespan Engineering (handling deployed system degradation). Pullfrog emerges as open-source CodeRabbit alternative using GitHub Actions. VISTA and RepoMirage benchmarks expose fragility of visual-to-code and repository-aware agents under perturbations. CyberEvolver demonstrates self-evolving security agents. Signal: agents are becoming production-grade but remain fragile and attackable."
+          "summary": "LLM agent limitations becoming clearer: research shows LLMs fundamentally struggle with causal discovery and dynamic scheduling. Interventional agents and positional encoding innovations (LaneRoPE) proposed as solutions. NASA concretizes lunar base plans. Multi-agent testing frameworks (REST API metamorphic testing) maturing. Safe agent design via recursive program holes (LACUNA) gaining traction."
         },
         {
           "category": "stack_alt",
-          "summary": "Benchmarking community identifies gaps: constraint acquisition needs better benchmarks, artifact drift undermines agent evaluations. RepoMirage probes how code agents handle repository context perturbations—revealing that state-of-the-art agents degrade gracefully but unpredictably when context is perturbed."
+          "summary": "RAMP and DynaSchedBench establish new standards for evaluating LLM-based agent systems in production, directly challenging adequacy of benchmark-only evaluation paradigms. Competing approaches to agent reliability emerging from academic research."
         }
       ],
       "key_takeaways": [
-        "Patch Nginx immediately if running critical infrastructure—this is not a drill.",
-        "If deploying LLM agents in production, assume memory poisoning and tool-hijacking attacks are viable; implement input validation and memory isolation.",
-        "AI code agents (Pullfrog, VISTA benchmarks) show promise but fail under perturbation—don't treat them as autonomous replacements yet; use as accelerators with human review.",
-        "Watch agent memory architectures: shifting from prompt-injection to persistent memory stores creates new attack surface; database-backed agents need access control rethink."
+        "Shift from 'benchmark confidence' to 'production readiness': use RAMP or equivalent runtime assessment frameworks before deploying multi-agent systems—benchmarks alone are insufficient",
+        "Quantify agent safety risk using HARP metrics before scaling multi-agent deployments; harm amplification is non-linear across agent count",
+        "Budget austerity is real: expect reduced token allocations for AI tools—optimize prompt engineering and caching strategies now",
+        "Causal reasoning remains a hard failure mode for LLMs; use interventional agents for analytics workflows, not pure LLM reasoning chains"
       ],
-      "signal_vs_noise": "Strong signal: real vulnerabilities, credible academic weaknesses in deployed AI agents, and legitimate new tools; noise includes Vatican AI speculation and Apple/Google casting theater."
+      "signal_vs_noise": "High-quality signal day: substantive academic work on production safety, concrete industry moves (Cloudflare, YouTube, storage consolidation), and honest acknowledgment of LLM limitations outweigh marketing noise."
     },
     "fr": {
-      "headline": "Une faille critique Nginx menace l'infrastructure web mondiale tandis que les agents IA basés sur LLM émergent comme alternative crédible mais vulnérable au développement",
-      "tldr": "Une vulnérabilité Nginx critique et probablement exploitable menace d'innombrables serveurs web, exigeant un correctif immédiat. Parallèlement, la recherche académique révèle promesses et périls : les attaques par empoisonnement mémoire (MemMorph) peuvent détourner les outils LLM, tandis que nouveaux benchmarks (VISTA, RepoMirage) exposent la fragilité des agents de génération de code en conditions réelles. DuckDuckGo enregistre une hausse des téléchargements suite aux annonces IA de Google.",
+      "headline": "La Sécurité des Agents IA et la Préparation à la Production Deviennent Critiques Alors que les Budgets se Resserrent",
+      "tldr": "Les géants technologiques limitent les budgets d'outils IA tandis que la recherche académique intensifie son attention sur la fiabilité, la sécurité et l'évaluation des agents. Les découvertes clés incluent le framework RAMP pour l'évaluation en temps réel des modèles d'agents, les métriques HARP pour l'amplification des dommages dans les systèmes multi-agents, et de nouvelles approches aux modes d'échec des LLM en raisonnement causal. Parallèlement, Cloudflare intègre Claude Managed Agents et YouTube renforce l'étiquetage du contenu généré par IA.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Faille Nginx critique (exploitabilité probable, détails CVE/version dans source originale) pose risque immédiat aux serveurs web en production. Correctif d'urgence obligatoire. De plus, MemMorph et attaques de manipulation de style démontrent que les agents LLM peuvent être compromis via empoisonnement mémoire et entrées adversariales—menaces pratiques, non théoriques, pour systèmes en production."
+          "summary": "La recherche sur la sécurité domine : HARP (Amplification des Dommages dans les Systèmes Multi-Agents LLM) fournit des métriques quantifiables des risques de sécurité des agents, tandis que RAMP comble un écart critique dans l'évaluation en temps réel des modèles d'agents en production. L'étiquetage plus strict du contenu généré par IA de YouTube et l'outil MOT contre le greenwashing IA signalent la reconnaissance industrielle des problèmes de confiance."
         },
         {
           "category": "good_news",
-          "summary": "Datafari 7.0 publié comme moteur de recherche open-source de grade entreprise. L'outil formae d'ingénierie de plateforme s'étend avec support Kubernetes et intégration Helm native. W3C progresse Pointer Events Level 3 vers statut Recommendation complet."
+          "summary": "Cloudflare ajoute le support des Claude Managed Agents, élargissant les capacités IA d'entreprise. Le marché mémoire/stockage atteint une valorisation de $1B+ (SK Hynix, Micron). Amazon Fire TV Stick HD à prix promotionnel. Nouveaux modèles de langage open-source (Soro pour le tadjik) élargissent la diversité linguistique en IA."
         },
         {
           "category": "future_watch",
-          "summary": "Maturité des agents IA accélère : recherche révèle faiblesses fondamentales—Can LLMs Introspect? (reality check), Agent Memory as Database (repenser fondations données), Agent Lifespan Engineering (gestion dégradation systèmes déployés). Pullfrog émerge alternative open-source CodeRabbit via GitHub Actions. Benchmarks VISTA et RepoMirage exposent fragilité agents visuels-vers-code et agents conscients contexte dépôt sous perturbations. CyberEvolver démontre agents sécurité auto-évolutifs. Signal : agents deviennent grade production mais restent fragiles et attaquables."
+          "summary": "Les limitations des agents LLM deviennent plus claires : la recherche montre que les LLM peinent fondamentalement au raisonnement causal et à la planification dynamique. Les agents interventionnels et les innovations d'encodage positional (LaneRoPE) proposées comme solutions. La NASA concrétise les plans de base lunaire. Les frameworks de test multi-agents (test métamorphique API REST) arrivent à maturité. La conception d'agents sûrs via des trous de programme récursifs (LACUNA) gagne du terrain."
         },
         {
           "category": "stack_alt",
-          "summary": "Communauté benchmarking identifie lacunes : acquisition contraintes nécessite meilleurs benchmarks, dérive artefacts compromet évaluations agents. RepoMirage sonde comment agents code gèrent perturbations contexte dépôt—révélant dégradation imprévisible agents état-de-l'art."
+          "summary": "RAMP et DynaSchedBench établissent de nouvelles normes pour évaluer les systèmes d'agents basés sur LLM en production, remettant directement en question l'adéquation des paradigmes d'évaluation basés sur les seuls benchmarks. Des approches concurrentes de la fiabilité des agents émergent de la recherche académique."
         }
       ],
       "key_takeaways": [
-        "Corriger Nginx immédiatement si infrastructure critique—ce n'est pas un exercice.",
-        "Si déploiement agents LLM en production, supposer empoisonnement mémoire et détournement outils viables ; implémenter validation entrée et isolation mémoire.",
-        "Agents code IA (Pullfrog, benchmarks VISTA) prometteurs mais échouent sous perturbation—ne pas traiter comme remplaçants autonomes ; utiliser comme accélérateurs avec révision humaine.",
-        "Observer architectures mémoire agents : passage injections prompt vers mémoire persistante crée nouvelle surface attaque ; agents soutenus base données nécessitent repense contrôle accès."
+        "Passage de 'confiance en benchmark' à 'préparation à la production' : utilisez RAMP ou des frameworks d'évaluation équivalents en temps réel avant de déployer les systèmes multi-agents—les benchmarks seuls sont insuffisants",
+        "Quantifiez les risques de sécurité des agents avec les métriques HARP avant de scaler les déploiements multi-agents ; l'amplification des dommages n'est pas linéaire selon le nombre d'agents",
+        "L'austérité budgétaire est réelle : attendez-vous à des allocations de tokens réduites pour les outils IA—optimisez l'ingénierie des prompts et les stratégies de cache maintenant",
+        "Le raisonnement causal reste un mode d'échec difficile pour les LLM ; utilisez des agents interventionnels pour les workflows d'analyse, non des chaînes de raisonnement LLM pures"
       ],
-      "signal_vs_noise": "Signal fort : vulnérabilités réelles, faiblesses académiques crédibles agents IA en production, outils nouveaux légitimes ; bruit inclut spéculation IA Vatican et théâtre casting Apple/Google."
+      "signal_vs_noise": "Jour de signal de haute qualité : travail académique substantiel sur la sécurité en production, mouvements industriels concrets (Cloudflare, YouTube, consolidation du stockage), et reconnaissance honnête des limitations des LLM dépassent le bruit marketing."
     }
   },
   "items": [
+    {
+      "id": "5a570d14f7c5",
+      "title": "Token-Nutzung: Tech-Konzerne begrenzen Budget für KI-Tools",
+      "url": "https://www.golem.de/news/token-nutzung-tech-konzerne-begrenzen-budget-fuer-ki-tools-2605-209119.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T07:05:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "134008c8310f",
+      "title": "Speicherboom: SK Hynix und Micron über 1 Billion US-Dollar wert",
+      "url": "https://www.golem.de/news/speicherboom-sk-hynix-und-micron-ueber-1-billion-us-dollar-wert-2605-209118.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T06:53:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7e587195e5e7",
+      "title": "Teures Sci-Fi-Projekt: Wieso Steven Spielbergs Robopocalypse nie kam",
+      "url": "https://www.golem.de/news/teures-sci-fi-projekt-wieso-steven-spielbergs-robopocalypse-nie-kam-2605-209115.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T06:28:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "22cd644d798d",
+      "title": "Cloudflare Adds Support for Claude Managed Agents",
+      "url": "https://www.infoq.com/news/2026/05/cloudflare-claude-agents/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T06:23:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c09ecbad9d88",
+      "title": "AI-Slop: Youtube verschärft Kennzeichnung von KI-Videos",
+      "url": "https://www.golem.de/news/ai-slop-youtube-verschaerft-kennzeichnung-von-ki-videos-2605-209114.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T06:21:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "d1fc004af828",
+      "title": "Amazon: Fire TV Stick HD ohne Fire OS und mit Alexa+ startet zum Aktionspreis",
+      "url": "https://www.golem.de/news/amazon-fire-tv-stick-hd-ohne-fire-os-und-mit-alexa-startet-zum-aktionspreis-2605-209112.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T05:55:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "281c658fdbda",
+      "title": "Anzeige: Mobile Device Management mit Intune sicher umsetzen",
+      "url": "https://www.golem.de/news/anzeige-mobile-device-management-mit-intune-sicher-umsetzen-2605-209110.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T05:15:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "a6ebb6f84112",
+      "title": "Raumfahrt: Nasa konkretisiert ihre Pläne für eine US-Mondbasis",
+      "url": "https://www.golem.de/news/raumfahrt-nasa-konkretisiert-ihre-plaene-fuer-eine-us-mondbasis-2605-209097.html",
+      "source": "Golem.de",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T05:05:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "e98ac8bdc8c1",
+      "title": "Identifying and Understanding Human Values in Text: A Tailorable LLM-based Architecture",
+      "url": "https://arxiv.org/abs/2605.27373",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "45b2480b8b3e",
+      "title": "Soro: A Lightweight Foundation Model and Chatbot for Tajik",
+      "url": "https://arxiv.org/abs/2605.27379",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b9ba47cbffd3",
+      "title": "On the Origin of Synthetic Information by Means of Steganographic Inheritance",
+      "url": "https://arxiv.org/abs/2605.27551",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7836ab91c2ca",
+      "title": "DynaSchedBench: Calibrated Dynamic Scheduling Benchmarks and Observability Paradox in LLM-based Scheduling Agents",
+      "url": "https://arxiv.org/abs/2605.27566",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "32f64271bf42",
+      "title": "Why LLMs Fail at Causal Discovery and How Interventional Agents Escape",
+      "url": "https://arxiv.org/abs/2605.27567",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "25855ffc914f",
+      "title": "RULER: Representation-Level Verification of Machine Unlearning",
+      "url": "https://arxiv.org/abs/2605.27569",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f30f6b691089",
+      "title": "LaneRoPE: Positional Encoding for Collaborative Parallel Reasoning and Generation",
+      "url": "https://arxiv.org/abs/2605.27570",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a53b74276144",
+      "title": "Discovery Agents for Real-Time Analytics: Toward Proactive Insight Systems",
+      "url": "https://arxiv.org/abs/2605.27571",
+      "source": "ArXiv CS.AI",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "55df7ed429bc",
+      "title": "Benchmarks are Not Enough: RAMP for Runtime Assessing of Agentic Models in Production Systems",
+      "url": "https://arxiv.org/abs/2605.27492",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2753a1e98432",
+      "title": "LLM Based Web Accessibility Repair: An Empirical Study of Detection, Remediation, and Cost",
+      "url": "https://arxiv.org/abs/2605.27716",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a8b81876c83c",
+      "title": "Confident Learning-based Network for Detecting Bug-Inducing Commits on SZZ with Noisy Labels",
+      "url": "https://arxiv.org/abs/2605.27880",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bd841760e30b",
+      "title": "Tool Forge: A Validation-Carrying Toolchain for Governed Agentic Execution",
+      "url": "https://arxiv.org/abs/2605.28000",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "64227e0691b0",
+      "title": "DeltaMCP: Incremental Regeneration via Spec-Aware Transformation for MCP servers",
+      "url": "https://arxiv.org/abs/2605.28148",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f473f8797306",
+      "title": "GUI Agents for Continual Game Generation",
+      "url": "https://arxiv.org/abs/2605.28258",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "dca22aecd485",
+      "title": "Multi-Agent LLM-based Metamorphic Testing for REST APIs",
+      "url": "https://arxiv.org/abs/2605.28321",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "71a99adc34e0",
+      "title": "Rethinking Software Empirical Studies with Structural Causal Models",
+      "url": "https://arxiv.org/abs/2605.28482",
+      "source": "ArXiv CS.SE",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "8c9566abc2c1",
+      "title": "Grimlock: Guarding High-Agency Systems with eBPF and Attested Channels",
+      "url": "https://arxiv.org/abs/2605.27488",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9b944d435d4b",
+      "title": "HARP: Measuring Harm Amplification in Multi-Agent LLM Systems",
+      "url": "https://arxiv.org/abs/2605.27489",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d937fa429c02",
+      "title": "Grounded Cache Routing for Retrieval-Augmented Generation: When Is It Safe to Reuse an Answer?",
+      "url": "https://arxiv.org/abs/2605.27494",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9752999ff4dd",
+      "title": "Analyzing Linear Layers in Related-Differential Cryptanalysis",
+      "url": "https://arxiv.org/abs/2605.27535",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e3c484009c40",
+      "title": "Cloak: Heuristic ORAM Optimization Through Fixed Temporal Distribution",
+      "url": "https://arxiv.org/abs/2605.27565",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "901bcc167ec0",
+      "title": "Assessor Experiences in CMMC Level 2 Certification Assessments: An Interpretative Phenomenological Analysis of Role Expectations",
+      "url": "https://arxiv.org/abs/2605.27587",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d10eab28394c",
+      "title": "Poison with Style: A Practical Poisoning Attack on Code Large Language Models",
+      "url": "https://arxiv.org/abs/2605.27631",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a583460d8a3d",
+      "title": "A Note on Boosting Uncloneable Encryption in Microcrypt",
+      "url": "https://arxiv.org/abs/2605.27647",
+      "source": "ArXiv CS.CR",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bd851df65ca0",
+      "title": "Agentic Separation Logic Specification Synthesis",
+      "url": "https://arxiv.org/abs/2605.27531",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7b36280bc6a9",
+      "title": "FPMoE: A Sparse Mixture-of-Experts Approach to Functional Code Generation",
+      "url": "https://arxiv.org/abs/2605.27849",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ec1342e9c81b",
+      "title": "Skill-as-Pseudocode: Refactoring Skill Libraries to Pseudocode for LLM Agents",
+      "url": "https://arxiv.org/abs/2605.27955",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c7775eb0c15d",
+      "title": "E-Path: Equality Saturation for Control-Flow Graphs",
+      "url": "https://arxiv.org/abs/2605.28694",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1aed837c8550",
+      "title": "LACUNA: Safe Agents as Recursive Program Holes",
+      "url": "https://arxiv.org/abs/2605.28617",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d496155e889f",
+      "title": "PoTo: A Hybrid Andersen's Points-to Analysis for Python",
+      "url": "https://arxiv.org/abs/2409.03918",
+      "source": "ArXiv CS.PL",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5fa3e965fd76",
+      "title": "Hallucinate – Massively Multiplayer Online Rave",
+      "url": "https://hallucinate.site",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T03:50:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fc17143bff01",
+      "title": "[$] LWN.net Weekly Edition for May 28, 2026",
+      "url": "https://lwn.net/Articles/1073782/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-28T01:04:49+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a6fdcf69bf3f",
+      "title": "Google employee charged with $1M Polymarket insider trading bet on search term",
+      "url": "https://www.cnbc.com/2026/05/27/google-employee-polymarket-insider-trading.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T00:49:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "095a4983c528",
+      "title": "Can we have the day off?",
+      "url": "https://mlsu.io/posts/day-off/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-28T00:40:26+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "086116dfe1f3",
+      "title": "A Love Letter to Neovim",
+      "url": "https://caio.ca/blog/a-love-letter-to-neovim",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T23:54:16+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5a682a7968b8",
+      "title": "CSCI 1377: Tools for Thought (Spring 2026)",
+      "url": "https://cel.cs.brown.edu/csci-1377-s26/",
+      "source": "Lobste.rs",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T23:37:48+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e56f1732e305",
+      "title": "FBI Arrests CIA Official with $40M in Gold Bars in His Home",
+      "url": "https://www.nytimes.com/2026/05/27/us/politics/fbi-arrest-cia-official-gold-bars.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T23:23:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "16b0cdbcc363",
+      "title": "YouTube to automatically label AI-generated videos",
+      "url": "https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T20:00:51+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f3f05d3ccae5",
+      "title": "I'm Getting into Mesh Networks (Meshtastic, MeshCore, and Reticulum)",
+      "url": "https://www.jonaharagon.com/posts/im-getting-into-mesh-networks-meshtastic-meshcore-and-reticulum/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T19:52:49+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "adcf4f576d5d",
+      "title": "Rust (and Slint) on a Jailbroken Kindle",
+      "url": "https://sverre.me/blog/rust-on-kindle/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T19:51:47+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ef04a9f1aabc",
+      "title": "Interview session with Jonathan Corbet",
+      "url": "https://lwn.net/Articles/1074907/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T19:32:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "346ca456a229",
+      "title": "What Apple and Google are doing to push notifications",
+      "url": "https://www.jacquescorbytuech.com/writing/what-apple-and-google-are-doing-your-push-notifications",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T19:24:10+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "10ba93b3544f",
+      "title": "How LinkedIn Identified a Kernel Lock Contention Issue Causing Recurring System Freezes",
+      "url": "https://www.infoq.com/news/2026/05/linkedin-kernel-lock-freeze/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T18:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d3b288485012",
+      "title": "SimCity 3k in 4k (2025)",
+      "url": "https://www.thran.uk/writ/hdid/2025/12/simcity-3k-in-4k.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T17:36:29+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e495c18d506a",
+      "title": "Gemini, Gophers, and Fingers. Oh My Alternative Internets Beyond HTTPS",
+      "url": "https://brennan.day/gemini-gophers-and-fingers-oh-my-alternative-internets-beyond-https/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T17:24:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fa3750264f63",
+      "title": "Essen und Düsseldorf: Metrofibre ist insolvent und stoppt den Glasfaserausbau",
+      "url": "https://www.golem.de/news/essen-und-duesseldorf-metrofibre-ist-insolvent-und-stoppt-den-glasfaserausbau-2605-209109.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T17:16:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "c78f7ab8a3a2",
+      "title": "Canada to order military plane fleet from Sweden in shift from US suppliers",
+      "url": "https://www.theguardian.com/world/2026/may/27/canada-sweden-saab-globaleye-aircraft",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:53:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "fcc622450fb3",
+      "title": "A new register allocator for ZJIT",
+      "url": "https://railsatscale.com/2026-05-27-a-new-register-allocator-for-zjit/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:53:16+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "532698bf7611",
+      "title": "Atom Exhaustion Is Not a Footgun. It's One Third of Our CVEs",
+      "url": "https://erlef.org/blog/security/atom-exhaustion",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:48:05+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4d3bcbca8bf1",
+      "title": "E.discom und Wemacom: Telekom versucht faire Partnerschaften",
+      "url": "https://www.golem.de/news/e-discom-und-wemacom-telekom-versucht-faire-partnerschaften-2605-209108.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:40:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "8c94a29a6f46",
+      "title": "I think Anthropic and OpenAI have found product-market fit",
+      "url": "https://simonwillison.net/2026/May/27/product-market-fit/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:39:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0ce3b9fca202",
+      "title": "DuckDuckGo search saw 28% more visits after Google said people love AI mode",
+      "url": "https://www.pcgamer.com/hardware/duckduckgos-ai-free-search-saw-nearly-28-percent-more-visits-in-the-week-following-googles-insistence-that-people-love-ai-mode/",
+      "source": "HackerNews",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T16:28:41+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7cdabc684eee",
+      "title": "Stress disrupts hippocampal integration of overlapping events, memory inference",
+      "url": "https://www.science.org/doi/10.1126/sciadv.aea5496?user_id=66c4bf745d78644b3aa57b08",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:26:31+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e9f7064d1301",
+      "title": "Gesetzentwurf zu Cybersicherheit: Dobrindt definiert sich Hackbacks um",
+      "url": "https://www.golem.de/news/gesetzentwurf-zu-cybersicherheit-dobrindt-definiert-sich-hackbacks-um-2605-209107.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:25:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "8e345991d2a4",
+      "title": "MacSurf: NetSurf for Mac OS 9",
+      "url": "https://github.com/mplsllc/macsurf",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T16:16:38+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b462b766199c",
+      "title": "[$] MOT: a tool to fight openwashing in AI",
+      "url": "https://lwn.net/Articles/1073420/",
+      "source": "LWN.net",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T15:52:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c7180ae43e89",
+      "title": "A brief note about slot access cost in Common Lisp",
+      "url": "https://turtleware.eu/posts/A-brief-note-about-slot-access-cost-in-Common-Lisp.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T15:50:11+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e5855c811ba8",
+      "title": "Last.fm is now independent",
+      "url": "https://support.last.fm/t/last-fm-is-now-independent/118591",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T15:36:09+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "afd7be8a4813",
+      "title": "Interview with Zig creator Andrew Kelley",
+      "url": "https://www.youtube.com/watch?v=iqddnwKF8HQ",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T15:36:02+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a2982798451c",
+      "title": "Andrew Morton's 2004 OLS keynote",
+      "url": "https://lwn.net/Articles/1070746/",
+      "source": "LWN.net",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T14:35:03+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b761cac93aaa",
+      "title": "[$] Further progress toward removing the page map count",
+      "url": "https://lwn.net/Articles/1073418/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T13:16:12+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "91d311ec6812",
+      "title": "Security updates for Wednesday",
+      "url": "https://lwn.net/Articles/1074840/",
+      "source": "LWN.net",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T13:14:25+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "0eef17fce9bc",
+      "title": "South Africa Has AI Leverage. Its Draft Policy Leaves It Unused",
+      "url": "https://spectrum.ieee.org/south-africa-ai-policy",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T13:00:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "1987758eb124",
+      "title": "Incident with Pull Requests, Issues, Git Operations and API Requests",
+      "url": "https://www.githubstatus.com/incidents/xy1tt3hs572m",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T12:15:14+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b8e74da12e0b",
+      "title": "Private equity bought America's essential services",
+      "url": "https://rubbishtalk.com/economy/how-private-equity-bought-americas-essential-services/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T12:00:53+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "34692bd768a5",
+      "title": "GPU autoscaling on Kubernetes with KEDA: Building an external scaler",
+      "url": "https://www.cncf.io/blog/2026/05/27/gpu-autoscaling-on-kubernetes-with-keda-building-an-external-scaler/",
+      "source": "CNCF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T11:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c8e79993e0da",
+      "title": "May I recommend thinking of Emacs as your Fortress of Solitude",
+      "url": "https://martinsos.com/posts/may-recommend-emacs-home-base",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T10:01:18+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "3f111aeec832",
+      "title": "Mini Micro Fantasy Computer",
+      "url": "https://miniscript.org/MiniMicro/index.html#about",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T09:56:02+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "406e903ddf17",
+      "title": "Azure Logic Apps Adds Sandboxed Code Interpreters to Agent Workflows",
+      "url": "https://www.infoq.com/news/2026/05/azure-logic-apps-agents/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T09:45:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b491ab1570d4",
+      "title": "Presentation: Designing AI Platforms for Reliability: Tools for Certainty, Agents for Discovery",
+      "url": "https://www.infoq.com/presentations/ai-platforms-reliability/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-27T09:04:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "54d49ffe90ae",
+      "title": "Go: Support for Generic Methods",
+      "url": "https://github.com/golang/go/issues/77273",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T09:02:59+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "28c6aa23b054",
+      "title": "All of human cooking compressed into 2 megabytes",
+      "url": "https://arxiv.org/abs/2605.22391",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T08:14:40+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "ed5d456dd438",
+      "title": "Keyboard latency probe",
+      "url": "https://xkqr.org/bellwether/keyboardtest.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T08:13:35+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "586b7e1ccd8b",
+      "title": "「JWT を localStorage に置くな」はなぜ言われるのか、Cookie 回帰までの時系列整理",
+      "url": "https://zenn.dev/khale/articles/web-session-jwt-cookie-history",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T07:58:44+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "dd813ecebeb0",
+      "title": "Sarang Kulkarni on Lessons from Building Deep Research Agents in Production",
+      "url": "https://www.infoq.com/news/2026/05/kulkarni-deep-research-agents/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-27T07:45:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "f2ffbd8ca96b",
+      "title": "Opus 4.7 と GPT-5.5 のレビュー特性を統計的に明らかにした（オトナの自由研究 #19）",
+      "url": "https://zenn.dev/nnakapa/articles/lab-19-opus47-gpt55-code-review",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T07:31:11+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "1983618b59f1",
+      "title": "NVIDIA自動運転シミュレーターAlpaSimで自社開発VLAモデル「DriveHeron」を走らせてみた",
+      "url": "https://zenn.dev/turing_motors/articles/bab91a64919c31",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T07:21:05+00:00",
+      "lang": "ja"
+    },
     {
       "id": "68328b22ed87",
       "title": "Ausnutzung wahrscheinlich: Kritische Nginx-Lücke gefährdet unzählige Webserver",
@@ -138,6 +1077,17 @@
         "general"
       ],
       "published_at": "2026-05-27T05:53:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "69631796f326",
+      "title": "What are some of your favourite developer tools?",
+      "url": "https://lobste.rs/s/2jdvxa/what_are_some_your_favourite_developer",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T05:40:47+00:00",
       "lang": "en"
     },
     {
@@ -506,6 +1456,17 @@
       "lang": "en"
     },
     {
+      "id": "f71d98e38d40",
+      "title": "This Week in Rust 653",
+      "url": "https://this-week-in-rust.org/blog/2026/05/27/this-week-in-rust-653/",
+      "source": "This Week in Rust",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T04:00:00+00:00",
+      "lang": "en"
+    },
+    {
       "id": "268a0d4dd877",
       "title": "The just-say-no engineer was a ZIRP phenomenon",
       "url": "https://www.seangoedecke.com/the-just-say-no-engineer-was-a-zirp-phenomenon/",
@@ -526,6 +1487,17 @@
       ],
       "published_at": "2026-05-27T03:21:37+00:00",
       "lang": "en"
+    },
+    {
+      "id": "51d3b64fd669",
+      "title": "Claude CodeとCodexを2ヶ月使い比べて分かった選び方 — settings.jsonを育てた側が速い",
+      "url": "https://zenn.dev/playpark/articles/claude-code-vs-codex-comparison",
+      "source": "Zenn",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-05-27T02:16:51+00:00",
+      "lang": "ja"
     },
     {
       "id": "f71bf305bef8",
@@ -592,6 +1564,39 @@
       ],
       "published_at": "2026-05-26T23:36:06+00:00",
       "lang": "en"
+    },
+    {
+      "id": "8fd8fa2fc873",
+      "title": "GitHub Copilot CLIの/chronicleで課金体系の変更に備えよう",
+      "url": "https://zenn.dev/aeonpeople/articles/morihaya-20260527-copilot-cli-chronicle",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T23:00:09+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "3537748bdcf2",
+      "title": "Javaなしで安全に使えるPlantUMLビューア「pumlv」",
+      "url": "https://zenn.dev/rinrin_yuuki/articles/9b69cca81875f6",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T23:00:09+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "1c95565c7ef7",
+      "title": "AI時代の実装力は『コードを書く力』から『解空間を収束させる力』へ移った",
+      "url": "https://zenn.dev/tesla/articles/f67c29415a02fc",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T21:59:09+00:00",
+      "lang": "ja"
     },
     {
       "id": "6eb8b5de53f9",
@@ -933,6 +1938,17 @@
       ],
       "published_at": "2026-05-26T10:40:40+00:00",
       "lang": "en"
+    },
+    {
+      "id": "085ae2ae1d26",
+      "title": "Claude Codeに仕事を任せたら確認待ちで止まっていた。しゃべらせたら今度はうるさかったので改善した。",
+      "url": "https://zenn.dev/collabostyle/articles/6423fd88ee0054",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T10:37:49+00:00",
+      "lang": "ja"
     },
     {
       "id": "05f22311dd7a",
@@ -15716,55 +16732,7 @@
         "general"
       ],
       "published_at": "2026-05-13T18:45:03+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "da21fe3b3375",
-      "title": "CNCF Debuts KubeCon + CloudNativeCon Japan 2026 Schedule",
-      "url": "https://www.cncf.io/announcements/2026/05/13/cncf-debuts-kubecon-cloudnativecon-japan-2026-schedule/",
-      "source": "CNCF Blog",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-13T16:00:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "e336c4b4946d",
-      "title": "Show HN: Number Gacha, a gacha game distilled to its essence",
-      "url": "https://isabisabel.com/gacha/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T15:39:41+00:00",
       "lang": "en"
-    },
-    {
-      "id": "16c75657b808",
-      "title": "Building a cloud native platform from the ground up with Kairos, k0rdent, and bindy",
-      "url": "https://www.cncf.io/blog/2026/05/13/building-a-cloud-native-platform-from-the-ground-up-with-kairos-k0rdent-and-bindy/",
-      "source": "CNCF Blog",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-13T11:30:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "9a1239ea5192",
-      "title": "Deming — un SMSI Open Source par et pour des RSSI",
-      "url": "https://linuxfr.org/news/deming-un-smsi-open-source-par-et-pour-des-rssi",
-      "source": "LinuxFr.org",
-      "categories": [
-        "good_news"
-      ],
-      "published_at": "2026-05-13T08:46:28+00:00",
-      "lang": "fr",
-      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "d64c7dfe44fd",
@@ -15819,6 +16787,17 @@
         "future_watch"
       ],
       "published_at": "2026-05-12T08:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e3b4a6264dab",
+      "title": "IETF Snapshot 2025",
+      "url": "http://www.ietf.org/blog/ietf-snapshot-2025/",
+      "source": "IETF Blog",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-11T23:38:00+00:00",
       "lang": "en"
     },
     {
@@ -16133,17 +17112,6 @@
         "future_watch"
       ],
       "published_at": "2026-04-29T16:00:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "e5ed0cdbabf7",
-      "title": "This Week in Rust 649",
-      "url": "https://this-week-in-rust.org/blog/2026/04/29/this-week-in-rust-649/",
-      "source": "This Week in Rust",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-04-29T04:00:00+00:00",
       "lang": "en"
     },
     {
@@ -16763,17 +17731,6 @@
         "future_watch"
       ],
       "published_at": "2026-01-28T01:55:00+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "c9149c84e36a",
-      "title": "Agentic AI communications: Identifying the standards we need",
-      "url": "http://www.ietf.org/blog/agentic-ai-standards/",
-      "source": "IETF Blog",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-01-22T21:16:00+00:00",
       "lang": "en"
     },
     {
