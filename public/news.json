@@ -1,66 +1,464 @@
 {
-  "generated_at": "2026-05-30T06:55:41.792056+00:00",
-  "period": "2026-05-30",
-  "count": 1186,
+  "generated_at": "2026-05-31T07:13:25.133026+00:00",
+  "period": "2026-05-31",
+  "count": 1218,
   "synthesis": {
     "en": {
-      "headline": "LLM vulnerabilities emerge as critical research area while AI infrastructure scales to petabyte reliability",
-      "tldr": "Meta demonstrates petabyte-scale data ingestion reliability improvements; academic research flags LLM-in-the-loop system vulnerabilities requiring urgent attention; Liquid AI releases 8B-A1B MoE model trained on 38T tokens, signaling continued scaling despite consolidation concerns.",
+      "headline": "AV2 v1.0.0 specification released; Arm opens Metis AI security framework as industry shifts toward ML-assisted code analysis",
+      "tldr": "The AV2 video codec reached final v1.0.0 specification, offering improved compression efficiency. Simultaneously, Arm open-sourced Metis, an AI-powered security framework that outperforms traditional SAST tools in vulnerability detection. NixOS 26.05 also released. These mark genuine technical progress in standardization, security tooling, and declarative systems.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Two critical papers from ArXiv CS highlight emerging security gaps: 'Towards Demystifying and Repairing LLM-in-the-Loop Vulnerabilities' identifies systematic flaws in AI-augmented systems, while 'Quantum-Enhanced Adversarial Robustness' explores defense mechanisms. These represent foundational security research rather than disclosed CVEs, but signal that LLM integration into production workflows carries unquantified risks."
+          "summary": "Arm's Metis AI security framework open-sourced and outperforms traditional SAST tools. This represents a meaningful shift in how organizations should approach static analysis—moving from rule-based engines to ML-augmented detection. Security teams should evaluate Metis as a SAST replacement."
         },
         {
           "category": "good_news",
-          "summary": "Meta's petabyte-scale data ingestion rebuild demonstrates practical solutions for reliability at extreme scale. Tiny-vLLM C++/CUDA inference engine offers developers performant alternatives to Python-based stacks. SQLite workflow durability patterns gain traction as viable infrastructure choice, suggesting mature database technology remains competitive against newer solutions."
+          "summary": "AV2 v1.0.0 specification finalized after industry collaboration, providing next-generation video codec with tangible efficiency gains. NixOS 26.05 released, continuing the declarative Linux trajectory. Both represent stable, production-ready milestones."
         },
         {
           "category": "future_watch",
-          "summary": "Mistral AI summit notes and Liquid AI's 8B-A1B MoE release confirm continued LLM scaling momentum despite market consolidation. Flathub's ban on LLM-based submissions signals early platform-level policy responses to AI-generated content. AI-assisted migration tooling (ingress-nginx→Higress) demonstrates practical adoption phase. Concern raised: 'Is AI causing repeat of frontend's lost decade?' suggests tooling explosion without clarity on actual productivity gains."
+          "summary": "LLM inference optimization dominates: Tiny-vLLM (C++/CUDA), Liquid AI's 8B-A1B MoE on 38T tokens, and multiple benchmarking frameworks indicate intense competition in inference efficiency. ML engineers should benchmark against established frameworks. Machine-readable supply chain signals gaining traction via OpenSSF alignment initiative."
         },
         {
           "category": "stack_alt",
-          "summary": "Four ArXiv papers benchmark LLM capabilities in specialized domains: LogDx-CI tests log reduction for debugging, Converted-Not-Equivalent examines codebase conversion accuracy, SCDBench evaluates smart contract decompilers, Code-QA-Bench separates genuine reasoning from documentation memorization. Collectively, these establish that LLM quality metrics remain domain-specific and fragmented—no universal 'good enough' threshold exists."
+          "summary": "LLM inference benchmarking (ja/Zenn) provides practical comparison methodology for ML engineers choosing inference stacks. Relevant for teams evaluating vLLM vs. proprietary alternatives."
         }
       ],
       "key_takeaways": [
-        "Audit LLM integration points in your systems for 'loop vulnerabilities'—AI-assisted code/config decisions require verification mechanisms, not blind trust",
-        "Evaluate Tiny-vLLM and lightweight inference alternatives before defaulting to Python-based frameworks; Meta's petabyte-scale lessons apply to data pipeline reliability, not just volume",
-        "Question AI tooling ROI claims until benchmarks specific to your domain are available—Code-QA-Bench and LogDx-CI show LLMs excel at some tasks but fail silently at others"
+        "Evaluate Arm Metis as a SAST replacement in your security pipeline—ML-based detection now demonstrably outperforms rule engines",
+        "If shipping video content, begin AV2 adoption roadmap now that v1.0.0 is final; codec efficiency gains justify migration planning",
+        "For ML inference workloads, benchmark Tiny-vLLM and emerging MoE models against your latency/throughput SLAs—inference optimization is now commodity competitive"
       ],
-      "signal_vs_noise": "Strong signal in infrastructure maturity (Meta, SQLite validation) and security research; moderate noise in incremental AI tooling releases and framework announcements lacking differentiation."
+      "signal_vs_noise": "Strong signal today: three substantive releases (AV2, Metis, NixOS) anchoring discussion; noise diluted by historical retrospectives (Quake 30 years), job postings, and burnout studies unrelated to technical progress."
     },
     "fr": {
-      "headline": "Les vulnérabilités des LLM émergent comme domaine critique tandis que l'infrastructure IA atteint une fiabilité pétaoctet",
-      "tldr": "Meta démontre des améliorations de fiabilité d'ingestion de données à l'échelle pétaoctet ; la recherche académique signale des vulnérabilités critiques dans les systèmes LLM-in-the-loop ; Liquid AI publie un modèle MoE 8B-A1B entraîné sur 38T tokens, confirmant l'accélération continue malgré la consolidation du marché.",
+      "headline": "AV2 v1.0.0 finalisé et Arm publie Metis, cadre de sécurité par IA surpassant les outils SAST traditionnels",
+      "tldr": "Le codec vidéo AV2 atteint sa spécification finale v1.0.0 avec des gains de compression significatifs. Arm a simultanément open-sourcé Metis, un framework de sécurité basé sur l'IA surpassant les outils SAST classiques. NixOS 26.05 est également sorti. Ces trois jalons marquent un progrès technique authentique en standardisation, outillage de sécurité et systèmes déclaratifs.",
       "sections": [
         {
           "category": "urgent",
-          "summary": "Deux articles critiques d'ArXiv CS mettent en évidence des lacunes de sécurité émergentes : « Towards Demystifying and Repairing LLM-in-the-Loop Vulnerabilities » identifie des défauts systémiques dans les systèmes augmentés par IA, tandis que « Quantum-Enhanced Adversarial Robustness » explore les mécanismes de défense. Ces recherches signalent que l'intégration des LLM dans les flux de production comporte des risques non quantifiés."
+          "summary": "Le framework Metis d'Arm (sécurité par IA) est open-source et surpasse les outils SAST traditionnels. Cela représente un changement majeur : les équipes de sécurité doivent abandonner les moteurs basés sur des règles pour l'analyse augmentée par IA. Évaluation immédiate recommandée."
         },
         {
           "category": "good_news",
-          "summary": "La reconstruction de l'ingestion de données pétaoctet de Meta démontre des solutions pratiques pour la fiabilité à l'échelle extrême. Le moteur d'inférence Tiny-vLLM C++/CUDA offre aux développeurs des alternatives performantes aux stacks basés sur Python. Les modèles de durabilité SQLite gagnent en traction comme choix d'infrastructure viable, suggérant que la technologie de base de données mature reste compétitive."
+          "summary": "Spécification AV2 v1.0.0 finalisée après collaboration industrielle, offrant un codec vidéo nouvelle génération avec gains d'efficacité tangibles. NixOS 26.05 publié, poursuivant la trajectoire Linux déclarative. Deux jalons stables et prêts pour la production."
         },
         {
           "category": "future_watch",
-          "summary": "Les notes du sommet Mistral AI et la version MoE 8B-A1B de Liquid AI confirment l'élan continu d'évolution des LLM malgré la consolidation du marché. L'interdiction de Flathub sur les soumissions basées sur LLM signale les premières réactions politiques au niveau de la plateforme. Les outils de migration assistés par IA (ingress-nginx→Higress) démontrent la phase d'adoption pratique. Préoccupation : « L'IA provoque-t-elle une répétition de la décennie perdue du frontend ? » suggère une explosion d'outillage sans clarté sur les gains réels de productivité."
+          "summary": "L'optimisation de l'inférence LLM domine : Tiny-vLLM (C++/CUDA), Liquid AI 8B-A1B MoE sur 38T tokens et multiples benchmarks indiquent une compétition intense. Les ingénieurs ML doivent benchmarker contre des cadres établis. Les signaux machine-readable de chaîne d'approvisionnement gagnent du terrain via l'initiative OpenSSF."
         },
         {
           "category": "stack_alt",
-          "summary": "Quatre articles ArXiv benchmarkent les capacités des LLM dans des domaines spécialisés : LogDx-CI teste la réduction de journaux pour le débogage, Converted-Not-Equivalent examine la précision de la conversion de code, SCDBench évalue les décompilateurs de contrats intelligents, Code-QA-Bench sépare le raisonnement authentique de la mémorisation de documentation. Collectivement, ces travaux établissent que les métriques de qualité des LLM restent spécifiques au domaine et fragmentées."
+          "summary": "Les benchmarks d'inférence LLM (Zenn/ja) fournissent une méthodologie comparative pratique pour les ingénieurs ML choisissant des stacks d'inférence. Pertinent pour les équipes évaluant vLLM vs alternatives propriétaires."
         }
       ],
       "key_takeaways": [
-        "Auditez les points d'intégration des LLM dans vos systèmes pour les 'vulnérabilités en boucle'—les décisions de code/configuration assistées par IA nécessitent des mécanismes de vérification, pas une confiance aveugle",
-        "Évaluez Tiny-vLLM et les alternatives d'inférence légères avant de défaut aux frameworks basés sur Python ; les leçons de Meta sur l'échelle pétaoctet s'appliquent à la fiabilité du pipeline de données",
-        "Questionnez les affirmations de ROI de l'outillage IA jusqu'à ce que des benchmarks spécifiques à votre domaine soient disponibles—Code-QA-Bench et LogDx-CI montrent que les LLM excellent dans certaines tâches mais échouent silencieusement dans d'autres"
+        "Évaluez Metis d'Arm comme remplaçant SAST dans votre pipeline de sécurité—la détection basée IA surpasse désormais démontrablement les moteurs à règles",
+        "Si vous livrez du contenu vidéo, commencez la feuille de route d'adoption AV2 maintenant que v1.0.0 est finalisé ; les gains d'efficacité justifient la planification de migration",
+        "Pour les charges d'inférence ML, benchmarkez Tiny-vLLM et les modèles MoE émergents contre vos SLA latence/débit—l'optimisation d'inférence est maintenant concurrentielle au niveau commodité"
       ],
-      "signal_vs_noise": "Signal fort dans la maturité de l'infrastructure (Meta, validation SQLite) et la recherche en sécurité ; bruit modéré dans les versions d'outillage IA incrémentales manquant de différenciation."
+      "signal_vs_noise": "Signal fort aujourd'hui : trois publications substantielles (AV2, Metis, NixOS) ancrant la discussion ; bruit dilué par rétrospectives historiques (Quake 30 ans), offres d'emploi et études de burnout sans rapport avec le progrès technique."
     }
   },
   "items": [
+    {
+      "id": "ecd68625988f",
+      "title": "30 Jahre Quake: Technologischer Meilenstein mit unvergesslichem Gameplay",
+      "url": "https://www.golem.de/news/30-jahre-quake-technologischer-meilenstein-mit-unvergesslichem-gameplay-2605-209094.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-31T07:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "5bc917bae149",
+      "title": "Anzeige: IT-Jobs in Service Management, Entwicklung und Infrastruktur",
+      "url": "https://www.golem.de/news/anzeige-it-jobs-in-service-management-entwicklung-und-infrastruktur-2605-209177.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-31T05:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "9d03978475d8",
+      "title": "Ahoy, DECmate II! the little PDP-8 that could",
+      "url": "http://oldvcr.blogspot.com/2026/05/ahoy-decmate-ii-little-pdp-8-that-could.html",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-31T02:20:15+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2839c833132d",
+      "title": "My Accessibility Stack and the future on Wayland",
+      "url": "https://nocoffei.com/?p=451",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-31T02:04:34+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5bdc9c534c60",
+      "title": "AV2 v1.0.0 specification",
+      "url": "https://av2.aomedia.org/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-31T01:49:17+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "6199f1340e4d",
+      "title": "ELF Linker Improvements in Zig",
+      "url": "https://ziglang.org/devlog/2026/?2026-05-30#2026-05-30",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T23:55:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "c9362cfd1286",
+      "title": "Microsoft Office 2019 and 2021 for Mac view-only conversion",
+      "url": "https://consumerrights.wiki/w/Microsoft_Office_2019_and_2021_for_Mac_view-only_conversion_(2026)",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T23:26:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "990eea7e86c3",
+      "title": "Shantell Sans (2023)",
+      "url": "https://shantellsans.com/process",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T22:06:38+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a10f50baf22f",
+      "title": "A New Design for Pretty Printer Implementations in Rust",
+      "url": "https://blog.wybxc.cc/blog/pretty-printer-pye/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T21:55:47+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9a8e7774d786",
+      "title": "The AV2 Video Standard Has Released (Final v1.0 Specification)",
+      "url": "https://av2.aomedia.org",
+      "source": "HackerNews",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-30T21:46:18+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "e53b23ba2c4f",
+      "title": "Domain expertise has always been the real moat",
+      "url": "https://www.brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T20:40:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "78ef04115abf",
+      "title": "Show HN: 500 years of Joseon court omens as an observability dashboard",
+      "url": "https://ajin.im/is/building/omen.ops/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T19:23:36+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "2248e57d04a1",
+      "title": "Arm Open-Sources Metis, an AI Security Framework Outperforming Traditional SAST Tools",
+      "url": "https://www.infoq.com/news/2026/05/arm-metis-agentic-security/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "urgent",
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-05-30T19:00:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d9337102740c",
+      "title": "Zig ELF Linker Improvements Devlog",
+      "url": "https://ziglang.org/devlog/2026/#2026-05-30",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T17:29:22+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "badf86289e1e",
+      "title": "OpenRouter raises $113M Series B",
+      "url": "https://openrouter.ai/announcements/series-b",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T17:27:28+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "5c4799197778",
+      "title": "Microcode inside the Intel 8087 floating-point chip: register exchange",
+      "url": "https://www.righto.com/2026/05/microcode-inside-intel-8087-floating.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T17:27:13+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "4762e8b3d887",
+      "title": "Accenture to acquire Ookla",
+      "url": "https://newsroom.accenture.com/news/2026/accenture-to-acquire-ookla-to-strengthen-network-intelligence-and-experience-with-data-and-ai-for-enterprises",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T16:28:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "b87ca49c6aa6",
+      "title": "Poetry for Engineers: Cyborg Laboratory",
+      "url": "https://spectrum.ieee.org/poetry-for-engineers-cyborg-laboratory",
+      "source": "IEEE Spectrum",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T15:13:01+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "bf93329d5330",
+      "title": "5億ドル請求されないようにOllamaのCloudを使う。",
+      "url": "https://zenn.dev/yumayx/articles/c69ac22ce07bea",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T15:01:41+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "f2b26d6f6a2d",
+      "title": "yadm + mise で dotfiles 環境構築を整理する",
+      "url": "https://zenn.dev/vim_jp/articles/2ee400a66228a7",
+      "source": "Zenn",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-05-30T15:00:38+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "23823cdb4031",
+      "title": "NixOS 26.05 released",
+      "url": "https://nixos.org/blog/announcements/2026/nixos-2605/",
+      "source": "Lobste.rs",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-05-30T14:47:40+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9297abe5b3b8",
+      "title": "Voxel Space (2017)",
+      "url": "https://s-macke.github.io/VoxelSpace/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T14:25:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a1dd4a8f0c0c",
+      "title": "Nix on Sailfish X (Sailfish OS for Sony Xperia)",
+      "url": "https://toast.al/posts/techlore/2026-05-30_nix-on-sailfish-os/",
+      "source": "Lobste.rs",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T14:05:57+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "15117825fb0d",
+      "title": "Enhanced Broadcasting: Twitch will gleichzeitig Hoch- und Querformat streamen",
+      "url": "https://www.golem.de/news/enhanced-broadcasting-twitch-will-gleichzeitig-hoch-und-querformat-streamen-2605-209226.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T13:08:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "757abe49f225",
+      "title": "Infrastruktur: Karte zeigt Daseinsvorsorge in deutschen Gemeinden",
+      "url": "https://www.golem.de/news/infrastruktur-karte-zeigt-daseinsvorsorge-in-deutschen-gemeinden-2605-209225.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T12:00:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "58604d61b62c",
+      "title": "Anzeige: Lexar EQ790 2TB NVMe SSD zum Bestpreis bei Amazon",
+      "url": "https://www.golem.de/news/anzeige-lexar-eq790-2tb-nvme-ssd-zum-bestpreis-bei-amazon-2605-209193.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T11:40:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "be415422574f",
+      "title": "DFKI: Browser-Erweiterung anonymisiert KI-Prompts direkt in Chrome",
+      "url": "https://www.golem.de/news/dfki-browser-erweiterung-anonymisiert-ki-prompts-direkt-in-chrome-2605-209222.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T11:01:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "cac5b4b9885b",
+      "title": "Openrsync: An implementation of rsync, by the OpenBSD team",
+      "url": "https://github.com/kristapsdz/openrsync",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T10:51:48+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "97ff58715575",
+      "title": "Leo's first encyclical attacks technological messianism",
+      "url": "https://www.economist.com/europe/2026/05/28/leos-first-encyclical-attacks-technological-messianism",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T10:30:50+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "46fc4d204fa6",
+      "title": "Militär: SpaceX soll US-Luftverteidigung stärken",
+      "url": "https://www.golem.de/news/militaer-spacex-soll-us-luftverteidigung-staerken-2605-209224.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T10:25:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "0409e5162dac",
+      "title": "Google Cloud Suspends Railway's Production Account, Causing Eight-Hour Platform-Wide Outage",
+      "url": "https://www.infoq.com/news/2026/05/railway-gcp-account-outage/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T10:03:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "a8f555478f9e",
+      "title": "Raumfahrt: Mit der New Glenn sind auch Trumps Mondpläne explodiert",
+      "url": "https://www.golem.de/news/raumfahrt-mit-der-new-glenn-sind-auch-trumps-mondplaene-explodiert-2605-209220.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T10:00:01+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "7004023a158b",
+      "title": "Pandoc Templates",
+      "url": "https://pandoc-templates.org/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T09:56:42+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "7933de4117eb",
+      "title": "バックエンドエンジニアが Chrome 拡張を作ってウェブストアに公開してみた",
+      "url": "https://zenn.dev/rea9r/articles/485e429906112b",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T09:43:19+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "af57ad98c425",
+      "title": "Meta-Anhänger: KI am Hals statt in der Brille",
+      "url": "https://www.golem.de/news/meta-anhaenger-ki-am-hals-statt-in-der-brille-2605-209221.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T09:28:02+00:00",
+      "lang": "de"
+    },
+    {
+      "id": "635c4cc6002b",
+      "title": "Dezentrales Netz: Energy Sharing startet am 1. Juni",
+      "url": "https://www.golem.de/news/dezentrales-netz-energy-sharing-startet-am-1-juni-2605-209223.html",
+      "source": "Golem.de",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T08:53:02+00:00",
+      "lang": "de"
+    },
     {
       "id": "0cc35491362d",
       "title": "How Meta Rebuilt Data Ingestion for Petabyte-Scale Reliability",
@@ -71,6 +469,29 @@
       ],
       "published_at": "2026-05-30T06:01:00+00:00",
       "lang": "en"
+    },
+    {
+      "id": "8562617b560e",
+      "title": "MLエンジニアのための本質から理解するLLM推論: LLM Inference Benchmarking",
+      "url": "https://zenn.dev/kaz20/articles/8034f0587633f3",
+      "source": "Zenn",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-05-30T05:57:21+00:00",
+      "lang": "ja"
+    },
+    {
+      "id": "5ae31db4be12",
+      "title": "AIを使った効率的な体験改善のための開発フロー",
+      "url": "https://zenn.dev/noppe/articles/2113952a4bf0cc",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-30T03:54:36+00:00",
+      "lang": "ja"
     },
     {
       "id": "4dd7b14bffaa",
@@ -126,6 +547,17 @@
       ],
       "published_at": "2026-05-29T19:38:27+00:00",
       "lang": "en"
+    },
+    {
+      "id": "9a5673d4d2f4",
+      "title": "Cursor: GPT 5.5 が優秀でコスパ最強",
+      "url": "https://zenn.dev/hidenori3/articles/cba47a06140440",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-29T19:25:40+00:00",
+      "lang": "ja"
     },
     {
       "id": "73e9a5b3b558",
@@ -192,6 +624,17 @@
       ],
       "published_at": "2026-05-29T16:59:42+00:00",
       "lang": "en"
+    },
+    {
+      "id": "66e6461a22f8",
+      "title": "ローカルLLM（Qwen3.6 / Gemma4 / DeepSeek V4 Flash）+ Claude ベンチマーク比較",
+      "url": "https://zenn.dev/keitayamamoto/articles/4380d3f64c8bf1",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-29T16:43:07+00:00",
+      "lang": "ja"
     },
     {
       "id": "04fd40dc951a",
@@ -511,6 +954,17 @@
       ],
       "published_at": "2026-05-29T12:56:23+00:00",
       "lang": "en"
+    },
+    {
+      "id": "4b092a84f820",
+      "title": "Claude Codeに株・仮想通貨botを300個作らせて見えてきたこと",
+      "url": "https://zenn.dev/kobao/articles/64a72dc0167ca3",
+      "source": "Zenn",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-29T12:28:43+00:00",
+      "lang": "ja"
     },
     {
       "id": "f919a11dc239",
@@ -1076,6 +1530,17 @@
         "general"
       ],
       "published_at": "2026-05-29T03:01:00+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "9319590d8b42",
+      "title": "I found a seashell in the middle of the desert",
+      "url": "https://github.com/Hawzen/I-found-a-seashell-in-the-middle-of-the-desert",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-29T02:49:43+00:00",
       "lang": "en"
     },
     {
@@ -2226,6 +2691,17 @@
       "lang": "en"
     },
     {
+      "id": "a32fe121b12e",
+      "title": "IXI's autofocusing lenses are almost ready to replace multifocal glasses",
+      "url": "https://www.engadget.com/wearables/ixis-autofocusing-lenses-multifocal-glasses-ces-2026-212608427.html",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-27T19:03:17+00:00",
+      "lang": "en"
+    },
+    {
       "id": "10ba93b3544f",
       "title": "How LinkedIn Identified a Kernel Lock Contention Issue Causing Recurring System Freezes",
       "url": "https://www.infoq.com/news/2026/05/linkedin-kernel-lock-freeze/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -3209,6 +3685,17 @@
       "lang": "ja"
     },
     {
+      "id": "b65104252d1f",
+      "title": "Navier-Stokes fluid simulation explained with Godot game engine",
+      "url": "https://myzopotamia.dev/navier-stokes-fluid-simulation-explained-with-godot",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T22:15:28+00:00",
+      "lang": "en"
+    },
+    {
       "id": "1c95565c7ef7",
       "title": "AI時代の実装力は『コードを書く力』から『解空間を収束させる力』へ移った",
       "url": "https://zenn.dev/tesla/articles/f67c29415a02fc",
@@ -3319,6 +3806,17 @@
       "lang": "de"
     },
     {
+      "id": "f2b2c7ab20b8",
+      "title": "It takes two neurons to ride a bicycle (2004)",
+      "url": "https://fermatslibrary.com/s/it-takes-two-neurons-to-ride-a-bicycle#email-newsletter",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T16:51:55+00:00",
+      "lang": "en"
+    },
+    {
       "id": "3cfd1fe75973",
       "title": "Indoor Wi-Fi Roaming with OpenWRT",
       "url": "https://taoofmac.com/space/blog/2026/05/26/1730",
@@ -3327,6 +3825,17 @@
         "general"
       ],
       "published_at": "2026-05-26T16:41:58+00:00",
+      "lang": "en"
+    },
+    {
+      "id": "d7ba0ad99ce0",
+      "title": "What are locusts and what happened to them?",
+      "url": "https://explosion-scratch.github.io/locusts/",
+      "source": "HackerNews",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-05-26T16:15:17+00:00",
       "lang": "en"
     },
     {
@@ -17892,172 +18401,6 @@
       "published_at": "2026-05-17T07:58:30+00:00",
       "lang": "fr",
       "synthesis_id": "synthesis_2026_W22"
-    },
-    {
-      "id": "351a8c78e10c",
-      "title": "Mozilla to UK regulators: VPNs are essential privacy and security tools",
-      "url": "https://blog.mozilla.org/netpolicy/2026/05/15/mozilla-to-uk-regulators-vpns-are-essential-privacy-and-security-tools-and-should-not-be-undermined/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-17T06:17:26+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W22"
-    },
-    {
-      "id": "3a3c27efba15",
-      "title": "Tesla Solar Roof is on life support as it pivot to panels",
-      "url": "https://electrek.co/2026/05/14/tesla-solar-roof-promise-vs-reality-pivot-panels/",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-17T04:09:52+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W22"
-    },
-    {
-      "id": "174d3af00670",
-      "title": "A nicer voltmeter clock",
-      "url": "https://lcamtuf.substack.com/p/a-nicer-voltmeter-clock",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T22:45:16+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "2712f407c808",
-      "title": "The quiet renovation at Bitwarden",
-      "url": "https://blog.ppb1701.com/the-quiet-renovation-at-bitwarden",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T20:13:41+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "71f9b89bf1ce",
-      "title": "Ubuntu Embraces Local AI Instead of Cloud-First OS Integration",
-      "url": "https://www.infoq.com/news/2026/05/ubuntu-on-device-ai/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "future_watch",
-        "stack_alt"
-      ],
-      "published_at": "2026-05-16T20:00:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "f59e233fc10b",
-      "title": "The Fil-C Optimized Calling Convention",
-      "url": "https://fil-c.org/calling_convention",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T19:10:08+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "5f11cfa94123",
-      "title": "What Is Date:Italy?",
-      "url": "http://aesthetikx.info/blog/date_italy.html",
-      "source": "HackerNews",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T17:31:35+00:00",
-      "lang": "en"
-    },
-    {
-      "id": "21c396e1b666",
-      "title": "Markdownの表をExcelのように編集できるVS Code拡張機能を作りました",
-      "url": "https://zenn.dev/naoyuki1212/articles/20260506-visual-table-canvas-for-markdown",
-      "source": "Zenn",
-      "categories": [
-        "stack_alt"
-      ],
-      "published_at": "2026-05-16T16:19:56+00:00",
-      "lang": "ja",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "3032750213db",
-      "title": "MCP が Linux Foundation 入り — 個人開発の OS レイヤがオープン化した日",
-      "url": "https://zenn.dev/creolab_dev/articles/2026-05-16-mcp-linux-foundation-indie-saas",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T12:34:12+00:00",
-      "lang": "ja",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "7fb06ffdf7f8",
-      "title": "Rustで小さなリンカーを実装する",
-      "url": "https://zenn.dev/skanehira/books/writing-a-tiny-linker-in-rust",
-      "source": "Zenn",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T12:26:54+00:00",
-      "lang": "ja",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "cf50fbafc8da",
-      "title": "Veille communautaire sur des intelligences artificielles  du mois d'avril 2026",
-      "url": "https://linuxfr.org/news/veille-communautaire-sur-des-intelligences-artificielles-du-mois-d-avril-2026",
-      "source": "LinuxFr.org",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-16T11:05:59+00:00",
-      "lang": "fr",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "f4ba9f84a6fb",
-      "title": "DDDの理想と決済システムの現実",
-      "url": "https://zenn.dev/kotaroikeda/articles/e2276a1d45a55c",
-      "source": "Zenn",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-05-16T10:15:33+00:00",
-      "lang": "ja",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "61c4c463fa3b",
-      "title": "Google Introduces Cloud Fraud Defense as Successor to reCAPTCHA",
-      "url": "https://www.infoq.com/news/2026/05/cloud-fraud-defense-recaptcha/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-16T08:39:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
-    },
-    {
-      "id": "36e016276490",
-      "title": "Microsoft Releases Aspire 13.3 with Major Deployment and Frontend Updates",
-      "url": "https://www.infoq.com/news/2026/05/aspire-13-3-release/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "categories": [
-        "good_news"
-      ],
-      "published_at": "2026-05-16T08:34:00+00:00",
-      "lang": "en",
-      "synthesis_id": "synthesis_2026_W21"
     },
     {
       "id": "026733ba08a0",
