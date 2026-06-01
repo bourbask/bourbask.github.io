@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Fetches tech news from RSS feeds and HackerNews API.
-Classifies items by keyword into categories.
-Outputs public/news.json consumed by the Leptos frontend.
+Classifies items by keyword and domain.
+Outputs public/news.json — NO AI synthesis (moved to score_articles.py).
 """
 import hashlib
 import json
@@ -47,55 +47,64 @@ NOISE_PATTERNS = [
     r"beginner.s guide",
     r"#showdev",
     r"show dev",
+    r"i learned ",
+    r"how i ",
+    r"my experience",
 ]
 _NOISE_RE = re.compile("|".join(NOISE_PATTERNS), re.IGNORECASE)
 
-# no_filter=True: content is inherently authoritative, skip noise check
+# Domains: each source belongs to exactly one domain.
+# score_articles.py runs a per-domain competition to select the best articles.
 SOURCES = [
-    # Academic / Research
-    {"name": "ArXiv CS.AI",       "url": "https://arxiv.org/rss/cs.AI",                                     "lang": "en", "no_filter": True, "max_items": 8},
-    {"name": "ArXiv CS.SE",       "url": "https://arxiv.org/rss/cs.SE",                                     "lang": "en", "no_filter": True, "max_items": 8},
-    {"name": "ArXiv CS.CR",       "url": "https://arxiv.org/rss/cs.CR",                                     "lang": "en", "no_filter": True, "max_items": 8},
-    {"name": "ArXiv CS.PL",       "url": "https://arxiv.org/rss/cs.PL",                                     "lang": "en", "no_filter": True, "max_items": 8},
-    {"name": "ACM Tech News",     "url": "https://technews.acm.org/feed.xml",                               "lang": "en"},
-    {"name": "IEEE Spectrum",     "url": "https://spectrum.ieee.org/feeds/feed.rss",                        "lang": "en"},
-    {"name": "Papers With Code",  "url": "https://paperswithcode.com/blog/feed/",                           "lang": "en", "no_filter": True},
+    # ── DOMAIN: dev_stack ────────────────────────────────────────────────────
+    {"name": "Rust Blog",          "url": "https://blog.rust-lang.org/feed.xml",                             "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "This Week in Rust",  "url": "https://this-week-in-rust.org/atom.xml",                          "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "Go Blog",            "url": "https://go.dev/blog/feed.atom",                                   "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "Mozilla Hacks",      "url": "https://hacks.mozilla.org/feed/",                                 "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "WebKit Blog",        "url": "https://webkit.org/feed/",                                        "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "GitHub Engineering", "url": "https://github.blog/engineering/feed/",                           "lang": "en", "domain": "dev_stack", "no_filter": True},
+    {"name": "Linux Foundation",   "url": "https://www.linuxfoundation.org/blog/feed/",                      "lang": "en", "domain": "dev_stack"},
+    {"name": "LWN.net",            "url": "https://lwn.net/headlines/rss",                                   "lang": "en", "domain": "dev_stack"},
+    {"name": "Lobste.rs",          "url": "https://lobste.rs/rss",                                           "lang": "en", "domain": "dev_stack"},
+    {"name": "LinuxFr.org",        "url": "https://linuxfr.org/news.atom",                                   "lang": "fr", "domain": "dev_stack"},
 
-    # Government / Standards
-    {"name": "CISA Advisories",   "url": "https://www.cisa.gov/cybersecurity-advisories/feed",              "lang": "en", "no_filter": True},
-    {"name": "NIST CSRC",         "url": "https://csrc.nist.gov/News/feed",                                 "lang": "en", "no_filter": True},
-    {"name": "W3C Blog",          "url": "https://www.w3.org/blog/news/feed",                               "lang": "en", "no_filter": True},
-    {"name": "IETF Blog",         "url": "https://www.ietf.org/blog/feed/",                                 "lang": "en", "no_filter": True},
-    {"name": "ENISA",             "url": "https://www.enisa.europa.eu/news/enisa-news/rss",                 "lang": "en", "no_filter": True},
+    # ── DOMAIN: ai_emerging ──────────────────────────────────────────────────
+    {"name": "ArXiv CS.AI",        "url": "https://arxiv.org/rss/cs.AI",                                     "lang": "en", "domain": "ai_emerging", "no_filter": True, "max_items": 10},
+    {"name": "ArXiv CS.PL",        "url": "https://arxiv.org/rss/cs.PL",                                     "lang": "en", "domain": "ai_emerging", "no_filter": True, "max_items": 8},
+    {"name": "Papers With Code",   "url": "https://paperswithcode.com/blog/feed/",                           "lang": "en", "domain": "ai_emerging", "no_filter": True},
+    {"name": "IEEE Spectrum",      "url": "https://spectrum.ieee.org/feeds/feed.rss",                        "lang": "en", "domain": "ai_emerging"},
+    {"name": "ACM Tech News",      "url": "https://technews.acm.org/feed.xml",                               "lang": "en", "domain": "ai_emerging"},
 
-    # Official language / platform blogs
-    {"name": "Rust Blog",         "url": "https://blog.rust-lang.org/feed.xml",                             "lang": "en", "no_filter": True},
-    {"name": "Go Blog",           "url": "https://go.dev/blog/feed.atom",                                   "lang": "en", "no_filter": True},
-    {"name": "Python Blog",       "url": "https://blog.python.org/feeds/posts/default",                     "lang": "en", "no_filter": True},
-    {"name": "Node.js Blog",      "url": "https://nodejs.org/en/feed/blog.xml",                             "lang": "en", "no_filter": True},
-    {"name": "Mozilla Hacks",     "url": "https://hacks.mozilla.org/feed/",                                 "lang": "en", "no_filter": True},
-    {"name": "WebKit Blog",       "url": "https://webkit.org/feed/",                                        "lang": "en", "no_filter": True},
-    {"name": "Chromium Blog",     "url": "https://blog.chromium.org/feeds/posts/default",                   "lang": "en", "no_filter": True},
-    {"name": "GitHub Engineering","url": "https://github.blog/engineering/feed/",                           "lang": "en", "no_filter": True},
-    {"name": "OpenSSF Blog",      "url": "https://openssf.org/feed/",                                      "lang": "en", "no_filter": True},
-    {"name": "This Week in Rust", "url": "https://this-week-in-rust.org/atom.xml",                          "lang": "en", "no_filter": True},
-    {"name": "Linux Foundation",  "url": "https://www.linuxfoundation.org/blog/feed/",                      "lang": "en", "no_filter": True},
-    {"name": "Symfony Blog",      "url": "https://symfony.com/blog/feed/atom",                              "lang": "en", "no_filter": True},
-    {"name": "PHP.net",           "url": "https://www.php.net/feed.atom",                                   "lang": "en", "no_filter": True},
-    {"name": "React Blog",        "url": "https://react.dev/blog/rss.xml",                                  "lang": "en", "no_filter": True},
+    # ── DOMAIN: security ─────────────────────────────────────────────────────
+    {"name": "CISA Advisories",    "url": "https://www.cisa.gov/cybersecurity-advisories/feed",              "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "NIST CSRC",          "url": "https://csrc.nist.gov/News/feed",                                 "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "ENISA",              "url": "https://www.enisa.europa.eu/news/enisa-news/rss",                 "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "OpenSSF Blog",       "url": "https://openssf.org/feed/",                                      "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "Krebs on Security",  "url": "https://krebsonsecurity.com/feed/",                               "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "Schneier on Security","url": "https://www.schneier.com/blog/atom.xml",                         "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "PortSwigger Blog",   "url": "https://portswigger.net/blog/rss",                                "lang": "en", "domain": "security", "no_filter": True},
+    {"name": "SANS ISC",           "url": "https://isc.sans.edu/rssfeed_full.xml",                           "lang": "en", "domain": "security", "no_filter": True, "max_items": 5},
 
-    # Quality aggregators
-    {"name": "CNCF Blog",         "url": "https://www.cncf.io/feed/",                                      "lang": "en"},
-    {"name": "LWN.net",           "url": "https://lwn.net/headlines/rss",                                   "lang": "en"},
-    {"name": "InfoQ",             "url": "https://feed.infoq.com/",                                         "lang": "en"},
-    {"name": "The Register Dev",  "url": "https://www.theregister.com/software/developer/headlines.atom",   "lang": "en"},
-    {"name": "Lobste.rs",         "url": "https://lobste.rs/rss",                                           "lang": "en"},
+    # ── DOMAIN: health_science ───────────────────────────────────────────────
+    {"name": "ArXiv CS.HC",        "url": "https://arxiv.org/rss/cs.HC",                                     "lang": "en", "domain": "health_science", "no_filter": True, "max_items": 8},
+    {"name": "ArXiv q-bio",        "url": "https://arxiv.org/rss/q-bio",                                     "lang": "en", "domain": "health_science", "no_filter": True, "max_items": 8},
+    {"name": "eLife Sciences",     "url": "https://elifesciences.org/rss/alerts/general.xml",                "lang": "en", "domain": "health_science", "no_filter": True, "max_items": 8},
+    {"name": "PLOS ONE",           "url": "https://journals.plos.org/plosone/feed/atom",                     "lang": "en", "domain": "health_science", "no_filter": True, "max_items": 8},
 
-    # Multilingual
-    {"name": "LinuxFr.org",       "url": "https://linuxfr.org/news.atom",                                   "lang": "fr"},
-    {"name": "Framablog",         "url": "https://framablog.org/feed/",                                     "lang": "fr"},
-    {"name": "Golem.de",          "url": "https://rss.golem.de/rss.php?feed=RSS2.0",                        "lang": "de"},
-    {"name": "Zenn",              "url": "https://zenn.dev/feed",                                           "lang": "ja"},
+    # ── DOMAIN: business_market ──────────────────────────────────────────────
+    {"name": "The Register",       "url": "https://www.theregister.com/software/developer/headlines.atom",   "lang": "en", "domain": "business_market"},
+    {"name": "InfoQ",              "url": "https://feed.infoq.com/",                                         "lang": "en", "domain": "business_market"},
+    {"name": "CNCF Blog",          "url": "https://www.cncf.io/feed/",                                       "lang": "en", "domain": "business_market"},
+    {"name": "W3C Blog",           "url": "https://www.w3.org/blog/news/feed",                               "lang": "en", "domain": "business_market", "no_filter": True},
+    {"name": "IETF Blog",          "url": "https://www.ietf.org/blog/feed/",                                 "lang": "en", "domain": "business_market", "no_filter": True},
+    # HackerNews is handled separately → added to business_market with higher score threshold
+
+    # ── DOMAIN: architecture ─────────────────────────────────────────────────
+    {"name": "Dezeen Sustainable", "url": "https://www.dezeen.com/tag/sustainable-architecture/feed/",       "lang": "en", "domain": "architecture"},
+    {"name": "Low-tech Magazine",  "url": "https://solar.lowtechmagazine.com/index.xml",                     "lang": "en", "domain": "architecture", "no_filter": True},
+    {"name": "ArchDaily",          "url": "https://www.archdaily.com/feed/rss",                              "lang": "en", "domain": "architecture", "max_items": 8},
+    {"name": "TreeHugger",         "url": "https://www.treehugger.com/latest/rss",                           "lang": "en", "domain": "architecture", "max_items": 8},
+    {"name": "Resilient Design",   "url": "https://www.resilientdesign.org/feed/",                           "lang": "en", "domain": "architecture", "no_filter": True},
 ]
 
 KEYWORDS: dict[str, list[str]] = {
@@ -118,7 +127,7 @@ KEYWORDS: dict[str, list[str]] = {
         "experimental", " alpha ", " beta ", " preview", "next generation",
         "webassembly", " wasm", "edge computing", "serverless",
         "bun ", "deno ", "htmx", "astro ", "leptos", "tauri",
-        "web components", "signal", "resumability",
+        "web components", "signal", "resumability", "quantum",
     ],
     "stack_alt": [
         " vs ", " versus ", "alternative to", "benchmark", "migration guide",
@@ -128,10 +137,19 @@ KEYWORDS: dict[str, list[str]] = {
     ],
 }
 
-MAX_HN_FETCH = 60   # fetch this many IDs to filter by score
-MAX_HN_KEEP  = 20   # keep at most this many after filtering
-MIN_HN_SCORE = 100
-MAX_RSS_ITEMS = 10
+MAX_HN_FETCH   = 80
+MAX_HN_KEEP    = 12
+MIN_HN_SCORE   = 150  # raised from 100 — only significant stories
+MAX_RSS_ITEMS  = 10
+
+# Retention by status (days)
+RETENTION = {
+    "synthesis":      None,   # keep forever
+    "selected":       21,     # 3 weeks — synthesis window
+    "archived":       4,      # short — already lost the competition
+    "raw":            2,      # if not scored within 2 days, expire
+    None:             14,     # legacy articles without status
+}
 
 
 def is_safe_url(url: str) -> bool:
@@ -192,16 +210,20 @@ def fetch_hn() -> list[dict]:
             if not is_safe_url(url):
                 continue
             title = story.get("title", "")
+            if _NOISE_RE.search(title):
+                continue
             items.append({
-                "id": item_id(url),
-                "title": title,
-                "url": url,
-                "source": "HackerNews",
-                "categories": classify(title),
+                "id":           item_id(url),
+                "title":        title,
+                "url":          url,
+                "source":       "HackerNews",
+                "domain":       "business_market",
+                "categories":   classify(title),
                 "published_at": datetime.fromtimestamp(
                     story.get("time", 0), tz=timezone.utc
                 ).isoformat(),
-                "lang": "en",
+                "lang":         "en",
+                "status":       "raw",
             })
             kept += 1
         except Exception:
@@ -214,10 +236,11 @@ def fetch_rss(source: dict) -> list[dict]:
     items: list[dict] = []
     no_filter = source.get("no_filter", False)
     max_items = source.get("max_items", MAX_RSS_ITEMS)
+    domain    = source.get("domain", "dev_stack")
     try:
         feed = feedparser.parse(source["url"])
         for entry in feed.entries[:max_items]:
-            url = entry.get("link", "")
+            url   = entry.get("link", "")
             title = entry.get("title", "")
             if not url or not title:
                 continue
@@ -228,153 +251,102 @@ def fetch_rss(source: dict) -> list[dict]:
             summary = entry.get("summary", "") or entry.get("description", "")
             summary_clean = re.sub(r"<[^>]+>", " ", summary) if summary else ""
             items.append({
-                "id": item_id(url),
-                "title": title,
-                "url": url,
-                "source": source["name"],
-                "categories": classify(title, summary_clean),
+                "id":           item_id(url),
+                "title":        title,
+                "url":          url,
+                "source":       source["name"],
+                "domain":       domain,
+                "categories":   classify(title, summary_clean),
                 "published_at": parse_date(entry),
-                "lang": source.get("lang", "en"),
+                "lang":         source.get("lang", "en"),
+                "status":       "raw",
             })
     except Exception as e:
         print(f"[RSS] {source['name']} failed: {e}", file=sys.stderr)
     return items
 
 
-def generate_synthesis(items: list[dict]) -> dict | None:
-    """Generate bilingual EN/FR synthesis via Claude API. Returns None if key absent or call fails."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        return None
-    try:
-        import anthropic
-    except ImportError:
-        print("[synthesis] anthropic package not installed, skipping", file=sys.stderr)
-        return None
-
-    client = anthropic.Anthropic(api_key=api_key)
-
-    by_cat: dict[str, list[str]] = {}
-    for item in items[:80]:
-        for cat in item["categories"]:
-            by_cat.setdefault(cat, []).append(
-                f"[{item['source']}][{item['lang']}] {item['title']}"
-            )
-
-    context_lines: list[str] = []
-    for cat, titles in by_cat.items():
-        context_lines.append(f"\n## {cat.upper()}")
-        context_lines.extend(titles[:12])
-    context = "\n".join(context_lines)
-
-    prompt = f"""You are a critical tech analyst. Analyze these categorized tech articles from today and generate a bilingual (EN + FR) synthesis.
-
-ARTICLES BY CATEGORY:
-{context}
-
-TOTAL: {len(items)} items collected from institutional, academic, and curated sources.
-
-Generate a JSON object with this EXACT structure (pure JSON only, no markdown fences):
-{{
-  "en": {{
-    "headline": "One punchy headline (the single most important story today)",
-    "tldr": "2-3 sentence essential summary. Be specific: mention real names, version numbers, CVE IDs.",
-    "sections": [
-      {{"category": "urgent", "summary": "Concise summary for urgent/security items"}},
-      {{"category": "good_news", "summary": "Concise summary for releases and good news"}},
-      {{"category": "future_watch", "summary": "Concise summary for emerging tech items"}},
-      {{"category": "stack_alt", "summary": "Concise summary for comparison/alternatives items"}}
-    ],
-    "key_takeaways": ["Actionable point 1", "Actionable point 2", "Actionable point 3"],
-    "signal_vs_noise": "Honest 1-sentence assessment of today's signal quality"
-  }},
-  "fr": {{
-    "headline": "...",
-    "tldr": "...",
-    "sections": [...],
-    "key_takeaways": [...],
-    "signal_vs_noise": "..."
-  }}
-}}
-
-Rules:
-- Only include sections for categories that have substantive content (omit empty ones)
-- Be critical: distinguish real releases/discoveries from marketing/hype
-- key_takeaways must be actionable (what a developer should know or do today)
-- Respond ONLY with valid JSON, no text before or after"""
-
-    try:
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=2500,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = response.content[0].text.strip()
-        # Strip markdown code fences if Claude adds them
-        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
-        text = re.sub(r"\n?```\s*$", "", text)
-        return json.loads(text)
-    except Exception as e:
-        print(f"[synthesis] generation failed: {e}", file=sys.stderr)
-        return None
+def is_expired(item: dict, now_iso: str) -> bool:
+    status    = item.get("status") or item.get("type")
+    days      = RETENTION.get(status, RETENTION[None])
+    if days is None:
+        return False
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    pub = item.get("published_at", "")
+    return pub < cutoff
 
 
 def main() -> None:
-    out_path = Path(__file__).parent.parent / "public" / "news.json"
+    out_path   = Path(__file__).parent.parent / "public" / "news.json"
+    fetched_at = datetime.now(timezone.utc).isoformat()
+    now_iso    = fetched_at
+
     all_items: list[dict] = []
-    seen: set[str] = set()
+    seen:      set[str]   = set()
 
     def add(item: dict) -> None:
         if item["id"] not in seen:
             seen.add(item["id"])
             all_items.append(item)
 
-    # Load existing items: keep synthesis cards (no expiry) + articles within 14-day window
-    cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).isoformat()
+    # Load existing items, apply retention policy
     if out_path.exists():
         try:
             existing = json.loads(out_path.read_text(encoding="utf-8"))
             for item in existing.get("items", []):
-                if item.get("type") == "synthesis":
-                    if item["id"] not in seen:
-                        seen.add(item["id"])
-                        all_items.append(item)
-                elif item.get("published_at", "") >= cutoff:
-                    if item["id"] not in seen:
-                        seen.add(item["id"])
-                        all_items.append(item)
+                if not is_expired(item, now_iso) and item["id"] not in seen:
+                    seen.add(item["id"])
+                    all_items.append(item)
         except Exception as e:
             print(f"[load] Failed to load existing news.json: {e}", file=sys.stderr)
 
     print("Fetching HackerNews…")
     for item in fetch_hn():
-        add(item)
+        if item["id"] not in seen:
+            item["fetched_at"] = fetched_at
+            add(item)
 
     for source in SOURCES:
         print(f"Fetching {source['name']}…")
         for item in fetch_rss(source):
-            add(item)
+            if item["id"] not in seen:
+                item["fetched_at"] = fetched_at
+                add(item)
 
     all_items.sort(key=lambda x: x.get("published_at", ""), reverse=True)
 
-    print(f"Generating synthesis ({len(all_items)} items)…")
-    synthesis = generate_synthesis(all_items)
-    if synthesis:
-        print("[synthesis] Generated successfully.")
-    else:
-        print("[synthesis] Skipped (no ANTHROPIC_API_KEY or generation failed).")
+    # Count by domain for diagnostics
+    domain_counts: dict[str, int] = {}
+    for it in all_items:
+        if it.get("status") == "raw":
+            d = it.get("domain", "unknown")
+            domain_counts[d] = domain_counts.get(d, 0) + 1
 
     output = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "period": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-        "count": len(all_items),
-        "synthesis": synthesis,
-        "items": all_items,
+        "generated_at": now_iso,
+        "period":        datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "count":         len(all_items),
+        "synthesis":     None,
+        "items":         all_items,
     }
+
+    # Preserve existing synthesis field if present
+    if out_path.exists():
+        try:
+            old = json.loads(out_path.read_text(encoding="utf-8"))
+            if old.get("synthesis"):
+                output["synthesis"] = old["synthesis"]
+        except Exception:
+            pass
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Done: {len(all_items)} items → {out_path}")
+
+    raw_total = sum(domain_counts.values())
+    print(f"Done: {len(all_items)} total items, {raw_total} new raw articles today")
+    for domain, count in sorted(domain_counts.items()):
+        print(f"  {domain}: {count} raw")
+    print("Next step: run score_articles.py to run domain competition.")
 
 
 if __name__ == "__main__":

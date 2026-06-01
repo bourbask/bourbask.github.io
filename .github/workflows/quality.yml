@@ -69,13 +69,13 @@ jobs:
         run: npm install -g pa11y
 
       - name: Audit homepage
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/"
+        run: pa11y --standard WCAG2AA --reporter cli --chromium-flags="--no-sandbox" "$SITE_URL/"
 
       - name: Audit blog
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/blog"
+        run: pa11y --standard WCAG2AA --reporter cli --chromium-flags="--no-sandbox" "$SITE_URL/blog"
 
       - name: Audit veille
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/veille"
+        run: pa11y --standard WCAG2AA --reporter cli --chromium-flags="--no-sandbox" "$SITE_URL/veille"
 
   # ── W3C Nu HTML Validator — official W3C public API ──────────────────────
   html-validation:
@@ -95,12 +95,13 @@ jobs:
               "https://validator.w3.org/nu/?doc=${URL}&out=json")
 
             # Exclude known Trunk limitation: link[rel=icon] with integrity attribute
-            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error") | select(.message | startswith("A \"link\" element with an \"integrity\"") | not)] | length')
+            # W3C Nu returns Unicode curly quotes in messages — use test() regex, not startswith()
+            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error") | select(.message | test("^A .link. element with an .integrity. attribute") | not)] | length')
             WARNINGS=$(echo "$RESULT" | jq '[.messages[] | select(.type != "error")] | length')
             echo "  Errors: $ERRORS — Warnings: $WARNINGS"
 
             if [ "$ERRORS" -gt 0 ]; then
-              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | select(.message | startswith("A \"link\" element with an \"integrity\"") | not) | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
+              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | select(.message | test("^A .link. element with an .integrity. attribute") | not) | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
               FAILED=1
             fi
 

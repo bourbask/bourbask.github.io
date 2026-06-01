@@ -1,0 +1,101 @@
+name: News Pipeline
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # daily 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      force_synthesis:
+        description: 'Force weekly synthesis (ignore day-of-week check)'
+        type: boolean
+        required: false
+        default: false
+      score_date:
+        description: 'Score a specific date YYYY-MM-DD instead of today'
+        required: false
+        default: ''
+      score_week:
+        description: 'Score an entire ISO week YYYY-WNN (e.g. 2026-W22)'
+        required: false
+        default: ''
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      # ── Step 1: Fetch ──────────────────────────────────────────────────────
+      - name: Fetch news (no AI)
+        run: python scripts/fetch_news.py
+
+      # ── Step 2: Score ──────────────────────────────────────────────────────
+      - name: Build score arguments
+        id: score_args
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.score_date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.score_date }}"
+          elif [ -n "${{ github.event.inputs.score_week }}" ]; then
+            ARGS="$ARGS --week ${{ github.event.inputs.score_week }}"
+          fi
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
+
+      - name: Score and select articles (Claude Haiku)
+        run: python scripts/score_articles.py ${{ steps.score_args.outputs.args }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Step 3: Synthesize (Monday only, or forced) ────────────────────────
+      - name: Check if synthesis should run
+        id: should_synthesize
+        run: |
+          FORCED="${{ github.event.inputs.force_synthesis }}"
+          DAY=$(date +%u)  # 1=Monday … 7=Sunday
+          if [ "$FORCED" = "true" ] || [ "$DAY" = "1" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+            echo "Synthesis will run (forced=$FORCED, day=$DAY)"
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+            echo "Synthesis skipped (not Monday, not forced)"
+          fi
+
+      - name: Generate weekly synthesis (Claude Sonnet)
+        if: steps.should_synthesize.outputs.run == 'true'
+        run: python scripts/synthesize_news.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Step 4: Single commit ──────────────────────────────────────────────
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/news.json
+          git diff --staged --quiet && echo "No changes." || {
+            DAY=$(date +%u)
+            if [ "${{ github.event.inputs.force_synthesis }}" = "true" ] || [ "$DAY" = "1" ]; then
+              MSG="chore: weekly tech synthesis — $(date +%G-W%V)"
+            else
+              MSG="chore: update tech news feed"
+            fi
+            git commit -m "$MSG" && git push
+          }
