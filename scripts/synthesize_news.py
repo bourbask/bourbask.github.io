@@ -109,24 +109,69 @@ def fetch_wikipedia_info(query: str) -> dict:
     return {}
 
 
-def find_best_image(articles: list[dict]) -> dict:
+def find_images(articles: list[dict], max_images: int = 3) -> list[dict]:
     """
-    Find the best illustration for the synthesis.
-    Priority: top-scored selected article's og:image.
-    Returns {"url": "...", "caption": "...", "source_title": "..."}
+    Fetch OG images from top-scored articles.
+    Returns list of {url, caption, source, source_url, article_title}.
     """
     sorted_arts = sorted(articles, key=lambda a: a.get("score", 0) or 0, reverse=True)
-    for art in sorted_arts[:5]:
+    images = []
+    seen_domains: set[str] = set()
+    for art in sorted_arts:
+        if len(images) >= max_images:
+            break
+        domain = art.get("domain", "")
+        if domain in seen_domains:
+            continue  # one image per domain max
         img = fetch_og_image(art.get("url", ""))
         if img:
-            print(f"[image] Found OG image from: {art['source']} — {art['title'][:60]}")
-            return {
-                "url":          img,
-                "caption":      art["title"],
-                "source":       art.get("source", ""),
-                "source_url":   art.get("url", ""),
-            }
-    return {}
+            print(f"[image] Found OG image: [{domain}] {art['source']} — {art['title'][:55]}")
+            images.append({
+                "url":           img,
+                "caption":       art["title"],
+                "source":        art.get("source", ""),
+                "source_url":    art.get("url", ""),
+                "article_title": art["title"],
+                "domain":        domain,
+            })
+            seen_domains.add(domain)
+    return images
+
+
+def proofread_french(client: anthropic.Anthropic, text: str) -> str:
+    """
+    Quick proofreading pass on French content using Claude Haiku.
+    Fixes calques anglais, robotic phrasing, unnatural constructions.
+    Preserves all markdown, links, images, and structure.
+    """
+    prompt = f"""Tu es un correcteur de style pour un magazine tech francophone.
+Ton unique tâche : corriger les formulations maladroites, les calques de l'anglais,
+et les tournures robotiques dans ce texte en français.
+
+RÈGLES STRICTES :
+— Ne change PAS le sens, les faits, les opinions, les noms propres, les chiffres
+— Ne change PAS la structure, les headings, les hyperliens, les images, les tableaux, les blocs de code
+— Corrige UNIQUEMENT les phrases qui sonnent faux en français natif :
+  · Calques anglais ("c'est la même logique" → "c'est le même principe", etc.)
+  · Constructions trop rigides ou trop nominales
+  · Répétitions de mots à courte distance
+  · Formules de transition mécaniques
+— Si une phrase est déjà bonne, laisse-la intacte
+— Réponds avec le texte corrigé uniquement, sans commentaire ni explication
+
+TEXTE À CORRIGER :
+{text}"""
+
+    try:
+        resp = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=6000,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return resp.content[0].text.strip()
+    except Exception as e:
+        print(f"[proofread] Failed: {e}", file=sys.stderr)
+        return text  # fallback: return original unchanged
 
 
 def build_context(items: list[dict]) -> str:
@@ -152,6 +197,7 @@ def generate_synthesis(
     period_end: str,
     previous_syntheses: list[dict],
     week_id: str,
+    images: list[dict] | None = None,
 ) -> dict | None:
 
     context = build_context(articles)
@@ -175,6 +221,18 @@ connecte directement (ex: "Comme on l'évoquait en W22..."). Une seule, pas une 
         for a in articles
     )
     archi_present = any(a.get("domain") == "architecture" for a in articles)
+
+    images_context = ""
+    if images:
+        img_lines = [
+            f'  - [{img["domain"]}] ![{img["article_title"][:60]}]({img["url"]})'
+            for img in images
+        ]
+        images_context = f"""
+IMAGES DISPONIBLES — à placer dans le texte là où elles illustrent le propos :
+{chr(10).join(img_lines)}
+Place chaque image après le premier paragraphe de la section correspondante, pas au début.
+Format Markdown : ![Description courte](url)"""
 
     security_instruction = ""
     if security_present:
@@ -216,6 +274,7 @@ Période : {period_start} → {period_end} ({week_id})
 Articles sélectionnés ({len(articles)} — choisis pour leur importance, pas pour leur volume) :
 {context}
 {prev_context}
+{images_context}
 
 ═══ RÈGLES DE RÉDACTION — LIRE ATTENTIVEMENT ═══
 
@@ -375,28 +434,34 @@ def main() -> None:
 
     print(f"\nPrevious syntheses context: {[s['id'] for s in previous_syntheses]}")
 
-    # Find best illustration
-    print("\n[image] Searching for illustration…")
-    illustration = find_best_image(candidate_articles)
-    if not illustration:
-        print("[image] No OG image found.")
+    # Fetch OG images (up to 3, one per domain)
+    print("\n[image] Fetching article images…")
+    images = find_images(candidate_articles, max_images=3)
+    print(f"[image] {len(images)} image(s) found.")
 
     client = anthropic.Anthropic(api_key=api_key)
     print("\nGenerating synthesis (claude-sonnet-4-6, up to 8000 tokens)…")
     synthesis = generate_synthesis(
         client, candidate_articles, period_start, period_end,
-        previous_syntheses, synthesis_id,
+        previous_syntheses, synthesis_id, images=images,
     )
     if not synthesis:
         print("[synthesis] Generation failed", file=sys.stderr)
         sys.exit(1)
 
+    # Proofread French content
+    print("\n[proofread] Fixing French style (Haiku)…")
+    synthesis["content_fr"] = proofread_french(client, synthesis["content_fr"])
+    print("[proofread] Done.")
+
     # Word count check
     fr_words = len(synthesis.get("content_fr", "").split())
     en_words = len(synthesis.get("content_en", "").split())
     print(f"[synthesis] Word count — FR: {fr_words}, EN: {en_words}")
-    if fr_words < 1200:
+    if fr_words < 1000:
         print(f"[synthesis] Warning: FR article seems short ({fr_words} words)")
+
+    illustration = images[0] if images else {}
 
     # Architecture visual
     archi_info   = synthesis.get("architecture_info", {})
