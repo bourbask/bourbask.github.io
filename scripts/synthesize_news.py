@@ -174,6 +174,59 @@ TEXTE À CORRIGER :
         return text  # fallback: return original unchanged
 
 
+def validate_images(client: anthropic.Anthropic, content: str, context_summary: str) -> str:
+    """
+    Review each ![alt](url) in the content.
+    Remove images that don't clearly match the surrounding section topic.
+    When in doubt: remove. Never keep a dubious image.
+    Prefer a table or nothing over an irrelevant image.
+    """
+    import re
+    images = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', content)
+    if not images:
+        return content
+
+    prompt = f"""Tu évalues les illustrations d'un article journalistique.
+
+CONTEXTE DE L'ARTICLE : {context_summary}
+
+IMAGES À ÉVALUER :
+{chr(10).join(f'- alt="{alt}" url="{url}"' for alt, url in images)}
+
+Pour chaque image, réponds KEEP ou REMOVE en te basant sur :
+— KEEP uniquement si l'URL et le texte alt indiquent CLAIREMENT que l'image illustre
+  bien le sujet de la section où elle est placée (ex: image de vite.dev dans une section sur Vite 8 = KEEP)
+— REMOVE si : l'image est hors-sujet, ambiguë, ou si l'URL ne donne pas confiance
+  sur le contenu réel (ex: thumbnail horizontale d'un élément générique = REMOVE)
+— En cas de doute : REMOVE
+
+Réponds UNIQUEMENT avec une ligne par image : KEEP ou REMOVE, dans l'ordre.
+Rien d'autre."""
+
+    try:
+        resp = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        decisions = [l.strip().upper() for l in resp.content[0].text.strip().split('\n') if l.strip()]
+        removed = 0
+        for (alt, url), decision in zip(images, decisions):
+            if decision == "REMOVE":
+                content = content.replace(f"![{alt}]({url})\n\n", "")
+                content = content.replace(f"![{alt}]({url})", "")
+                print(f"[img-review] REMOVED: {alt[:60]}")
+                removed += 1
+            else:
+                print(f"[img-review] KEPT: {alt[:60]}")
+        if removed:
+            print(f"[img-review] {removed}/{len(images)} image(s) removed.")
+        return content
+    except Exception as e:
+        print(f"[img-review] Failed: {e} — keeping all images", file=sys.stderr)
+        return content
+
+
 def build_context(items: list[dict]) -> str:
     by_domain: dict[str, list[str]] = {}
     for item in items:
@@ -453,6 +506,12 @@ def main() -> None:
     print("\n[proofread] Fixing French style (Haiku)…")
     synthesis["content_fr"] = proofread_french(client, synthesis["content_fr"])
     print("[proofread] Done.")
+
+    # Validate images in both languages
+    context_summary = f"Article de veille tech semaine {week_id} — sujets : {', '.join(a['title'][:40] for a in candidate_articles[:4])}"
+    print("\n[img-review] Validating images…")
+    synthesis["content_fr"] = validate_images(client, synthesis["content_fr"], context_summary)
+    synthesis["content_en"] = validate_images(client, synthesis["content_en"], context_summary)
 
     # Word count check
     fr_words = len(synthesis.get("content_fr", "").split())
