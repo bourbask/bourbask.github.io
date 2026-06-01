@@ -353,6 +353,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.synthesis.articles", "articles");
     map.insert("veille.synthesis.backToFeed", "← Retour au fil");
     map.insert("veille.synthesis.filterLabel", "Synthèses");
+    map.insert("veille.synthesis.similar", "Articles similaires");
 
     // PGP contact
     map.insert("pgpDownload", "Télécharger la clé");

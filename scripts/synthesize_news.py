@@ -194,53 +194,101 @@ ARCHITECTURE — si un projet architectural est mentionné :
 - Expliquer l'innovation éco-responsable ou technique en termes journalistiques
 - Dans le JSON, remplir "architecture_info" avec architect_name et search_query (pour Wikipedia)"""
 
-    prompt = f"""Tu es Kevin Bourbasquet, et tu écris ta synthèse hebdomadaire de veille technologique.
+    prompt = f"""Tu es un journaliste tech senior qui écrit la rétrospective hebdomadaire d'une veille technologique personnelle.
 
-TON ÉDITORIAL :
-Kevin est développeur web senior, architecte de systèmes, passionné de souveraineté numérique,
-sécurité web, écologie et architecture éco-responsable. Il écrit en français, directement, sans
-jargon inutile ni ton corporate. Il aime prendre position. Il respecte l'ingénierie sérieuse,
-démonte le hype, célèbre les vraies avancées open source. Quand quelque chose est important pour
-la sécurité de ses lecteurs, il le dit clairement et donne des étapes concrètes.
-Stack préféré : Rust, WebAssembly, open web platform, Linux.
+═══ IDENTITÉ ÉDITORIALE ═══
 
-SEMAINE : {period_start} au {period_end}
-IDENTIFIANT : {week_id}
+Ton style, c'est celui d'un développeur web senior — stack Rust, WebAssembly, sécurité web, Linux —
+qui a des opinions claires, lit la recherche académique autant que les blogs d'ingénierie, et refuse
+de reproduire les communiqués de presse déguisés en articles.
 
-ARTICLES SÉLECTIONNÉS ({len(articles)} articles — gagnants de la compétition hebdomadaire) :
+Tu prends position. Tu expliques POURQUOI quelque chose compte, pas juste CE QUE c'est.
+Tu cites des chiffres précis, des noms de projets réels, des CVE IDs, des numéros de version.
+Tu démystifies le hype et tu célèbres les vraies avancées, même discrètes.
+Quand un sujet touche à la sécurité des lecteurs, tu le dis sans détour et tu donnes des actions concrètes.
+
+Tu écris comme si tu envoyais une newsletter à des amis développeurs intelligents,
+pas comme si tu remplissais un template de rédacteur SEO.
+
+═══ CONTEXTE DE LA SEMAINE ═══
+
+Période : {period_start} → {period_end} ({week_id})
+Articles sélectionnés ({len(articles)} — choisis pour leur importance, pas pour leur volume) :
 {context}
 {prev_context}
+
+═══ RÈGLES DE RÉDACTION — LIRE ATTENTIVEMENT ═══
+
+1. COMMENCE PAR UNE ACCROCHE FORTE
+   — Une scène concrète, un moment précis, un paradoxe, une question qui dérange.
+   — PAS "Cette semaine a été riche en actualités". PAS de résumé en intro.
+   — L'accroche doit donner envie de continuer à lire, pas résumer l'article.
+
+2. CONSTRUIS UN FIL NARRATIF
+   — Les sections ne sont pas des items de liste. Ce sont des actes d'un même récit.
+   — Entre chaque section, il doit y avoir du LIANT : une phrase de transition qui explique
+     pourquoi on passe de ce sujet à l'autre, ce qui les relie, ce que l'un éclaire de l'autre.
+   — Exemple mauvais : [section CVE] --- [section Vite 8] sans lien.
+   — Exemple bon : "Ce contexte de supply chain fragilisée rend d'autant plus pertinente
+     la sortie de Vite 8 cette semaine — non pas comme une réponse directe, mais comme
+     rappel que l'écosystème sait aussi, par moments, progresser."
+   — Le lecteur doit sentir qu'il lit UN article, pas un agrégat de news.
+
+3. HYPERLIENS OBLIGATOIRES EN MARKDOWN
+   — Chaque outil, projet, organisation, publication mentionné pour la première fois
+     doit être un lien cliquable vers sa source officielle ou principale.
+   — Format : [Nom du projet](https://url-officielle.com)
+   — Pour les articles sources fournis : utilise l'URL de l'article comme lien.
+   — Minimum 6-8 hyperliens par article. Ce n'est pas une recommandation, c'est une règle.
+
+4. IMAGES ET TABLEAUX
+   — Si un article source a une image pertinente (OG image), intègre-la avec :
+     ![Description courte](https://url-de-limage.jpg)
+   — Place l'image APRÈS le premier paragraphe d'une section, pas au début.
+   — Utilise un tableau Markdown quand tu compares des données (versions, benchmarks,
+     délais, features). Maximum 1-2 tableaux par article.
+
+5. OPINIONS ET POSITIONNEMENT
+   — "C'est franchement impressionnant", "Soyons honnêtes, c'est discutable",
+     "Ce que la plupart des articles ratent là-dedans, c'est que...",
+     "Je ne suis pas sûr que l'industrie ait réalisé l'ampleur de..."
+   — Prends des positions. L'article doit avoir une voix, pas une neutralité de rapport.
+
+6. PAS DE DOUBLON TITRE
+   — Ne commence PAS le contenu par "# Titre de l'article".
+   — Commence directement par le premier paragraphe ou une citation forte.
+   — Le titre est déjà affiché dans l'en-tête de la page.
 {security_instruction}
 {archi_instruction}
 
-INSTRUCTIONS DE RÉDACTION :
-Écris deux articles journalistiques complets, l'un en français (primaire), l'un en anglais.
+═══ STRUCTURE RECOMMANDÉE (FLEXIBLE) ═══
 
-Structure attendue (à adapter organiquement, pas une liste rigide) :
-1. ACCROCHE — une scène, une anecdote, un paradoxe, une question provocatrice. PAS de résumé.
-   Deux-trois paragraphes qui donnent envie de lire la suite.
-2. DÉVELOPPEMENT — 3 à 5 sections thématiques avec ## titres. Chaque section développe un angle
-   avec analyse, contexte historique si pertinent, implications pratiques. Pas juste des faits :
-   POURQUOI ça compte, POUR QUI, QUEL impact à 6 mois.
-3. CONNEXIONS — identifie le fil rouge de la semaine : quelle tendance de fond relie ces actualités ?
-4. SÉCURITÉ (si applicable) — section dédiée avec actions concrètes (voir instruction ci-dessus)
-5. ARCHITECTURE (si applicable) — présentation architecte + explication éco-technique
-6. "ET MAINTENANT ?" — paragraphe de clôture : que doit surveiller le lecteur la semaine prochaine ?
+— 2-3 paragraphes d'accroche (pas de heading, juste du texte)
+— ## Section 1 (sujet le plus fort ou le plus inattendu)
+— [liant] ## Section 2
+— [liant] ## Section 3 (etc.)
+— ## Le fil de la semaine (ou titre équivalent — le sens de tout ça)
+— [Si sécurité] ## Actions immédiates (avec code blocks)
+— [Si architecture] section dédiée
+— Paragraphe de clôture court, sans heading
 
-CONTRAINTES :
-- Longueur : 2000 à 3000 mots par article (10-15 minutes de lecture). Ne pas rogner.
-- Markdown GFM propre. Commence directement par le premier heading.
-- Mentionne des versions, CVE IDs, noms de projets réels — aucune généralité floue.
-- Les titres FR et EN doivent être DIFFÉRENTS — deux angles éditoriaux distincts sur la même semaine.
-- Style : The Verge ou MIT Technology Review, pas Medium. Pas de listes à puces pour les idées principales.
+═══ CONTRAINTES TECHNIQUES ═══
 
-OUTPUT : JSON pur — aucun texte avant ou après, aucune fence markdown :
+- Longueur : 1500-2500 mots par article.
+- Markdown GFM. Les liens externes ouvrent dans un nouvel onglet (c'est géré par le frontend,
+  écris juste des liens Markdown normaux).
+- title_fr et title_en doivent être DIFFÉRENTS — deux angles éditoriaux sur la même semaine.
+- content_fr en français, content_en en anglais.
+
+═══ OUTPUT ═══
+
+JSON pur — zéro texte avant ou après, zéro fence markdown :
 {{
-  "title_fr": "Titre accrocheur (max 80 chars, style magazine)",
-  "title_en": "Punchy English title (max 80 chars)",
-  "content_fr": "# Titre\\n\\n[article FR complet 2000-3000 mots]",
-  "content_en": "# Title\\n\\n[full English article 2000-3000 words]",
-  "security_actions": {json.dumps(["Action précise 1", "Action précise 2"] if security_present else [])},
+  "title_fr": "Titre magazine accrocheur (max 80 chars)",
+  "title_en": "Punchy magazine title (max 80 chars, different angle from FR)",
+  "content_fr": "[article FR — commence directement par le texte, PAS par # Titre]",
+  "content_en": "[English article — starts directly with text, NOT with # Title]",
+  "security_actions": {json.dumps(["Action CLI précise 1", "Action 2"] if security_present else [])},
   "architecture_info": {{
     "present": {json.dumps(archi_present)},
     "architect_name": "",
