@@ -94,12 +94,13 @@ jobs:
               -H "User-Agent: GitHub-Actions-CI/bourbask.github.io (quality check)" \
               "https://validator.w3.org/nu/?doc=${URL}&out=json")
 
-            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error")] | length')
+            # Exclude known Trunk limitation: link[rel=icon] with integrity attribute
+            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error") | select(.message | startswith("A \"link\" element with an \"integrity\"") | not)] | length')
             WARNINGS=$(echo "$RESULT" | jq '[.messages[] | select(.type != "error")] | length')
             echo "  Errors: $ERRORS — Warnings: $WARNINGS"
 
             if [ "$ERRORS" -gt 0 ]; then
-              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
+              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | select(.message | startswith("A \"link\" element with an \"integrity\"") | not) | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
               FAILED=1
             fi
 
@@ -132,16 +133,16 @@ jobs:
             fi
           }
 
-          # GitHub Pages sets these — absence means something changed
+          # GitHub Pages sets HSTS — absence means something changed
           echo "── Required headers"
-          require_header "x-frame-options"        "X-Frame-Options"
-          require_header "x-content-type-options" "X-Content-Type-Options"
           require_header "strict-transport-security" "Strict-Transport-Security"
 
-          # GitHub Pages static hosting cannot set these — informational only
+          # GitHub Pages no longer sends these — informational only
           echo ""
           echo "── Informational (GitHub Pages static hosting limitation)"
-          for h in "content-security-policy:Content-Security-Policy" \
+          for h in "x-frame-options:X-Frame-Options" \
+                   "x-content-type-options:X-Content-Type-Options" \
+                   "content-security-policy:Content-Security-Policy" \
                    "referrer-policy:Referrer-Policy" \
                    "permissions-policy:Permissions-Policy"; do
             hkey="${h%%:*}"; hlabel="${h##*:}"

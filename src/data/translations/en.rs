@@ -5,7 +5,6 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
 
     // Basic info
     map.insert("name", "Kévin Bourbasquet");
-    map.insert("badge", "Open to opportunities");
     map.insert("heroTitle1", "Building reliable");
     map.insert("heroTitle2", "digital solutions");
     map.insert("heroDescription", "Fullstack developer focused on creating clear, scalable applications. I work with proven tools like React & Symfony, while staying curious about emerging tech—currently exploring Rust and AI integration.");
