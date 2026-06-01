@@ -113,8 +113,8 @@
 }
 
 /* Alternating accent colors for visual variety */
-.stat:nth-child(1) .stat-number { color: var(--accent-primary); }
-.stat:nth-child(2) .stat-number { color: var(--accent-tertiary); }
+.stat:nth-child(1) .stat-number { color: var(--accent-secondary); }
+.stat:nth-child(2) .stat-number { color: var(--accent-tertiary-text); }
 .stat:nth-child(3) .stat-number { color: var(--accent-secondary); }
 
 .stat-label {
