@@ -17,8 +17,8 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
         "aboutSubtitle",
         "Builder, résolveur de problèmes, et explorateur tech",
     );
-    map.insert("aboutText1", "Développeur fullstack de {age} ans qui croit en la construction de choses qui fonctionnent vraiment. Mon terrain de jeu favori : des backends robustes avec Symfony API Platform et des interfaces intuitives avec React et TypeScript.");
-    map.insert("aboutText2", "Au-delà de la stack habituelle, j'explore Rust pour les projets critiques et j'intègre des workflows IA via OpenRouter. Quand je ne code pas, vous me trouverez sur les sentiers côtiers bretons, en train de construire des claviers sur mesure ou de m'occuper de ma collection de plantes toujours grandissante.");
+    map.insert("aboutText1", "Développeur fullstack, {age} ans. Je construis des backends solides avec Symfony API Platform et des interfaces en React + TypeScript — avec l'idée fixe que ça doit être fiable avant d'être élégant.");
+    map.insert("aboutText2", "J'explore Rust quand la robustesse n'est pas négociable, et j'intègre l'IA dans mes workflows via OpenRouter. En dehors de l'écran : les sentiers côtiers bretons pour décompresser, des claviers mécaniques custom à assembler sur l'établi, et une collection de plantes qui prend décidément trop de place.");
 
     // Stats
     map.insert("yearsExperience", "Années à shipper du code");
