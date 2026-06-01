@@ -32,12 +32,6 @@ pub fn HeroSection() -> impl IntoView {
             <div class="hero-container">
                 // Hero Content
                 <div class="hero-content">
-                    <div class="hero-badge">
-                        <span data-key="badge">
-                            {move || i18n.t("badge")}
-                        </span>
-                    </div>
-
                     <h1 class="hero-title">
                         <span data-key="heroTitle1">
                             {move || i18n.t("heroTitle1")}
