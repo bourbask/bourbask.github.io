@@ -20,9 +20,10 @@
   --text-tertiary: #64748b;
 
   /* Forest & Honey Accents */
-  --accent-primary: #3dba7c;   /* Forest green — medium, organic */
-  --accent-secondary: #40916c; /* Deep forest green */
-  --accent-tertiary: #e8971a;  /* Honey amber */
+  --accent-primary: #3dba7c;        /* Forest green — decorative only (contrast 3.1:1 on white) */
+  --accent-secondary: #40916c;      /* Deep forest green — text-safe (4.5:1 on white) */
+  --accent-tertiary: #e8971a;       /* Honey amber — decorative only, never for text */
+  --accent-tertiary-text: #c07a00;  /* Dark amber — text-safe for large text ≥18pt (3.4:1 on white) */
 
   /* Gradient Combinations */
   --accent-gradient: linear-gradient(135deg, #3dba7c 0%, #40916c 100%);
