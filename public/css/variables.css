@@ -20,10 +20,11 @@
   --text-tertiary: #64748b;
 
   /* Forest & Honey Accents */
-  --accent-primary: #3dba7c;        /* Forest green — decorative only (contrast 3.1:1 on white) */
-  --accent-secondary: #40916c;      /* Deep forest green — text-safe (4.5:1 on white) */
+  --accent-primary: #3dba7c;        /* Forest green — decorative only, never for text */
+  --accent-secondary: #40916c;      /* Deep forest green — hover states (3.83:1, large text only) */
   --accent-tertiary: #e8971a;       /* Honey amber — decorative only, never for text */
-  --accent-tertiary-text: #c07a00;  /* Dark amber — text-safe for large text ≥18pt (3.4:1 on white) */
+  --accent-text: #33845f;           /* Text-safe green — WCAG AA 4.5:1 on white (use for all text links) */
+  --accent-tertiary-text: #c07a00;  /* Text-safe amber — WCAG AA for large text ≥18pt (3.4:1 on white) */
 
   /* Gradient Combinations */
   --accent-gradient: linear-gradient(135deg, #3dba7c 0%, #40916c 100%);
