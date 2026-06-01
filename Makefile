@@ -74,6 +74,21 @@ synth:
 	fi
 	$(PYTHON) scripts/synthesize_news.py
 
+migrate:
+	$(PYTHON) scripts/migrate_syntheses.py
+
+# Re-score and re-synthesize all weeks after migration
+reprocess:
+	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
+		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \
+	fi
+	$(PYTHON) scripts/score_articles.py --week 2026-W19
+	$(PYTHON) scripts/score_articles.py --week 2026-W20
+	$(PYTHON) scripts/score_articles.py --week 2026-W21
+	$(PYTHON) scripts/synthesize_news.py --week 2026-W19
+	$(PYTHON) scripts/synthesize_news.py --week 2026-W20
+	$(PYTHON) scripts/synthesize_news.py --week 2026-W21
+
 # ── Clean ──────────────────────────────────────────────────────────────────────
 clean:
 	rm -rf dist/
