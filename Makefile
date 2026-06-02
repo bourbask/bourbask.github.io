@@ -85,6 +85,40 @@ synth:
 migrate:
 	$(PYTHON) scripts/migrate_syntheses.py
 
+# ── Tool discovery & article generation ────────────────────────────────────────
+discover:
+	$(PYTHON) scripts/discover_tools.py
+
+discover-dry:
+	$(PYTHON) scripts/discover_tools.py --dry-run
+
+discover-cat:
+	@if [ -z "$$CAT" ]; then echo "Usage: make discover-cat CAT=ia-local"; exit 1; fi
+	$(PYTHON) scripts/discover_tools.py --category $$CAT
+
+# Generate article for a specific GitHub repo
+# Usage: make article GITHUB=dani-garcia/vaultwarden
+article:
+	@if [ -z "$$GITHUB" ] && [ -z "$$ID" ]; then \
+		echo "Usage: make article GITHUB=owner/repo  OR  make article ID=vaultwarden"; exit 1; \
+	fi
+	@if [ -z "$$ANTHROPIC_API_KEY" ]; then echo "Error: ANTHROPIC_API_KEY not set"; exit 1; fi
+	@if [ -n "$$GITHUB" ]; then \
+		$(PYTHON) scripts/generate_article.py --github $$GITHUB; \
+	else \
+		$(PYTHON) scripts/generate_article.py --id $$ID; \
+	fi
+
+article-dry:
+	@if [ -z "$$GITHUB" ] && [ -z "$$ID" ]; then \
+		echo "Usage: make article-dry GITHUB=owner/repo"; exit 1; \
+	fi
+	@if [ -n "$$GITHUB" ]; then \
+		$(PYTHON) scripts/generate_article.py --github $$GITHUB --dry-run; \
+	else \
+		$(PYTHON) scripts/generate_article.py --id $$ID --dry-run; \
+	fi
+
 # Re-score and re-synthesize all weeks after migration
 reprocess:
 	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
