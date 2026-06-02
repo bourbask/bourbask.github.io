@@ -116,19 +116,14 @@
 
 .project-badge {
   flex-shrink: 0;
-  background: var(--accent-text);   /* #33845f — dark green, blanc dessus = 4.55:1 */
-  color: white;
+  background: var(--accent-primary);
+  color: #0f172a;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-lg);
   font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 600;
   white-space: nowrap;
-}
-
-/* En dark mode, --accent-text vaut #52c98a (vert clair) — texte sombre requis */
-[data-theme="dark"] .project-badge {
-  color: #0f172a;
 }
 
 .project-badge.coming-soon {
@@ -148,7 +143,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--accent-text);
+  color: var(--accent-primary);
   text-decoration: none;
   font-family: var(--font-ui);
   font-weight: 600;
