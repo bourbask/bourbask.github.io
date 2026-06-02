@@ -83,8 +83,8 @@
 
 /* Active page link */
 .nav-link-active {
-  color: var(--accent-secondary) !important;
-  background: color-mix(in srgb, var(--accent-primary) 12%, transparent) !important;
+  color: var(--accent-primary) !important;
+  background: color-mix(in srgb, var(--accent-primary) 14%, transparent) !important;
   font-weight: 600;
 }
 
