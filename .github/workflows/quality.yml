@@ -40,7 +40,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.14
@@ -54,6 +54,7 @@ jobs:
           name: lighthouse-results
           path: .lighthouseci/
           retention-days: 30
+          if-no-files-found: ignore
 
   # ── pa11y — WCAG 2.1 AA full accessibility audit ─────────────────────────
   a11y:
@@ -63,19 +64,43 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Install pa11y
         run: npm install -g pa11y
 
-      - name: Audit homepage
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/"
+      - uses: actions/checkout@v4
 
-      - name: Audit blog
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/blog"
+      - name: Find or install Chrome
+        run: |
+          CHROME=$(which google-chrome-stable 2>/dev/null || which google-chrome 2>/dev/null || which chromium-browser 2>/dev/null)
+          if [ -z "$CHROME" ]; then
+            npx puppeteer browsers install chrome
+            CHROME=$(find /home/runner/.cache/puppeteer -name 'chrome' -executable -type f 2>/dev/null | head -1)
+          fi
+          echo "CHROME_PATH=$CHROME" >> $GITHUB_ENV
 
-      - name: Audit veille
-        run: pa11y --standard WCAG2AA --reporter cli "$SITE_URL/veille"
+      - name: Create pa11y configs (light + dark)
+        run: |
+          if [ -n "$CHROME_PATH" ]; then
+            LAUNCH="{\"executablePath\":\"$CHROME_PATH\",\"args\":[\"--no-sandbox\",\"--disable-setuid-sandbox\"]}"
+          else
+            LAUNCH="{\"args\":[\"--no-sandbox\",\"--disable-setuid-sandbox\"]}"
+          fi
+          echo "{\"chromeLaunchConfig\":$LAUNCH}" > /tmp/pa11y.json
+          echo "{\"chromeLaunchConfig\":$LAUNCH,\"beforeScript\":\"scripts/pa11y-dark-mode.js\"}" > /tmp/pa11y-dark.json
+
+      - name: Audit light mode (/, /blog, /veille)
+        run: |
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y.json "$SITE_URL/"
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y.json "$SITE_URL/blog"
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y.json "$SITE_URL/veille"
+
+      - name: Audit dark mode (/, /blog, /veille)
+        run: |
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y-dark.json "$SITE_URL/"
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y-dark.json "$SITE_URL/blog"
+          pa11y --standard WCAG2AA --reporter cli --config /tmp/pa11y-dark.json "$SITE_URL/veille"
 
   # ── W3C Nu HTML Validator — official W3C public API ──────────────────────
   html-validation:
@@ -94,12 +119,14 @@ jobs:
               -H "User-Agent: GitHub-Actions-CI/bourbask.github.io (quality check)" \
               "https://validator.w3.org/nu/?doc=${URL}&out=json")
 
-            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error")] | length')
+            # Exclude known Trunk limitation: link[rel=icon] with integrity attribute
+            # W3C Nu uses Unicode curly quotes — use regex test(), not startswith()
+            ERRORS=$(echo "$RESULT" | jq '[.messages[] | select(.type == "error") | select(.message | test("^A .link. element with an .integrity. attribute") | not)] | length')
             WARNINGS=$(echo "$RESULT" | jq '[.messages[] | select(.type != "error")] | length')
             echo "  Errors: $ERRORS — Warnings: $WARNINGS"
 
             if [ "$ERRORS" -gt 0 ]; then
-              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
+              echo "$RESULT" | jq -r '.messages[] | select(.type == "error") | select(.message | test("^A .link. element with an .integrity. attribute") | not) | "  [\(.type)] \(.message) (line \(.lastLine // "?"))"'
               FAILED=1
             fi
 
@@ -132,16 +159,16 @@ jobs:
             fi
           }
 
-          # GitHub Pages sets these — absence means something changed
+          # GitHub Pages sets HSTS — absence means something changed
           echo "── Required headers"
-          require_header "x-frame-options"        "X-Frame-Options"
-          require_header "x-content-type-options" "X-Content-Type-Options"
           require_header "strict-transport-security" "Strict-Transport-Security"
 
-          # GitHub Pages static hosting cannot set these — informational only
+          # GitHub Pages no longer sends these — informational only
           echo ""
           echo "── Informational (GitHub Pages static hosting limitation)"
-          for h in "content-security-policy:Content-Security-Policy" \
+          for h in "x-frame-options:X-Frame-Options" \
+                   "x-content-type-options:X-Content-Type-Options" \
+                   "content-security-policy:Content-Security-Policy" \
                    "referrer-policy:Referrer-Policy" \
                    "permissions-policy:Permissions-Policy"; do
             hkey="${h%%:*}"; hlabel="${h##*:}"
