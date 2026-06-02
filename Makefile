@@ -62,6 +62,14 @@ score:
 	fi
 	$(PYTHON) scripts/score_articles.py
 
+a11y:
+	@echo "Light mode"
+	@for route in / /blog /veille; do pa11y --standard WCAG2AA http://127.0.0.1:9999$$route; done
+
+a11y-dark:
+	@echo "Dark mode"
+	@for route in / /blog /veille; do pa11y --standard WCAG2AA --config '{"beforeScript":"scripts/pa11y-dark-mode.js"}' http://127.0.0.1:9999$$route; done
+
 score-dry:
 	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
 		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \

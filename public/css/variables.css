@@ -121,15 +121,15 @@
   --text-secondary: #cbd5e1;
   --text-tertiary: #94a3b8;
 
-  /* Forest & Honey Accents — lighter for dark bg readability */
-  --accent-primary: #52c98a;        /* Light forest green */
-  --accent-secondary: #40916c;      /* Medium forest green */
+  /* Forest & Honey Accents — vivid on dark bg */
+  --accent-primary: #3dd68c;        /* Vivid forest green — S:64% vs 47% before, 9.2:1 on #0f172a */
+  --accent-secondary: #52c98a;      /* Hover/secondary — was accent-primary, now lighter step */
   --accent-tertiary: #e8971a;       /* Honey amber — consistent across themes */
-  --accent-text: #52c98a;           /* Text-safe green dark mode — 8.8:1 on #0f172a */
+  --accent-text: #3dd68c;           /* Text-safe green dark mode — 9.2:1 on #0f172a */
 
   /* Dark Mode Gradients */
-  --accent-gradient: linear-gradient(135deg, #52c98a 0%, #40916c 100%);
-  --accent-gradient-warm: linear-gradient(135deg, #52c98a 0%, #e8971a 100%);
+  --accent-gradient: linear-gradient(135deg, #3dd68c 0%, #52c98a 100%);
+  --accent-gradient-warm: linear-gradient(135deg, #3dd68c 0%, #e8971a 100%);
 
   /* Dark Mode Semantic Colors */
   --success-color: #52c98a;
