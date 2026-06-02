@@ -1,4 +1,5 @@
-.PHONY: help setup setup-rust setup-python serve build fetch score synth clean
+.PHONY: help setup setup-rust setup-python serve build fetch score synth clean \
+        a11y a11y-dark migrate reprocess discover discover-dry discover-cat article article-dry
 
 TRUNK_VERSION := 0.21.14
 VENV          := .venv
@@ -7,19 +8,38 @@ PYTHON        := $(VENV)/bin/python3
 # ── Default ────────────────────────────────────────────────────────────────────
 help:
 	@echo ""
-	@echo "  make setup        Install all dependencies (Rust + WASM target + Trunk + Python)"
-	@echo "  make setup-rust   Install Rust toolchain + wasm32 target + Trunk"
-	@echo "  make setup-python Install Python deps (feedparser, requests, anthropic)"
+	@echo "━━ Setup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  make setup              Install all deps (Rust + WASM + Trunk + Python venv)"
+	@echo "  make setup-rust         Rust toolchain + wasm32 target + Trunk"
+	@echo "  make setup-python       Python venv + feedparser, requests, anthropic"
 	@echo ""
-	@echo "  make serve        Start dev server — http://localhost:9999 (hot reload)"
-	@echo "  make build        Production build → dist/"
+	@echo "━━ Dev ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  make serve              Dev server http://localhost:9999 (hot reload)"
+	@echo "  make build              Production build → dist/"
+	@echo "  make clean              Remove dist/ + Rust target/"
 	@echo ""
-	@echo "  make fetch        Run news fetch (no AI)"
-	@echo "  make score        Run article competition (requires ANTHROPIC_API_KEY)"
-	@echo "  make synth        Run weekly synthesis (requires ANTHROPIC_API_KEY)"
-	@echo "  make score-dry    Run score in dry-run mode (no write)"
+	@echo "━━ Qualité / A11y ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  make a11y               pa11y WCAG2AA — light mode (serveur doit tourner)"
+	@echo "  make a11y-dark          pa11y WCAG2AA — dark mode"
 	@echo ""
-	@echo "  make clean        Remove dist/ and Cargo target/ build artifacts"
+	@echo "━━ Pipeline Veille ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  make fetch              Fetch RSS + HN (sans IA)"
+	@echo "  make score              Compétition articles du jour (Haiku)"
+	@echo "  make score-dry          Score sans écrire"
+	@echo "  make synth              Synthèse hebdo (Sonnet)"
+	@echo "  make migrate            Migration one-shot synthèses (nettoyage historique)"
+	@echo "  make reprocess          Re-score + re-synthèse W19/W20/W21"
+	@echo ""
+	@echo "━━ Articles Blog — Outils Open Source ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  make discover           Découverte hebdo (toutes catégories, Haiku)"
+	@echo "  make discover-dry       Aperçu sans écrire"
+	@echo "  make discover-cat CAT=ia-local   Découverte pour une catégorie"
+	@echo "  make article GITHUB=owner/repo   Génère article + PR (Sonnet)"
+	@echo "  make article ID=vaultwarden      Génère depuis tools_candidates.json"
+	@echo "  make article-dry GITHUB=owner/repo  Preview sans commit"
+	@echo ""
+	@echo "  Catégories : devops | securite | productivite | self-hosting | monitoring"
+	@echo "               data | iot | impression-3d | admin-quotidien | jeux-video | ia-local"
 	@echo ""
 
 # ── Setup ──────────────────────────────────────────────────────────────────────

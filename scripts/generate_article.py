@@ -436,7 +436,9 @@ def main() -> None:
     article_id = article["id"]
     branch = f"content/article-{article_id}"
 
-    # Git: create branch
+    # Git: make sure we're on main, delete branch if it already exists
+    subprocess.run(["git", "checkout", "main"], check=True)
+    subprocess.run(["git", "branch", "-D", branch], capture_output=True)  # ignore error if not exists
     subprocess.run(["git", "checkout", "-b", branch], check=True)
 
     # Insert into mod.rs
