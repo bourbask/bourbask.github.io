@@ -508,7 +508,7 @@ def main() -> None:
     print("[proofread] Done.")
 
     # Validate images in both languages
-    context_summary = f"Article de veille tech semaine {week_id} — sujets : {', '.join(a['title'][:40] for a in candidate_articles[:4])}"
+    context_summary = f"Article de veille tech semaine {synthesis_id} — sujets : {', '.join(a['title'][:40] for a in candidate_articles[:4])}"
     print("\n[img-review] Validating images…")
     synthesis["content_fr"] = validate_images(client, synthesis["content_fr"], context_summary)
     synthesis["content_en"] = validate_images(client, synthesis["content_en"], context_summary)
