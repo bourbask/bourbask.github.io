@@ -13,6 +13,24 @@ Usage:
 import argparse
 import json
 import os
+from pathlib import Path
+
+
+def _load_dotenv() -> None:
+    env = Path(__file__).parent.parent / ".env"
+    if not env.exists():
+        return
+    for line in env.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        k = k.strip()
+        v = v.strip().strip('"').strip("'")
+        if k and k not in os.environ:
+            os.environ[k] = v
+
+_load_dotenv()
 import re
 import sys
 from datetime import datetime, timezone, timedelta, date
