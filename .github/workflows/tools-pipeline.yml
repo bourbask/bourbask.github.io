@@ -1,0 +1,130 @@
+name: Tools Discovery Pipeline
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # every Monday 08:00 UTC (after news pipeline)
+  workflow_dispatch:
+    inputs:
+      generate_github:
+        description: 'Generate article for GitHub repo (e.g. dani-garcia/vaultwarden)'
+        required: false
+        default: ''
+      generate_id:
+        description: 'Generate article for candidate ID from tools_candidates.json'
+        required: false
+        default: ''
+      discover_category:
+        description: 'Run discovery for a single category (e.g. ia-local)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run — no writes, no PR'
+        type: boolean
+        required: false
+        default: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # ── Discover new tool candidates (weekly + manual) ───────────────────────────
+  discover:
+    name: Discover tool candidates
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: >-
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.event.inputs.generate_github == '' &&
+       github.event.inputs.generate_id == '')
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Build arguments
+        id: args
+        run: |
+          ARGS=""
+          [ -n "${{ github.event.inputs.discover_category }}" ] && ARGS="--category ${{ github.event.inputs.discover_category }}"
+          [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
+
+      - name: Discover tools
+        run: python scripts/discover_tools.py ${{ steps.args.outputs.args }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit candidates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/tools_candidates.json
+          git diff --staged --quiet && echo "No changes." || \
+            git commit -m "chore: update tools candidates — $(date +%G-W%V)" && git push
+
+  # ── Generate article (manual trigger only) ───────────────────────────────────
+  generate:
+    name: Generate article
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.generate_github != '' || github.event.inputs.generate_id != '')
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Rust (for Clippy validation)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Build arguments
+        id: args
+        run: |
+          ARGS=""
+          [ -n "${{ github.event.inputs.generate_github }}" ] && ARGS="--github ${{ github.event.inputs.generate_github }}"
+          [ -n "${{ github.event.inputs.generate_id }}" ] && ARGS="$ARGS --id ${{ github.event.inputs.generate_id }}"
+          [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
+
+      - name: Generate article + PR
+        run: python scripts/generate_article.py ${{ steps.args.outputs.args }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate Rust compiles (on generated branch)
+        if: github.event.inputs.dry_run != 'true'
+        run: cargo clippy --target wasm32-unknown-unknown 2>&1 | grep "^error" || true

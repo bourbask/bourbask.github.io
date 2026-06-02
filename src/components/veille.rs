@@ -148,7 +148,11 @@ fn markdown_to_html(md: &str) -> String {
     opts.insert(Options::ENABLE_STRIKETHROUGH);
     let mut output = String::new();
     html::push_html(&mut output, Parser::new_ext(md, opts));
-    output
+    // External links (http/https): open in new tab
+    output.replace(
+        "<a href=\"http",
+        "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http",
+    )
 }
 
 #[component]
@@ -170,64 +174,80 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
     let period_end2 = period_end.clone();
 
     view! {
-        <article class="veille-synthesis-card">
-            <div class="veille-synthesis-card-header">
-                <span class="veille-synthesis-badge">
-                    {move || i18n.t("veille.synthesis.aiGenerated")}
-                </span>
-                <span class="veille-synthesis-card-period">
+        <a href={detail_url} class="veille-synthesis-card-wrapper">
+            // Nature fronds — left side (aria-hidden: purely decorative)
+            <span class="synthesis-fronds synthesis-fronds--left" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            // Nature fronds — right side
+            <span class="synthesis-fronds synthesis-fronds--right" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <article class="veille-synthesis-card">
+                <div class="veille-synthesis-card-header">
+                    <span class="veille-synthesis-badge">
+                        {move || i18n.t("veille.synthesis.aiGenerated")}
+                    </span>
+                    <span class="veille-synthesis-card-period">
+                        {move || {
+                            let lang = i18n.current_lang_code();
+                            format!(
+                                "{} {} {} {}",
+                                i18n.t("veille.synthesis.weekOf"),
+                                format_date_locale(&period_start2, &lang),
+                                i18n.t("veille.synthesis.to"),
+                                format_date_locale(&period_end2, &lang),
+                            )
+                        }}
+                    </span>
+                </div>
+
+                <h2 class="veille-synthesis-card-title">
                     {move || {
                         let lang = i18n.current_lang_code();
-                        format!(
-                            "{} {} {} {}",
-                            i18n.t("veille.synthesis.weekOf"),
-                            format_date_locale(&period_start2, &lang),
-                            i18n.t("veille.synthesis.to"),
-                            format_date_locale(&period_end2, &lang),
-                        )
+                        if lang == "fr" {
+                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
+                        } else {
+                            title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
+                        }
                     }}
-                </span>
-            </div>
+                </h2>
 
-            <h2 class="veille-synthesis-card-title">
-                {move || {
-                    let lang = i18n.current_lang_code();
-                    if lang == "fr" {
-                        title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
-                    } else {
-                        title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
-                    }
-                }}
-            </h2>
+                <p class="veille-synthesis-source-count">
+                    {move || format!(
+                        "{} {} {}",
+                        i18n.t("veille.synthesis.basedOn"),
+                        source_count,
+                        i18n.t("veille.synthesis.articles"),
+                    )}
+                </p>
 
-            <p class="veille-synthesis-source-count">
-                {move || format!(
-                    "{} {} {}",
-                    i18n.t("veille.synthesis.basedOn"),
-                    source_count,
-                    i18n.t("veille.synthesis.articles"),
-                )}
-            </p>
+                <p class="veille-synthesis-excerpt">
+                    {move || {
+                        let lang = i18n.current_lang_code();
+                        let content = if lang == "fr" { &content_fr } else { &content_en };
+                        synthesis_excerpt(content, 250)
+                    }}
+                </p>
 
-            <p class="veille-synthesis-excerpt">
-                {move || {
-                    let lang = i18n.current_lang_code();
-                    let content = if lang == "fr" { &content_fr } else { &content_en };
-                    synthesis_excerpt(content, 250)
-                }}
-            </p>
-
-            <div class="veille-synthesis-cta">
-                <a href={detail_url} class="veille-synthesis-read-more">
-                    {move || i18n.t("veille.synthesis.readMore")}
-                </a>
-            </div>
-        </article>
+                <div class="veille-synthesis-cta">
+                    // span styled as button — no nested <a> inside <a>
+                    <span class="veille-synthesis-read-more">
+                        {move || i18n.t("veille.synthesis.readMore")}
+                    </span>
+                </div>
+            </article>
+        </a>
     }
 }
 
 #[component]
-fn SynthesisDetailPage(item: NewsItem) -> impl IntoView {
+fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl IntoView {
     let i18n = use_context::<I18nService>().expect("I18n service not found");
     let is_sources_open = RwSignal::new(false);
 
@@ -298,6 +318,40 @@ fn SynthesisDetailPage(item: NewsItem) -> impl IntoView {
                     view! { <div class="synthesis-detail-content" inner_html={html}></div> }
                 }}
             </div>
+
+            {if !other_syntheses.is_empty() {
+                let i18n2 = i18n.clone();
+                view! {
+                    <div class="synthesis-similar">
+                        <p class="synthesis-similar-title">
+                            {move || i18n2.t("veille.synthesis.similar")}
+                        </p>
+                        <div class="synthesis-similar-grid">
+                            {other_syntheses.iter().map(|s| {
+                                let week = synthesis_week_label(&s.id).to_string();
+                                let t_fr = s.title_fr.clone().unwrap_or_default();
+                                let t_en = s.title_en.clone().unwrap_or_default();
+                                let sid = s.id.clone();
+                                let i18n3 = i18n.clone();
+                                view! {
+                                    <a href={format!("/veille?synthesis={}", sid)}
+                                       class="synthesis-similar-card">
+                                        <p class="synthesis-similar-week">{week}</p>
+                                        <p class="synthesis-similar-card-title">
+                                            {move || {
+                                                let lang = i18n3.current_lang_code();
+                                                if lang == "fr" { t_fr.clone() } else { t_en.clone() }
+                                            }}
+                                        </p>
+                                    </a>
+                                }
+                            }).collect::<Vec<_>>()}
+                        </div>
+                    </div>
+                }.into_any()
+            } else {
+                ().into_any()
+            }}
 
             {if !sources.is_empty() {
                 view! {
@@ -427,9 +481,14 @@ pub fn VeillePage() -> impl IntoView {
                                     </div>
                                 }.into_any(),
                                 NewsState::Loaded(data) => {
+                                    let others: Vec<NewsItem> = data.items.iter()
+                                        .filter(|i| i.item_type == "synthesis" && i.id != synth_id)
+                                        .take(3)
+                                        .cloned()
+                                        .collect();
                                     match data.items.into_iter().find(|i| i.id == synth_id) {
                                         Some(s) => view! {
-                                            <SynthesisDetailPage item=s />
+                                            <SynthesisDetailPage item=s other_syntheses=others />
                                         }.into_any(),
                                         None => view! {
                                             <div class="veille-status">

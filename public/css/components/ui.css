@@ -112,10 +112,10 @@
   margin-bottom: 0.5rem;
 }
 
-/* Alternating accent colors for visual variety */
-.stat:nth-child(1) .stat-number { color: var(--accent-primary); }
-.stat:nth-child(2) .stat-number { color: var(--accent-tertiary); }
-.stat:nth-child(3) .stat-number { color: var(--accent-secondary); }
+/* Alternating accent colors — text-safe tokens only */
+.stat:nth-child(1) .stat-number { color: var(--accent-text); }
+.stat:nth-child(2) .stat-number { color: var(--accent-tertiary-text); }
+.stat:nth-child(3) .stat-number { color: var(--accent-text); }
 
 .stat-label {
   font-family: var(--font-ui);
