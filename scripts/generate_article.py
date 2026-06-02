@@ -436,9 +436,10 @@ def main() -> None:
     article_id = article["id"]
     branch = f"content/article-{article_id}"
 
-    # Git: make sure we're on main, delete branch if it already exists
+    # Git: make sure we're on main, delete local + remote branch if they exist
     subprocess.run(["git", "checkout", "main"], check=True)
-    subprocess.run(["git", "branch", "-D", branch], capture_output=True)  # ignore error if not exists
+    subprocess.run(["git", "branch", "-D", branch], capture_output=True)
+    subprocess.run(["git", "push", "origin", "--delete", branch], capture_output=True)
     subprocess.run(["git", "checkout", "-b", branch], check=True)
 
     # Insert into mod.rs
@@ -454,7 +455,7 @@ def main() -> None:
         ["git", "commit", "-m", f"content: add article — {article_id} ({github_slug})"],
         check=True,
     )
-    subprocess.run(["git", "push", "-u", "origin", branch], check=True)
+    subprocess.run(["git", "push", "-u", "origin", branch, "--force"], check=True)
 
     # PR
     print("\nCreating PR…")
