@@ -19,6 +19,25 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+def _load_dotenv() -> None:
+    """Load .env from project root into os.environ (no extra deps needed)."""
+    env_path = Path(__file__).parent.parent / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, val = line.partition("=")
+        key = key.strip()
+        val = val.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = val
+
+
+_load_dotenv()
+
 try:
     import requests
     import anthropic
