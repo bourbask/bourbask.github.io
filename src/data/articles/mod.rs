@@ -44,6 +44,152 @@ pub struct Article {
 pub fn get_all_articles() -> Vec<Article> {
     vec![
         // =========================================================
+        // ARTICLE: vaultwarden
+        // GitHub: https://github.com/dani-garcia/vaultwarden (61,726 ⭐)
+        // Generated: 2026-06-02
+        // =========================================================
+        Article {
+            meta: ArticleMeta {
+                id: "vaultwarden".to_string(),
+                title: {
+                    let mut m = HashMap::new();
+                    m.insert("fr".to_string(), "Vaultwarden : Bitwarden chez toi, sans les compromis".to_string());
+                    m.insert("en".to_string(), "Vaultwarden: Self-Host Bitwarden Without the Bloat".to_string());
+                    m
+                },
+                subtitle: {
+                    let mut m = HashMap::new();
+                    m.insert("fr".to_string(), "Un serveur Bitwarden alternatif en Rust, léger, rapide et 100% compatible avec les clients officiels".to_string());
+                    m.insert("en".to_string(), "A lightweight Rust-powered Bitwarden-compatible server, perfect for self-hosted password management".to_string());
+                    m
+                },
+                description: {
+                    let mut m = HashMap::new();
+                    m.insert("fr".to_string(), "Vaultwarden est une implémentation alternative du serveur Bitwarden en Rust, idéale pour le self-hosting sur petit matériel.".to_string());
+                    m.insert("en".to_string(), "Vaultwarden is a lightweight Rust alternative to the official Bitwarden server, perfect for self-hosting on low-resource hardware.".to_string());
+                    m
+                },
+                date: "2026-06-02".to_string(),
+                read_time: 8,
+                tags: vec!["self-hosting".to_string(), "securite".to_string(), "rust".to_string(), "docker".to_string(), "password-manager".to_string(), "bitwarden".to_string(), "souverainete-numerique".to_string(), "homelab".to_string()],
+                category: "devtools".to_string(),
+                featured: false,
+                image: "/images/placeholder.jpg".to_string(),
+                status: ArticleStatus::Published,
+            },
+            content: {
+                let mut m = HashMap::new();
+
+                m.insert("fr".to_string(), ArticleContent {
+                    tldr: r###"Vaultwarden réimplémente l'API Bitwarden en Rust avec une empreinte mémoire infime. Compatible avec tous les clients Bitwarden officiels, il se déploie en une commande Docker sur n'importe quel VPS ou Raspberry Pi. Souveraineté totale sur tes mots de passe, zéro abonnement."###.to_string(),
+                    sections: vec![
+                        ArticleSection {
+                            id: "le-probleme".to_string(),
+                            title: "Le problème que ça résout".to_string(),
+                            content: r###"<p>Les gestionnaires de mots de passe cloud, c'est pratique. Jusqu'au jour où tu te demandes <strong>qui a réellement accès à tes secrets</strong>. Bitwarden est une excellente option — open source, audité, clients disponibles partout. Mais l'instance officielle est hébergée chez eux, et auto-héberger le serveur officiel est une autre histoire.</p><p>Le serveur Bitwarden officiel est une stack .NET avec des dépendances lourdes : SQL Server (ou SQLite dans les versions récentes), plusieurs services qui tournent en parallèle, une consommation mémoire qui commence autour de <strong>1 à 2 Go de RAM</strong> au repos. Pour un homelab sur Raspberry Pi 4 ou un petit VPS à 5€/mois, c'est rédhibitoire.</p><p>Le vrai problème : tu veux la <strong>souveraineté numérique totale</strong> sur tes mots de passe — tes clés SSH, tokens d'API, accès serveurs, secrets de projets — sans sacrifier le confort des clients officiels (extensions navigateur, apps mobiles iOS/Android, CLI). Tu veux synchronisation en temps réel, 2FA, partage de coffres, et tout ça sur ton propre matériel.</p><div class="article-callout info"><span class="callout-icon">ℹ️</span><div class="callout-content"><p>Bitwarden a considérablement amélioré son serveur officiel ces dernières années, notamment avec le support SQLite. Vaultwarden reste néanmoins l'option de référence pour les contraintes de ressources et la simplicité de déploiement.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "ce-que-cest".to_string(),
+                            title: "Ce que c'est".to_string(),
+                            content: r###"<p><strong>Vaultwarden</strong> (anciennement <em>bitwarden_rs</em>) est une réimplémentation complète de l'API serveur Bitwarden, écrite en <strong>Rust</strong> avec le framework <a href="https://rocket.rs" target="_blank" rel="noopener noreferrer">Rocket</a>. Le projet est maintenu par <a href="https://github.com/dani-garcia" target="_blank" rel="noopener noreferrer">dani-garcia</a> et la communauté, et cumule plus de <strong>61 000 étoiles GitHub</strong> — c'est l'un des projets self-hosting les plus populaires de l'écosystème.</p><p>Ce n'est <strong>pas un fork</strong> de Bitwarden : c'est une réécriture from scratch qui implémente les mêmes endpoints d'API. Les clients officiels Bitwarden (extension Chrome/Firefox, apps Android/iOS, client desktop, CLI <code>bw</code>) ne font aucune différence avec le serveur officiel. Tu pointes ton client vers ton instance, et tout fonctionne.</p><ul><li><strong>Langage :</strong> Rust — performances natives, empreinte mémoire ultra-faible (~10 Mo au démarrage)</li><li><strong>Base de données :</strong> SQLite par défaut, MySQL et PostgreSQL supportés</li><li><strong>Déploiement :</strong> image Docker officielle, binaire statique disponible</li><li><strong>Licence :</strong> AGPL-3.0 — libre et copyleft</li><li><strong>Fonctionnalités :</strong> coffres individuels et organisations, 2FA (TOTP, WebAuthn, Duo), sends, attachements, API complète</li></ul><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p>Vaultwarden n'est pas affilié à Bitwarden Inc. C'est un projet communautaire indépendant. Le README contient un disclaimer explicite à ce sujet.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "pourquoi-lessayer".to_string(),
+                            title: "Pourquoi l'essayer".to_string(),
+                            content: r###"<p>La réponse courte : <strong>10 Mo de RAM vs 1 Go</strong>. Sur un homelab ou un petit VPS, ça change tout. Mais ce n'est pas que ça.</p><p>Ce qui distingue vraiment Vaultwarden, c'est la <strong>complétude fonctionnelle</strong>. Contrairement à d'autres alternatives légères qui sacrifient des features, Vaultwarden implémente quasiment tout ce que propose Bitwarden Premium, y compris des fonctionnalités qui nécessitent un abonnement payant sur l'instance officielle :</p><ul><li><strong>TOTP intégré</strong> dans le gestionnaire (code 2FA stocké et généré côté vault)</li><li><strong>Bitwarden Send</strong> — partage sécurisé de secrets avec expiration</li><li><strong>Organisations et collections</strong> — partage de coffres entre membres d'une équipe</li><li><strong>WebAuthn / passkeys</strong> — support des clés hardware (YubiKey, etc.)</li><li><strong>Rapports de sécurité</strong> — mots de passe exposés, réutilisés, faibles</li><li><strong>API REST complète</strong> — automatisation possible avec le CLI <code>bw</code></li></ul><p>Le projet est actif depuis 2018, la version 1.36.0 est récente, et la communauté est solide avec un channel Matrix et un forum Discourse. Pour un outil qui gère tes secrets, la longévité du projet compte.</p><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p>Sur l'instance officielle Bitwarden, les fonctionnalités TOTP et rapports de sécurité nécessitent un abonnement Premium à 10$/an. Sur Vaultwarden auto-hébergé, tout est gratuit.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "en-pratique".to_string(),
+                            title: "En pratique — setup et usage".to_string(),
+                            content: r###"<p>Le déploiement est remarquablement simple. La façon la plus propre est via <strong>Docker Compose</strong> avec un reverse proxy HTTPS devant (Traefik, Caddy, ou nginx). Vaultwarden <strong>exige HTTPS</strong> pour fonctionner — les clients Bitwarden refusent les connexions non sécurisées.</p><p>Un <code>docker-compose.yml</code> minimal :</p><pre><code>services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vault.ton-domaine.com"
+      SIGNUPS_ALLOWED: "false"
+      ADMIN_TOKEN: "un-token-tres-secret"
+    volumes:
+      - ./vw-data:/data
+    ports:
+      - "127.0.0.1:8080:80"</code></pre><p>Quelques variables d'environnement clés :</p><ul><li><code>SIGNUPS_ALLOWED=false</code> — désactive les inscriptions publiques après avoir créé ton compte</li><li><code>ADMIN_TOKEN</code> — active le panneau d'administration sur <code>/admin</code></li><li><code>SMTP_*</code> — configuration email pour les invitations et 2FA</li><li><code>DATABASE_URL</code> — pour pointer vers PostgreSQL ou MySQL si besoin</li></ul><p>Une fois déployé, tu pointes l'extension navigateur Bitwarden vers <code>https://vault.ton-domaine.com</code> dans les paramètres du serveur. C'est tout. Import depuis LastPass, 1Password ou l'instance Bitwarden officielle disponible nativement.</p><div class="article-callout warning"><span class="callout-icon">⚠️</span><div class="callout-content"><p>Pense à mettre en place des backups réguliers du volume <code>/data</code> (contient la base SQLite et les attachements). C'est tes mots de passe — une sauvegarde quotidienne vers un stockage distant est indispensable.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "limites".to_string(),
+                            title: "Limites honnêtes".to_string(),
+                            content: r###"<p>Vaultwarden est excellent, mais il faut être honnête sur ce qu'il implique.</p><ul><li><strong>Tu es ton propre ops.</strong> Mises à jour, backups, certificats TLS, monitoring de disponibilité — tout ça c'est toi. Si ton serveur tombe et que tu es en déplacement, tu n'as plus accès à tes mots de passe depuis les appareils non synchronisés.</li><li><strong>Projet non officiel.</strong> Vaultwarden n'est pas maintenu par Bitwarden Inc. Si l'API Bitwarden change de façon incompatible, il faut attendre que la communauté suive. Ça s'est globalement bien passé jusqu'ici, mais c'est un risque réel.</li><li><strong>Pas d'audit de sécurité indépendant.</strong> Le serveur Bitwarden officiel est audité régulièrement par des tiers. Vaultwarden ne l'a pas été de façon formelle. Pour un outil qui stocke tes secrets, c'est un point à peser.</li><li><strong>HTTPS obligatoire.</strong> Pas de test en local sans setup TLS (ou contournement via <code>DOMAIN=http://...</code> en dev uniquement). Caddy simplifie beaucoup la chose avec le TLS automatique.</li><li><strong>Fonctionnalités enterprise absentes.</strong> SSO/SAML, Directory Connector, et certaines fonctionnalités Bitwarden pour les grandes organisations ne sont pas implémentées.</li></ul><div class="article-callout warning"><span class="callout-icon">⚠️</span><div class="callout-content"><p>Ne jamais exposer le panneau <code>/admin</code> sans authentification forte, et désactiver les inscriptions publiques (<code>SIGNUPS_ALLOWED=false</code>) immédiatement après la création de ton compte.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "pour-qui".to_string(),
+                            title: "Pour qui".to_string(),
+                            content: r###"<p>Vaultwarden est taillé pour un profil précis. Tu corresponds probablement si :</p><ul><li>Tu as déjà <strong>un homelab ou un VPS</strong> qui tourne, avec Docker et un reverse proxy en place</li><li>Tu veux <strong>zéro dépendance cloud</strong> pour tes secrets — clés SSH, tokens GitHub, accès serveurs, credentials de projets clients</li><li>Tu utilises Bitwarden (ou tu veux y migrer depuis LastPass/1Password) et tu veux garder les clients officiels</li><li>Tu es à l'aise avec <strong>la responsabilité des backups</strong> et la maintenance d'une infra minimaliste</li><li>Tu veux offrir une instance partagée à ta famille ou une petite équipe sans payer d'abonnement</li></ul><p>En revanche, Vaultwarden n'est probablement pas fait pour toi si :</p><ul><li>Tu n'as pas d'infrastructure self-hosted et tu ne veux pas en gérer une</li><li>Tu as besoin d'un gestionnaire de mots de passe pour une équipe de 50+ personnes avec SSO d'entreprise</li><li>La question de l'audit de sécurité formel est non-négociable pour toi ou ton entreprise</li></ul><div class="article-callout info"><span class="callout-icon">ℹ️</span><div class="callout-content"><p>Pour une famille de 3-5 personnes sur un Raspberry Pi 4 avec 4 Go de RAM, Vaultwarden consommera moins de 30 Mo. Le reste de la RAM est pour tes autres services.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "verdict".to_string(),
+                            title: "Verdict".to_string(),
+                            content: r###"<p><strong>Vaultwarden est l'un des meilleurs projets self-hosting qui existent.</strong> Pas de compromis sur les fonctionnalités, une empreinte ridiculeusement faible, un déploiement Docker en 10 minutes, et une compatibilité parfaite avec l'écosystème Bitwarden. C'est le genre de projet qui fait la réputation du self-hosting : ça marche, ça reste en place, et ça ne te demande rien une fois configuré.</p><p>Personnellement, c'est le premier service que je déploie sur toute nouvelle infra. Avant le monitoring, avant le CI/CD, avant tout. Parce que les mots de passe sont le nerf de la guerre, et avoir sa propre instance Vaultwarden sur un VPS à 5€/mois avec backups quotidiens vers un bucket S3 — c'est probablement <strong>la meilleure décision de sécurité personnelle</strong> que tu puisses prendre en une après-midi.</p><p>Les limites existent — pas d'audit formel, tu es ton propre ops — mais elles sont connues et acceptables pour le profil cible. La communauté est active, le projet est mature, et 61 000 étoiles GitHub ne mentent pas.</p><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p><strong>Recommandation :</strong> déploie-le ce week-end. Installe l'extension Bitwarden dans ton navigateur, pointe-la vers ton instance, migre depuis ton gestionnaire actuel. Dans 2 heures tu ne reviens pas en arrière.</p></div></div>"###.to_string(),
+                        },
+                    ],
+                });
+
+                m.insert("en".to_string(), ArticleContent {
+                    tldr: r###"Vaultwarden reimplements the Bitwarden API in Rust with a tiny memory footprint. Compatible with all official Bitwarden clients, it deploys in a single Docker command on any VPS or Raspberry Pi. Full password sovereignty, zero subscription."###.to_string(),
+                    sections: vec![
+                        ArticleSection {
+                            id: "le-probleme".to_string(),
+                            title: "The Problem It Solves".to_string(),
+                            content: r###"<p>Cloud password managers are convenient — until you start wondering <strong>who actually has access to your secrets</strong>. Bitwarden is a great option: open source, audited, clients available everywhere. But the official instance is hosted on their infrastructure, and self-hosting the official server is a different story.</p><p>The official Bitwarden server is a .NET stack with heavy dependencies: SQL Server (or SQLite in recent versions), multiple services running in parallel, and memory usage starting around <strong>1–2 GB of RAM</strong> at idle. On a Raspberry Pi 4 or a cheap 5€/month VPS, that's a dealbreaker.</p><p>The real problem: you want <strong>full digital sovereignty</strong> over your passwords — SSH keys, API tokens, server credentials, project secrets — without sacrificing the convenience of official clients (browser extensions, iOS/Android apps, CLI). You want real-time sync, 2FA, vault sharing, all running on your own hardware.</p><div class="article-callout info"><span class="callout-icon">ℹ️</span><div class="callout-content"><p>Bitwarden has significantly improved its official server in recent years, including SQLite support. Vaultwarden nonetheless remains the go-to option for resource-constrained environments and deployment simplicity.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "ce-que-cest".to_string(),
+                            title: "What It Is".to_string(),
+                            content: r###"<p><strong>Vaultwarden</strong> (formerly <em>bitwarden_rs</em>) is a complete reimplementation of the Bitwarden server API, written in <strong>Rust</strong> using the <a href="https://rocket.rs" target="_blank" rel="noopener noreferrer">Rocket</a> framework. The project is maintained by <a href="https://github.com/dani-garcia" target="_blank" rel="noopener noreferrer">dani-garcia</a> and the community, with over <strong>61,000 GitHub stars</strong> — one of the most popular self-hosting projects in the ecosystem.</p><p>This is <strong>not a fork</strong> of Bitwarden: it's a ground-up rewrite implementing the same API endpoints. Official Bitwarden clients (Chrome/Firefox extension, Android/iOS apps, desktop client, <code>bw</code> CLI) can't tell the difference from the official server. Point your client at your instance and everything just works.</p><ul><li><strong>Language:</strong> Rust — native performance, ultra-low memory footprint (~10 MB at startup)</li><li><strong>Database:</strong> SQLite by default, MySQL and PostgreSQL supported</li><li><strong>Deployment:</strong> official Docker image, static binary available</li><li><strong>License:</strong> AGPL-3.0 — free and copyleft</li><li><strong>Features:</strong> individual and organization vaults, 2FA (TOTP, WebAuthn, Duo), sends, attachments, full API</li></ul><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p>Vaultwarden is not affiliated with Bitwarden Inc. It's an independent community project. The README includes an explicit disclaimer about this.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "pourquoi-lessayer".to_string(),
+                            title: "Why You Should Try It".to_string(),
+                            content: r###"<p>Short answer: <strong>10 MB of RAM vs 1 GB</strong>. On a homelab or small VPS, that changes everything. But that's not the whole story.</p><p>What truly sets Vaultwarden apart is its <strong>functional completeness</strong>. Unlike other lightweight alternatives that sacrifice features, Vaultwarden implements nearly everything Bitwarden Premium offers — including features that require a paid subscription on the official instance:</p><ul><li><strong>Built-in TOTP</strong> inside the vault manager (2FA codes stored and generated vault-side)</li><li><strong>Bitwarden Send</strong> — secure secret sharing with expiration</li><li><strong>Organizations and collections</strong> — vault sharing across team members</li><li><strong>WebAuthn / passkeys</strong> — hardware key support (YubiKey, etc.)</li><li><strong>Security reports</strong> — exposed, reused, and weak passwords</li><li><strong>Full REST API</strong> — automation possible with the <code>bw</code> CLI</li></ul><p>The project has been active since 2018, version 1.36.0 is recent, and the community is solid with a Matrix channel and Discourse forum. For a tool managing your secrets, project longevity matters.</p><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p>On the official Bitwarden instance, TOTP and security report features require a Premium subscription at $10/year. On a self-hosted Vaultwarden, everything is free.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "en-pratique".to_string(),
+                            title: "In Practice — Setup & Usage".to_string(),
+                            content: r###"<p>Deployment is remarkably straightforward. The cleanest approach is via <strong>Docker Compose</strong> with an HTTPS reverse proxy in front (Traefik, Caddy, or nginx). Vaultwarden <strong>requires HTTPS</strong> to function — Bitwarden clients refuse insecure connections.</p><p>A minimal <code>docker-compose.yml</code>:</p><pre><code>services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vault.your-domain.com"
+      SIGNUPS_ALLOWED: "false"
+      ADMIN_TOKEN: "a-very-secret-token"
+    volumes:
+      - ./vw-data:/data
+    ports:
+      - "127.0.0.1:8080:80"</code></pre><p>Key environment variables:</p><ul><li><code>SIGNUPS_ALLOWED=false</code> — disable public signups after creating your account</li><li><code>ADMIN_TOKEN</code> — enables the admin panel at <code>/admin</code></li><li><code>SMTP_*</code> — email configuration for invitations and 2FA</li><li><code>DATABASE_URL</code> — to point to PostgreSQL or MySQL if needed</li></ul><p>Once deployed, point the Bitwarden browser extension to <code>https://vault.your-domain.com</code> in the server settings. That's it. Native import from LastPass, 1Password, or the official Bitwarden instance is available out of the box.</p><div class="article-callout warning"><span class="callout-icon">⚠️</span><div class="callout-content"><p>Set up regular backups of the <code>/data</code> volume (contains the SQLite database and attachments). These are your passwords — a daily backup to remote storage is non-negotiable.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "limites".to_string(),
+                            title: "Honest Limitations".to_string(),
+                            content: r###"<p>Vaultwarden is excellent, but let's be honest about what it entails.</p><ul><li><strong>You are your own ops team.</strong> Updates, backups, TLS certificates, uptime monitoring — all on you. If your server goes down while you're traveling, you lose access to passwords on unsynced devices.</li><li><strong>Unofficial project.</strong> Vaultwarden is not maintained by Bitwarden Inc. If the Bitwarden API changes in a breaking way, you wait for the community to catch up. It's gone well so far, but it's a real risk.</li><li><strong>No independent security audit.</strong> The official Bitwarden server undergoes regular third-party audits. Vaultwarden has not been formally audited. For a tool storing your secrets, this is a point worth weighing.</li><li><strong>HTTPS is mandatory.</strong> No local testing without TLS setup (or workaround via <code>DOMAIN=http://...</code> for dev only). Caddy makes this much easier with automatic TLS.</li><li><strong>Enterprise features missing.</strong> SSO/SAML, Directory Connector, and some Bitwarden features for large organizations are not implemented.</li></ul><div class="article-callout warning"><span class="callout-icon">⚠️</span><div class="callout-content"><p>Never expose the <code>/admin</code> panel without strong authentication, and disable public signups (<code>SIGNUPS_ALLOWED=false</code>) immediately after creating your account.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "pour-qui".to_string(),
+                            title: "Who It's For".to_string(),
+                            content: r###"<p>Vaultwarden is built for a specific profile. You're likely a match if:</p><ul><li>You already have <strong>a homelab or VPS</strong> running, with Docker and a reverse proxy in place</li><li>You want <strong>zero cloud dependency</strong> for your secrets — SSH keys, GitHub tokens, server access, client project credentials</li><li>You use Bitwarden (or want to migrate from LastPass/1Password) and want to keep using official clients</li><li>You're comfortable with <strong>backup responsibility</strong> and maintaining a minimal infrastructure</li><li>You want to offer a shared instance to your family or a small team without paying a subscription</li></ul><p>On the other hand, Vaultwarden is probably not for you if:</p><ul><li>You don't have self-hosted infrastructure and don't want to manage any</li><li>You need a password manager for a 50+ person team with enterprise SSO</li><li>Formal security auditing is non-negotiable for you or your organization</li></ul><div class="article-callout info"><span class="callout-icon">ℹ️</span><div class="callout-content"><p>For a family of 3–5 people on a Raspberry Pi 4 with 4 GB of RAM, Vaultwarden will consume less than 30 MB. The rest of the RAM is for your other services.</p></div></div>"###.to_string(),
+                        },
+                        ArticleSection {
+                            id: "verdict".to_string(),
+                            title: "Verdict".to_string(),
+                            content: r###"<p><strong>Vaultwarden is one of the best self-hosting projects out there.</strong> No feature compromises, a ridiculously small footprint, Docker deployment in 10 minutes, and perfect compatibility with the Bitwarden ecosystem. It's the kind of project that defines what self-hosting can be: it works, it stays up, and it asks nothing of you once configured.</p><p>Personally, it's the first service I deploy on any new infrastructure. Before monitoring, before CI/CD, before anything else. Because passwords are the lifeblood of everything, and running your own Vaultwarden instance on a 5€/month VPS with daily backups to an S3 bucket is probably <strong>the best personal security decision</strong> you can make in an afternoon.</p><p>The limitations exist — no formal audit, you're your own ops — but they're known and acceptable for the target profile. The community is active, the project is mature, and 61,000 GitHub stars don't lie.</p><div class="article-callout tip"><span class="callout-icon">💡</span><div class="callout-content"><p><strong>Recommendation:</strong> deploy it this weekend. Install the Bitwarden extension in your browser, point it at your instance, migrate from your current manager. Two hours from now you won't be going back.</p></div></div>"###.to_string(),
+                        },
+                    ],
+                });
+
+                m
+            },
+        },
+        // =========================================================
         // ARTICLE: ansible-setup
         // =========================================================
         Article {
