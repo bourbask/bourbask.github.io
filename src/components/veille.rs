@@ -174,59 +174,75 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
     let period_end2 = period_end.clone();
 
     view! {
-        <article class="veille-synthesis-card">
-            <div class="veille-synthesis-card-header">
-                <span class="veille-synthesis-badge">
-                    {move || i18n.t("veille.synthesis.aiGenerated")}
-                </span>
-                <span class="veille-synthesis-card-period">
+        <a href={detail_url} class="veille-synthesis-card-wrapper">
+            // Nature fronds — left side (aria-hidden: purely decorative)
+            <span class="synthesis-fronds synthesis-fronds--left" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            // Nature fronds — right side
+            <span class="synthesis-fronds synthesis-fronds--right" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <article class="veille-synthesis-card">
+                <div class="veille-synthesis-card-header">
+                    <span class="veille-synthesis-badge">
+                        {move || i18n.t("veille.synthesis.aiGenerated")}
+                    </span>
+                    <span class="veille-synthesis-card-period">
+                        {move || {
+                            let lang = i18n.current_lang_code();
+                            format!(
+                                "{} {} {} {}",
+                                i18n.t("veille.synthesis.weekOf"),
+                                format_date_locale(&period_start2, &lang),
+                                i18n.t("veille.synthesis.to"),
+                                format_date_locale(&period_end2, &lang),
+                            )
+                        }}
+                    </span>
+                </div>
+
+                <h2 class="veille-synthesis-card-title">
                     {move || {
                         let lang = i18n.current_lang_code();
-                        format!(
-                            "{} {} {} {}",
-                            i18n.t("veille.synthesis.weekOf"),
-                            format_date_locale(&period_start2, &lang),
-                            i18n.t("veille.synthesis.to"),
-                            format_date_locale(&period_end2, &lang),
-                        )
+                        if lang == "fr" {
+                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
+                        } else {
+                            title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
+                        }
                     }}
-                </span>
-            </div>
+                </h2>
 
-            <h2 class="veille-synthesis-card-title">
-                {move || {
-                    let lang = i18n.current_lang_code();
-                    if lang == "fr" {
-                        title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
-                    } else {
-                        title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
-                    }
-                }}
-            </h2>
+                <p class="veille-synthesis-source-count">
+                    {move || format!(
+                        "{} {} {}",
+                        i18n.t("veille.synthesis.basedOn"),
+                        source_count,
+                        i18n.t("veille.synthesis.articles"),
+                    )}
+                </p>
 
-            <p class="veille-synthesis-source-count">
-                {move || format!(
-                    "{} {} {}",
-                    i18n.t("veille.synthesis.basedOn"),
-                    source_count,
-                    i18n.t("veille.synthesis.articles"),
-                )}
-            </p>
+                <p class="veille-synthesis-excerpt">
+                    {move || {
+                        let lang = i18n.current_lang_code();
+                        let content = if lang == "fr" { &content_fr } else { &content_en };
+                        synthesis_excerpt(content, 250)
+                    }}
+                </p>
 
-            <p class="veille-synthesis-excerpt">
-                {move || {
-                    let lang = i18n.current_lang_code();
-                    let content = if lang == "fr" { &content_fr } else { &content_en };
-                    synthesis_excerpt(content, 250)
-                }}
-            </p>
-
-            <div class="veille-synthesis-cta">
-                <a href={detail_url} class="veille-synthesis-read-more">
-                    {move || i18n.t("veille.synthesis.readMore")}
-                </a>
-            </div>
-        </article>
+                <div class="veille-synthesis-cta">
+                    // span styled as button — no nested <a> inside <a>
+                    <span class="veille-synthesis-read-more">
+                        {move || i18n.t("veille.synthesis.readMore")}
+                    </span>
+                </div>
+            </article>
+        </a>
     }
 }
 
