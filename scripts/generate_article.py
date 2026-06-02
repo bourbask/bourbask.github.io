@@ -19,25 +19,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-
-def _load_dotenv() -> None:
-    """Load .env from project root into os.environ (no extra deps needed)."""
-    env_path = Path(__file__).parent.parent / ".env"
-    if not env_path.exists():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, val = line.partition("=")
-        key = key.strip()
-        val = val.strip().strip('"').strip("'")
-        if key and key not in os.environ:
-            os.environ[key] = val
-
-
-_load_dotenv()
-
 try:
     import requests
     import anthropic
@@ -436,10 +417,7 @@ def main() -> None:
     article_id = article["id"]
     branch = f"content/article-{article_id}"
 
-    # Git: make sure we're on main, delete local + remote branch if they exist
-    subprocess.run(["git", "checkout", "main"], check=True)
-    subprocess.run(["git", "branch", "-D", branch], capture_output=True)
-    subprocess.run(["git", "push", "origin", "--delete", branch], capture_output=True)
+    # Git: create branch
     subprocess.run(["git", "checkout", "-b", branch], check=True)
 
     # Insert into mod.rs
@@ -455,7 +433,7 @@ def main() -> None:
         ["git", "commit", "-m", f"content: add article — {article_id} ({github_slug})"],
         check=True,
     )
-    subprocess.run(["git", "push", "-u", "origin", branch, "--force"], check=True)
+    subprocess.run(["git", "push", "-u", "origin", branch], check=True)
 
     # PR
     print("\nCreating PR…")
