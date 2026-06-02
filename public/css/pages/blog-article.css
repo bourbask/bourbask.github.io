@@ -206,7 +206,7 @@
 
 /* Hyperlinks inside article body — browser defaults (blue/purple/underline) are ugly */
 .article-section a {
-  color: var(--accent-secondary);
+  color: var(--accent-text);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
