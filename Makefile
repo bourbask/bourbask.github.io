@@ -1,4 +1,4 @@
-.PHONY: help setup setup-rust setup-python serve build fetch score synth clean \
+.PHONY: help setup setup-rust setup-python serve build fetch score synth synth-ai test clean \
         a11y a11y-dark migrate reprocess discover discover-dry discover-cat article article-dry
 
 TRUNK_VERSION := 0.21.14
@@ -26,7 +26,9 @@ help:
 	@echo "  make fetch              Fetch RSS + HN (sans IA)"
 	@echo "  make score              Compétition articles du jour (Haiku)"
 	@echo "  make score-dry          Score sans écrire"
-	@echo "  make synth              Synthèse hebdo (Sonnet)"
+	@echo "  make synth              Synthèse générale hebdo (Sonnet, IA exclue)"
+	@echo "  make synth-ai           Synthèse IA dédiée (Sonnet, EN, courte)"
+	@echo "  make test               Tests pipeline (offline, zéro token IA)"
 	@echo "  make migrate            Migration one-shot synthèses (nettoyage historique)"
 	@echo "  make reprocess          Re-score + re-synthèse W19/W20/W21"
 	@echo ""
@@ -100,7 +102,17 @@ synth:
 	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
 		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \
 	fi
-	$(PYTHON) scripts/synthesize_news.py
+	$(PYTHON) scripts/synthesize_news.py --track general
+
+synth-ai:
+	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
+		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \
+	fi
+	$(PYTHON) scripts/synthesize_news.py --track ai
+
+# ── Tests (offline, zéro token IA) ──────────────────────────────────────────────
+test:
+	$(PYTHON) -m pytest scripts/tests -v
 
 migrate:
 	$(PYTHON) scripts/migrate_syntheses.py
