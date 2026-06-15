@@ -126,6 +126,20 @@ def fetch_wikipedia_info(query: str) -> dict:
     return {}
 
 
+# Substrings that flag a generic / non-illustrative OG image (mail envelope, logo,
+# share-card default, RSS icon…). These are the junk heroes we kept getting.
+GENERIC_IMAGE_PATTERNS = (
+    "envelope", "/email", "e-mail", "mailicon", "newsletter",
+    "logo", "default", "placeholder", "/icon", "sprite", "avatar",
+    "share-", "og-default", "feed-icon", "/rss",
+)
+
+
+def is_generic_image(url: str) -> bool:
+    u = url.lower()
+    return any(p in u for p in GENERIC_IMAGE_PATTERNS)
+
+
 def find_images(articles: list[dict], max_images: int = 3) -> list[dict]:
     """
     Fetch OG images from top-scored articles.
@@ -141,6 +155,9 @@ def find_images(articles: list[dict], max_images: int = 3) -> list[dict]:
         if domain in seen_domains:
             continue  # one image per domain max
         img = fetch_og_image(art.get("url", ""))
+        if img and is_generic_image(img):
+            print(f"[image] Skipped generic OG image: {img[:70]}")
+            continue
         if img:
             print(f"[image] Found OG image: [{domain}] {art['source']} — {art['title'][:55]}")
             images.append({
@@ -244,13 +261,47 @@ Rien d'autre."""
         return content
 
 
+def vet_illustration(client: anthropic.Anthropic, illustration: dict, context_summary: str) -> dict | None:
+    """
+    Relevance gate for the hero illustration (general track only). The hero was never
+    checked before — a generic OG (envelope/logo) slipped straight onto the card.
+    Returns the illustration if it clearly illustrates the article, else None.
+    """
+    if not illustration or not illustration.get("url"):
+        return None
+    prompt = f"""Image d'illustration en tête d'un article tech.
+CONTEXTE : {context_summary}
+Image : url="{illustration.get('url','')}" légende="{illustration.get('caption','')}"
+
+Réponds KEEP si l'image illustre clairement un vrai sujet de l'article (capture produit,
+schéma, photo ou visuel pertinent). Réponds DROP si elle est générique ou hors-sujet
+(enveloppe, logo, icône, bannière vide, image de partage par défaut). En cas de doute : DROP.
+Un seul mot : KEEP ou DROP."""
+    try:
+        resp = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=5,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        verdict = resp.content[0].text.strip().upper()
+        if verdict.startswith("KEEP"):
+            return illustration
+        print(f"[illustration] Dropped (not relevant): {illustration.get('url','')[:70]}")
+        return None
+    except Exception as e:
+        print(f"[illustration] vet failed: {e} — keeping", file=sys.stderr)
+        return illustration
+
+
 def build_context(items: list[dict]) -> str:
     by_domain: dict[str, list[str]] = {}
     for item in items:
         domain = item.get("domain", item.get("categories", ["general"])[0])
         score  = item.get("score")
         score_str = f" [score:{score:.1f}]" if score else ""
-        entry  = f'[{item.get("source","?")}][{item.get("lang","en")}]{score_str} {item["title"]}'
+        # srcref:<id> is the link token — the model links a source via [text](srcref:ID),
+        # never its raw URL (which it mangles). resolve_source_links() swaps in the exact URL.
+        entry  = f'srcref:{item.get("id","?")} — [{item.get("source","?")}][{item.get("lang","en")}]{score_str} {item["title"]}'
         by_domain.setdefault(domain, []).append(entry)
 
     lines = []
@@ -258,6 +309,28 @@ def build_context(items: list[dict]) -> str:
         lines.append(f"\n## {domain.upper().replace('_', ' ')}")
         lines.extend(titles)
     return "\n".join(lines)
+
+
+def resolve_source_links(content: str, id_to_url: dict[str, str]) -> str:
+    """
+    Replace the srcref:<id> link tokens emitted by the model with the EXACT feed URLs.
+    We never let the model type a source article's URL — it hallucinates/mangles them
+    (404s). Handles both link form `](srcref:ID)` and any stray bare `srcref:ID`.
+    """
+    if not content:
+        return content
+
+    def link_repl(m: "re.Match") -> str:
+        url = id_to_url.get(m.group(1))
+        return f"]({url})" if url else m.group(0)
+
+    content = re.sub(r"\]\(\s*srcref:([A-Za-z0-9_]+)\s*\)", link_repl, content)
+
+    def bare_repl(m: "re.Match") -> str:
+        url = id_to_url.get(m.group(1))
+        return url if url else m.group(0)
+
+    return re.sub(r"\bsrcref:([A-Za-z0-9_]+)\b", bare_repl, content)
 
 
 def generate_synthesis(
@@ -322,21 +395,48 @@ ARCHITECTURE — si un projet architectural est mentionné :
 - Expliquer l'innovation éco-responsable ou technique en termes journalistiques
 - Dans le JSON, remplir "architecture_info" avec architect_name et search_query (pour Wikipedia)"""
 
-    prompt = f"""Tu es un journaliste tech senior qui écrit la rétrospective hebdomadaire d'une veille technologique personnelle.
+    prompt = f"""Tu écris la rétrospective hebdomadaire d'une veille tech personnelle. Deux versions : une française, une anglaise.
 
-═══ IDENTITÉ ÉDITORIALE ═══
+═══ QUI ÉCRIT ═══
 
-Ton style, c'est celui d'un développeur web senior — stack Rust, WebAssembly, sécurité web, Linux —
-qui a des opinions claires, lit la recherche académique autant que les blogs d'ingénierie, et refuse
-de reproduire les communiqués de presse déguisés en articles.
+Un développeur web senior — Rust, WebAssembly, sécurité web, Linux. Opinions tranchées,
+lit la recherche académique autant que les blogs d'ingénierie, allergique aux communiqués
+de presse déguisés en articles. Tu écris à des amis devs intelligents, pas à un moteur SEO.
 
-Tu prends position. Tu expliques POURQUOI quelque chose compte, pas juste CE QUE c'est.
-Tu cites des chiffres précis, des noms de projets réels, des CVE IDs, des numéros de version.
-Tu démystifies le hype et tu célèbres les vraies avancées, même discrètes.
-Quand un sujet touche à la sécurité des lecteurs, tu le dis sans détour et tu donnes des actions concrètes.
+Tu expliques POURQUOI un truc compte, pas seulement CE QUE c'est. Chiffres précis, noms de
+projets réels, CVE IDs, numéros de version. Tu dégonfles le hype et tu célèbres les vraies
+avancées, même discrètes.
 
-Tu écris comme si tu envoyais une newsletter à des amis développeurs intelligents,
-pas comme si tu remplissais un template de rédacteur SEO.
+═══ LA VOIX — le point le plus important, c'est ici que la plupart des synthèses sonnent « IA » ═══
+
+Objectif : que ça sonne ÉCRIT PAR UN HUMAIN. Pas de neutralité de rapport.
+
+— Rythme varié : alterne phrases courtes qui claquent et phrases plus longues et denses.
+  Une phrase de trois mots après deux phrases chargées, ça réveille le lecteur.
+— Adresse-toi à lui quand c'est utile ("si tu es en prod avec une intégration calibrée pour
+  la v2, prépare-toi à re-tester").
+— Registre parlé mais précis : des tournures vivantes ("X remet le couvert", "ça change pas
+  mal la donne", "noir sur blanc") sans familiarité forcée ni vannes gratuites.
+— Verdicts assumés, asides secs, une pointe d'humour quand le sujet s'y prête. Une vraie
+  opinion vaut mieux qu'un "il est intéressant de noter".
+— Le concret avant l'abstrait : une scène, un détail, un chiffre qui parle, plutôt qu'une
+  généralité. Si tu compares, compare avec des nombres réels.
+
+INTERDITS — ce sont les signatures d'un texte IA, bannis-les :
+— "En résumé", "En somme", "Force est de constater", "Il convient de noter", "Dans un monde où",
+  "À l'heure où", "plongeons dans", "décryptage", "tour d'horizon", "incontournable", "fascinant".
+— Les transitions mécaniques empilées ("Par ailleurs", "De plus", "En outre", "Enfin").
+— Le faux équilibre permanent ("d'une part… d'autre part") et les tricolons réflexes.
+— TOUTE phrase qui laisse transparaître la consigne. N'écris JAMAIS un truc du genre
+  "les sujets de la semaine sont liés par X parce que Y" — ça expose le prompt en clair.
+  Si un fil existe, montre-le par une observation concrète ; s'il n'existe pas, ne le force pas.
+
+VERSION ANGLAISE : même exigence, registre d'un bon journalisme tech US — direct, opinioné,
+factuel, qui tranche sans se cacher. Ce n'est PAS une traduction littérale du français :
+c'est le même sujet réécrit, avec son propre angle et son propre titre.
+
+Inspire-toi de l'humanité du bon journalisme — SANS imiter la signature d'un auteur précis.
+La voix reste la tienne : le dev senior décrit plus haut.
 
 ═══ CONTEXTE DE LA SEMAINE ═══
 
@@ -346,64 +446,39 @@ Articles sélectionnés ({len(articles)} — choisis pour leur importance, pas p
 {prev_context}
 {images_context}
 
-═══ RÈGLES DE RÉDACTION — LIRE ATTENTIVEMENT ═══
+═══ MÉCANIQUE DU TEXTE ═══
 
-1. COMMENCE PAR UNE ACCROCHE FORTE
-   — Une scène concrète, un moment précis, un paradoxe, une question qui dérange.
-   — PAS "Cette semaine a été riche en actualités". PAS de résumé en intro.
-   — L'accroche doit donner envie de continuer à lire, pas résumer l'article.
-
-2. CONSTRUIS UN FIL NARRATIF
-   — Les sections ne sont pas des items de liste. Ce sont des actes d'un même récit.
-   — Entre chaque section, il doit y avoir du LIANT : une phrase de transition qui explique
-     pourquoi on passe de ce sujet à l'autre, ce qui les relie, ce que l'un éclaire de l'autre.
-   — Exemple mauvais : [section CVE] --- [section Vite 8] sans lien.
-   — Exemple bon : "Ce contexte de supply chain fragilisée rend d'autant plus pertinente
-     la sortie de Vite 8 cette semaine — non pas comme une réponse directe, mais comme
-     rappel que l'écosystème sait aussi, par moments, progresser."
-   — Le lecteur doit sentir qu'il lit UN article, pas un agrégat de news.
-
-3. HYPERLIENS OBLIGATOIRES EN MARKDOWN
-   — Chaque outil, projet, organisation, publication mentionné pour la première fois
-     doit être un lien cliquable vers sa source officielle ou principale.
-   — Format : [Nom du projet](https://url-officielle.com)
-   — Pour les articles sources fournis : utilise l'URL de l'article comme lien.
-   — Minimum 6-8 hyperliens par article. Ce n'est pas une recommandation, c'est une règle.
-
-4. IMAGES ET TABLEAUX
-   — Si un article source a une image pertinente (OG image), intègre-la avec :
-     ![Description courte](https://url-de-limage.jpg)
-   — Place l'image APRÈS le premier paragraphe d'une section, pas au début.
-   — Utilise un tableau Markdown quand tu compares des données (versions, benchmarks,
-     délais, features). Maximum 1-2 tableaux par article.
-
-5. OPINIONS ET POSITIONNEMENT
-   — "C'est franchement impressionnant", "Soyons honnêtes, c'est discutable",
-     "Ce que la plupart des articles ratent là-dedans, c'est que...",
-     "Je ne suis pas sûr que l'industrie ait réalisé l'ampleur de..."
-   — Prends des positions. L'article doit avoir une voix, pas une neutralité de rapport.
-
-6. PAS DE DOUBLON TITRE
-   — Ne commence PAS le contenu par "# Titre de l'article".
-   — Commence directement par le premier paragraphe ou une citation forte.
-   — Le titre est déjà affiché dans l'en-tête de la page.
+— Accroche : une scène, un paradoxe, un chiffre qui dérange. Jamais "Cette semaine a été riche".
+— Fil narratif : les sections sont les actes d'un même récit, pas une liste à puces. Les
+  transitions doivent dire quelque chose (ce qu'un sujet éclaire de l'autre), pas juste enchaîner.
+— Hyperliens Markdown : minimum 6-8 liens. Pour lier un ARTICLE FOURNI ci-dessus, écris le lien
+  avec SON TOKEN comme cible : `[ton texte](srcref:ID)`. N'écris JAMAIS l'URL brute d'un article
+  fourni — tu la déformes systématiquement ; le token sera remplacé par l'URL exacte. Pour un
+  autre site (projet/orga officiel), ne mets un lien que si tu es CERTAIN de l'URL ; en cas de
+  doute, cite sans lien plutôt que d'inventer une URL.
+— Images : si une OG image pertinente est fournie, place-la APRÈS le 1er paragraphe de sa section
+  (format ![desc courte](url)). Tableau Markdown uniquement pour comparer des données (1-2 max).
+— Ne commence PAS par "# Titre" (il est déjà affiché). Commence par le texte.
 {security_instruction}
 {archi_instruction}
 
-═══ STRUCTURE RECOMMANDÉE (FLEXIBLE) ═══
+═══ STRUCTURE = INTENTION, PAS SCRIPT ═══
 
-— 2-3 paragraphes d'accroche (pas de heading, juste du texte)
-— ## Section 1 (sujet le plus fort ou le plus inattendu)
-— [liant] ## Section 2
-— [liant] ## Section 3 (etc.)
-— ## Le fil de la semaine (ou titre équivalent — le sens de tout ça)
+Ce qui suit est une orientation, pas un gabarit à remplir. Juge toi-même ce qui colle aux
+articles réels — fusionne, réordonne, saute une étape si besoin.
+
+— 2-3 paragraphes d'accroche (sans heading)
+— quelques sections ## (le sujet le plus fort en premier)
+— une clôture SEULEMENT si un vrai fil conducteur relie les sujets. S'il existe, révèle-le par
+  une formule journalistique trouvée, pas par un bilan scolaire. S'il n'existe pas, termine sur
+  le sujet le plus marquant — surtout pas de conclusion-bilan artificielle ni de méta-résumé.
 — [Si sécurité] ## Actions immédiates (avec code blocks)
 — [Si architecture] section dédiée
-— Paragraphe de clôture court, sans heading
 
 ═══ CONTRAINTES TECHNIQUES ═══
 
-- Longueur : 1500-2500 mots par article.
+- Longueur : 1500-2500 mots, mais vise la DENSITÉ, pas le remplissage. Coupe toute phrase qui
+  n'apporte ni info, ni opinion, ni rythme. Mieux vaut 1600 mots tendus que 2400 dilués.
 - Markdown GFM. Les liens externes ouvrent dans un nouvel onglet (c'est géré par le frontend,
   écris juste des liens Markdown normaux).
 - title_fr et title_en doivent être DIFFÉRENTS — deux angles éditoriaux sur la même semaine.
@@ -465,27 +540,50 @@ def generate_ai_synthesis(
             + "\n".join(prev_lines)
         )
 
-    prompt = f"""You are a senior engineer writing a sharp, no-fluff AI intelligence brief.
-Access to frontier models is becoming geopolitically critical (export controls, model
-access restrictions, regulation), so be concrete about what actually matters.
+    prompt = f"""You write a sharp weekly AI intelligence brief.
+
+WHO WRITES: a senior engineer — Rust, WebAssembly, web security, Linux background — who
+reads the research as much as the press releases, holds opinions, and deflates hype.
+Access to frontier models is turning geopolitically critical (export controls, model-access
+restrictions, regulation), so be concrete about what actually moves the needle.
 
 PERIOD: {period_start} → {period_end}
 SELECTED AI ITEMS (labs, research, regulation, analysis):
 {context}
 {prev_context}
 
-WRITE IN ENGLISH ONLY. Be concise and direct — 500-900 words total. No filler, no
-"this week was busy" intros. Markdown GFM. Use Markdown hyperlinks to primary sources.
-DO NOT start with a "# Title". NO images.
+═══ VOICE — this is where AI-generated writing gives itself away ═══
 
-Cover, in this order, with short "## " sections:
-1. What happened — the 2-4 items that genuinely matter (one tight paragraph or bullets).
-2. ## Where it sits in the state of the art — how these moves fit (or break) the current
-   AI frontier; what's genuinely new vs incremental.
-3. ## Implications — short / medium / long term — be explicit about timeframe and about
-   geopolitical/regulatory/access angles where relevant.
-4. ## What to do as a developer — concrete, actionable steps (tools to try, deps to pin,
-   things to watch, decisions to revisit). No vague "stay informed".
+Make it read like a HUMAN wrote it, not a model.
+— Vary the rhythm: short sentences that land, next to longer dense ones.
+— Take a stance. A real verdict beats "it is worth noting that".
+— Concrete over abstract: a number, a name, a specific consequence — not a generality.
+— Speak to the reader when it helps ("if you pinned to that API last quarter, re-test now").
+— Register of good US tech journalism: direct, opinionated, factual, unafraid to call it.
+  Draw on that humanity WITHOUT imitating any specific writer's signature. The voice stays
+  yours — the senior engineer above.
+
+BANNED (the fingerprints of machine prose): "In summary", "In conclusion", "It's worth noting",
+"In a world where", "delve into", "dive in", "landscape", "game-changer", "fascinating",
+"In today's fast-paced". No stacked mechanical transitions ("Moreover", "Furthermore",
+"Additionally"). No reflexive rule-of-three. And NEVER write a sentence that exposes the brief's
+own scaffolding (e.g. "this week's items are connected by X because Y") — if a thread exists,
+show it through a concrete observation; if it doesn't, don't manufacture one.
+
+═══ SHAPE — intent, not a template ═══
+
+English only. Tight: 500-900 words. No "this week was busy" intro. Markdown GFM, no "# Title"
+line, no images. To link a SELECTED item above, use ITS TOKEN as the target: `[text](srcref:ID)`
+— never its raw URL (it gets mangled); the token is swapped for the exact URL. For any other
+site, link only if you're sure of the URL, otherwise mention it without a link. The four beats
+below are the spine — merge, reorder or drop headings to fit the actual items, don't fill a form:
+
+— What genuinely happened (the 2-4 items that matter).
+— Where it sits in the state of the art — what's actually new vs incremental.
+— Implications, short / medium / long term — name the timeframe; geopolitical/regulatory/access
+  angle where it's real.
+— What to do as a developer — concrete moves (tools to try, deps to pin, decisions to revisit),
+  never a vague "stay informed".
 
 OUTPUT — pure JSON, nothing before or after, no markdown fence:
 {{
@@ -704,7 +802,10 @@ def main() -> None:
         if fr_words < 1000:
             print(f"[synthesis] Warning: FR article seems short ({fr_words} words)")
 
+        # Hero illustration — gate it for relevance (was previously unchecked → junk heroes)
         illustration = images[0] if images else {}
+        if illustration:
+            illustration = vet_illustration(client, illustration, context_summary) or {}
 
         # Architecture visual
         archi_info   = synthesis.get("architecture_info", {})
@@ -714,6 +815,11 @@ def main() -> None:
             archi_visual = fetch_wikipedia_info(archi_info["search_query"])
             if archi_visual.get("image_url"):
                 print(f"[wikipedia] Image: {archi_visual['image_url'][:60]}…")
+
+    # Swap srcref:<id> tokens for the EXACT feed URLs (the model never types source URLs).
+    id_to_url = {a["id"]: a.get("url", "") for a in candidate_articles if a.get("url")}
+    synthesis["content_fr"] = resolve_source_links(synthesis.get("content_fr", ""), id_to_url)
+    synthesis["content_en"] = resolve_source_links(synthesis.get("content_en", ""), id_to_url)
 
     # Remove existing synthesis if overwriting
     items = [i for i in data["items"] if i.get("id") != synthesis_id]
