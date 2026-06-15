@@ -6,7 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       force_synthesis:
-        description: 'Force weekly synthesis (ignore day-of-week check)'
+        description: 'Force general weekly synthesis (ignore day-of-week check)'
+        type: boolean
+        required: false
+        default: false
+      force_ai_synthesis:
+        description: 'Force dedicated AI synthesis (ignore day-of-week check)'
         type: boolean
         required: false
         default: false
@@ -64,23 +69,43 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      # ── Step 3: Synthesize (Monday only, or forced) ────────────────────────
-      - name: Check if synthesis should run
+      # ── Step 3a: General synthesis (Monday only, or forced) ────────────────
+      - name: Check if general synthesis should run
         id: should_synthesize
         run: |
           FORCED="${{ github.event.inputs.force_synthesis }}"
           DAY=$(date +%u)  # 1=Monday … 7=Sunday
           if [ "$FORCED" = "true" ] || [ "$DAY" = "1" ]; then
             echo "run=true" >> $GITHUB_OUTPUT
-            echo "Synthesis will run (forced=$FORCED, day=$DAY)"
+            echo "General synthesis will run (forced=$FORCED, day=$DAY)"
           else
             echo "run=false" >> $GITHUB_OUTPUT
-            echo "Synthesis skipped (not Monday, not forced)"
+            echo "General synthesis skipped (not Monday, not forced)"
           fi
 
-      - name: Generate weekly synthesis (Claude Sonnet)
+      - name: Generate general weekly synthesis (Claude Sonnet, AI excluded)
         if: steps.should_synthesize.outputs.run == 'true'
-        run: python scripts/synthesize_news.py
+        run: python scripts/synthesize_news.py --track general
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # ── Step 3b: Dedicated AI synthesis (Mon + Thu, or forced) ─────────────
+      - name: Check if AI synthesis should run
+        id: should_synthesize_ai
+        run: |
+          FORCED="${{ github.event.inputs.force_ai_synthesis }}"
+          DAY=$(date +%u)  # 1=Monday, 4=Thursday
+          if [ "$FORCED" = "true" ] || [ "$DAY" = "1" ] || [ "$DAY" = "4" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+            echo "AI synthesis will run (forced=$FORCED, day=$DAY)"
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+            echo "AI synthesis skipped (not Mon/Thu, not forced)"
+          fi
+
+      - name: Generate dedicated AI synthesis (Claude Sonnet, EN-only, lean)
+        if: steps.should_synthesize_ai.outputs.run == 'true'
+        run: python scripts/synthesize_news.py --track ai
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
@@ -91,9 +116,14 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/news.json
           git diff --staged --quiet && echo "No changes." || {
-            DAY=$(date +%u)
-            if [ "${{ github.event.inputs.force_synthesis }}" = "true" ] || [ "$DAY" = "1" ]; then
+            GEN="${{ steps.should_synthesize.outputs.run }}"
+            AI="${{ steps.should_synthesize_ai.outputs.run }}"
+            if [ "$GEN" = "true" ] && [ "$AI" = "true" ]; then
+              MSG="chore: weekly tech + AI synthesis — $(date +%G-W%V)"
+            elif [ "$GEN" = "true" ]; then
               MSG="chore: weekly tech synthesis — $(date +%G-W%V)"
+            elif [ "$AI" = "true" ]; then
+              MSG="chore: AI synthesis — $(date +%Y-%m-%d)"
             else
               MSG="chore: update tech news feed"
             fi

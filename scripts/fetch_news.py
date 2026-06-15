@@ -67,13 +67,36 @@ SOURCES = [
     {"name": "LWN.net",            "url": "https://lwn.net/headlines/rss",                                   "lang": "en", "domain": "dev_stack"},
     {"name": "Lobste.rs",          "url": "https://lobste.rs/rss",                                           "lang": "en", "domain": "dev_stack"},
     {"name": "LinuxFr.org",        "url": "https://linuxfr.org/news.atom",                                   "lang": "fr", "domain": "dev_stack"},
+    {"name": "ArXiv CS.PL",        "url": "https://arxiv.org/rss/cs.PL",                                     "lang": "en", "domain": "dev_stack", "no_filter": True, "max_items": 8},
 
-    # ── DOMAIN: ai_emerging ──────────────────────────────────────────────────
-    {"name": "ArXiv CS.AI",        "url": "https://arxiv.org/rss/cs.AI",                                     "lang": "en", "domain": "ai_emerging", "no_filter": True, "max_items": 10},
-    {"name": "ArXiv CS.PL",        "url": "https://arxiv.org/rss/cs.PL",                                     "lang": "en", "domain": "ai_emerging", "no_filter": True, "max_items": 8},
-    {"name": "Papers With Code",   "url": "https://paperswithcode.com/blog/feed/",                           "lang": "en", "domain": "ai_emerging", "no_filter": True},
-    {"name": "IEEE Spectrum",      "url": "https://spectrum.ieee.org/feeds/feed.rss",                        "lang": "en", "domain": "ai_emerging"},
-    {"name": "ACM Tech News",      "url": "https://technews.acm.org/feed.xml",                               "lang": "en", "domain": "ai_emerging"},
+    # ── DOMAIN: ai ───────────────────────────────────────────────────────────
+    # Dedicated AI watch — quality sources only. Excluded from the general synthesis.
+    # NOTE: feeds verified reachable via scripts/check_feeds.py. Anthropic, Meta AI and
+    # Mistral publish no public RSS, so they are intentionally absent (no dead feeds).
+    # ⟶ labos officiels
+    {"name": "OpenAI",             "url": "https://openai.com/news/rss.xml",                                 "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    {"name": "Google DeepMind",    "url": "https://deepmind.google/blog/rss.xml",                            "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    {"name": "Hugging Face",       "url": "https://huggingface.co/blog/feed.xml",                            "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    {"name": "Microsoft Research", "url": "https://www.microsoft.com/en-us/research/feed/",                  "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    # ⟶ recherche académique
+    {"name": "ArXiv CS.AI",        "url": "https://arxiv.org/rss/cs.AI",                                     "lang": "en", "domain": "ai", "no_filter": True, "max_items": 10},
+    {"name": "ArXiv CS.LG",        "url": "https://arxiv.org/rss/cs.LG",                                     "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    {"name": "ArXiv CS.CL",        "url": "https://arxiv.org/rss/cs.CL",                                     "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    {"name": "Google Research",    "url": "https://research.google/blog/rss/",                               "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    {"name": "BAIR Blog",          "url": "https://bair.berkeley.edu/blog/feed.xml",                         "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    # ⟶ réglementaire / légal / politique (cs.CY = AI governance/ethics papers)
+    {"name": "ArXiv CS.CY",        "url": "https://arxiv.org/rss/cs.CY",                                     "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    {"name": "EU Digital Strategy","url": "https://digital-strategy.ec.europa.eu/en/rss.xml",               "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    {"name": "NIST News",          "url": "https://www.nist.gov/news-events/news/rss.xml",                  "lang": "en", "domain": "ai", "no_filter": True, "max_items": 8},
+    # ⟶ analyse / sécurité IA
+    {"name": "Import AI",          "url": "https://importai.substack.com/feed",                              "lang": "en", "domain": "ai", "no_filter": True, "max_items": 4},
+    {"name": "The Gradient",       "url": "https://thegradient.pub/rss/",                                    "lang": "en", "domain": "ai", "no_filter": True, "max_items": 4},
+    {"name": "MIT Tech Review AI", "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed", "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+    {"name": "Ars Technica AI",    "url": "https://arstechnica.com/ai/feed/",                                "lang": "en", "domain": "ai", "no_filter": True, "max_items": 6},
+
+    # ── DOMAIN: business_market (broad tech/market signal) ───────────────────
+    {"name": "IEEE Spectrum",      "url": "https://spectrum.ieee.org/feeds/feed.rss",                        "lang": "en", "domain": "business_market"},
+    {"name": "ACM Tech News",      "url": "https://technews.acm.org/feed.xml",                               "lang": "en", "domain": "business_market"},
 
     # ── DOMAIN: security ─────────────────────────────────────────────────────
     {"name": "CISA Advisories",    "url": "https://www.cisa.gov/cybersecurity-advisories/feed",              "lang": "en", "domain": "security", "no_filter": True},
@@ -277,7 +300,7 @@ def is_expired(item: dict, now_iso: str) -> bool:
 
 
 def main() -> None:
-    out_path   = Path(__file__).parent.parent / "public" / "news.json"
+    out_path   = Path(os.environ.get("NEWS_JSON_PATH") or (Path(__file__).parent.parent / "public" / "news.json"))
     fetched_at = datetime.now(timezone.utc).isoformat()
     now_iso    = fetched_at
 

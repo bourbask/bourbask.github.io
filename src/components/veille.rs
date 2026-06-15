@@ -31,6 +31,10 @@ struct NewsItem {
     source: String,
     #[serde(default)]
     categories: Vec<String>,
+    #[serde(default)]
+    domain: Option<String>,
+    #[serde(default)]
+    track: Option<String>,
     published_at: String,
     #[serde(default)]
     lang: String,
@@ -168,6 +172,8 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
     let title_en = item.title_en.clone();
     let content_fr = item.content_fr.clone().unwrap_or_default();
     let content_en = item.content_en.clone().unwrap_or_default();
+    // AI-track briefs are English-only — always render the EN title/content.
+    let is_ai = item.track.as_deref() == Some("ai");
     let detail_url = format!("/veille?synthesis={}", id);
 
     let period_start2 = period_start.clone();
@@ -190,6 +196,15 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
 
             <article class="veille-synthesis-card">
                 <div class="veille-synthesis-card-header">
+                    {move || if is_ai {
+                        view! {
+                            <span class="veille-synthesis-badge veille-synthesis-badge-ai">
+                                {move || i18n.t("veille.synthesis.aiBadge")}
+                            </span>
+                        }.into_any()
+                    } else {
+                        ().into_any()
+                    }}
                     <span class="veille-synthesis-badge">
                         {move || i18n.t("veille.synthesis.aiGenerated")}
                     </span>
@@ -210,10 +225,10 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
                 <h2 class="veille-synthesis-card-title">
                     {move || {
                         let lang = i18n.current_lang_code();
-                        if lang == "fr" {
-                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
-                        } else {
+                        if is_ai || lang != "fr" {
                             title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
+                        } else {
+                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
                         }
                     }}
                 </h2>
@@ -230,7 +245,7 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
                 <p class="veille-synthesis-excerpt">
                     {move || {
                         let lang = i18n.current_lang_code();
-                        let content = if lang == "fr" { &content_fr } else { &content_en };
+                        let content = if is_ai || lang != "fr" { &content_en } else { &content_fr };
                         synthesis_excerpt(content, 250)
                     }}
                 </p>
@@ -259,6 +274,7 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
     let title_en = item.title_en.clone();
     let content_fr = item.content_fr.clone().unwrap_or_default();
     let content_en = item.content_en.clone().unwrap_or_default();
+    let is_ai = item.track.as_deref() == Some("ai");
 
     let period_start2 = period_start.clone();
     let period_end2 = period_end.clone();
@@ -273,6 +289,15 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
 
             <header class="synthesis-detail-header">
                 <div class="synthesis-detail-meta">
+                    {move || if is_ai {
+                        view! {
+                            <span class="veille-synthesis-badge veille-synthesis-badge-ai">
+                                {move || i18n.t("veille.synthesis.aiBadge")}
+                            </span>
+                        }.into_any()
+                    } else {
+                        ().into_any()
+                    }}
                     <span class="veille-synthesis-badge">
                         {move || i18n.t("veille.synthesis.aiGenerated")}
                     </span>
@@ -301,10 +326,10 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
                 <h1 class="synthesis-detail-title">
                     {move || {
                         let lang = i18n.current_lang_code();
-                        if lang == "fr" {
-                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
-                        } else {
+                        if is_ai || lang != "fr" {
                             title_en.clone().or_else(|| title_fr.clone()).unwrap_or_default()
+                        } else {
+                            title_fr.clone().or_else(|| title_en.clone()).unwrap_or_default()
                         }
                     }}
                 </h1>
@@ -313,7 +338,7 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
             <div class="synthesis-detail-body">
                 {move || {
                     let lang = i18n.current_lang_code();
-                    let content = if lang == "fr" { content_fr.clone() } else { content_en.clone() };
+                    let content = if is_ai || lang != "fr" { content_en.clone() } else { content_fr.clone() };
                     let html = markdown_to_html(&content);
                     view! { <div class="synthesis-detail-content" inner_html={html}></div> }
                 }}
@@ -401,6 +426,7 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
 
 const STATIC_FILTERS: &[(&str, &str)] = &[
     ("all", "veille.filterAll"),
+    ("ai", "veille.filterAI"),
     ("urgent", "veille.filterUrgent"),
     ("good_news", "veille.filterGoodNews"),
     ("future_watch", "veille.filterFutureWatch"),
@@ -545,9 +571,23 @@ pub fn VeillePage() -> impl IntoView {
                                         let filter = active_filter.get();
                                         let filtered: Vec<NewsItem> = data.items.into_iter()
                                             .filter(|item| {
+                                                // An item belongs to the AI track if it's an AI-domain
+                                                // article or an AI-track synthesis.
+                                                let is_ai_item = item.domain.as_deref() == Some("ai")
+                                                    || item.track.as_deref() == Some("ai");
+
+                                                // Synthesis week buttons: match regardless of track.
                                                 if filter.starts_with("synthesis_") {
                                                     return item.id == filter
                                                         || item.synthesis_id.as_deref() == Some(filter.as_str());
+                                                }
+                                                // Dedicated AI tab: only AI items.
+                                                if filter == "ai" {
+                                                    return is_ai_item;
+                                                }
+                                                // Every other view hides AI items (they live under the AI tab).
+                                                if is_ai_item {
+                                                    return false;
                                                 }
                                                 item.item_type == "synthesis"
                                                     || filter == "all"

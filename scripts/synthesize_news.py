@@ -441,10 +441,101 @@ JSON pur — zéro texte avant ou après, zéro fence markdown :
         return None
 
 
+def generate_ai_synthesis(
+    client: anthropic.Anthropic,
+    articles: list[dict],
+    period_start: str,
+    period_end: str,
+    previous_syntheses: list[dict],
+    synth_id: str,
+) -> dict | None:
+    """
+    Token-lean dedicated AI synthesis: ENGLISH ONLY, short, no illustrations.
+    Goes straight to the point: where this week's AI news sits in the state of
+    the art, short/medium/long-term implications, and concrete developer actions.
+    One Sonnet call, no Haiku passes, no image fetching.
+    """
+    context = build_context(articles)
+
+    prev_context = ""
+    if previous_syntheses:
+        prev_lines = [f'  - "{s.get("title_en","?")}"' for s in previous_syntheses[:3]]
+        prev_context = (
+            "\nPREVIOUS AI BRIEFS (do not repeat these angles):\n"
+            + "\n".join(prev_lines)
+        )
+
+    prompt = f"""You are a senior engineer writing a sharp, no-fluff AI intelligence brief.
+Access to frontier models is becoming geopolitically critical (export controls, model
+access restrictions, regulation), so be concrete about what actually matters.
+
+PERIOD: {period_start} → {period_end}
+SELECTED AI ITEMS (labs, research, regulation, analysis):
+{context}
+{prev_context}
+
+WRITE IN ENGLISH ONLY. Be concise and direct — 500-900 words total. No filler, no
+"this week was busy" intros. Markdown GFM. Use Markdown hyperlinks to primary sources.
+DO NOT start with a "# Title". NO images.
+
+Cover, in this order, with short "## " sections:
+1. What happened — the 2-4 items that genuinely matter (one tight paragraph or bullets).
+2. ## Where it sits in the state of the art — how these moves fit (or break) the current
+   AI frontier; what's genuinely new vs incremental.
+3. ## Implications — short / medium / long term — be explicit about timeframe and about
+   geopolitical/regulatory/access angles where relevant.
+4. ## What to do as a developer — concrete, actionable steps (tools to try, deps to pin,
+   things to watch, decisions to revisit). No vague "stay informed".
+
+OUTPUT — pure JSON, nothing before or after, no markdown fence:
+{{
+  "title_en": "Punchy brief title (max 80 chars)",
+  "content_en": "[English brief — starts directly with text, NOT with # Title]"
+}}"""
+
+    try:
+        response = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=4000,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = response.content[0].text.strip()
+        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
+        text = re.sub(r"\n?```\s*$", "", text)
+        return json.loads(text)
+    except Exception as e:
+        print(f"[ai-synthesis] generation failed: {e}", file=sys.stderr)
+        return None
+
+
+def ai_window(data: dict, now: datetime) -> tuple[datetime, datetime, str]:
+    """
+    Rolling window for the dedicated AI synthesis: from the period_end of the most
+    recent AI synthesis (or now-7d if none) up to now. ID is date-based so the
+    cadence (e.g. Mon + Thu) is free. Returns (start_dt, end_dt, synth_id).
+    """
+    prev_ends = [
+        i.get("period_end", "")
+        for i in data.get("items", [])
+        if i.get("type") == "synthesis" and i.get("track") == "ai" and i.get("period_end")
+    ]
+    if prev_ends:
+        last = max(prev_ends)  # "YYYY-MM-DD"
+        y, m, d = (int(x) for x in last.split("-"))
+        start_dt = datetime(y, m, d, 0, 0, 0, tzinfo=timezone.utc) + timedelta(days=1)
+    else:
+        start_dt = (now - timedelta(days=7)).replace(hour=0, minute=0, second=0, microsecond=0)
+    end_dt = now
+    synth_id = f"synthesis_ai_{now.strftime('%Y-%m-%d')}"
+    return start_dt, end_dt, synth_id
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--week",  help="ISO week to synthesize, e.g. 2026-W22")
     parser.add_argument("--force", action="store_true", help="Overwrite existing synthesis for this week")
+    parser.add_argument("--track", choices=["general", "ai"], default="general",
+                        help="Which synthesis track to generate (default: general)")
     args = parser.parse_args()
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -452,16 +543,19 @@ def main() -> None:
         print("[synthesis] ANTHROPIC_API_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    out_path = Path(__file__).parent.parent / "public" / "news.json"
+    out_path = Path(os.environ.get("NEWS_JSON_PATH") or (Path(__file__).parent.parent / "public" / "news.json"))
     if not out_path.exists():
         print("[synthesis] news.json not found", file=sys.stderr)
         sys.exit(1)
 
     data = json.loads(out_path.read_text(encoding="utf-8"))
     now  = datetime.now(timezone.utc)
+    track = args.track
 
-    # Determine period
-    if args.week:
+    # Determine period + synthesis id (track-aware)
+    if track == "ai":
+        period_start_dt, period_end_dt, synthesis_id = ai_window(data, now)
+    elif args.week:
         period_start_dt, period_end_dt = parse_week(args.week)
         synthesis_id = f"synthesis_{args.week.replace('-', '_')}"
     else:
@@ -471,7 +565,7 @@ def main() -> None:
 
     period_start = period_start_dt.strftime("%Y-%m-%d")
     period_end   = period_end_dt.strftime("%Y-%m-%d")
-    print(f"Period: {period_start} → {period_end}  [{synthesis_id}]")
+    print(f"[{track}] Period: {period_start} → {period_end}  [{synthesis_id}]")
 
     # Check if synthesis already exists
     existing_synth = next((i for i in data["items"] if i.get("id") == synthesis_id), None)
@@ -479,74 +573,111 @@ def main() -> None:
         print(f"[synthesis] {synthesis_id} already exists. Use --force to overwrite.")
         sys.exit(0)
 
-    # Load previous syntheses for context (exclude current week)
+    # Load previous syntheses for context (same track, exclude current id)
     previous_syntheses = [
         i for i in data["items"]
-        if i.get("type") == "synthesis" and i.get("id") != synthesis_id
+        if i.get("type") == "synthesis"
+        and i.get("id") != synthesis_id
+        and (i.get("track", "general") == track)
     ][:3]
 
-    # Collect selected articles for this period
+    # Collect selected articles for this period, routed by track:
+    #   ai      → only domain == "ai"
+    #   general → everything except domain == "ai"
+    def in_track(item: dict) -> bool:
+        is_ai = item.get("domain") == "ai"
+        return is_ai if track == "ai" else not is_ai
+
     candidate_articles = [
         item for item in data.get("items", [])
         if item.get("type", "article") == "article"
         and item.get("status") in ("selected", None)
+        and in_track(item)
         and period_start_dt.isoformat() <= item.get("published_at", "") <= period_end_dt.isoformat()
     ]
 
-    if len(candidate_articles) < 3:
-        print(f"[synthesis] Only {len(candidate_articles)} articles in window — need ≥ 3", file=sys.stderr)
+    min_articles = 2 if track == "ai" else 3
+    if len(candidate_articles) < min_articles:
+        print(f"[synthesis] Only {len(candidate_articles)} {track} articles in window — need ≥ {min_articles}", file=sys.stderr)
         sys.exit(0)
 
-    print(f"Synthesizing from {len(candidate_articles)} selected articles:")
+    print(f"Synthesizing [{track}] from {len(candidate_articles)} selected articles:")
     for a in candidate_articles:
         score_str = f" [{a.get('score', '?'):.1f}]" if isinstance(a.get('score'), float) else ""
         print(f"  [{a.get('domain','?')}]{score_str} {a['title'][:70]}")
 
     print(f"\nPrevious syntheses context: {[s['id'] for s in previous_syntheses]}")
 
-    # Fetch OG images (up to 3, one per domain)
-    print("\n[image] Fetching article images…")
-    images = find_images(candidate_articles, max_images=3)
-    print(f"[image] {len(images)} image(s) found.")
-
     client = anthropic.Anthropic(api_key=api_key)
-    print("\nGenerating synthesis (claude-sonnet-4-6, up to 8000 tokens)…")
-    synthesis = generate_synthesis(
-        client, candidate_articles, period_start, period_end,
-        previous_syntheses, synthesis_id, images=images,
-    )
-    if not synthesis:
-        print("[synthesis] Generation failed", file=sys.stderr)
-        sys.exit(1)
 
-    # Proofread French content
-    print("\n[proofread] Fixing French style (Haiku)…")
-    synthesis["content_fr"] = proofread_french(client, synthesis["content_fr"])
-    print("[proofread] Done.")
+    if track == "ai":
+        # Token-lean path: English only, short, no images, no Haiku passes.
+        print("\nGenerating AI brief (claude-sonnet-4-6, English only, ≤4000 tokens)…")
+        ai = generate_ai_synthesis(
+            client, candidate_articles, period_start, period_end,
+            previous_syntheses, synthesis_id,
+        )
+        if not ai:
+            print("[synthesis] AI generation failed", file=sys.stderr)
+            sys.exit(1)
+        title_en = ai.get("title_en", "AI Brief")
+        synthesis = {
+            "title_fr":         title_en,   # mirror — frontend renders EN for the AI track
+            "title_en":         title_en,
+            "content_fr":       "",
+            "content_en":       ai.get("content_en", ""),
+            "security_actions": [],
+        }
+        en_words = len(synthesis["content_en"].split())
+        fr_words = 0
+        print(f"[synthesis] Word count — EN: {en_words} (AI brief, EN only)")
+        if en_words < 300:
+            print(f"[synthesis] Warning: AI brief seems short ({en_words} words)")
+        illustration = {}
+        archi_visual = {}
+    else:
+        # Fetch OG images (up to 3, one per domain)
+        print("\n[image] Fetching article images…")
+        images = find_images(candidate_articles, max_images=3)
+        print(f"[image] {len(images)} image(s) found.")
 
-    # Validate images in both languages
-    context_summary = f"Article de veille tech semaine {synthesis_id} — sujets : {', '.join(a['title'][:40] for a in candidate_articles[:4])}"
-    print("\n[img-review] Validating images…")
-    synthesis["content_fr"] = validate_images(client, synthesis["content_fr"], context_summary)
-    synthesis["content_en"] = validate_images(client, synthesis["content_en"], context_summary)
+        print("\nGenerating synthesis (claude-sonnet-4-6, up to 16000 tokens)…")
+        synthesis = generate_synthesis(
+            client, candidate_articles, period_start, period_end,
+            previous_syntheses, synthesis_id, images=images,
+        )
+        if not synthesis:
+            print("[synthesis] Generation failed", file=sys.stderr)
+            sys.exit(1)
 
-    # Word count check
-    fr_words = len(synthesis.get("content_fr", "").split())
-    en_words = len(synthesis.get("content_en", "").split())
-    print(f"[synthesis] Word count — FR: {fr_words}, EN: {en_words}")
-    if fr_words < 1000:
-        print(f"[synthesis] Warning: FR article seems short ({fr_words} words)")
+        # Proofread French content
+        print("\n[proofread] Fixing French style (Haiku)…")
+        synthesis["content_fr"] = proofread_french(client, synthesis["content_fr"])
+        print("[proofread] Done.")
 
-    illustration = images[0] if images else {}
+        # Validate images in both languages
+        context_summary = f"Article de veille tech semaine {synthesis_id} — sujets : {', '.join(a['title'][:40] for a in candidate_articles[:4])}"
+        print("\n[img-review] Validating images…")
+        synthesis["content_fr"] = validate_images(client, synthesis["content_fr"], context_summary)
+        synthesis["content_en"] = validate_images(client, synthesis["content_en"], context_summary)
 
-    # Architecture visual
-    archi_info   = synthesis.get("architecture_info", {})
-    archi_visual = {}
-    if archi_info.get("present") and archi_info.get("search_query"):
-        print(f"[wikipedia] Fetching: {archi_info['search_query']}")
-        archi_visual = fetch_wikipedia_info(archi_info["search_query"])
-        if archi_visual.get("image_url"):
-            print(f"[wikipedia] Image: {archi_visual['image_url'][:60]}…")
+        # Word count check
+        fr_words = len(synthesis.get("content_fr", "").split())
+        en_words = len(synthesis.get("content_en", "").split())
+        print(f"[synthesis] Word count — FR: {fr_words}, EN: {en_words}")
+        if fr_words < 1000:
+            print(f"[synthesis] Warning: FR article seems short ({fr_words} words)")
+
+        illustration = images[0] if images else {}
+
+        # Architecture visual
+        archi_info   = synthesis.get("architecture_info", {})
+        archi_visual = {}
+        if archi_info.get("present") and archi_info.get("search_query"):
+            print(f"[wikipedia] Fetching: {archi_info['search_query']}")
+            archi_visual = fetch_wikipedia_info(archi_info["search_query"])
+            if archi_visual.get("image_url"):
+                print(f"[wikipedia] Image: {archi_visual['image_url'][:60]}…")
 
     # Remove existing synthesis if overwriting
     items = [i for i in data["items"] if i.get("id") != synthesis_id]
@@ -560,6 +691,7 @@ def main() -> None:
     synthesis_card = {
         "id":                synthesis_id,
         "type":              "synthesis",
+        "track":             track,
         "title_fr":          synthesis.get("title_fr", "Synthèse hebdomadaire"),
         "title_en":          synthesis.get("title_en", "Weekly Synthesis"),
         "period_start":      period_start,
