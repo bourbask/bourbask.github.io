@@ -1,0 +1,38 @@
+name: Feeds Smoke Check
+
+# Validates that every source feed in fetch_news.SOURCES is reachable.
+# Network only — NO AI, NO tokens. Non-blocking: reports broken feeds without
+# failing the scheduled run (run manually with strict mode if you want a gate).
+on:
+  schedule:
+    - cron: '0 5 * * 1'  # weekly Monday 05:00 UTC, before the news pipeline
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Fail the job if any feed is broken'
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Check feeds
+        run: |
+          if [ "${{ github.event.inputs.strict }}" = "true" ]; then
+            python scripts/check_feeds.py --strict
+          else
+            python scripts/check_feeds.py
+          fi

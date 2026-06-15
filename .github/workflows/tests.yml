@@ -1,0 +1,33 @@
+name: Pipeline Tests
+
+# Offline unit/integration tests for the news pipeline scripts.
+# No ANTHROPIC_API_KEY is provided here — by construction these tests cannot
+# spend any AI tokens. The Anthropic client is faked and all network is blocked.
+on:
+  push:
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/tests.yml'
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/tests.yml'
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements-dev.txt
+
+      - name: Run tests (no API key → zero AI tokens)
+        run: python -m pytest scripts/tests -v

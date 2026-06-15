@@ -337,6 +337,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.loading", "Chargement des actualités…");
     map.insert("veille.error", "Impossible de charger les actualités. Réessayez plus tard.");
     map.insert("veille.filterAll", "Tout");
+    map.insert("veille.filterAI", "IA");
     map.insert("veille.filterUrgent", "Urgent");
     map.insert("veille.filterGoodNews", "Bonne nouvelle");
     map.insert("veille.filterFutureWatch", "À surveiller");
@@ -344,6 +345,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.filterGeneral", "Général");
     map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
     map.insert("veille.synthesis.aiGenerated", "Généré par Claude IA");
+    map.insert("veille.synthesis.aiBadge", "Brief IA");
     map.insert("veille.synthesis.weekOf", "Semaine du");
     map.insert("veille.synthesis.to", "au");
     map.insert("veille.synthesis.showSources", "Sources");

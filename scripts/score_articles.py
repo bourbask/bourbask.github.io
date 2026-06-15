@@ -46,6 +46,8 @@ GLOBAL_TOP           = 5
 TOP_PER_DOMAIN       = 3
 MAX_CANDIDATES       = 15   # max articles sent to Claude per domain scoring
 MAX_ARCH_IN_TOP      = 1    # max architecture articles in global top 5
+AI_DOMAIN            = "ai" # dedicated AI track — never enters the general top 5
+AI_TOP               = 6    # AI articles selected for the dedicated AI synthesis
 
 # Scoring prompt per domain
 DOMAIN_CRITERIA: dict[str, str] = {
@@ -57,13 +59,17 @@ DOMAIN_CRITERIA: dict[str, str] = {
         "Genuine signal vs hype/marketing 20%. "
         "Penalise marketing posts. Reward technical depth and concrete releases."
     ),
-    "ai_emerging": (
-        "You are a skeptical technical practitioner evaluating AI/emerging tech articles. "
-        "Score on: Practical real-world applicability (not just benchmarks) 40%, "
-        "Scientific rigor and genuine breakthrough 40%, "
-        "Novelty vs incremental hype 20%. "
-        "Heavily penalise LLM hype without technical substance. "
-        "Reward peer-reviewed results, open-source releases, reproducible findings."
+    "ai": (
+        "You are a skeptical senior practitioner curating a dedicated AI watch. "
+        "Access to frontier models is becoming geopolitically critical, so weight signal accordingly. "
+        "Score on: Strategic/regulatory significance — official lab announcements, model "
+        "access & export controls, EU AI Act / NIST / policy that changes what developers "
+        "can build or use 40%, "
+        "Scientific substance — reproducible research, peer-reviewed or open results, real "
+        "state-of-the-art movement (not benchmark theater) 40%, "
+        "Novelty and developer impact vs recycled hype 20%. "
+        "Heavily penalise marketing, vague 'AI-powered' posts, and press releases without "
+        "technical or policy substance. Reward primary sources: labs, papers, regulators."
     ),
     "security": (
         "You are evaluating security articles for web developers who need to take action. "
@@ -179,12 +185,15 @@ Rules:
 
 def select_global_top5(domain_winners: dict[str, list[dict]]) -> list[str]:
     """
-    From top-3 per domain, select global top 5.
-    Constraint: max MAX_ARCH_IN_TOP architecture articles.
+    From top-3 per domain, select global top 5 for the GENERAL synthesis.
+    Constraints: max MAX_ARCH_IN_TOP architecture articles; the AI domain is
+    excluded entirely (it has its own dedicated track — see select_ai_top).
     Returns list of selected article IDs.
     """
     candidates = []
     for domain, articles in domain_winners.items():
+        if domain == AI_DOMAIN:
+            continue  # AI never competes in the general top
         for art in articles[:TOP_PER_DOMAIN]:
             candidates.append({
                 "id":     art["id"],
@@ -209,6 +218,16 @@ def select_global_top5(domain_winners: dict[str, list[dict]]) -> list[str]:
     return selected
 
 
+def select_ai_top(domain_winners: dict[str, list[dict]], n: int = AI_TOP) -> list[str]:
+    """
+    Select the top N AI-domain articles for the dedicated AI synthesis.
+    Returns list of selected article IDs (empty if no AI articles scored).
+    """
+    ai_articles = domain_winners.get(AI_DOMAIN, [])
+    ai_articles = sorted(ai_articles, key=lambda x: x.get("_score", 0.0), reverse=True)
+    return [art["id"] for art in ai_articles[:n]]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Score and select daily top articles.")
     parser.add_argument("--date",    help="Target date YYYY-MM-DD (default: today)")
@@ -221,7 +240,7 @@ def main() -> None:
         print("[score] ANTHROPIC_API_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    out_path = Path(__file__).parent.parent / "public" / "news.json"
+    out_path = Path(os.environ.get("NEWS_JSON_PATH") or (Path(__file__).parent.parent / "public" / "news.json"))
     if not out_path.exists():
         print("[score] news.json not found", file=sys.stderr)
         sys.exit(1)
@@ -281,16 +300,24 @@ def main() -> None:
             print(f"  #{rank} [{art['_score']:.1f}] {art['title'][:80]}")
             print(f"        → {art['_score_reason']}")
 
-    # Global top 5
-    selected_ids = set(select_global_top5(domain_winners))
+    # General top 5 (AI excluded) + dedicated AI top
+    general_ids = set(select_global_top5(domain_winners))
+    ai_ids      = set(select_ai_top(domain_winners))
+    selected_ids = general_ids | ai_ids
     print(f"\n{'='*60}")
-    print(f"Global top {GLOBAL_TOP} selected:")
+    print(f"General top {GLOBAL_TOP} selected (AI excluded):")
 
     all_scored = [art for arts in domain_winners.values() for art in arts]
-    selected_arts = [a for a in all_scored if a["id"] in selected_ids]
-    selected_arts.sort(key=lambda x: x.get("_score", 0.0), reverse=True)
-    for rank, art in enumerate(selected_arts, 1):
+    general_arts = [a for a in all_scored if a["id"] in general_ids]
+    general_arts.sort(key=lambda x: x.get("_score", 0.0), reverse=True)
+    for rank, art in enumerate(general_arts, 1):
         print(f"  #{rank} [{art.get('_score', 0):.1f}] [{art.get('domain')}] {art['title'][:75]}")
+
+    ai_arts = [a for a in all_scored if a["id"] in ai_ids]
+    ai_arts.sort(key=lambda x: x.get("_score", 0.0), reverse=True)
+    print(f"\nDedicated AI top {AI_TOP} selected:")
+    for rank, art in enumerate(ai_arts, 1):
+        print(f"  #{rank} [{art.get('_score', 0):.1f}] {art['title'][:80]}")
 
     if args.dry_run:
         print("\n[dry-run] Not writing to news.json.")
