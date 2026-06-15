@@ -530,6 +530,31 @@ def ai_window(data: dict, now: datetime) -> tuple[datetime, datetime, str]:
     return start_dt, end_dt, synth_id
 
 
+# Hard caps on how many articles feed a single synthesis. Daily scoring keeps ~5
+# "selected" per day, so a 7-day window accumulates ~35 — feeding them all blows
+# past the model's output budget and truncates the JSON. Capping to the top few
+# bounds tokens DURABLY and keeps each synthesis focused on what matters.
+MAX_SYNTHESIS_ARTICLES = 8   # general track
+MAX_AI_ARTICLES        = 6   # dedicated AI track
+MAX_PER_DOMAIN         = 3   # keep narrative variety in the general track
+
+
+def cap_articles(articles: list[dict], limit: int, per_domain: int) -> list[dict]:
+    """Top-N articles by score, with a soft per-domain cap to preserve variety."""
+    ranked = sorted(articles, key=lambda a: a.get("score") or 0.0, reverse=True)
+    out: list[dict] = []
+    seen: dict[str, int] = {}
+    for art in ranked:
+        d = art.get("domain", "?")
+        if seen.get(d, 0) >= per_domain:
+            continue
+        out.append(art)
+        seen[d] = seen.get(d, 0) + 1
+        if len(out) >= limit:
+            break
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--week",  help="ISO week to synthesize, e.g. 2026-W22")
@@ -600,6 +625,17 @@ def main() -> None:
     if len(candidate_articles) < min_articles:
         print(f"[synthesis] Only {len(candidate_articles)} {track} articles in window — need ≥ {min_articles}", file=sys.stderr)
         sys.exit(0)
+
+    # Cap the article count so the prompt + generated JSON stay within the model's
+    # output budget (otherwise the response truncates and json.loads fails).
+    if track == "ai":
+        limit, per_domain = MAX_AI_ARTICLES, MAX_AI_ARTICLES  # all one domain → no per-domain cap
+    else:
+        limit, per_domain = MAX_SYNTHESIS_ARTICLES, MAX_PER_DOMAIN
+    if len(candidate_articles) > limit:
+        dropped = len(candidate_articles) - limit
+        candidate_articles = cap_articles(candidate_articles, limit, per_domain)
+        print(f"[synthesis] Capped to top {limit} by score ({dropped} lower-scored dropped — bounds tokens).")
 
     print(f"Synthesizing [{track}] from {len(candidate_articles)} selected articles:")
     for a in candidate_articles:
