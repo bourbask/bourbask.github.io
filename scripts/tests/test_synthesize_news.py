@@ -35,6 +35,29 @@ def test_ai_window_defaults_to_7_days_when_no_prior():
     assert start.strftime("%Y-%m-%d") == "2026-06-08"
 
 
+# ─── cap_articles ─────────────────────────────────────────────────────────────
+def test_cap_articles_limits_total_and_picks_top_scores():
+    arts = [{"id": f"x{i}", "domain": "dev_stack", "score": float(i)} for i in range(20)]
+    out = sn.cap_articles(arts, limit=8, per_domain=8)
+    assert len(out) == 8
+    assert out[0]["score"] == 19.0           # highest first
+    assert min(a["score"] for a in out) == 12.0
+
+
+def test_cap_articles_respects_per_domain():
+    arts = ([{"id": f"d{i}", "domain": "dev_stack", "score": 9.0 - i} for i in range(6)]
+            + [{"id": f"s{i}", "domain": "security", "score": 5.0 - i} for i in range(6)])
+    out = sn.cap_articles(arts, limit=8, per_domain=3)
+    assert sum(1 for a in out if a["domain"] == "dev_stack") <= 3
+    assert sum(1 for a in out if a["domain"] == "security") <= 3
+
+
+def test_cap_articles_handles_missing_score():
+    arts = [{"id": "a", "domain": "ai"}, {"id": "b", "domain": "ai", "score": 7.0}]
+    out = sn.cap_articles(arts, limit=8, per_domain=8)
+    assert out[0]["id"] == "b"               # scored one ranks above unscored
+
+
 # ─── build_context ────────────────────────────────────────────────────────────
 def test_build_context_groups_by_domain():
     items = [{"source": "S", "lang": "en", "title": "T", "domain": "ai"}]
