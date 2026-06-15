@@ -200,6 +200,11 @@
   color: var(--text-secondary);
 }
 
+.veille-cat-ai {
+  background: rgba(20, 184, 166, 0.12);
+  color: #0d9488;
+}
+
 /* ===== DARK MODE ADJUSTMENTS ===== */
 
 [data-theme="dark"] .veille-cat-urgent {
@@ -220,6 +225,11 @@
 [data-theme="dark"] .veille-cat-stack_alt {
   background: rgba(168, 85, 247, 0.2);
   color: #a78bfa;
+}
+
+[data-theme="dark"] .veille-cat-ai {
+  background: rgba(20, 184, 166, 0.2);
+  color: #2dd4bf;
 }
 
 /* ===== WEEKLY SYNTHESIS CARD (preview) ===== */
@@ -386,6 +396,11 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* Dedicated AI brief badge — distinct teal, sits before the generic badge */
+.veille-synthesis-badge-ai {
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
 }
 
 .veille-synthesis-card-period {

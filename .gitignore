@@ -86,3 +86,8 @@ design/*.pdf
 
 # Lighthouse CI local output
 .lighthouseci/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
