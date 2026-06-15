@@ -60,9 +60,57 @@ def test_cap_articles_handles_missing_score():
 
 # ─── build_context ────────────────────────────────────────────────────────────
 def test_build_context_groups_by_domain():
-    items = [{"source": "S", "lang": "en", "title": "T", "domain": "ai"}]
+    items = [{"id": "d1", "source": "S", "lang": "en", "title": "T", "domain": "ai"}]
     ctx = sn.build_context(items)
     assert "AI" in ctx and "T" in ctx
+    assert "srcref:d1" in ctx          # link token exposed to the model
+
+
+# ─── source-link resolution ─────────────────────────────────────────────────────
+def test_resolve_source_links_link_form():
+    content = "See [the release](srcref:d1) and [the patch](srcref:s1)."
+    out = sn.resolve_source_links(content, {"d1": "https://a.com/x", "s1": "https://b.com/y"})
+    assert "[the release](https://a.com/x)" in out
+    assert "[the patch](https://b.com/y)" in out
+    assert "srcref:" not in out
+
+
+def test_resolve_source_links_bare_token():
+    out = sn.resolve_source_links("ref srcref:d1 inline", {"d1": "https://a.com/x"})
+    assert "https://a.com/x" in out
+    assert "srcref:" not in out
+
+
+def test_resolve_source_links_unknown_id_untouched():
+    content = "[x](srcref:zzz)"
+    out = sn.resolve_source_links(content, {"d1": "https://a.com/x"})
+    assert out == content          # unknown id left as-is, never a wrong URL
+
+
+def test_resolve_source_links_empty():
+    assert sn.resolve_source_links("", {"d1": "u"}) == ""
+
+
+# ─── illustration gating ─────────────────────────────────────────────────────────
+def test_is_generic_image_flags_envelope_and_logo():
+    assert sn.is_generic_image("https://x.com/assets/envelope.png")
+    assert sn.is_generic_image("https://x.com/default-share.jpg")
+    assert sn.is_generic_image("https://x.com/logo.svg")
+    assert not sn.is_generic_image("https://res.infoq.com/news/header/realimg.jpg")
+
+
+def test_vet_illustration_keep(fake_client):
+    ill = {"url": "https://x.com/screenshot.png", "caption": "Vite 8 UI"}
+    assert sn.vet_illustration(fake_client(default="KEEP"), ill, "ctx") == ill
+
+
+def test_vet_illustration_drop(fake_client):
+    ill = {"url": "https://x.com/whatever.png", "caption": "x"}
+    assert sn.vet_illustration(fake_client(default="DROP"), ill, "ctx") is None
+
+
+def test_vet_illustration_none_when_empty(fake_client):
+    assert sn.vet_illustration(fake_client(default="KEEP"), {}, "ctx") is None
 
 
 # ─── validate_images ──────────────────────────────────────────────────────────
