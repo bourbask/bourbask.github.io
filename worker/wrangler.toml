@@ -8,3 +8,7 @@ command = "cargo install -q worker-build && worker-build --release"
 [[kv_namespaces]]
 binding = "RATE_LIMIT"
 id = "2343d3a9314f4c16b7150e5e56d6e49e"
+
+[[kv_namespaces]]
+binding = "PUSH_SUBS"
+id = "76ff7ea616bb463f9cd1e25e4a69bba7"

@@ -1,7 +1,10 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use worker::*;
 
-const ALLOWED_ORIGINS: &[&str] = &["https://bourbask.github.io"];
+const ALLOWED_ORIGINS: &[&str] = &[
+    "https://bourbask.github.io",
+    "https://www.bourbasquetkev.in",
+];
 const TO_EMAIL: &str = "bourbasquet.k@etik.com";
 const MAX_NAME_LEN: usize = 100;
 const MAX_EMAIL_LEN: usize = 254;
@@ -16,10 +19,29 @@ struct ContactPayload {
     message: String,
 }
 
+#[derive(Deserialize, Serialize)]
+struct PushSubscription {
+    endpoint: String,
+    #[serde(rename = "expirationTime")]
+    expiration_time: Option<u64>,
+    keys: PushKeys,
+}
+
+#[derive(Deserialize, Serialize)]
+struct PushKeys {
+    p256dh: String,
+    auth: String,
+}
+
+#[derive(Deserialize)]
+struct UnsubscribePayload {
+    endpoints: Vec<String>,
+}
+
 fn cors_headers(origin: &str) -> Headers {
     let h = Headers::new();
     let _ = h.set("Access-Control-Allow-Origin", origin);
-    let _ = h.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    let _ = h.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     let _ = h.set("Access-Control-Allow-Headers", "Content-Type");
     h
 }
@@ -46,16 +68,142 @@ fn is_valid_email(email: &str) -> bool {
 
 #[event(fetch)]
 async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
+    if req.method() == Method::Options {
+        let origin = req.headers().get("Origin").ok().flatten().unwrap_or_default();
+        return Ok(Response::builder()
+            .with_headers(cors_headers(&origin))
+            .empty());
+    }
+
+    let path = req.path().to_string();
+    if path.starts_with("/sub/") {
+        return handle_push_routes(req, env).await;
+    }
+
+    handle_contact(req, env).await
+}
+
+async fn handle_push_routes(req: Request, env: Env) -> Result<Response> {
+    let path = req.path();
+    if path == "/sub/subscribe" {
+        subscribe_push(req, env).await
+    } else if path == "/sub/subs" {
+        list_subs(req, env).await
+    } else if path == "/sub/unsubscribe" {
+        unsubscribe_push(req, env).await
+    } else {
+        Response::error("Not Found", 404)
+    }
+}
+
+async fn subscribe_push(mut req: Request, env: Env) -> Result<Response> {
     let origin = match allowed_origin(&req) {
         Some(o) => o,
         None => return Response::error("Forbidden", 403),
     };
 
-    if req.method() == Method::Options {
-        return Ok(Response::builder()
-            .with_headers(cors_headers(&origin))
-            .empty());
+    let sub: PushSubscription = match req.json().await {
+        Ok(s) => s,
+        Err(_) => return Response::error("Bad Request", 400),
+    };
+
+    if sub.endpoint.is_empty() || sub.keys.p256dh.is_empty() || sub.keys.auth.is_empty() {
+        return Response::error("Bad Request", 400);
     }
+
+    let kv = env.kv("PUSH_SUBS")?;
+    let mut subs: Vec<PushSubscription> = kv
+        .get("subscriptions")
+        .text()
+        .await?
+        .and_then(|s| serde_json::from_str(&s).ok())
+        .unwrap_or_default();
+
+    if !subs.iter().any(|s| s.endpoint == sub.endpoint) {
+        subs.push(sub);
+        kv.put("subscriptions", serde_json::to_string(&subs)?)?
+            .execute()
+            .await?;
+    }
+
+    Response::builder()
+        .with_headers(cors_headers(&origin))
+        .ok("ok")
+}
+
+async fn list_subs(req: Request, env: Env) -> Result<Response> {
+    let expected = env.secret("NOTIFY_SECRET")?.to_string();
+    let url = req.url()?;
+    let provided: String = url
+        .query_pairs()
+        .find(|(k, _)| k == "secret")
+        .map(|(_, v)| v.to_string())
+        .unwrap_or_default();
+
+    if provided != expected {
+        return Response::error("Forbidden", 403);
+    }
+
+    let kv = env.kv("PUSH_SUBS")?;
+    let subs = kv
+        .get("subscriptions")
+        .text()
+        .await?
+        .unwrap_or_else(|| "[]".to_string());
+
+    let headers = Headers::new();
+    headers.set("Content-Type", "application/json")?;
+
+    Response::builder().with_headers(headers).ok(&subs)
+}
+
+async fn unsubscribe_push(mut req: Request, env: Env) -> Result<Response> {
+    let expected = env.secret("NOTIFY_SECRET")?.to_string();
+    let provided = req
+        .headers()
+        .get("X-Notify-Secret")
+        .ok()
+        .flatten()
+        .unwrap_or_default();
+
+    if provided != expected {
+        return Response::error("Forbidden", 403);
+    }
+
+    let payload: UnsubscribePayload = match req.json().await {
+        Ok(p) => p,
+        Err(_) => return Response::error("Bad Request", 400),
+    };
+
+    if payload.endpoints.is_empty() {
+        return Response::builder().ok("ok");
+    }
+
+    let kv = env.kv("PUSH_SUBS")?;
+    let mut subs: Vec<PushSubscription> = kv
+        .get("subscriptions")
+        .text()
+        .await?
+        .and_then(|s| serde_json::from_str(&s).ok())
+        .unwrap_or_default();
+
+    let before = subs.len();
+    subs.retain(|s| !payload.endpoints.contains(&s.endpoint));
+
+    if subs.len() < before {
+        kv.put("subscriptions", serde_json::to_string(&subs)?)?
+            .execute()
+            .await?;
+    }
+
+    Response::builder().ok("ok")
+}
+
+async fn handle_contact(req: Request, env: Env) -> Result<Response> {
+    let origin = match allowed_origin(&req) {
+        Some(o) => o,
+        None => return Response::error("Forbidden", 403),
+    };
 
     if req.method() != Method::Post {
         return Response::error("Method Not Allowed", 405);
