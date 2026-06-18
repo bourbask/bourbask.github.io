@@ -1,64 +1,64 @@
-# Architecture frontend — Rust/Leptos/WASM
+# Frontend architecture — Rust/Leptos/WASM
 
-> Dernière mise à jour : 2026-06-01
+> Last updated: 2026-06-18
 
 ---
 
-## Vue d'ensemble
+## Overview
 
-Application SPA compilée en WebAssembly via [Trunk](https://trunkrs.dev/). Mode CSR (Client-Side Rendering) — tout tourne dans le navigateur après le premier chargement du bundle WASM.
+Single-page app compiled to WebAssembly via [Trunk](https://trunkrs.dev/). CSR (Client-Side Rendering) — everything runs in the browser once the WASM bundle loads.
 
 ```
 src/                         Rust source
-├── lib.rs                   Point d'entrée WASM (mount App)
-├── app.rs                   Routeur + fournisseurs de contexte
-├── components/              Composants UI
-│   ├── mod.rs               Re-exports publics
-│   ├── navigation.rs        Barre de navigation desktop
-│   ├── mobile_nav.rs        FAB navigation mobile
-│   ├── hero.rs              Section Hero
-│   ├── about.rs             Section About
-│   ├── skills.rs            Section Skills
-│   ├── projects.rs          Section Projects
-│   ├── interests.rs         Section Interests
-│   ├── contact.rs           Section Contact
-│   ├── footer.rs            Pied de page
-│   ├── not_found.rs         Page 404
-│   ├── veille.rs            Page /veille (tech watch)
+├── lib.rs                   WASM entry point (mounts App)
+├── app.rs                   Router + context providers
+├── components/              UI components
+│   ├── mod.rs               Public re-exports
+│   ├── navigation.rs        Desktop navigation bar
+│   ├── mobile_nav.rs        Mobile navigation FAB
+│   ├── hero.rs              Hero section
+│   ├── about.rs             About section
+│   ├── skills.rs            Skills section
+│   ├── projects.rs          Projects section
+│   ├── interests.rs         Interests section
+│   ├── contact.rs           Contact section
+│   ├── footer.rs            Footer
+│   ├── not_found.rs         404 page
+│   ├── veille.rs            /veille page (tech watch)
 │   └── blog/
-│       ├── mod.rs           Route /blog + article resolver
-│       ├── blog_index.rs    Liste des articles
-│       └── blog_article.rs  Rendu d'un article
-├── services/                Logique partagée (contexte global)
+│       ├── mod.rs           /blog route + article resolver
+│       ├── blog_index.rs    Article list
+│       └── blog_article.rs  Single-article rendering
+├── services/                Shared logic (global context)
 │   ├── mod.rs
-│   ├── i18n.rs              Service internationalisation (FR/EN)
-│   ├── theme.rs             Service thème (clair/sombre)
-│   ├── storage.rs           Persistance LocalStorage
-│   └── blog.rs              Chargement et indexation des articles
+│   ├── i18n.rs              Internationalization service (FR/EN)
+│   ├── theme.rs             Theme service (light/dark)
+│   ├── storage.rs           LocalStorage persistence
+│   └── blog.rs              Article loading and indexing
 └── data/
-    ├── cv.rs                Données CV (struct statiques)
-    ├── articles/            Articles de blog (Markdown inline)
-    └── translations/        Chaînes i18n
+    ├── cv.rs                CV data (static structs)
+    ├── articles/            Blog articles (inline Markdown)
+    └── translations/        i18n strings
         ├── fr.rs
         └── en.rs
 ```
 
 ---
 
-## Routage
+## Routing
 
-Géré par `leptos_router`. 3 routes statiques :
+Handled by `leptos_router`. Three static routes:
 
 ```
 /           → HomePage      (Navigation + Hero + About + Skills + Projects + Interests + Contact + Footer)
-/blog       → BlogPage      (résout /blog et /blog/:slug)
-/veille     → VeillePage    (+ sous-route implicite /veille/synthesis/:id)
+/blog       → BlogPage      (resolves /blog and /blog/:slug)
+/veille     → VeillePage    (+ implicit sub-route /veille?synthesis=:id)
 ```
 
-Fallback : `NotFound404`.
+Fallback: `NotFound404`.
 
 ```rust
-// app.rs — structure simplifiée
+// app.rs — simplified structure
 provide_context(I18nService::new());
 provide_context(ThemeService::new());
 provide_context(BlogService::new());
@@ -70,132 +70,132 @@ Router {
     Route "/veille" → VeillePage
     fallback → NotFound404
   }
-  MobileFloatingNav  // hors des Routes, présent sur toutes les pages
+  MobileFloatingNav  // outside Routes, present on every page
 }
 ```
 
 ---
 
-## Services (contexte global)
+## Services (global context)
 
-Fournis via `provide_context` dans `App`, consommés avec `use_context` dans n'importe quel composant descendant.
+Provided via `provide_context` in `App`, consumed with `use_context` in any descendant component.
 
 ### I18nService (`services/i18n.rs`)
 
 ```
-État : Signal<Lang>   (Lang::Fr | Lang::En)
-API  : lang()         → Lang actuel
-       set_lang(l)    → bascule la langue
-       t(key)         → String traduite dans la langue active
+State : Signal<Lang>   (Lang::Fr | Lang::En)
+API   : lang()         → current Lang
+        set_lang(l)    → switch language
+        t(key)         → translated String in the active language
 ```
 
-Les traductions sont des `&'static str` dans `data/translations/fr.rs` et `en.rs`. Pas de fichier JSON externe — tout est embarqué à la compilation.
+Translations are `&'static str` in `data/translations/fr.rs` and `en.rs`. No external JSON file — everything is embedded at compile time.
 
 ### ThemeService (`services/theme.rs`)
 
 ```
-État : Signal<Theme>   (Theme::Light | Theme::Dark)
-API  : theme()         → Theme actuel
-       toggle()        → bascule
-       apply()         → écrit data-theme="dark|light" sur <html>
-Persistance : lit/écrit via StorageService (clé "theme")
+State : Signal<Theme>   (Theme::Light | Theme::Dark)
+API   : theme()         → current Theme
+        toggle()        → switch
+        apply()         → writes data-theme="dark|light" on <html>
+Persistence : reads/writes via StorageService (key "theme")
 ```
 
-Au montage, lit la préférence stockée, sinon `prefers-color-scheme` OS.
+On mount, reads the stored preference, otherwise the OS `prefers-color-scheme`.
 
 ### StorageService (`services/storage.rs`)
 
-Wrapper `LocalStorage` via `gloo-storage`. Sérialise/désérialise en JSON. Clés utilisées :
+`LocalStorage` wrapper via `gloo-storage`. Serializes/deserializes to JSON. Keys used:
 
-| Clé | Type | Utilisé par |
-|-----|------|-------------|
+| Key | Type | Used by |
+|-----|------|---------|
 | `"theme"` | `String` (`"dark"` / `"light"`) | ThemeService |
 | `"lang"` | `String` (`"fr"` / `"en"`) | I18nService |
 
 ### BlogService (`services/blog.rs`)
 
 ```
-État : &'static [Article]   (statique, compilé dedans)
-API  : articles()    → liste complète
-       get(slug)     → Option<&Article>
+State : &'static [Article]   (static, compiled in)
+API   : articles()    → full list
+        get(slug)     → Option<&Article>
 ```
 
-Les articles sont des structs Rust avec le Markdown inline — aucun fetch réseau.
+Articles are Rust structs with inline Markdown — no network fetch.
 
 ---
 
-## Composants clés
+## Key components
 
 ### Navigation (`navigation.rs`)
 
-- Fixed top, transparente au repos → glassmorphism au scroll
-- Consomme `I18nService` (toggle langue) + `ThemeService` (toggle thème)
-- Détecte la section active via `IntersectionObserver` (JS interop `web-sys`)
+- Fixed top, transparent at rest → glassmorphism on scroll
+- Consumes `I18nService` (language toggle) + `ThemeService` (theme toggle)
+- Detects the active section via `IntersectionObserver` (JS interop through `web-sys`)
 
 ### MobileFloatingNav (`mobile_nav.rs`)
 
-- FAB fixe bas-droite, 5 items en arc
-- Drag-to-navigate : `pointermove` events, zones magnétiques, labels flottants
-- `prefers-reduced-motion` : animations désactivées, transitions `none`
+- Fixed bottom-right FAB, 5 items in an arc
+- Drag-to-navigate: `pointermove` events, magnetic zones, floating labels
+- `prefers-reduced-motion`: animations disabled, transitions `none`
 
 ### VeillePage (`veille.rs`)
 
-Voir [veille-pipeline.md](veille-pipeline.md) pour la documentation complète.
+See [veille-pipeline.md](veille-pipeline.md) for the full documentation.
 
-Résumé :
-- `create_resource` → `fetch("public/news.json")` au montage
-- Désérialisation `serde_json` → `NewsData { items: Vec<NewsItem> }`
-- Filtres réactifs : catégorie, langue, texte
-- Rendu conditionnel : `WeeklySynthesisCard` (type synthesis) vs `NewsItemCard` (type article)
+Summary:
+- `create_resource` → `fetch("public/news.json")` on mount
+- `serde_json` deserialization → `NewsData { items: Vec<NewsItem> }`
+- Reactive filters: category (incl. dedicated `ai` tab), language, text
+- Conditional rendering: `WeeklySynthesisCard` (synthesis type) vs article card
 - Markdown → HTML via `pulldown-cmark`
 
 ### BlogPage (`blog/`)
 
-- `/blog` : liste des articles (`BlogIndexPage`)
-- `/blog/:slug` : résout le slug dans `BlogService`, rend `BlogArticlePage`
-- Articles en Markdown inline compilé dans le binaire
+- `/blog`: article list (`BlogIndexPage`)
+- `/blog/:slug`: resolves the slug in `BlogService`, renders `BlogArticlePage`
+- Articles are inline Markdown compiled into the binary
 
 ---
 
-## Données statiques embarquées
+## Embedded static data
 
 ```
-src/data/cv.rs          Struct CV (expériences, formations, compétences)
-src/data/articles/      Un fichier .rs par article, contenant le Markdown
-src/data/translations/  Chaînes i18n FR/EN
+src/data/cv.rs          CV struct (experience, education, skills)
+src/data/articles/      One .rs file per article, holding the Markdown
+src/data/translations/  FR/EN i18n strings
 ```
 
-Tout est `&'static str` ou `const` — zéro allocation au runtime pour ces données.
+Everything is `&'static str` or `const` — zero runtime allocation for this data.
 
 ---
 
-## Gestion des assets (`public/`)
+## Asset handling (`public/`)
 
-Trunk copie `public/` vers `dist/` tels quels. Le frontend accède aux assets via des URLs absolues depuis la racine :
+Trunk copies `public/` into `dist/` as-is. The frontend accesses assets via absolute URLs from the root:
 
 ```
-/fonts/Literata[opsz,wght].woff2    → fonts.css @font-face
-/css/*.css                           → chargés via index.html <link>
-/news.json                           → fetch() dans veille.rs
-/images/*, /icons/*                 → balises <img> ou <link rel="icon">
+/public/fonts/Literata[opsz,wght].woff2  → fonts.css @font-face
+/public/css/*.css                         → loaded via index.html <link>
+/public/news.json                         → fetch() in veille.rs
+/public/images/*, /public/icons/*        → <img> tags or <link rel="icon">
 ```
 
 ---
 
-## Dépendances Rust (Cargo.toml)
+## Rust dependencies (Cargo.toml)
 
-| Crate | Rôle |
+| Crate | Role |
 |-------|------|
-| `leptos` 0.8 (CSR) | Framework UI réactif |
-| `leptos_meta` 0.8 | `<head>` dynamique (title, meta) |
-| `leptos_router` 0.8 | Routeur SPA |
-| `serde` / `serde_json` | Désérialisation `news.json` |
-| `gloo-net` | `fetch()` WASM |
+| `leptos` 0.8 (CSR) | Reactive UI framework |
+| `leptos_meta` 0.8 | Dynamic `<head>` (title, meta) |
+| `leptos_router` 0.8 | SPA router |
+| `serde` / `serde_json` | `news.json` deserialization |
+| `gloo-net` | WASM `fetch()` |
 | `gloo-storage` | `LocalStorage` |
 | `pulldown-cmark` 0.12 | Markdown → HTML |
-| `web-sys` / `js-sys` | Interop DOM/JS |
-| `wasm-bindgen` | Glue WASM ↔ JS |
-| `chrono` | Parsing et formatage de dates |
+| `web-sys` / `js-sys` | DOM/JS interop |
+| `wasm-bindgen` | WASM ↔ JS glue |
+| `chrono` | Date parsing and formatting |
 
 ---
 
@@ -203,46 +203,46 @@ Trunk copie `public/` vers `dist/` tels quels. Le frontend accède aux assets vi
 
 ```toml
 [build]
-target = "index.html"   # Template SPA
-dist   = "dist"         # Répertoire de sortie
+target = "index.html"   # SPA template
+dist   = "dist"         # Output directory
 
 [watch]
-watch = ["src", "public"]  # Hot reload en dev
+watch = ["src", "public"]  # Hot reload in dev
 ```
 
-Commandes :
+Commands:
 
 ```bash
-trunk serve          # Dev server http://127.0.0.1:9999 (hot reload)
-trunk build --release  # Build de production → dist/
+trunk serve            # Dev server http://127.0.0.1:9999 (hot reload)
+trunk build --release  # Production build → dist/
 ```
 
-Le build de production minifie le WASM et applique `wasm-opt` automatiquement.
+The production build minifies the WASM and applies `wasm-opt` automatically.
 
 ---
 
-## Compilation WASM
+## WASM compilation
 
 ```
 rustc → wasm32-unknown-unknown target
-     → wasm-bindgen (génère le JS glue)
-     → wasm-opt (optimisation taille — mode release)
+     → wasm-bindgen (generates the JS glue)
+     → wasm-opt (size optimization — release mode)
      → dist/
          index.html
          *.wasm
          *.js (loader)
-         [public/* copié]
+         [public/* copied]
 ```
 
-Taille typique du bundle WASM : ~2–4 MB non compressé, ~600–900 KB gzip.
+Typical WASM bundle size: ~2–4 MB uncompressed, ~600–900 KB gzipped.
 
 ---
 
-## Ajout d'un composant
+## Adding a component
 
-1. Créer `src/components/mon_composant.rs`
-2. Exposer via `src/components/mod.rs` (`pub mod mon_composant; pub use mon_composant::*;`)
-3. Utiliser dans `app.rs` ou un autre composant parent
-4. Consommer les services via `use_context::<MonService>()`
+1. Create `src/components/my_component.rs`
+2. Expose it via `src/components/mod.rs` (`pub mod my_component; pub use my_component::*;`)
+3. Use it in `app.rs` or another parent component
+4. Consume services via `use_context::<MyService>()`
 
-Aucun registre global — Leptos découple les composants via le contexte d'arbre.
+No global registry — Leptos decouples components through the tree context.
