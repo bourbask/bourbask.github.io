@@ -111,6 +111,7 @@ jobs:
 
       # ── Step 4: Single commit ──────────────────────────────────────────────
       - name: Commit changes
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -129,3 +130,15 @@ jobs:
             fi
             git commit -m "$MSG" && git push
           }
+
+      # ── Step 5: Push notifications ──────────────────────────────────────────
+      - name: Notifiy push subscribers
+        run: |
+          npm install web-push
+          node scripts/notify_push.mjs
+        env:
+          VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: mailto:bourbasquet.k@etik.com
+          WORKER_URL: https://bourbask-contact.bourbask.workers.dev
+          NOTIFY_SECRET: ${{ secrets.NOTIFY_SECRET }}
