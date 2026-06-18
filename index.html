@@ -104,8 +104,22 @@
 
     <link data-trunk rel="rust" />
 
-    <!-- OpenPGP.js — client-side encryption for contact form -->
-    <script src="https://unpkg.com/openpgp@5.11.2/dist/openpgp.min.js" integrity="sha384-GSfnO+LcQAKSCm1NYG2u/acMR+jBE5ML42eWq3lKjR0Dglq3Zp4dWI3K319/7zmD" crossorigin="anonymous"></script>
+    <!-- Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline';
+      connect-src 'self' https://bourbask-contact.bourbask.workers.dev;
+      img-src 'self' data:;
+      font-src 'self';
+      worker-src 'self';
+      manifest-src 'self';
+      form-action 'none';
+      base-uri 'self';
+    " />
+
+    <!-- OpenPGP.js — client-side encryption for contact form (self-hosted) -->
+    <script src="/public/js/openpgp.min.js" integrity="sha384-GSfnO+LcQAKSCm1NYG2u/acMR+jBE5ML42eWq3lKjR0Dglq3Zp4dWI3K319/7zmD" crossorigin="anonymous"></script>
     <script>
       window.encryptWithPgp = async function (publicKeyArmored, plaintext) {
         const publicKey = await openpgp.readKey({ armoredKey: publicKeyArmored });

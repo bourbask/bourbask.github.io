@@ -1,6 +1,6 @@
 # Tech Watch Pipeline — full documentation
 
-> Last updated: 2026-06-18
+> Last updated: 2026-06-18 (push notification step, NOTIFY_SECRET)
 
 ---
 
@@ -106,6 +106,33 @@ topic.
 The hero visual (`illustration`) goes through a generic-image denylist (`find_images` → envelope,
 logo, icon…) **plus** a Haiku relevance check (`vet_illustration`, general track only). The AI brief
 has no illustration.
+
+---
+
+## Step 5 — push notifications
+
+After commit, the pipeline notifies PWA subscribers via Web Push:
+
+```
+
+Commit (step 4)
+    │
+    ├──→ notify_push.mjs
+    │      ├── Count recent selected articles (< 3 days old)
+    │      │   └── 0 articles → exit (no notification)
+    │      ├── Fetch subs from Worker: GET /sub/subs (X-Notify-Secret header)
+    │      ├── webpush.sendNotification() to each subscriber
+    │      └── POST /sub/unsubscribe (X-Notify-Secret) for invalid endpoints
+    │
+    └──→ done
+```
+
+- VAPID keys: `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` (GitHub secrets).
+- `NOTIFY_SECRET` authenticates the notify script against the Worker (header, not query param).
+- Invalid subscriptions (HTTP 404/410) are cleaned up automatically.
+- Only `status=selected` articles less than 3 days old trigger a notification.
+- Client-side registration: `public/js/push-notifications.js` (registers SW + subscribes).
+- Worker endpoints: `/sub/subscribe` (CORS, rate-limited 20/h/IP), `/sub/subs` (auth header), `/sub/unsubscribe` (auth header).
 
 ---
 
