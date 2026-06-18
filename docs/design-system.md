@@ -1,45 +1,45 @@
-# Design System — Référence rapide
+# Design System — quick reference
 
-> Dernière mise à jour : 2026-06-01  
-> **Source de vérité complète :** `design/design-system-guide.md`
+> Last updated: 2026-06-18
+> **Full source of truth:** `design/design-system-guide.md`
 
-Ce document est une référence de consultation rapide. Pour les spécifications complètes (justifications, règles détaillées, checklist implémentation), voir les fichiers dans `design/`.
-
----
-
-## Documents source
-
-| Fichier | Contenu |
-|---------|---------|
-| `design/design-system-guide.md` | Source de vérité unique — couleurs, typo, espacement, composants, accessibilité |
-| `design/logo-guide.md` | Spécifications logo Fougère + Botte (3 variantes, SVG, animation) |
-| `design/typo-fougere-guide.md` | Police custom Fougère — conception, processus, règles |
+This document is a quick-lookup reference. For full specs (rationale, detailed rules, implementation checklist), see the files in `design/`.
 
 ---
 
-## Tokens CSS (`public/css/variables.css`)
+## Source documents
 
-### Couleurs
+| File | Contents |
+|------|----------|
+| `design/design-system-guide.md` | Single source of truth — colors, typography, spacing, components, accessibility |
+| `design/logo-guide.md` | Fern + Boot logo specs (3 variants, SVG, animation) |
+| `design/typo-fougere-guide.md` | Custom Fougère typeface — design, process, rules |
 
-#### Thème clair (`:root`)
+---
 
-| Token | Valeur | Rôle |
-|-------|--------|------|
-| `--bg-primary` | `#ffffff` | Fond principal |
-| `--bg-secondary` | `#f8fafc` | Fond alterné, TOC, callouts |
-| `--bg-tertiary` | `#f1f5f9` | Tags, inputs, inactifs |
-| `--text-primary` | `#0f172a` | Corps, titres |
+## CSS tokens (`public/css/variables.css`)
+
+### Colors
+
+#### Light theme (`:root`)
+
+| Token | Value | Role |
+|-------|-------|------|
+| `--bg-primary` | `#ffffff` | Main background |
+| `--bg-secondary` | `#f8fafc` | Alternate background, TOC, callouts |
+| `--bg-tertiary` | `#f1f5f9` | Tags, inputs, inactive |
+| `--text-primary` | `#0f172a` | Body, headings |
 | `--text-secondary` | `#475569` | Descriptions |
-| `--text-tertiary` | `#64748b` | Métadonnées, labels |
-| `--accent-primary` | `#3dba7c` | CTA, liens actifs, focus |
-| `--accent-secondary` | `#40916c` | Hover, actif |
-| `--accent-tertiary` | `#e8971a` | Badges, accents chauds |
-| `--border-color` | `#e2e8f0` | Bordures neutres |
+| `--text-tertiary` | `#64748b` | Metadata, labels |
+| `--accent-primary` | `#3dba7c` | CTA, active links, focus |
+| `--accent-secondary` | `#40916c` | Hover, active |
+| `--accent-tertiary` | `#e8971a` | Badges, warm accents |
+| `--border-color` | `#e2e8f0` | Neutral borders |
 
-#### Thème sombre (`[data-theme="dark"]`)
+#### Dark theme (`[data-theme="dark"]`)
 
-| Token | Valeur |
-|-------|--------|
+| Token | Value |
+|-------|-------|
 | `--bg-primary` | `#0f172a` |
 | `--bg-secondary` | `#1e293b` |
 | `--bg-tertiary` | `#334155` |
@@ -51,95 +51,95 @@ Ce document est une référence de consultation rapide. Pour les spécifications
 | `--accent-tertiary` | `#e8971a` ← invariant |
 | `--border-color` | `#334155` |
 
-#### Invariants absolus (ne changent JAMAIS entre thèmes)
+#### Absolute invariants (NEVER change between themes)
 
 ```
---accent-tertiary    #e8971a   L'ambre est l'ambre
---accent-secondary   #40916c   Vert profond constant
---logo-fern-green    #52b788   La fougère du logo
---logo-amber         #e8971a   Détails de la botte
+--accent-tertiary    #e8971a   Amber is amber
+--accent-secondary   #40916c   Constant deep green
+--logo-fern-green    #52b788   The logo's fern
+--logo-amber         #e8971a   Boot details
 ```
 
-#### Trois verts — ne pas confondre
+#### Three greens — do not mix up
 
-| Token | Hex (clair) | Usage |
+| Token | Hex (light) | Usage |
 |-------|-------------|-------|
-| `--accent-primary` | `#3dba7c` | Boutons, focus, liens |
+| `--accent-primary` | `#3dba7c` | Buttons, focus, links |
 | `--accent-secondary` | `#40916c` | Hover states |
-| `--logo-fern-green` | `#52b788` | Logo uniquement — jamais en UI |
+| `--logo-fern-green` | `#52b788` | Logo only — never in the UI |
 
 ---
 
-### Typographie
+### Typography
 
-| Token | Police | Usage |
-|-------|--------|-------|
+| Token | Font | Usage |
+|-------|------|-------|
 | `--font-display` | Fougère (→ Literata fallback) | H1, H2, logotype |
-| `--font-body` | Literata (variable, WOFF2 auto-hébergé) | Corps, H3–H6, prose |
-| `--font-ui` | `system-ui` | Nav, boutons, tags, labels |
-| `--font-code` | Fira Code | Code inline, blocs |
+| `--font-body` | Literata (variable, self-hosted WOFF2) | Body, H3–H6, prose |
+| `--font-ui` | `system-ui` | Nav, buttons, tags, labels |
+| `--font-code` | Fira Code | Inline code, blocks |
 
-**Règle :** ne jamais mélanger `--font-body` et `--font-ui` dans le même élément.
+**Rule:** never mix `--font-body` and `--font-ui` in the same element.
 
-#### Échelle (extrait)
+#### Scale (excerpt)
 
-| Niveau | rem | px | Police | Poids |
-|--------|-----|----|--------|-------|
+| Level | rem | px | Font | Weight |
+|-------|-----|----|------|--------|
 | H1 Hero | 3.5rem | 56px | `--font-display` | 800 |
 | H2 Section | 2.5rem | 40px | `--font-display` | 700 |
 | H3 | 1.75rem | 28px | `--font-body` | 700 |
 | Body | 1rem | 16px | `--font-body` | 400 |
-| Label nav | 0.9rem | 14.4px | `--font-ui` | 500 |
+| Nav label | 0.9rem | 14.4px | `--font-ui` | 500 |
 | Tag/caption | 0.75rem | 12px | `--font-ui` | 500 |
 
 ---
 
 ### Radius
 
-| Token | Valeur | Usage |
-|-------|--------|-------|
-| `--radius-xs` | 4px | Code inline |
-| `--radius-sm` | 8px | Boutons, inputs, tags |
-| `--radius-md` | 12px | Conteneurs moyens |
-| `--radius-lg` | 16px | Cartes |
-| `--radius-xl` | 20px | Grands panneaux |
-| `--radius-2xl` | 32px | Image profil, décoratifs |
-| `--radius-circle` | 50% | FAB, éléments circulaires |
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--radius-xs` | 4px | Inline code |
+| `--radius-sm` | 8px | Buttons, inputs, tags |
+| `--radius-md` | 12px | Medium containers |
+| `--radius-lg` | 16px | Cards |
+| `--radius-xl` | 20px | Large panels |
+| `--radius-2xl` | 32px | Profile image, decorative |
+| `--radius-circle` | 50% | FAB, circular elements |
 
 ---
 
-### Ombres
+### Shadows
 
 | Token | Usage |
 |-------|-------|
-| `--shadow-sm` | Cartes au repos |
-| `--shadow-md` | Bouton primaire, flottants |
-| `--shadow-lg` | Cartes hover |
-| `--shadow-xl` | Floating cards hero, profil hover |
+| `--shadow-sm` | Cards at rest |
+| `--shadow-md` | Primary button, floating elements |
+| `--shadow-lg` | Cards on hover |
+| `--shadow-xl` | Hero floating cards, profile hover |
 
 ---
 
-### Espacement (`--space-*`)
+### Spacing (`--space-*`)
 
-Base 4px (0.25rem). Tokens de `--space-1` (4px) à `--space-32` (128px).
+Base 4px (0.25rem). Tokens from `--space-1` (4px) to `--space-32` (128px).
 
-Couramment utilisés : `--space-4` (16px padding standard), `--space-6` (24px gap), `--space-8` (32px padding section), `--space-16` (64px section header margin).
+Commonly used: `--space-4` (16px standard padding), `--space-6` (24px gap), `--space-8` (32px section padding), `--space-16` (64px section header margin).
 
 ---
 
-## CSS — structure des fichiers
+## CSS — file structure
 
 ```
 public/css/
-├── fonts.css              @font-face Literata (charger en premier)
-├── variables.css          Tous les tokens
-├── base.css               Reset, typographie, conteneurs
+├── fonts.css              @font-face Literata (load first)
+├── variables.css          All tokens
+├── base.css               Reset, typography, containers
 ├── animations.css         Keyframes, transitions
 ├── navigation/
 │   ├── nav-base.css
 │   ├── nav-layout.css
 │   ├── nav-responsive.css
-│   └── nav-fab.css        FAB mobile + animations
+│   └── nav-fab.css        Mobile FAB + animations
 ├── components/
 │   ├── buttons.css
 │   ├── cards.css
@@ -152,61 +152,61 @@ public/css/
     └── veille.css
 ```
 
-Ordre d'import dans `style.css` : fonts → variables → base → animations → navigation → components → sections → pages → responsive.
+Import order in `style.css`: fonts → variables → base → animations → navigation → components → sections → pages → responsive.
 
 ---
 
-## Système logo
+## Logo system
 
-3 variantes — même signe, 3 résolutions :
+3 variants — same mark, 3 resolutions:
 
-| Variante | Taille cible | Usage |
-|----------|-------------|-------|
-| **Mark** | 16–64px | Favicon, avatar — silhouette pure, 1–2 paths |
-| **Standard** | 64–256px | Header nav — botte outline + fougère fill |
-| **Display** | 256px+ | Hero, About — multi-paths animables |
+| Variant | Target size | Usage |
+|---------|-------------|-------|
+| **Mark** | 16–64px | Favicon, avatar — pure silhouette, 1–2 paths |
+| **Standard** | 64–256px | Header nav — boot outline + fern fill |
+| **Display** | 256px+ | Hero, About — multi-path, animatable |
 
-**Règle clé :** fougère toujours `--logo-fern-green` (#52b788) — jamais `--accent-primary`. Botte stroke via `--logo-boot-stroke` (adaptatif au thème).
+**Key rule:** fern is always `--logo-fern-green` (#52b788) — never `--accent-primary`. Boot stroke via `--logo-boot-stroke` (theme-adaptive).
 
-Animation (Display uniquement) : séquence 2.1s, botte → fougère, une seule lecture. `prefers-reduced-motion` : état final direct.
+Animation (Display only): 2.1s sequence, boot → fern, plays once. `prefers-reduced-motion`: jumps to the final state.
 
-**Statut :** logo en phase de conception (voir `design/logo-guide.md`). Phase 3 du roadmap.
-
----
-
-## Police Fougère
-
-Police custom extraite de la morphologie des *Dryopteris filix-mas*.
-
-- **Majuscules** : frondon vu de dessus (structure, stabilité)
-- **Minuscules** : crosse/crozier vu de côté (dynamisme, croissance)
-- **Usage** : display uniquement (H1/H2 ≥ 48px, logotype)
-- **Statut** : en conception (voir `design/typo-fougere-guide.md`). Phase 2 du roadmap.
-
-Actuellement : `--font-display` → Literata (placeholder).
+**Status:** logo in design phase (see `design/logo-guide.md`). Roadmap phase 3.
 
 ---
 
-## Accessibilité
+## Fougère typeface
 
-**Règles non négociables :**
+Custom typeface derived from the morphology of *Dryopteris filix-mas*.
 
-- `focus-visible` sur tout élément interactif — jamais supprimer sans remplacement
-- `prefers-reduced-motion` sur toute animation > 300ms ou en boucle
-- Contrastes WCAG AA : `--accent-primary` (#3dba7c clair) = 3.1:1 — utiliser uniquement pour grand texte/icônes, jamais corps de texte. Préférer `--accent-secondary` (#40916c = 4.5:1) pour le texte coloré
-- SVGs décoratifs : `aria-hidden="true"`. SVGs fonctionnels : `aria-label` sur le `<a>` parent
+- **Uppercase**: frond seen from above (structure, stability)
+- **Lowercase**: crozier seen from the side (dynamism, growth)
+- **Usage**: display only (H1/H2 ≥ 48px, logotype)
+- **Status**: in design (see `design/typo-fougere-guide.md`). Roadmap phase 2.
 
-**Validation post-déploiement :** pa11y WCAG 2.1 AA sur `/`, `/blog`, `/veille`.
+Currently: `--font-display` → Literata (placeholder).
 
 ---
 
-## Checklist nouvelle fonctionnalité
+## Accessibility
 
-- [ ] Couleurs via `var(--...)` uniquement — zéro hex en dur dans les composants
-- [ ] Police : `--font-ui` (interface) ou `--font-body`/`--font-display` (contenu) — pas de mélange
-- [ ] Radius depuis `--radius-*`, ombres depuis `--shadow-*`
-- [ ] Transitions explicites (pas `all`) — sauf migration en cours
-- [ ] `prefers-reduced-motion` si animation > 300ms ou en boucle
-- [ ] `focus-visible` sur tout élément interactif
-- [ ] Contraste WCAG AA vérifié
-- [ ] Fonctionne dans les deux thèmes
+**Non-negotiable rules:**
+
+- `focus-visible` on every interactive element — never remove without a replacement
+- `prefers-reduced-motion` on any animation > 300ms or looping
+- WCAG AA contrast: `--accent-primary` (#3dba7c light) = 3.1:1 — use only for large text/icons, never body text. Prefer `--accent-secondary` (#40916c = 4.5:1) for colored text
+- Decorative SVGs: `aria-hidden="true"`. Functional SVGs: `aria-label` on the parent `<a>`
+
+**Post-deploy validation:** pa11y WCAG 2.1 AA on `/`, `/blog`, `/veille`.
+
+---
+
+## New-feature checklist
+
+- [ ] Colors via `var(--...)` only — zero hardcoded hex in components
+- [ ] Font: `--font-ui` (interface) or `--font-body`/`--font-display` (content) — no mixing
+- [ ] Radius from `--radius-*`, shadows from `--shadow-*`
+- [ ] Explicit transitions (not `all`) — except during an in-progress migration
+- [ ] `prefers-reduced-motion` if animation > 300ms or looping
+- [ ] `focus-visible` on every interactive element
+- [ ] WCAG AA contrast verified
+- [ ] Works in both themes
