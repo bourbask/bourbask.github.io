@@ -162,7 +162,7 @@ pub fn ContactSection() -> impl IntoView {
                                         </a>
                                         <span class="pgp-link-sep">"·"</span>
                                         <a
-                                            href="https://keys.openpgp.org/search?q=bourbasquet.k%40etik.com"
+                                            href="https://keys.openpgp.org/search?q=82CF6083611BD74DD31627B647EC877075A82BB5"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             class="pgp-link"
