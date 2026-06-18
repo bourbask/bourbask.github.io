@@ -133,11 +133,11 @@ async fn subscribe_push(mut req: Request, env: Env) -> Result<Response> {
 
 async fn list_subs(req: Request, env: Env) -> Result<Response> {
     let expected = env.secret("NOTIFY_SECRET")?.to_string();
-    let url = req.url()?;
-    let provided: String = url
-        .query_pairs()
-        .find(|(k, _)| k == "secret")
-        .map(|(_, v)| v.to_string())
+    let provided = req
+        .headers()
+        .get("X-Notify-Secret")
+        .ok()
+        .flatten()
         .unwrap_or_default();
 
     if provided != expected {
