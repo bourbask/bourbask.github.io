@@ -1,6 +1,6 @@
 # CI/CD pipeline — deployment & quality
 
-> Last updated: 2026-06-18
+> Last updated: 2026-06-18 (auto-tag workflow, versioning conventions)
 
 ---
 
@@ -13,8 +13,12 @@ Push to main
       │         │
       │         └──→ quality.yml   Lighthouse + pa11y + W3C + headers
       │
+      └──→ release-tag.yml   Auto-tag + GitHub Release + cleanup
+
+Merge release/v* → main
+      └──→ release-tag.yml   Tag vX.Y.Z + Release + delete branch
+
 PR to main
-      │
       └──→ ci.yml            Clippy + rustsec
 
 Daily cron (06:00 UTC)
@@ -82,38 +86,40 @@ jobs:
 
 **Typical duration:** 4–8 min (~3–5 min Rust compilation, reduced by the cache).
 
-**Production URL:** https://www.bourbasquetkev.in (custom domain, see below) — also served at https://bourbask.github.io
+**Production URL:** https://www.bourbasquetkev.in (custom domain, see below) — https://bourbask.github.io redirects to it (301)
 
 ---
 
 ### `quality.yml` — post-deploy validation
 
-**Trigger:** workflow_call (called by deploy.yml after success), workflow_dispatch
+**Trigger:** workflow_run (deploy.yml completed on main), workflow_dispatch
 
 ```yaml
 jobs:
-  validate:
-    steps:
-      1. Wait for CDN propagation (up to 2 min, HTTP polling)
+  1. Wait (needs: none)
+     - HTTP polling up to 2 min via curl -sL (follows 301)
+     - SITE_URL: https://www.bourbasquetkev.in
 
-      2. Lighthouse CI
-         - npm install -g @lhci/cli
-         - lhci autorun (config in .lighthouserc.json)
-         - Thresholds: performance ≥ 0.85, accessibility ≥ 0.95,
-                       best-practices ≥ 0.9, seo ≥ 0.9
+  2. Lighthouse CI (needs: wait)
+     - npm install -g @lhci/cli
+     - lhci autorun (config in .lighthouserc.json)
+     - 3 URLs: /, /blog, /veille
+     - Thresholds: performance ≥ 0.80 (warn), accessibility ≥ 0.85 (error),
+                   best-practices ≥ 0.80 (warn), seo ≥ 0.90 (error)
 
-      3. pa11y — WCAG 2.1 AA
-         - npm install -g pa11y
-         - 3 routes audited: /, /blog, /veille
-         - WCAG2AA standard, level AA required
+  3. pa11y — WCAG 2.1 AA (needs: wait)
+     - npm install -g pa11y
+     - 3 routes × 2 themes: /, /blog, /veille (light + dark)
+     - WCAG2AA standard, level AA required across all 6 audits
 
-      4. W3C Nu HTML Validator
-         - curl validator.w3.org/nu/?doc=<url>
-         - Zero errors required
+  4. W3C Nu HTML Validator (needs: wait)
+     - curl validator.w3.org/nu/?doc=<url>
+     - Zero errors required (known exclusion: Trunk integrity attr on <link rel=icon>)
 
-      5. HTTP security headers
-         - Checks for: Content-Security-Policy, X-Frame-Options,
-                       X-Content-Type-Options, Referrer-Policy
+  5. HTTP security headers (needs: wait)
+     - curl -sIL (follows 301, inspects final response)
+     - Required: Strict-Transport-Security (set by GitHub Pages)
+     - Informational: CSP, X-Frame-Options, etc. (not settable on GH Pages)
 ```
 
 **Lighthouse config:** `.lighthouserc.json` at the project root.
@@ -125,13 +131,13 @@ jobs:
 ```json
 {
   "ci": {
-    "collect": { "url": ["https://bourbask.github.io/"], "numberOfRuns": 3 },
+    "collect": { "url": ["https://www.bourbasquetkev.in/"], "numberOfRuns": 2 },
     "assert": {
       "assertions": {
-        "categories:performance": ["error", { "minScore": 0.85 }],
-        "categories:accessibility": ["error", { "minScore": 0.95 }],
-        "categories:best-practices": ["error", { "minScore": 0.90 }],
-        "categories:seo": ["error", { "minScore": 0.90 }]
+        "categories:performance":    ["warn",  { "minScore": 0.80 }],
+        "categories:accessibility":  ["error", { "minScore": 0.85 }],
+        "categories:best-practices": ["warn",  { "minScore": 0.80 }],
+        "categories:seo":            ["error", { "minScore": 0.90 }]
       }
     }
   }
@@ -145,6 +151,9 @@ jobs:
 | Secret / Permission | Workflows | Role |
 |---------------------|-----------|------|
 | `ANTHROPIC_API_KEY` | news-pipeline, tools-pipeline | Claude API calls (Haiku/Sonnet) |
+| `VAPID_PUBLIC_KEY` | news-pipeline | Web Push — public key |
+| `VAPID_PRIVATE_KEY` | news-pipeline | Web Push — private key |
+| `NOTIFY_SECRET` | news-pipeline | Auth for Worker push endpoints (X-Notify-Secret header) |
 | `contents: write` | news-pipeline | Auto-commit news.json |
 | `pages: write` | deploy | GitHub Pages publishing |
 | `id-token: write` | deploy | OIDC for GitHub Pages |
@@ -194,6 +203,17 @@ www   CNAME   bourbask.github.io.
 
 ---
 
+## Versioning & auto-tag
+
+When a PR from `release/vX.Y.Z` is merged to `main`, `release-tag.yml` automatically:
+
+1. Extracts the version from the branch name (`release/v2.14.0` → `v2.14.0`)
+2. Creates a git tag on the merge commit
+3. Creates a GitHub Release with the PR body as release notes
+4. Deletes the release branch (ephemeral — tags are the permanent record)
+
+All previous release branches can be safely deleted.
+
 ## Branching & delivery flow
 
 ```
@@ -203,10 +223,13 @@ feature/xxx  →  develop  →  main
                (clippy)    (build + deploy)
                             quality.yml
                             (validation)
+                            release-tag.yml
+                            (auto-tag + release)
 ```
 
 - **`develop`**: integration branch — Clippy CI + audit
 - **`main`**: production branch — every push triggers a deploy
+- **`release/v*`**: ephemeral PR vehicle — auto-deleted after merge
 
 Merge rules: rebase for feature→develop, squash for develop→main.
 

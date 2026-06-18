@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  SITE_URL: https://bourbask.github.io
+  SITE_URL: https://www.bourbasquetkev.in
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: Wait for GitHub Pages CDN
         run: |
           for i in $(seq 1 8); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL")
+            STATUS=$(curl -sL -o /dev/null -w "%{http_code}" "$SITE_URL")
             echo "Attempt $i — HTTP $STATUS"
             [ "$STATUS" = "200" ] && exit 0
             sleep 15
@@ -143,7 +143,7 @@ jobs:
     steps:
       - name: Check response headers
         run: |
-          HEADERS=$(curl -sI "$SITE_URL")
+          HEADERS=$(curl -sIL "$SITE_URL")
           echo "$HEADERS"
           echo ""
 
