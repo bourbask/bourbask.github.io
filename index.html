@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kévin Bourbasquet - Full Stack Developer</title>
     <meta name="description" content="Kévin Bourbasquet — Full Stack Developer. Rust, WebAssembly, TypeScript. Portfolio, technical blog and tech watch." />
-    <link rel="canonical" href="https://bourbask.github.io/" />
+    <link rel="canonical" href="https://www.bourbasquetkev.in/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bourbask.github.io/" />
+    <meta property="og:url" content="https://www.bourbasquetkev.in/" />
     <meta property="og:title" content="Kévin Bourbasquet - Full Stack Developer" />
     <meta property="og:description" content="Rust, WebAssembly, TypeScript. Portfolio, technical blog and tech watch." />
-    <meta property="og:image" content="https://bourbask.github.io/icons/android-chrome-512x512.png" />
+    <meta property="og:image" content="https://www.bourbasquetkev.in/icons/android-chrome-512x512.png" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:locale:alternate" content="en_GB" />
 
@@ -20,7 +20,44 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Kévin Bourbasquet - Full Stack Developer" />
     <meta name="twitter:description" content="Rust, WebAssembly, TypeScript. Portfolio, technical blog and tech watch." />
-    <meta name="twitter:image" content="https://bourbask.github.io/icons/android-chrome-512x512.png" />
+    <meta name="twitter:image" content="https://www.bourbasquetkev.in/icons/android-chrome-512x512.png" />
+
+    <!-- hreflang -->
+    <link rel="alternate" href="https://www.bourbasquetkev.in/" hreflang="fr" />
+    <link rel="alternate" href="https://www.bourbasquetkev.in/" hreflang="en" />
+    <link rel="alternate" href="https://www.bourbasquetkev.in/" hreflang="x-default" />
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kévin Bourbasquet",
+      "givenName": "Kévin",
+      "familyName": "Bourbasquet",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://www.bourbasquetkev.in/",
+      "sameAs": [
+        "https://github.com/bourbask",
+        "https://www.linkedin.com/in/k%C3%A9vin-bourbasquet-078940171/"
+      ],
+      "knowsAbout": ["Rust", "WebAssembly", "TypeScript", "Self-hosting", "DevOps"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kévin Bourbasquet",
+      "url": "https://www.bourbasquetkev.in/",
+      "description": "Kévin Bourbasquet — Full Stack Developer. Rust, WebAssembly, TypeScript. Portfolio, technical blog and tech watch.",
+      "inLanguage": ["fr", "en"],
+      "author": {
+        "@type": "Person",
+        "name": "Kévin Bourbasquet"
+      }
+    }
+    </script>
 
     <!-- SPA routing: restore path stored by 404.html redirect -->
     <script>
@@ -67,8 +104,22 @@
 
     <link data-trunk rel="rust" />
 
-    <!-- OpenPGP.js — client-side encryption for contact form -->
-    <script src="https://unpkg.com/openpgp@5.11.2/dist/openpgp.min.js" integrity="sha384-GSfnO+LcQAKSCm1NYG2u/acMR+jBE5ML42eWq3lKjR0Dglq3Zp4dWI3K319/7zmD" crossorigin="anonymous"></script>
+    <!-- Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline';
+      connect-src 'self' https://bourbask-contact.bourbask.workers.dev;
+      img-src 'self' data:;
+      font-src 'self';
+      worker-src 'self';
+      manifest-src 'self';
+      form-action 'none';
+      base-uri 'self';
+    " />
+
+    <!-- OpenPGP.js — client-side encryption for contact form (self-hosted) -->
+    <script src="/public/js/openpgp.min.js" integrity="sha384-GSfnO+LcQAKSCm1NYG2u/acMR+jBE5ML42eWq3lKjR0Dglq3Zp4dWI3K319/7zmD" crossorigin="anonymous"></script>
     <script>
       window.encryptWithPgp = async function (publicKeyArmored, plaintext) {
         const publicKey = await openpgp.readKey({ armoredKey: publicKeyArmored });

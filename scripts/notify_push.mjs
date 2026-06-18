@@ -39,7 +39,9 @@ if (articleCount === 0) {
 }
 
 // Fetch subscriptions from worker
-const resp = await fetch(`${WORKER_URL}/sub/subs?secret=${NOTIFY_SECRET}`);
+const resp = await fetch(`${WORKER_URL}/sub/subs`, {
+  headers: { 'X-Notify-Secret': NOTIFY_SECRET },
+});
 if (!resp.ok) {
   console.error(`Failed to fetch subscriptions (${resp.status})`);
   process.exit(1);

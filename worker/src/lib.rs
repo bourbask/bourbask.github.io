@@ -10,6 +10,7 @@ const MAX_NAME_LEN: usize = 100;
 const MAX_EMAIL_LEN: usize = 254;
 const MAX_MESSAGE_LEN: usize = 5000;
 const RATE_LIMIT: u32 = 5;
+const PUSH_RATE_LIMIT: u32 = 20;
 const RATE_WINDOW_TTL: u64 = 3600;
 
 #[derive(Deserialize)]
@@ -83,9 +84,38 @@ async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
     handle_contact(req, env).await
 }
 
+async fn check_rate_limit(req: &Request, env: &Env, prefix: &str, limit: u32) -> Result<bool> {
+    let ip = req
+        .headers()
+        .get("CF-Connecting-IP")
+        .unwrap_or(None)
+        .unwrap_or_else(|| "unknown".to_string());
+
+    let kv = env.kv("RATE_LIMIT")?;
+    let key = format!("{}:{}", prefix, ip);
+    let count: u32 = kv
+        .get(&key)
+        .text()
+        .await?
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(0);
+
+    if count >= limit {
+        return Ok(true);
+    }
+    kv.put(&key, (count + 1).to_string())?
+        .expiration_ttl(RATE_WINDOW_TTL)
+        .execute()
+        .await?;
+    Ok(false)
+}
+
 async fn handle_push_routes(req: Request, env: Env) -> Result<Response> {
     let path = req.path();
     if path == "/sub/subscribe" {
+        if check_rate_limit(&req, &env, "push", PUSH_RATE_LIMIT).await? {
+            return Response::error("Too Many Requests", 429);
+        }
         subscribe_push(req, env).await
     } else if path == "/sub/subs" {
         list_subs(req, env).await
@@ -133,11 +163,11 @@ async fn subscribe_push(mut req: Request, env: Env) -> Result<Response> {
 
 async fn list_subs(req: Request, env: Env) -> Result<Response> {
     let expected = env.secret("NOTIFY_SECRET")?.to_string();
-    let url = req.url()?;
-    let provided: String = url
-        .query_pairs()
-        .find(|(k, _)| k == "secret")
-        .map(|(_, v)| v.to_string())
+    let provided = req
+        .headers()
+        .get("X-Notify-Secret")
+        .ok()
+        .flatten()
         .unwrap_or_default();
 
     if provided != expected {
@@ -209,27 +239,9 @@ async fn handle_contact(req: Request, env: Env) -> Result<Response> {
         return Response::error("Method Not Allowed", 405);
     }
 
-    let ip = req
-        .headers()
-        .get("CF-Connecting-IP")
-        .unwrap_or(None)
-        .unwrap_or_else(|| "unknown".to_string());
-
-    let kv = env.kv("RATE_LIMIT")?;
-    let count: u32 = kv
-        .get(&ip)
-        .text()
-        .await?
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(0);
-
-    if count >= RATE_LIMIT {
+    if check_rate_limit(&req, &env, "contact", RATE_LIMIT).await? {
         return Response::error("Too Many Requests", 429);
     }
-    kv.put(&ip, (count + 1).to_string())?
-        .expiration_ttl(RATE_WINDOW_TTL)
-        .execute()
-        .await?;
 
     let mut req = req;
     let payload: ContactPayload = match req.json().await {
