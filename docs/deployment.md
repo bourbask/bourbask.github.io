@@ -1,59 +1,63 @@
-# Pipeline CI/CD — Déploiement & Qualité
+# CI/CD pipeline — deployment & quality
 
-> Dernière mise à jour : 2026-06-01
+> Last updated: 2026-06-18
 
 ---
 
-## Vue d'ensemble
+## Overview
 
 ```
-Push sur main
+Push to main
       │
-      ├──→ deploy.yml        Build Trunk → GitHub Pages
+      ├──→ deploy.yml        Trunk build → GitHub Pages
       │         │
       │         └──→ quality.yml   Lighthouse + pa11y + W3C + headers
       │
-PR vers main
+PR to main
       │
       └──→ ci.yml            Clippy + rustsec
 
-Cron quotidien (06:00 UTC)
-      └──→ fetch-news.yml    RSS + HN + synthèse quotidienne
+Daily cron (06:00 UTC)
+      └──→ news-pipeline.yml   fetch + score; general synthesis (Mon), AI brief (Mon+Thu)
 
-Cron hebdo (lundi 07:00 UTC)
-      └──→ synthesize-news.yml   Synthèse éditoriale Claude
+Weekly cron
+      ├──→ tools-pipeline.yml  Open-source tool discovery + article PR
+      └──→ feeds-smoke.yml     Feed reachability check (no AI)
+
+Push / PR touching scripts/**
+      └──→ tests.yml           pytest pipeline (no API key → zero tokens)
 ```
 
-Voir [veille-pipeline.md](veille-pipeline.md) pour le détail des workflows de veille.
+See [veille-pipeline.md](veille-pipeline.md) for the tech-watch workflow details.
 
 ---
 
 ## Workflows
 
-### `ci.yml` — Validation pré-merge
+### `ci.yml` — pre-merge validation
 
-**Déclencheur :** push sur `develop`, PR vers `main`
+**Trigger:** push to `develop`, PR to `main`
 
 ```yaml
 jobs:
   clippy:
     - rustup + wasm32-unknown-unknown target
     - cargo clippy --target wasm32-unknown-unknown -- -D warnings
-    # -D warnings : tout warning = erreur de CI
+    # -D warnings: any warning fails CI
 
   audit:
     - cargo install cargo-audit
     - cargo audit
-    # Vérifie les vulnérabilités connues (RustSec advisory DB)
+    # Checks known vulnerabilities (RustSec advisory DB)
 ```
 
-**Règle :** aucun PR ne merge sur `main` si `ci.yml` échoue.
+**Rule:** no PR merges to `main` if `ci.yml` fails.
 
 ---
 
-### `deploy.yml` — Build & déploiement
+### `deploy.yml` — build & deploy
 
-**Déclencheur :** push sur `main`, workflow_dispatch
+**Trigger:** push to `main`, workflow_dispatch
 
 ```yaml
 permissions:
@@ -66,72 +70,62 @@ jobs:
     - actions/checkout
     - rustup (stable + wasm32-unknown-unknown)
     - Swatinem/rust-cache            # Cache Cargo registry + target/
-    - install trunk v0.21.14         # Version fixée pour reproductibilité
-    - trunk build --release          # Compile src/ + copie public/ → dist/
-    - upload-pages-artifact          # Upload dist/ vers GitHub Pages artifact store
+    - install trunk v0.21.14         # Pinned version for reproducibility
+    - trunk build --release          # Compile src/ + copy public/ → dist/
+    - upload-pages-artifact          # Upload dist/ to the GitHub Pages artifact store
 
   deploy:
     needs: build
     environment: github-pages
-    - actions/deploy-pages           # Publie l'artifact sur GitHub Pages
+    - actions/deploy-pages           # Publish the artifact to GitHub Pages
 ```
 
-**Durée typique :** 4–8 min (dont ~3–5 min compilation Rust, réduite par le cache).
+**Typical duration:** 4–8 min (~3–5 min Rust compilation, reduced by the cache).
 
-**URL de production :** https://bourbask.github.io
+**Production URL:** https://www.bourbasquetkev.in (custom domain, see below) — also served at https://bourbask.github.io
 
 ---
 
-### `quality.yml` — Validation post-déploiement
+### `quality.yml` — post-deploy validation
 
-**Déclencheur :** workflow_call (appelé par deploy.yml après succès), workflow_dispatch
+**Trigger:** workflow_call (called by deploy.yml after success), workflow_dispatch
 
 ```yaml
 jobs:
   validate:
     steps:
-      1. Attendre propagation CDN (jusqu'à 2 min, polling HTTP)
+      1. Wait for CDN propagation (up to 2 min, HTTP polling)
 
       2. Lighthouse CI
          - npm install -g @lhci/cli
-         - lhci autorun (config dans .lighthouseci/)
-         - Seuils : performance ≥ 0.85, accessibility ≥ 0.95,
-                    best-practices ≥ 0.9, seo ≥ 0.9
-         - Résultats stockés dans .lighthouseci/
+         - lhci autorun (config in .lighthouserc.json)
+         - Thresholds: performance ≥ 0.85, accessibility ≥ 0.95,
+                       best-practices ≥ 0.9, seo ≥ 0.9
 
       3. pa11y — WCAG 2.1 AA
          - npm install -g pa11y
-         - 3 routes auditées :
-             pa11y https://bourbask.github.io/
-             pa11y https://bourbask.github.io/blog
-             pa11y https://bourbask.github.io/veille
-         - Standard WCAG2AA, niveau AA requis
+         - 3 routes audited: /, /blog, /veille
+         - WCAG2AA standard, level AA required
 
       4. W3C Nu HTML Validator
-         - curl validator.w3.org/nu/?doc=https://bourbask.github.io/
-         - Zéro erreur requise
+         - curl validator.w3.org/nu/?doc=<url>
+         - Zero errors required
 
-      5. En-têtes HTTP de sécurité
-         - Vérifie la présence de :
-             Content-Security-Policy
-             X-Frame-Options
-             X-Content-Type-Options
-             Referrer-Policy
+      5. HTTP security headers
+         - Checks for: Content-Security-Policy, X-Frame-Options,
+                       X-Content-Type-Options, Referrer-Policy
 ```
 
-**Configuration Lighthouse :** `.lighthouserc.json` à la racine du projet.
+**Lighthouse config:** `.lighthouserc.json` at the project root.
 
 ---
 
-## Configuration Lighthouse (`.lighthouserc.json`)
+## Lighthouse config (`.lighthouserc.json`)
 
 ```json
 {
   "ci": {
-    "collect": {
-      "url": ["https://bourbask.github.io/"],
-      "numberOfRuns": 3
-    },
+    "collect": { "url": ["https://bourbask.github.io/"], "numberOfRuns": 3 },
     "assert": {
       "assertions": {
         "categories:performance": ["error", { "minScore": 0.85 }],
@@ -146,42 +140,61 @@ jobs:
 
 ---
 
-## Secrets et permissions requis
+## Required secrets and permissions
 
-| Secret / Permission | Workflows | Rôle |
+| Secret / Permission | Workflows | Role |
 |---------------------|-----------|------|
-| `ANTHROPIC_API_KEY` | fetch-news, synthesize-news | Appels API Claude |
-| `contents: write` | fetch-news, synthesize-news | Auto-commit news.json |
-| `pages: write` | deploy | Publication GitHub Pages |
-| `id-token: write` | deploy | OIDC pour GitHub Pages |
+| `ANTHROPIC_API_KEY` | news-pipeline, tools-pipeline | Claude API calls (Haiku/Sonnet) |
+| `contents: write` | news-pipeline | Auto-commit news.json |
+| `pages: write` | deploy | GitHub Pages publishing |
+| `id-token: write` | deploy | OIDC for GitHub Pages |
+
+The `tests.yml` workflow gets **no** `ANTHROPIC_API_KEY` — proof it cannot spend tokens.
 
 ---
 
-## Cache Rust (Swatinem/rust-cache)
+## Rust cache (Swatinem/rust-cache)
 
-Le cache couvre :
-- `~/.cargo/registry` — crates téléchargées
-- `~/.cargo/git` — dépendances git
-- `target/` — artefacts compilés
-
-**Durée de vie :** 7 jours GitHub (par défaut), invalide si `Cargo.lock` change.  
-**Gain typique :** réduit la compilation de 15–20 min à 4–6 min après le premier build.
+Covers `~/.cargo/registry`, `~/.cargo/git`, and `target/`.
+Lifetime: 7 days (GitHub default), invalidated when `Cargo.lock` changes.
+Typical gain: compilation from 15–20 min down to 4–6 min after the first build.
 
 ---
 
-## Trunk (version fixée : 0.21.14)
+## Trunk (pinned: 0.21.14)
 
-Version fixée dans `deploy.yml` pour éviter les régressions silencieuses lors des mises à jour de Trunk. Mettre à jour manuellement et tester localement avant de changer la version en CI.
+Pinned in `deploy.yml` to avoid silent regressions on Trunk updates. Bump manually and test locally before changing the CI version.
 
-```yaml
-# Dans deploy.yml — mise à jour manuelle requise
-- name: Install Trunk
-  run: cargo install --locked trunk --version 0.21.14
+---
+
+## Custom domain (`www.bourbasquetkev.in`)
+
+The site is served at `www.bourbasquetkev.in` in addition to `bourbask.github.io`.
+
+### Repo side
+- `CNAME` file (repo root) containing `www.bourbasquetkev.in`.
+- Copied to the **build root** via `index.html`: `<link data-trunk rel="copy-file" href="CNAME" />`.
+  Required: without this file in the artifact, GitHub unsets the custom domain on every Actions deploy.
+
+### GitHub side
+Settings → Pages → Custom domain = `www.bourbasquetkev.in` → verification (TXT) → **Enforce HTTPS** (auto Let's Encrypt cert).
+
+### DNS side (OVH) — cohabiting with the homelab VPS
+The domain also hosts VPS services (plex, bitwarden, traefik, nextcloud…) via subdomains plus a `*` wildcard → VPS. The only site-related records:
+
+```
+www   CNAME   bourbask.github.io.
+@     A       185.199.108.153   (+ .109 / .110 / .111 .153)   → apex, redirects to www
 ```
 
+- An explicit `www` wins over the wildcard → the other subdomains stay on the VPS, untouched.
+- The apex on GitHub IPs replaces any previous host (e.g. leftover Vercel `76.76.21.21` must be removed).
+- **Do not touch:** `MX`, `SPF`, `DKIM`, the `*` wildcard, or the VPS subdomains.
+- Watch out for `CNAME` records pointing at the apex (e.g. `ftp`): repoint them to an `A` record on the VPS, otherwise they follow the apex to GitHub.
+
 ---
 
-## Branching & flux de livraison
+## Branching & delivery flow
 
 ```
 feature/xxx  →  develop  →  main
@@ -192,27 +205,27 @@ feature/xxx  →  develop  →  main
                             (validation)
 ```
 
-- **`develop`** : branche d'intégration — CI Clippy + audit
-- **`main`** : branche de production — tout push déclenche un déploiement
+- **`develop`**: integration branch — Clippy CI + audit
+- **`main`**: production branch — every push triggers a deploy
 
-Voir [feedback_pr_workflow.md](../memory/feedback_pr_workflow.md) pour les règles de merge (rebase feature→develop, squash develop→main).
+Merge rules: rebase for feature→develop, squash for develop→main.
 
 ---
 
-## Reproductibilité
+## Reproducibility
 
-- **`Cargo.lock`** versionné → même artefact à chaque build
-- **Trunk version fixée** → comportement de bundling stable
-- **`rust-cache`** par `Cargo.lock` hash → invalidation automatique sur changement de deps
+- **`Cargo.lock`** committed → identical artifact on every build
+- **Pinned Trunk version** → stable bundling behavior
+- **`rust-cache`** keyed on `Cargo.lock` hash → auto-invalidation on dependency changes
 
 ---
 
 ## Rollback
 
-GitHub Pages garde l'artifact du dernier déploiement réussi. En cas de régression :
+GitHub Pages keeps the artifact of the last successful deploy. On a regression:
 
-1. Identifier le commit coupable via `git log`
-2. `git revert <commit>` + push sur `main`
-3. `deploy.yml` repart automatiquement
+1. Identify the culprit commit via `git log`
+2. `git revert <commit>` + push to `main`
+3. `deploy.yml` re-runs automatically
 
-Ou forcer manuellement via **GitHub → Actions → deploy.yml → Run workflow** sur le commit précédent.
+Or force manually via **GitHub → Actions → deploy.yml → Run workflow** on the previous commit.
