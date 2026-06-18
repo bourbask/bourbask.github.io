@@ -1,6 +1,6 @@
 # Frontend architecture — Rust/Leptos/WASM
 
-> Last updated: 2026-06-18
+> Last updated: 2026-06-18 (CSP, self-host openpgp, push notifications)
 
 ---
 
@@ -178,7 +178,34 @@ Trunk copies `public/` into `dist/` as-is. The frontend accesses assets via abso
 /public/css/*.css                         → loaded via index.html <link>
 /public/news.json                         → fetch() in veille.rs
 /public/images/*, /public/icons/*        → <img> tags or <link rel="icon">
+/public/js/openpgp.min.js                → contact form (self-hosted, SRI)
+/public/js/push-notifications.js         → SW registration + push subscribe
+/public/js/animations.js                 → scroll/FOUC animations
+/public/js/fab-interaction.js            → mobile nav FAB drag
 ```
+
+## Content-Security-Policy
+
+Enforced via `<meta http-equiv="Content-Security-Policy">` in `index.html`:
+
+```
+default-src 'self'
+script-src  'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval'
+style-src   'self' 'unsafe-inline'
+connect-src 'self' https://bourbask-contact.bourbask.workers.dev
+img-src     'self' data:
+font-src    'self'
+worker-src  'self'
+manifest-src 'self'
+form-action 'none'
+base-uri    'self'
+```
+
+- `'unsafe-inline'` required for inline `<script>` tags (SPA routing, theme).
+- `'unsafe-eval'` + `'wasm-unsafe-eval'` for WebAssembly instantiation (wasm-bindgen).
+- `connect-src` allows fetch() calls to the Cloudflare Worker (contact, push subscriptions).
+- `form-action 'none'` blocks HTML form submissions (contact uses JS fetch).
+- No external CDN — openpgp.min.js is self-hosted with SRI integrity attribute.
 
 ---
 

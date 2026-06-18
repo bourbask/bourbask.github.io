@@ -1,6 +1,6 @@
 # Local development setup
 
-> Last updated: 2026-06-18
+> Last updated: 2026-06-18 (Worker secrets, push notification env vars)
 
 ---
 
@@ -146,9 +146,25 @@ python -m pytest scripts/tests -v
 |----------|--------------|--------|
 | `ANTHROPIC_API_KEY` | Tech watch scripts (scoring + synthesis) | console.anthropic.com |
 
-In CI: GitHub secret `ANTHROPIC_API_KEY`.
-Locally: `.env` (untracked) or manual export.
-The pipeline tests need **no** key.
+### Worker-specific secrets
+
+Set via `wrangler secret put` (not in `.env`):
+
+| Secret | Endpoints | Role |
+|--------|-----------|------|
+| `RESEND_API_KEY` | `POST /` | Send contact form emails via Resend |
+| `NOTIFY_SECRET` | `GET /sub/subs`, `POST /sub/unsubscribe` | Push notification auth (header `X-Notify-Secret`) |
+
+### Push notification env vars (GitHub secrets for `news-pipeline.yml`)
+
+| Variable | Required for |
+|----------|--------------|
+| `VAPID_PUBLIC_KEY` | Notify script (web-push) |
+| `VAPID_PRIVATE_KEY` | Notify script (web-push) |
+| `NOTIFY_SECRET` | Notify script (auth to Worker) |
+
+In CI: GitHub secrets `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `NOTIFY_SECRET`.
+Locally: `.env` (untracked) or manual export. See [architecture.md](architecture.md) for the full CSP and Worker flow.
 
 ---
 
