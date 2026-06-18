@@ -1,330 +1,183 @@
-# Pipeline Veille Technologique — Documentation complète
+# Tech Watch Pipeline — full documentation
 
-> Dernière mise à jour : 2026-06-01
-
----
-
-## Vue d'ensemble
-
-Pipeline **entièrement automatisé** en 3 étapes :
-
-1. **Fetch** (quotidien, sans IA) — collecte ~10 articles/domaine depuis 35+ sources
-2. **Score** (quotidien, IA Haiku) — compétition inter-domaines → top 5 articles du jour
-3. **Synthèse** (hebdomadaire, IA Sonnet) — article journalistique avec ton éditorial de Kevin
+> Last updated: 2026-06-18
 
 ---
 
-## Architecture globale
+## Overview
 
-```
-╔══════════════════════════════════════════════════════════════════════════╗
-║                        SOURCES EXTERNES (6 domaines)                    ║
-║                                                                          ║
-║  dev_stack      ai_emerging    security       health_science             ║
-║  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐           ║
-║  │Rust Blog │  │ArXiv AI  │  │CISA      │  │ArXiv CS.HC   │           ║
-║  │This Week │  │ArXiv PL  │  │NIST      │  │ArXiv q-bio   │           ║
-║  │Go Blog   │  │Papers    │  │ENISA     │  │eLife         │           ║
-║  │Mozilla   │  │With Code │  │OpenSSF   │  │PLOS ONE      │           ║
-║  │WebKit    │  │IEEE      │  │Krebs     │  └──────────────┘           ║
-║  │GitHub Eng│  │ACM       │  │Schneier  │                              ║
-║  │LWN       │  └──────────┘  │PortSwigger                             ║
-║  │Lobste.rs │                │SANS ISC  │                              ║
-║  │LinuxFr   │                └──────────┘                              ║
-║  └──────────┘                                                           ║
-║                                                                          ║
-║  business_market              architecture                               ║
-║  ┌────────────────┐           ┌─────────────────────┐                  ║
-║  │HackerNews≥150  │           │Dezeen Sustainable   │                  ║
-║  │The Register    │           │Low-tech Magazine    │                  ║
-║  │InfoQ           │           │ArchDaily            │                  ║
-║  │CNCF Blog       │           │TreeHugger           │                  ║
-║  │W3C / IETF      │           │Resilient Design     │                  ║
-║  └────────────────┘           └─────────────────────┘                  ║
-╚══════════════════════════════════════════════════════════════════════════╝
-                                    │
-                                    ▼
-╔══════════════════════════════════════════════════════════════════════════╗
-║          ÉTAPE 1 — FETCH (quotidien 06:00 UTC, ZÉRO IA)                ║
-║          fetch_news.py                                                   ║
-║                                                                          ║
-║   1. Fetch RSS/Atom via feedparser (max 10 items/source)                ║
-║   2. Fetch HackerNews top 80 → score ≥ 150 → max 12 stories            ║
-║   3. Filtre bruit (regex NOISE_PATTERNS)                                ║
-║   4. Déduplication (hash MD5 12 chars sur l'URL)                        ║
-║   5. Classification par mots-clés (catégories sémantiques)              ║
-║   6. Ajout champs domain + status="raw" + fetched_at                    ║
-║   7. Merge avec news.json existant (rétention par status)               ║
-║   8. Auto-commit "chore: update tech news feed"                         ║
-╚══════════════════════════════════════════════════════════════════════════╝
-                                    │
-                              ~50-80 articles "raw"
-                                    │
-                                    ▼
-╔══════════════════════════════════════════════════════════════════════════╗
-║          ÉTAPE 2 — SCORE (quotidien 06:30 UTC, IA Haiku)               ║
-║          score_articles.py                                               ║
-║                                                                          ║
-║   Pour chaque domaine (6 domaines) :                                    ║
-║     - Prend les articles "raw" du jour (max 15 candidats)               ║
-║     - Appel Claude Haiku : scoring 0–10 selon critères domaine          ║
-║     - Sélectionne top 3 par domaine                                     ║
-║                                                                          ║
-║   Compétition globale (18 candidats max) :                              ║
-║     - Tri par score décroissant                                         ║
-║     - Contrainte : max 1 article architecture                           ║
-║     - Sélection finale : top 5                                          ║
-║                                                                          ║
-║   Résultat :                                                            ║
-║     - 5 articles → status="selected"                                    ║
-║     - Reste → status="archived"                                         ║
-║   Auto-commit "chore: score articles — YYYY-MM-DD"                     ║
-╚══════════════════════════════════════════════════════════════════════════╝
-                                    │
-                              5 articles/jour
-                              → 35 articles/semaine (max)
-                                    │
-                                    ▼
-╔══════════════════════════════════════════════════════════════════════════╗
-║          ÉTAPE 3 — SYNTHÈSE (lundi 07:00 UTC, IA Sonnet)               ║
-║          synthesize_news.py                                              ║
-║                                                                          ║
-║   1. Charge articles status="selected" des 7 derniers jours             ║
-║   2. Appel Claude Sonnet (claude-sonnet-4-6)                            ║
-║      - Ton éditorial de Kevin (direct, technique, souveraineté)        ║
-║      - Article journalistique bilingue FR + EN (600-900 mots)          ║
-║      - Si sécurité → section "Actions concrètes" obligatoire           ║
-║      - Si architecture → extraction nom architecte + projet             ║
-║   3. Si architecture : fetch Wikipedia → bio + image                    ║
-║   4. Création carte synthesis avec architecture_visual                  ║
-║   5. Tag des articles sources avec synthesis_id                         ║
-║   Auto-commit "chore: weekly tech synthesis — YYYY-WNN"                ║
-╚══════════════════════════════════════════════════════════════════════════╝
-                                    │
-                                    ▼
-╔══════════════════════════════════════════════════════════════════════════╗
-║               DÉPLOIEMENT (push sur main)                               ║
-║               deploy.yml — trunk build --release → GitHub Pages         ║
-╚══════════════════════════════════════════════════════════════════════════╝
-```
+A **fully automated** pipeline, orchestrated by a single workflow (`news-pipeline.yml`):
+
+1. **Fetch** (daily, no AI) — collects from ~45 sources across 6 domains.
+2. **Score** (daily, Claude Haiku) — per-domain competition → general top 5 **plus** a dedicated AI top.
+3. **General synthesis** (Monday, Claude Sonnet) — bilingual FR + EN editorial article. **AI is excluded.**
+4. **AI brief** (Monday **and** Thursday, Claude Sonnet) — dedicated AI synthesis, **English only**, short, token-lean.
+
+AI is treated as its own domain (`ai`), with its own tab on `/veille` and its own synthesis, because access to frontier models has become a geopolitically critical topic that warrants finer tracking.
 
 ---
 
-## Planification (GitHub Actions cron)
+## Domains & sources
+
+| Domain | Sources (excerpt) |
+|--------|-------------------|
+| `dev_stack` (11) | Rust Blog, This Week in Rust, Go Blog, Mozilla Hacks, WebKit, GitHub Eng, LWN, Lobste.rs, LinuxFr, ArXiv CS.PL |
+| `ai` (16) | OpenAI, Google DeepMind, Hugging Face, Microsoft Research, ArXiv CS.AI/LG/CL/CY, Google Research, BAIR, EU Digital Strategy, NIST, Import AI, The Gradient, MIT Tech Review AI, Ars Technica AI |
+| `security` (8) | CISA, NIST CSRC, ENISA, OpenSSF, Krebs, Schneier, PortSwigger, SANS ISC |
+| `health_science` (4) | ArXiv CS.HC, ArXiv q-bio, eLife, PLOS ONE |
+| `business_market` (7) | The Register, InfoQ, CNCF, W3C, IETF, IEEE Spectrum, ACM Tech News + HackerNews (≥150) |
+| `architecture` (5) | Dezeen Sustainable, Low-tech Magazine, ArchDaily, TreeHugger, Resilient Design |
+
+The `ai` domain spans 4 axes: **official labs**, **academic research**, **regulatory/legal**, **AI analysis/safety**.
+Formerly `ai_emerging`; IEEE/ACM moved to `business_market`, ArXiv CS.PL moved to `dev_stack`.
+
+> Feed URLs are validated by `scripts/check_feeds.py` (network, no AI) — workflow `feeds-smoke.yml`.
+
+---
+
+## Schedule (single cron)
 
 ```
-Heure UTC  │ Lun  Mar  Mer  Jeu  Ven  Sam  Dim
+UTC time   │ Mon  Tue  Wed  Thu  Fri  Sat  Sun
 ───────────┼────────────────────────────────────
-06:00      │  F    F    F    F    F    F    F    ← fetch-news.yml  (sans IA)
-06:30      │  S    S    S    S    S    S    S    ← score-news.yml  (Haiku)
-07:00      │  SY   ·    ·    ·    ·    ·    ·   ← synthesize-news.yml (Sonnet, lundi)
-
-F  = fetch_news.py    S = score_articles.py    SY = synthesize_news.py
+06:00      │  ●    ●    ●    ●    ●    ●    ●     news-pipeline.yml
+           │                                      ├─ fetch_news.py         (always, no AI)
+           │                                      ├─ score_articles.py     (always, Haiku)
+           │  G                                   ├─ synth --track general (Monday)
+           │  A              A                    └─ synth --track ai      (Monday + Thursday)
 ```
 
----
-
-## Critères de scoring par domaine
-
-### `dev_stack`
-Stack relevance Rust/WASM/web/open source **40%** · Impact développeur **40%** · Signal vs hype **20%**
-
-### `ai_emerging`
-Applicabilité pratique réelle **40%** · Rigueur scientifique / vrai breakthrough **40%** · Nouveauté vs hype **20%**
-Malus fort pour les pièces hype LLM sans substance technique.
-
-### `security`
-Sévérité/urgence pour dev web **50%** · Actionnabilité (patch/mitigation concret) **30%** · Ampleur de l'impact **20%**
-Bonus : articles avec CVE ID + plage de versions affectées.
-
-### `health_science`
-Avancée pour la santé humaine **40%** · Niveau d'innovation scientifique **40%** · Accessibilité des résultats **20%**
-Préférence pour publications peer-reviewed vs communiqués de presse.
-
-### `business_market`
-Signal long-terme (pas bruit court-terme) **40%** · Impact écosystème dev / open source **30%** · Insight contrarian **30%**
-Malus pour annonces de funding sans substance technique.
-
-### `architecture`
-Éco-responsabilité / adaptation climatique **40%** · Applicabilité auto-construction matériaux locaux **40%** · Innovation technique/matériaux **20%**
-Focus : passivhaus, matériaux naturels, gestion eau, autonomie énergétique, intégration alimentaire.
+`workflow_dispatch` accepts: `force_synthesis`, `force_ai_synthesis`, `score_date`, `score_week`.
 
 ---
 
-## Contrainte globale top 5
+## Step 2 — scoring & selection
 
-Sur les 18 candidats (top 3 × 6 domaines), le top 5 global respecte :
-- **Max 1 article architecture** — intérêt personnel hors contexte principal
-- Tri par score Claude Haiku décroissant
+`score_articles.py` scores each domain with Claude Haiku (0–10), then makes **two** selections:
 
----
+- **General top 5** (`select_global_top5`) — across all domains **except `ai`**, max 1 `architecture` article.
+- **AI top** (`select_ai_top`, default 6) — the best articles of the `ai` domain.
 
-## Synthèse hebdomadaire — spécificités
+Both sets become `status="selected"`; the rest become `archived`.
 
-### Ton éditorial (Kevin)
-Direct, techniquement précis, légèrement opinionné. Zéro bullshit corporate. Valeurs : souveraineté numérique, sécurité web as first-class, responsabilité écologique. Stack : Rust, WebAssembly, open web.
-
-### Traitement sécurité
-Si au moins un article `security` ou catégorie `urgent` dans la semaine → section `## Actions concrètes` **obligatoire** dans les deux langues. Contenu : 3-5 étapes précises et immédiatement réalisables par le lecteur (numéros de version, commandes, config snippets).
-
-### Traitement architecture
-Si un article `architecture` dans la semaine :
-1. Claude extrait le nom de l'architecte/studio + requête Wikipedia
-2. `fetch_wikipedia_info()` → Wikipedia REST API `/page/summary/{query}`
-3. Récupère : bio (600 chars max) + thumbnail URL + lien Wikipedia
-4. Stocké dans `architecture_visual` de la carte synthesis
+### Per-domain criteria (excerpt)
+- `ai` — strategic/regulatory signal (lab announcements, model access & export controls, EU AI Act/NIST) **40%** · reproducible scientific substance **40%** · novelty vs recycled hype **20%**.
+- `dev_stack`, `security`, `health_science`, `business_market`, `architecture` — see `DOMAIN_CRITERIA` in `score_articles.py`.
 
 ---
 
-## Structure de données : `public/news.json`
+## Step 3 — syntheses
+
+### Article cap (anti-truncation)
+Scoring keeps ~5 `selected`/day, so ~35 over 7 days. Feeding them all into one prompt makes the
+output **truncate → invalid JSON → failure**. Hence a top-N cap by score:
+`MAX_SYNTHESIS_ARTICLES = 8` (general, max 3/domain) · `MAX_AI_ARTICLES = 6` (AI).
+
+### General synthesis (`--track general`, Monday)
+- Candidates: `selected` from the past 7 days, **`domain != "ai"`**.
+- Claude Sonnet → bilingual FR + EN article, human editorial voice (see "Voice" below).
+- Security present → mandatory "Immediate actions" section. Architecture → Wikipedia bio/visual.
+- French proofread (Haiku) + inline image validation (Haiku).
+- ID: `synthesis_YYYY_WNN`. Field `track: "general"`.
+
+### AI brief (`--track ai`, Monday + Thursday) — **token-lean**
+- Candidates: `selected`, **`domain == "ai"`**, over a **rolling window** since the last AI brief's `period_end` (else `now-7d`).
+- **English only, short (~500-900 words), no illustration** → **a single Sonnet call** (reduced max_tokens), **zero Haiku**, no image fetch.
+- Structure: what happened → where it sits in the state of the art → short/medium/long-term implications → developer actions.
+- Date-based ID: `synthesis_ai_YYYY-MM-DD`. Field `track: "ai"`. `content_fr` empty (the frontend renders EN).
+
+### Editorial voice
+Senior developer (Rust/WASM/security/Linux), opinionated, human and lively register.
+Prompts carry a **banned anti-pattern list** ("In summary", "delve into", stacked mechanical
+transitions, false balance) and **forbid exposing the prompt** (no meta summary-conclusion). The
+structure is an intention, not a template.
+
+### Source-link integrity
+The model never types a source article's URL (it mangles them → 404s). Instead:
+- the prompt references each source by a `srcref:<id>` token;
+- `resolve_source_links()` swaps the token for the **exact feed URL** after generation.
+
+Repairing existing content: `scripts/repair_synthesis_links.py` (deterministic, no AI) matches each
+broken link against the synthesis `sources[]` (same host → best slug + title similarity, confidence
+threshold, homepages skipped). An unresolvable link is left as-is rather than pointed at the wrong
+topic.
+
+### Illustration
+The hero visual (`illustration`) goes through a generic-image denylist (`find_images` → envelope,
+logo, icon…) **plus** a Haiku relevance check (`vet_illustration`, general track only). The AI brief
+has no illustration.
+
+---
+
+## Data structure: `public/news.json`
 
 ```
-public/news.json
+items[]
+├── [type="article"]
+│   ├── id, type, title, url, source
+│   ├── domain        dev_stack | ai | security | health_science | business_market | architecture
+│   ├── categories[]  [urgent | good_news | future_watch | stack_alt | general]
+│   ├── published_at, fetched_at, lang
+│   ├── status        raw | selected | archived
+│   ├── score, score_reason          (set by score_articles.py)
+│   └── synthesis_id  "synthesis_YYYY_WNN" | "synthesis_ai_YYYY-MM-DD"
 │
-├── generated_at     ISO timestamp
-├── period           YYYY-MM-DD
-├── count            Nb total items
-├── synthesis        null (plus utilisé en quotidien — champ gardé pour compat)
-│
-└── items[]
-    ├── [type="article"]
-    │   ├── id              hash MD5 12 chars
-    │   ├── type            "article"
-    │   ├── title
-    │   ├── url
-    │   ├── source          nom du flux
-    │   ├── domain          dev_stack|ai_emerging|security|health_science|business_market|architecture
-    │   ├── categories[]    [urgent|good_news|future_watch|stack_alt|general]
-    │   ├── published_at    ISO timestamp
-    │   ├── fetched_at      ISO timestamp (ajouté par fetch_news.py)
-    │   ├── lang            en|fr|de|ja
-    │   ├── status          raw|selected|archived
-    │   ├── score           float 0–10 (set par score_articles.py)
-    │   ├── score_reason    string courte (set par score_articles.py)
-    │   └── synthesis_id    "synthesis_YYYY_WNN" (après synthèse hebdo)
-    │
-    └── [type="synthesis"]
-        ├── id              "synthesis_YYYY_WNN"
-        ├── type            "synthesis"
-        ├── title_fr
-        ├── title_en
-        ├── content_fr      article Markdown 600-900 mots
-        ├── content_en      article Markdown 600-900 mots
-        ├── security_actions[]  actions concrètes si sécurité
-        ├── architecture_visual  {name, bio, image_url, wikipedia_url} | null
-        ├── period_start    YYYY-MM-DD
-        ├── period_end      YYYY-MM-DD
-        ├── published_at
-        ├── source_count
-        └── sources[]
-            ├── id, title, url, source, domain, lang, published_at, score
+└── [type="synthesis"]
+    ├── id            "synthesis_YYYY_WNN" (general) | "synthesis_ai_YYYY-MM-DD" (AI)
+    ├── track         "general" | "ai"
+    ├── title_fr, title_en, content_fr, content_en   (AI: content_fr empty, title mirrored)
+    ├── security_actions[], architecture_visual, illustration
+    ├── period_start, period_end, published_at, word_count, source_count
+    └── sources[]     {id, title, url, source, domain, lang, published_at, score}
 ```
 
-**Rétention par status :**
-| Status | Rétention |
-|--------|-----------|
-| `synthesis` | Indéfinie |
-| `selected` | 21 jours |
-| `archived` | 4 jours |
-| `raw` | 2 jours |
-| legacy (pas de status) | 14 jours |
+**Retention by status:** `synthesis` indefinite · `selected` 21 d · `archived` 4 d · `raw` 2 d · legacy 14 d.
 
 ---
 
-## score_articles.py — usage CLI
+## Local development
 
 ```bash
-# Scorer les articles d'aujourd'hui (mode normal)
-python scripts/score_articles.py
+make fetch        # RSS + HN (no AI)
+make score        # daily scoring (Haiku)             — ANTHROPIC_API_KEY required
+make score-dry    # scoring without writing
+make synth        # general synthesis (--track general)
+make synth-ai     # AI brief (--track ai)
+make test         # pipeline tests — offline, zero tokens
 
-# Scorer une date spécifique (rattrapage)
-python scripts/score_articles.py --date 2026-06-01
+# Repair links in older syntheses (deterministic, no AI)
+python scripts/repair_synthesis_links.py --dry-run
 
-# Scorer toute une semaine ISO (nettoyage / retraitement)
-python scripts/score_articles.py --week 2026-W22
-
-# Voir le résultat sans modifier news.json
-python scripts/score_articles.py --dry-run
+# Targeted scoring (catch-up)
 python scripts/score_articles.py --date 2026-06-01 --dry-run
+python scripts/score_articles.py --week 2026-W22
 ```
 
-Via GitHub Actions (workflow_dispatch) : `score-news.yml` accepte les inputs `date`, `week`, `dry_run`.
+Tests: see [testing.md](testing.md) — offline pytest suite, faked Anthropic client, **zero token
+usage**.
 
 ---
 
-## Sources par domaine
-
-### dev_stack (10 sources)
-Rust Blog · This Week in Rust · Go Blog · Mozilla Hacks · WebKit Blog · GitHub Engineering · Linux Foundation · LWN.net · Lobste.rs · LinuxFr.org
-
-### ai_emerging (5 sources)
-ArXiv CS.AI (max 10) · ArXiv CS.PL (max 8) · Papers With Code · IEEE Spectrum · ACM Tech News
-
-### security (8 sources, `no_filter: True`)
-CISA Advisories · NIST CSRC · ENISA · OpenSSF Blog · Krebs on Security · Schneier on Security · PortSwigger Blog · SANS ISC (max 5)
-
-### health_science (4 sources, `no_filter: True`)
-ArXiv CS.HC (max 8) · ArXiv q-bio (max 8) · eLife Sciences (max 8) · PLOS ONE (max 8)
-
-### business_market (5 sources + HackerNews)
-The Register · InfoQ · CNCF Blog · W3C Blog · IETF Blog
-HackerNews : top 80 → score ≥ 150 → max 12 (domaine `business_market`)
-
-### architecture (5 sources)
-Dezeen Sustainable · Low-tech Magazine · ArchDaily (max 8) · TreeHugger (max 8) · Resilient Design Institute
-
----
-
-## Filtrage du bruit
-
-Sources sans `no_filter: True` passent par regex NOISE_PATTERNS :
-`"day N of"` `"top N"` `"my first"` `"getting started"` `"for beginners"` `"step-by-step"` `"complete guide"` `"my journey"` `"#showdev"` `"how i"` `"my experience"` et autres.
-
-HackerNews : filtre bruit + seuil score ≥ 150 (vs 100 précédemment).
-
----
-
-## Développement local
-
-```bash
-# Fetch (sans IA)
-python scripts/fetch_news.py
-
-# Score du jour
-export ANTHROPIC_API_KEY=sk-ant-...
-python scripts/score_articles.py --dry-run   # voir sans modifier
-python scripts/score_articles.py             # appliquer
-
-# Synthèse hebdomadaire
-python scripts/synthesize_news.py
-
-# Vérifier news.json
-python -c "import json; d=json.load(open('public/news.json')); \
-  sel=[i for i in d['items'] if i.get('status')=='selected']; \
-  print(len(sel), 'selected,', d['count'], 'total')"
-```
-
----
-
-## Fichiers clés
+## Key files
 
 ```
 .github/workflows/
-├── fetch-news.yml        Cron 06:00 UTC — sans IA
-├── score-news.yml        Cron 06:30 UTC — Haiku (+ workflow_dispatch avec params)
-├── synthesize-news.yml   Cron lundi 07:00 UTC — Sonnet
-├── deploy.yml            Build & déploiement
-└── quality.yml           Validation post-déploiement
+├── news-pipeline.yml    Cron 06:00 — fetch + score; general synthesis (Mon), AI brief (Mon+Thu)
+├── tests.yml            pytest pipeline (no API key → zero tokens)
+├── feeds-smoke.yml      Feed reachability check (no AI)
+├── tools-pipeline.yml   Open-source tool discovery + article PR (weekly)
+├── deploy.yml           Build & deploy to GitHub Pages
+└── quality.yml          Post-deploy validation
 
 scripts/
-├── fetch_news.py         Agrégateur RSS + HN + classification
-├── score_articles.py     Compétition inter-domaines (nouveau)
-├── synthesize_news.py    Synthèse éditoriale hebdomadaire
-└── requirements.txt      feedparser, requests, anthropic
-
-public/
-└── news.json             Fichier central (~20-100 KB, ~100-200 items)
+├── fetch_news.py              RSS + HN aggregator + classification (no AI)
+├── score_articles.py          Per-domain competition + general/AI selection (Haiku)
+├── synthesize_news.py         General synthesis + AI brief (Sonnet), --track {general,ai}
+├── repair_synthesis_links.py  Deterministic source-link repair (no AI)
+├── check_feeds.py             Feed smoke check (no AI)
+├── tests/                     Offline pytest suite (conftest + 4 modules)
+└── requirements.txt / requirements-dev.txt
 
 src/components/
-└── veille.rs             Composant Leptos /veille
+└── veille.rs                  /veille page (AI tab, AI-brief badge, synthesis detail)
 ```
