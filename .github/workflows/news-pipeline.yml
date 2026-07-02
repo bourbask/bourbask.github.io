@@ -15,6 +15,11 @@ on:
         type: boolean
         required: false
         default: false
+      force_forecast:
+        description: 'Force monthly forecast (ignore day-of-month check)'
+        type: boolean
+        required: false
+        default: false
       score_date:
         description: 'Score a specific date YYYY-MM-DD instead of today'
         required: false
@@ -113,22 +118,45 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
+      # ── Step 3c: Monthly forecast (1st of month, or forced) ────────────────
+      - name: Check if forecast should run
+        id: should_forecast
+        run: |
+          FORCED="${{ github.event.inputs.force_forecast }}"
+          DOM=$(date +%-d)  # day of month
+          if [ "$FORCED" = "true" ] || [ "$DOM" = "1" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+            echo "Forecast will run (forced=$FORCED, day-of-month=$DOM)"
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+            echo "Forecast skipped (not 1st of month, not forced)"
+          fi
+
+      - name: Generate monthly forecast (Claude Opus, trend ledger + web_search)
+        if: steps.should_forecast.outputs.run == 'true'
+        run: python scripts/forecast_news.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
       # ── Step 4: Single commit ──────────────────────────────────────────────
       - name: Commit changes
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/news.json
+          git add public/news.json data/trend_ledger.jsonl
           git diff --staged --quiet && echo "No changes." || {
             GEN="${{ steps.should_synthesize.outputs.run }}"
             AI="${{ steps.should_synthesize_ai.outputs.run }}"
+            FORECAST="${{ steps.should_forecast.outputs.run }}"
             if [ "$GEN" = "true" ] && [ "$AI" = "true" ]; then
               MSG="chore: weekly tech + AI synthesis — $(date +%G-W%V)"
             elif [ "$GEN" = "true" ]; then
               MSG="chore: weekly tech synthesis — $(date +%G-W%V)"
             elif [ "$AI" = "true" ]; then
               MSG="chore: AI synthesis — $(date +%Y-%m-%d)"
+            elif [ "$FORECAST" = "true" ]; then
+              MSG="chore: monthly forecast — $(date +%Y-%m)"
             else
               MSG="chore: update tech news feed"
             fi

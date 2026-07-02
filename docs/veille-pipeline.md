@@ -60,6 +60,18 @@ UTC time   │ Mon  Tue  Wed  Thu  Fri  Sat  Sun
 
 Both sets become `status="selected"`; the rest become `archived`.
 
+### Trend ledger (long-term memory)
+After writing `news.json`, the scorer appends the run's **qualified** signals
+(`status=selected` **or** `score ≥ 6`) to `data/trend_ledger.jsonl` — one compact,
+distilled line each (`date, domain, signal, score, status, …`). This file is
+**append-only and permanent**: it survives `news.json` retention so the forecast
+step can read a real *trajectory* instead of a one-week snapshot. The append is
+idempotent (dedup by signal id) and best-effort (a ledger error never fails scoring).
+
+Backfill from history: `scripts/extract_ledger.py` mines every past git revision of
+`news.json` + synthesis sources (deterministic, **zero tokens**) — bootstraps the
+ledger before live accumulation takes over.
+
 ### Per-domain criteria (excerpt)
 - `ai` — strategic/regulatory signal (lab announcements, model access & export controls, EU AI Act/NIST) **40%** · reproducible scientific substance **40%** · novelty vs recycled hype **20%**.
 - `dev_stack`, `security`, `health_science`, `business_market`, `architecture` — see `DOMAIN_CRITERIA` in `score_articles.py`.
@@ -85,6 +97,22 @@ output **truncate → invalid JSON → failure**. Hence a top-N cap by score:
 - **English only, short (~500-900 words), no illustration** → **a single Sonnet call** (reduced max_tokens), **zero Haiku**, no image fetch.
 - Structure: what happened → where it sits in the state of the art → short/medium/long-term implications → developer actions.
 - Date-based ID: `synthesis_ai_YYYY-MM-DD`. Field `track: "ai"`. `content_fr` empty (the frontend renders EN).
+
+### Forecast (`forecast_news.py`, `--track forecast`) — predictive, not a recap
+Where the syntheses recap *what happened*, the forecast answers *where it's going and what to
+do*. It reads the **trend ledger** (not the 7-day window) and runs a 4-pass agent on
+**Claude Opus 4.8** (adaptive thinking, effort high) — cadence is monthly, so cost stays bounded:
+
+1. **Extract vectors** — ledger digest → ≤5 trend vectors (what's moving, evidence, velocity).
+2. **Ground + project** — per vector, the **`web_search` server tool** finds a real historical
+   analogue, then projects short/medium/long-term scenarios. Every projection carries a
+   **confidence**, a **leading indicator** (checkable next month) and a **falsifier**.
+3. **Decision memo** — synthesizes the projections into a bilingual FR+EN memo: bet on X / hedge
+   Y / ignore Z. Falsifiers stay visible so past calls can be scored later.
+
+Card: `track: "forecast"`, ID `forecast_YYYY-MM-DD` (`_<domain>` suffix when `--domain` is used).
+The structured projections are kept on the card under `vectors[]` alongside the prose.
+Needs ≥ 12 ledger signals; before the ledger has depth, `web_search` carries the cold start.
 
 ### Editorial voice
 Senior developer (Rust/WASM/security/Linux), opinionated, human and lively register.
