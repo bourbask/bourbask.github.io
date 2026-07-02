@@ -1,6 +1,6 @@
 # CI/CD pipeline — deployment & quality
 
-> Last updated: 2026-06-18 (security review — CSP, rate limiting, openpgp self-host)
+> Last updated: 2026-06-18 (auto-tag workflow, versioning conventions)
 
 ---
 
@@ -13,8 +13,12 @@ Push to main
       │         │
       │         └──→ quality.yml   Lighthouse + pa11y + W3C + headers
       │
+      └──→ release-tag.yml   Auto-tag + GitHub Release + cleanup
+
+Merge release/v* → main
+      └──→ release-tag.yml   Tag vX.Y.Z + Release + delete branch
+
 PR to main
-      │
       └──→ ci.yml            Clippy + rustsec
 
 Daily cron (06:00 UTC)
@@ -199,6 +203,17 @@ www   CNAME   bourbask.github.io.
 
 ---
 
+## Versioning & auto-tag
+
+When a PR from `release/vX.Y.Z` is merged to `main`, `release-tag.yml` automatically:
+
+1. Extracts the version from the branch name (`release/v2.14.0` → `v2.14.0`)
+2. Creates a git tag on the merge commit
+3. Creates a GitHub Release with the PR body as release notes
+4. Deletes the release branch (ephemeral — tags are the permanent record)
+
+All previous release branches can be safely deleted.
+
 ## Branching & delivery flow
 
 ```
@@ -208,10 +223,13 @@ feature/xxx  →  develop  →  main
                (clippy)    (build + deploy)
                             quality.yml
                             (validation)
+                            release-tag.yml
+                            (auto-tag + release)
 ```
 
 - **`develop`**: integration branch — Clippy CI + audit
 - **`main`**: production branch — every push triggers a deploy
+- **`release/v*`**: ephemeral PR vehicle — auto-deleted after merge
 
 Merge rules: rebase for feature→develop, squash for develop→main.
 
