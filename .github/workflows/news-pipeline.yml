@@ -69,18 +69,22 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      # ── Step 3a: General synthesis (Monday only, or forced) ────────────────
+      # ── Step 3a: General synthesis (Mon-Wed, or forced) ─────────────────────
+      # Mon-Wed (not Monday-only): the target week's synthesis_id stays the same
+      # all week (ISO week number only rolls over on the next Monday), so if
+      # Monday's generation fails, synthesize_news.py's own "already exists"
+      # check makes Tue/Wed a free, idempotent retry instead of losing the week.
       - name: Check if general synthesis should run
         id: should_synthesize
         run: |
           FORCED="${{ github.event.inputs.force_synthesis }}"
           DAY=$(date +%u)  # 1=Monday … 7=Sunday
-          if [ "$FORCED" = "true" ] || [ "$DAY" = "1" ]; then
+          if [ "$FORCED" = "true" ] || [ "$DAY" = "1" ] || [ "$DAY" = "2" ] || [ "$DAY" = "3" ]; then
             echo "run=true" >> $GITHUB_OUTPUT
             echo "General synthesis will run (forced=$FORCED, day=$DAY)"
           else
             echo "run=false" >> $GITHUB_OUTPUT
-            echo "General synthesis skipped (not Monday, not forced)"
+            echo "General synthesis skipped (not Mon-Wed, not forced)"
           fi
 
       - name: Generate general weekly synthesis (Claude Sonnet, AI excluded)

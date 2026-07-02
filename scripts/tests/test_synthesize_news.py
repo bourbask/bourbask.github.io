@@ -1,6 +1,6 @@
 """synthesize_news.py — date logic, track routing, generation via FakeAnthropicClient."""
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import synthesize_news as sn
 
@@ -150,16 +150,20 @@ def test_generate_ai_synthesis_handles_failure(fake_client):
 
 # ─── main: AI track (lean, no images / no Haiku) ──────────────────────────────
 def _ai_items():
+    # main() with no --track ai args and no prior AI synthesis in `data` uses a
+    # rolling now-7d..now window — anchor published_at to real "now" (instead of
+    # a hardcoded past date) so the test doesn't rot as wall-clock time passes.
+    published = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
     return [
         {"id": "a1", "type": "article", "domain": "ai", "status": "selected",
          "title": "OpenAI frontier model", "url": "https://o.ai/1", "source": "OpenAI",
-         "lang": "en", "published_at": "2026-06-14T08:00:00+00:00", "score": 9.0},
+         "lang": "en", "published_at": published, "score": 9.0},
         {"id": "a2", "type": "article", "domain": "ai", "status": "selected",
          "title": "EU AI Act update", "url": "https://eu/1", "source": "EU",
-         "lang": "en", "published_at": "2026-06-14T09:00:00+00:00", "score": 8.0},
+         "lang": "en", "published_at": published, "score": 8.0},
         {"id": "d1", "type": "article", "domain": "dev_stack", "status": "selected",
          "title": "Rust release", "url": "https://r/1", "source": "Rust",
-         "lang": "en", "published_at": "2026-06-14T09:00:00+00:00", "score": 8.0},
+         "lang": "en", "published_at": published, "score": 8.0},
     ]
 
 
