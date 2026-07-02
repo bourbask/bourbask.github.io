@@ -344,6 +344,17 @@ def main() -> None:
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nDone: {updated_count} articles updated, {len(selected_ids)} selected.")
 
+    # Append today's qualified signals to the long-term trend ledger (the pipeline's
+    # permanent memory — survives news.json retention so forecasting sees a trajectory).
+    # Best-effort: a ledger hiccup must never fail the scoring run.
+    try:
+        from extract_ledger import append_signals
+        scored_items = [it for it in items if it.get("id") in score_lookup]
+        added = append_signals(scored_items)
+        print(f"[ledger] +{added} new signal(s) recorded.")
+    except Exception as e:
+        print(f"[ledger] append skipped: {e}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()

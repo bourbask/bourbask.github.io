@@ -19,6 +19,25 @@ struct SynthesisSource {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+struct ForecastProjection {
+    horizon: String,
+    confidence: String,
+    claim: String,
+    leading_indicator: String,
+    falsifier: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct ForecastVector {
+    vector: String,
+    historical_analogue: String,
+    #[serde(default)]
+    so_what: String,
+    #[serde(default)]
+    projections: Vec<ForecastProjection>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 struct NewsItem {
     id: String,
     #[serde(rename = "type", default = "default_item_type")]
@@ -56,6 +75,8 @@ struct NewsItem {
     sources: Option<Vec<SynthesisSource>>,
     #[serde(default)]
     source_count: Option<usize>,
+    #[serde(default)]
+    vectors: Option<Vec<ForecastVector>>,
 }
 
 fn default_item_type() -> String {
@@ -174,6 +195,7 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
     let content_en = item.content_en.clone().unwrap_or_default();
     // AI-track briefs are English-only — always render the EN title/content.
     let is_ai = item.track.as_deref() == Some("ai");
+    let is_forecast = item.track.as_deref() == Some("forecast");
     let detail_url = format!("/veille?synthesis={}", id);
 
     let period_start2 = period_start.clone();
@@ -200,6 +222,12 @@ fn WeeklySynthesisCard(item: NewsItem) -> impl IntoView {
                         view! {
                             <span class="veille-synthesis-badge veille-synthesis-badge-ai">
                                 {move || i18n.t("veille.synthesis.aiBadge")}
+                            </span>
+                        }.into_any()
+                    } else if is_forecast {
+                        view! {
+                            <span class="veille-synthesis-badge veille-synthesis-badge-forecast">
+                                {move || i18n.t("veille.synthesis.forecastBadge")}
                             </span>
                         }.into_any()
                     } else {
@@ -275,6 +303,8 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
     let content_fr = item.content_fr.clone().unwrap_or_default();
     let content_en = item.content_en.clone().unwrap_or_default();
     let is_ai = item.track.as_deref() == Some("ai");
+    let is_forecast = item.track.as_deref() == Some("forecast");
+    let vectors = item.vectors.clone().unwrap_or_default();
 
     let period_start2 = period_start.clone();
     let period_end2 = period_end.clone();
@@ -293,6 +323,12 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
                         view! {
                             <span class="veille-synthesis-badge veille-synthesis-badge-ai">
                                 {move || i18n.t("veille.synthesis.aiBadge")}
+                            </span>
+                        }.into_any()
+                    } else if is_forecast {
+                        view! {
+                            <span class="veille-synthesis-badge veille-synthesis-badge-forecast">
+                                {move || i18n.t("veille.synthesis.forecastBadge")}
                             </span>
                         }.into_any()
                     } else {
@@ -343,6 +379,74 @@ fn SynthesisDetailPage(item: NewsItem, other_syntheses: Vec<NewsItem>) -> impl I
                     view! { <div class="synthesis-detail-content" inner_html={html}></div> }
                 }}
             </div>
+
+            {if !vectors.is_empty() {
+                let i18n_v = i18n.clone();
+                view! {
+                    <div class="synthesis-vectors">
+                        <p class="synthesis-vectors-title">
+                            {move || i18n_v.t("veille.synthesis.vectorsTitle")}
+                        </p>
+                        {vectors.iter().map(|v| {
+                            let i18n_analogue = i18n.clone();
+                            let i18n_so_what = i18n.clone();
+                            let so_what = v.so_what.clone();
+                            view! {
+                                <article class="synthesis-vector">
+                                    <h3 class="synthesis-vector-name">{v.vector.clone()}</h3>
+                                    <p class="synthesis-vector-analogue">
+                                        <strong>{move || i18n_analogue.t("veille.synthesis.historicalAnalogue")}</strong>
+                                        {format!(": {}", v.historical_analogue)}
+                                    </p>
+                                    <ul class="synthesis-vector-projections">
+                                        {v.projections.iter().map(|p| {
+                                            let i18n_c = i18n.clone();
+                                            let i18n_l = i18n.clone();
+                                            let i18n_f = i18n.clone();
+                                            let confidence_class = format!(
+                                                "synthesis-vector-confidence synthesis-vector-confidence--{}",
+                                                p.confidence.to_lowercase(),
+                                            );
+                                            view! {
+                                                <li class="synthesis-vector-projection">
+                                                    <div class="synthesis-vector-projection-header">
+                                                        <span class="synthesis-vector-horizon">{p.horizon.clone()}</span>
+                                                        <span class={confidence_class}>
+                                                            {move || i18n_c.t("veille.synthesis.confidence")}
+                                                            {format!(": {}", p.confidence)}
+                                                        </span>
+                                                    </div>
+                                                    <p class="synthesis-vector-claim">{p.claim.clone()}</p>
+                                                    <p class="synthesis-vector-indicator">
+                                                        <strong>{move || i18n_l.t("veille.synthesis.leadingIndicator")}</strong>
+                                                        {format!(": {}", p.leading_indicator)}
+                                                    </p>
+                                                    <p class="synthesis-vector-falsifier">
+                                                        <strong>{move || i18n_f.t("veille.synthesis.falsifier")}</strong>
+                                                        {format!(": {}", p.falsifier)}
+                                                    </p>
+                                                </li>
+                                            }
+                                        }).collect::<Vec<_>>()}
+                                    </ul>
+                                    {if !so_what.is_empty() {
+                                        view! {
+                                            <p class="synthesis-vector-so-what">
+                                                <strong>{move || i18n_so_what.t("veille.synthesis.soWhat")}</strong>
+                                                {format!(": {}", so_what)}
+                                            </p>
+                                        }.into_any()
+                                    } else {
+                                        ().into_any()
+                                    }}
+                                </article>
+                            }
+                        }).collect::<Vec<_>>()}
+                    </div>
+                }.into_any()
+            } else {
+                ().into_any()
+            }}
 
             {if !other_syntheses.is_empty() {
                 let i18n2 = i18n.clone();

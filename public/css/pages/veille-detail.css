@@ -223,6 +223,111 @@
   margin: 2rem 0;
 }
 
+/* Forecast trend vectors */
+
+.synthesis-vectors {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.synthesis-vectors-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.synthesis-vector {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+}
+
+.synthesis-vector-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.6rem;
+}
+
+.synthesis-vector-analogue,
+.synthesis-vector-so-what {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.synthesis-vector-projections {
+  list-style: none;
+  padding: 0;
+  margin: 0.9rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.synthesis-vector-projection {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-tertiary);
+}
+
+.synthesis-vector-projection-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.synthesis-vector-horizon {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+.synthesis-vector-confidence {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.synthesis-vector-confidence--high {
+  color: var(--accent-text);
+}
+
+.synthesis-vector-confidence--medium {
+  color: var(--accent-tertiary-text);
+}
+
+.synthesis-vector-confidence--low {
+  color: var(--text-tertiary);
+}
+
+.synthesis-vector-claim {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin: 0 0 0.4rem;
+}
+
+.synthesis-vector-indicator,
+.synthesis-vector-falsifier {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0.2rem 0 0;
+}
+
 /* Sources section */
 
 .synthesis-detail-sources {

@@ -403,6 +403,11 @@
   background: linear-gradient(135deg, #0d9488, #14b8a6);
 }
 
+/* Forecast badge — warm amber gradient, distinct from AI (teal) and general (green) */
+.veille-synthesis-badge-forecast {
+  background: var(--accent-gradient-warm);
+}
+
 .veille-synthesis-card-period {
   font-family: var(--font-ui);
   font-size: 0.85rem;
