@@ -104,10 +104,10 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.personal.title", "Développeur Full-Stack");
     map.insert("cv.personal.email", "bourbasquet.k@etik.com");
     map.insert("cv.personal.phone", "Disponible sur demande");
-    map.insert("cv.personal.location", "Brest → Bordeaux");
+    map.insert("cv.personal.location", "100% distanciel");
     map.insert("cv.personal.license", "Permis B");
     map.insert("cv.personal.portfolio", "bourbask.github.io");
-    map.insert("cv.summary", "Développeur full-stack de {age} ans avec 7 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. En recherche de nouveaux défis à Bordeaux.");
+    map.insert("cv.summary", "Développeur full-stack de {age} ans avec 7 ans d'expérience en développement web. Expertise Symfony/React, méthodes agiles, et passion pour l'innovation technique. En recherche de nouveaux défis en full remote.");
 
     // CV Section titles
     map.insert("cv.sections.experience", "Expérience Professionnelle");
@@ -195,13 +195,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     );
     map.insert("cv.projects.lekickerfou.status", "Déployé");
 
-    // CV project item (Excelsior)
-    map.insert("cv.projects.excelsior.name", "Excelsior");
+    // CV project item (GitLab Safe Push)
+    map.insert("cv.projects.gitlabsafepush.name", "GitLab Safe Push");
     map.insert(
-        "cv.projects.excelsior.description",
-        "Jeu d'horreur narratif basé sur un voyage dans les Pyrénées",
+        "cv.projects.gitlabsafepush.description",
+        "Outil CLI vérifiant les pipelines GitLab avant un push pour éviter de casser la CI/CD",
     );
-    map.insert("cv.projects.excelsior.status", "En développement");
+    map.insert("cv.projects.gitlabsafepush.status", "Publié");
 
     // CV skill categories
     map.insert("cv.skills.categories.backend", "Backend");
@@ -262,7 +262,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.interests.linux", "🐧 Linux");
 
     // CV footer
-    map.insert("cv.footer", "Disponible pour un poste à Bordeaux • Préavis flexible • Portfolio complet sur bourbask.github.io");
+    map.insert("cv.footer", "Disponible pour un poste 100% distanciel • Préavis flexible • Portfolio complet sur bourbask.github.io");
 
     // CV Section titles
     map.insert("cv.experienceTitle", "Expérience Professionnelle");

@@ -151,7 +151,7 @@ impl CVService {
         @media print {
             html, body {
                 width: 210mm;
-                height: 297mm;
+                min-height: 297mm;
                 margin: 0;
                 padding: 0;
             }
@@ -165,7 +165,7 @@ impl CVService {
         .cv-container {
             font-family: 'Inter', sans-serif;
             width: 210mm;
-            height: 297mm;
+            min-height: 297mm;
             background: white;
             color: #1a1a1a;
             font-size: 13px;
@@ -290,6 +290,8 @@ impl CVService {
 
         .cv-section {
             margin-bottom: 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .section-title {
@@ -315,6 +317,8 @@ impl CVService {
             padding: 8px;
             margin-bottom: 12px;
             transition: box-shadow 0.2s;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .experience-item:hover {
@@ -380,6 +384,8 @@ impl CVService {
             border-radius: 6px;
             padding: 7px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .project-header {
@@ -421,6 +427,8 @@ impl CVService {
 
         .skill-category {
             margin-bottom: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .skill-category h4 {
@@ -449,6 +457,8 @@ impl CVService {
             border-radius: 6px;
             padding: 6px;
             margin-bottom: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .edu-degree {
@@ -892,13 +902,13 @@ impl CVService {
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.excelsior.name"),
-                status: self.i18n.t("cv.projects.excelsior.status"),
-                description: self.i18n.t("cv.projects.excelsior.description"),
+                name: self.i18n.t("cv.projects.gitlabsafepush.name"),
+                status: self.i18n.t("cv.projects.gitlabsafepush.status"),
+                description: self.i18n.t("cv.projects.gitlabsafepush.description"),
                 tech: vec![
-                    "Unreal Engine 5".to_string(),
-                    "Blueprint".to_string(),
-                    "Level Design".to_string(),
+                    "Rust".to_string(),
+                    "GitLab API".to_string(),
+                    "CLI".to_string(),
                 ],
             },
         ]
