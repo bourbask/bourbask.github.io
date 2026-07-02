@@ -19,6 +19,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone, timedelta, date
 from pathlib import Path
 from urllib.parse import quote
@@ -46,6 +47,34 @@ try:
 except ImportError:
     print("Missing deps: pip install anthropic requests", file=sys.stderr)
     sys.exit(1)
+
+
+def call_claude_json(client, log_prefix: str, attempts: int = 3, **create_kwargs) -> dict | None:
+    """
+    Call Claude and parse its response as JSON, retrying on JSONDecodeError.
+    The model occasionally emits malformed JSON (unterminated string, stray
+    control character) — almost always a transient escaping glitch, not a
+    systematic prompt issue, so a plain retry recovers it instead of losing
+    the whole week's synthesis.
+    """
+    last_err: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            response = client.messages.create(**create_kwargs)
+            text = response.content[0].text.strip()
+            text = re.sub(r"^```(?:json)?\s*\n?", "", text)
+            text = re.sub(r"\n?```\s*$", "", text)
+            return json.loads(text)
+        except json.JSONDecodeError as e:
+            last_err = e
+            print(f"[{log_prefix}] JSON parse failed (attempt {attempt}/{attempts}): {e}", file=sys.stderr)
+            if attempt < attempts:
+                time.sleep(2 * attempt)
+        except Exception as e:
+            print(f"[{log_prefix}] generation failed: {e}", file=sys.stderr)
+            return None
+    print(f"[{log_prefix}] generation failed after {attempts} attempts: {last_err}", file=sys.stderr)
+    return None
 
 
 def isoweek_id(dt: datetime) -> str:
@@ -501,19 +530,13 @@ JSON pur — zéro texte avant ou après, zéro fence markdown :
   }}
 }}"""
 
-    try:
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=16000,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = response.content[0].text.strip()
-        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
-        text = re.sub(r"\n?```\s*$", "", text)
-        return json.loads(text)
-    except Exception as e:
-        print(f"[synthesis] generation failed: {e}", file=sys.stderr)
-        return None
+    return call_claude_json(
+        client,
+        "synthesis",
+        model="claude-sonnet-4-6",
+        max_tokens=16000,
+        messages=[{"role": "user", "content": prompt}],
+    )
 
 
 def generate_ai_synthesis(
@@ -591,19 +614,13 @@ OUTPUT — pure JSON, nothing before or after, no markdown fence:
   "content_en": "[English brief — starts directly with text, NOT with # Title]"
 }}"""
 
-    try:
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=4000,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = response.content[0].text.strip()
-        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
-        text = re.sub(r"\n?```\s*$", "", text)
-        return json.loads(text)
-    except Exception as e:
-        print(f"[ai-synthesis] generation failed: {e}", file=sys.stderr)
-        return None
+    return call_claude_json(
+        client,
+        "ai-synthesis",
+        model="claude-sonnet-4-6",
+        max_tokens=4000,
+        messages=[{"role": "user", "content": prompt}],
+    )
 
 
 def ai_window(data: dict, now: datetime) -> tuple[datetime, datetime, str]:
