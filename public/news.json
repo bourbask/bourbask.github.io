@@ -1,9 +1,124 @@
 {
-  "generated_at": "2026-07-02T07:04:06.599625+00:00",
+  "generated_at": "2026-07-02T08:35:12.958111+00:00",
   "period": "2026-07-02",
-  "count": 698,
+  "count": 699,
   "synthesis": null,
   "items": [
+    {
+      "id": "synthesis_2026_W26",
+      "type": "synthesis",
+      "track": "general",
+      "title_fr": "QUIC, credentials anonymes et un patch qui protège personne",
+      "title_en": "The Config Nobody Changed: Security Theater in Three Acts",
+      "period_start": "2026-06-22",
+      "period_end": "2026-06-28",
+      "published_at": "2026-07-02T08:35:12.958111+00:00",
+      "content_fr": "Un bug de congestion dans une implémentation QUIC, des credentials web anonymes qui sortent du labo, un CVE de 2024 dont le patch ne sert à rien si tu n'as pas touché à la config — et en fond, l'IA qui redécouvre que le HTML est meilleur que le Markdown pour garder les humains dans la boucle. Semaine dense, pas forcément spectaculaire. Ce qui compte cette semaine, c'est surtout ce que ces sujets révèlent sur la façon dont on gère (ou pas) la complexité dans les systèmes qu'on croit maîtriser.\n\n## Cloudflare, QUIC et un bug de congestion bien vicieux\n\nQuand tu débogues un problème de congestion dans une pile réseau, tu espères trouver un pointeur mal initialisé, une condition de course évidente. Ce que [Cloudflare a documenté dans quiche](https://www.infoq.com/news/2026/06/cloudflare-bug-quiche/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) est plus retors : un bug dans le contrôle de congestion CUBIC qui faisait baisser la fenêtre de congestion de manière incorrecte lors de certaines pertes de paquets en rafale. Résultat concret : des transferts qui s'écroulaient à des moments imprévisibles, sans erreur explicite. Le genre de truc que tu vas d'abord attribuer au réseau upstream avant de réaliser que c'est ton code.\n\n![Cloudflare quiche congestion bug](https://res.infoq.com/news/2026/06/cloudflare-bug-quiche/en/headerimage/generatedHeaderImage-1782410835538.jpg)\n\nCe qui mérite attention ici, c'est la méthode de diagnostic autant que le correctif. L'équipe a instrumenté les transitions d'état du contrôleur de congestion avec des traces structurées, corrélé les événements de perte avec les changements de `cwnd`, et remonté jusqu'à une divergence entre leur implémentation et la RFC 8312 sur le comportement post-perte. Pas de magie : juste de l'outillage sérieux et une lecture attentive de la spec. quiche est la base de QUIC/HTTP3 dans l'infrastructure Cloudflare — des millions de connexions par seconde passent là-dedans. Un bug de ce type non détecté pendant des semaines donne une idée de la difficulté d'observer un protocole dont la raison d'être est de masquer la latence. Si tu intègres quiche directement dans ton stack (pas via un proxy Cloudflare), assure-toi que tu es sur une version postérieure au correctif — le commit est référencé dans l'article.\n\n## CVE-2024-40766 : le patch existe depuis des mois. Le problème, lui, persiste.\n\nLe vrai sujet de la semaine en sécurité, ce n'est pas le bug en lui-même. C'est ce que [SANS ISC documente noir sur blanc](https://isc.sans.edu/diary/rss/33094) : SonicWall a patché CVE-2024-40766 (accès non authentifié à l'interface de gestion SonicOS, CVSS 9.3), les équipes ont appliqué le patch, et pourtant des appliances restent compromises. Pourquoi ? Parce que le patch corrige la vulnérabilité d'authentification, mais ne ferme pas l'interface de gestion sur les interfaces WAN — et beaucoup d'installations l'ont exposée par défaut ou par habitude.\n\n![CVE-2024-40766 SonicWall](https://isc.sans.edu/diaryimages/images/fig1sonic.png)\n\nC'est le scénario cauchemar de tout ops : tu patches, tu coches la case, et six mois plus tard quelqu'un pivote depuis ton firewall. La CVE date de 2024, l'exploitation active a été confirmée par la CISA, et on parle encore d'appliances accessibles sur le WAN en juin 2026. La surface d'attaque ici n'est pas la vulnérabilité — elle est corrigée. C'est la configuration permissive par défaut couplée à l'inertie opérationnelle. Si tu administres des SonicWall, la section ci-dessous est pour toi.\n\n## Ce que tu dois faire maintenant\n\n**SonicWall / CVE-2024-40766 — actions sans délai :**\n\n1. **Vérifier la version firmware** : tu dois être sur SonicOS 7.0.1-5035 ou supérieur (Gen 7), ou 6.5.4.15-R1 ou supérieur (Gen 6). La commande via CLI SonicOS :\n   ```\n   show version\n   ```\n   Si tu es en dessous, c'est une urgence.\n\n2. **Désactiver l'accès management sur l'interface WAN** : dans SonicOS, `Manage → Appliance → Management Access` — désactive HTTPS/SSH sur X1 (WAN) sauf si tu as une raison documentée de le laisser ouvert. Si tu en as une, restreins par adresse IP source.\n\n3. **Vérifier les règles d'accès existantes** :\n   ```\n   show management-access\n   ```\n   Cherche `Interface: WAN` avec `HTTPS: Enabled` — si c'est là, tu as un problème.\n\n4. **Auditer les comptes locaux** : CVE-2024-40766 permet la création de comptes en pré-authentification dans certaines versions. Vérifie `Manage → Users → Local Users` pour tout compte que tu ne reconnais pas.\n\n5. **Activer les logs d'authentification vers un SIEM externe** : si tu n'as pas de visibilité externe sur tes authentifications de management, tu navigueras à l'aveugle même après le patch.\n\n## PACT : des credentials anonymes web qui sortent enfin du papier académique\n\nCelui-là, il mérite qu'on s'y arrête. [PACT (Private Access Control Tokens)](https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/) est une proposition de Mozilla pour des credentials web anonymes — des tokens qui prouvent une propriété (\"cet utilisateur a payé\", \"cet utilisateur est humain\", \"cet utilisateur est dans ce groupe d'âge\") sans révéler l'identité. Le tout basé sur des zero-knowledge proofs et des signatures aveugles (RSA-BSSA ou Schnorr selon le profil).\n\nLes credentials anonymes, ça existe en recherche académique depuis Chaum dans les années 80. Le fossé entre \"ça marche sur papier\" et \"ça tourne dans un navigateur\" a toujours été énorme : overhead crypto, absence de standard, absence de support navigateur. Ce qui change avec PACT, c'est que Mozilla Hacks en parle avec des détails d'implémentation concrets, des API JavaScript esquissées, et une intégration pensée pour fonctionner avec les mécanismes de CHIPS et Storage Partitioning déjà dans Firefox. C'est encore expérimental — pas de numéro de spec W3C stabilisé à ce stade — mais c'est la première fois que je vois une proposition qui adresse sérieusement l'écart entre la cryptographie et le DOM. Si tu construis des systèmes d'auth ou de contrôle d'accès, garde un œil sur le dépôt GitHub de la spec. Le cas d'usage \"prouver qu'on a payé sans tracker l'utilisateur\" est exactement ce dont le web a besoin pour sortir du tout-cookie.\n\n## Rust 657 et devenv : l'écosystème qui règle ses ajustements\n\n[This Week in Rust 657](https://this-week-in-rust.org/blog/2026/06/24/this-week-in-rust-657/) est une semaine de consolidation plus que de révolution. Quelques points notables : l'avancement de `async fn` dans les traits (AFIT) vers une stabilisation plus large, des améliorations dans `rustdoc` pour les intra-doc links, et plusieurs crates qui sortent des versions majeures dans l'écosystème réseau et crypto. Rien de fracassant, mais c'est le genre de semaine qui fait avancer le terrain silencieusement.\n\nPlus intéressant pour le quotidien : [l'article sur devenv et la performance de nixpkgs](https://devenv.sh/blog/2026/06/26/making-devenv-start-fast-and-the-whole-nixpkgs-with-it/). Le problème documenté est réel et connu de quiconque a utilisé Nix sérieusement : le temps de démarrage d'un `devenv shell` peut atteindre 30-60 secondes sur un nixpkgs frais parce que l'évaluation du graphe de dépendances est synchrone et non-cachée de manière agressive. La solution mise en place combine un cache d'évaluation plus agressif côté `nix eval`, des lazy imports pour les parties de nixpkgs non utilisées, et un daemon de pré-évaluation qui tourne en arrière-plan. Le gain annoncé : de 45s à 2-3s sur les démarrages répétés, et de 45s à ~8s au premier démarrage. Si devenv fait partie de ton workflow (et si tu fais du Nix pour gérer tes environnements de développement, il devrait y être), la version concernée est devenv 1.4+.\n\n## OpenRL et HTML vs Markdown : deux signaux sur l'état de l'IA outillée\n\n[Google OpenRL](https://www.infoq.com/news/2026/06/google-open-rl-fine-tuning/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) est une API auto-hébergée expérimentale pour le fine-tuning post-entraînement des LLM par reinforcement learning. Concrètement : tu veux faire du RLHF ou du RLAIF sur ton propre modèle, sans passer par une infra Google, OpenRL te fournit les primitives (environment, reward, policy update) sous forme d'API REST. C'est expérimental, l'annonce est prudente, mais la direction est claire — Google veut que les équipes ML puissent boucler leur pipeline de post-training sans dépendre d'outils épars comme TRL + custom reward server + glue code fragile.\n\nL'autre signal vient d'Anthropic : [leur responsable publie des données internes](https://www.infoq.com/news/2026/06/anthropic-html-markdown-agent/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) montrant que dans les boucles agentiques longues, le HTML maintient mieux l'attention humaine que le Markdown — des taux de relecture et d'intervention corrective supérieurs de 18% en moyenne sur leurs benchmarks internes. L'explication est moins surprenante qu'elle n'y paraît : le Markdown dans une interface de chat agentique est souvent rendu de manière incohérente selon les frontends, ce qui crée une friction cognitive. Le HTML, parsé par le navigateur, donne un rendu stable et cliquable. C'est une observation empirique, pas un argument philosophique — mais elle a des implications directes si tu construis des interfaces pour des agents. À noter que ça va à contre-courant de deux ans de \"tout le monde fait du Markdown dans les prompts\" — parfois, l'outillage le plus classique l'emporte.\n\nCe qui lie ces deux sujets à demi-mot : on est en train de construire l'infrastructure de l'IA agentique en temps réel, avec des choix (format de sortie, protocole de training, interface humain-agent) qui vont se cristalliser vite. Le bon moment pour réfléchir à ces choix, c'est maintenant, pas quand le système est en prod depuis dix-huit mois.",
+      "content_en": "A congestion bug deep in a QUIC implementation. Anonymous credentials that finally look like they might ship in a browser. A CVE from 2024 that's patched, audited, and still getting organizations owned. These aren't random items from a news feed — they're three different failure modes of the same underlying problem: complexity that outruns the people responsible for it.\n\n## Cloudflare's QUIC Bug: When the Protocol Hides the Evidence\n\nDebugging a congestion control bug in a QUIC implementation is a special kind of miserable. QUIC was designed to reduce latency by abstracting away loss signals — which means when congestion control misbehaves, the symptoms look like \"the network is weird\" before they look like \"my code is wrong.\"\n\n[Cloudflare's postmortem on quiche](https://www.infoq.com/news/2026/06/cloudflare-bug-quiche/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) is worth reading in full. The bug was in their CUBIC implementation: congestion window reductions were being triggered incorrectly during burst loss events, causing `cwnd` to collapse in ways that didn't match RFC 8312's specified behavior. Transfers would silently underperform — no errors, no obvious retransmits, just throughput that cratered at unpredictable intervals.\n\n![Cloudflare quiche congestion bug](https://res.infoq.com/news/2026/06/cloudflare-bug-quiche/en/headerimage/generatedHeaderImage-1782410835538.jpg)\n\nThe fix matters less than the methodology. The team built structured traces around congestion state transitions, correlated loss events with `cwnd` changes over time, and eventually traced the divergence back to a specific clause in the RFC they'd misimplemented. Millions of connections per second flow through quiche in Cloudflare's infrastructure — this bug was live long enough that its absence would have been the anomaly. If you're using quiche directly (not behind a Cloudflare proxy), the fix commit is referenced in the article. Check your version.\n\n## CVE-2024-40766: The Patch Wasn't the Hard Part\n\nThis is the one that should make you uncomfortable if you run any kind of edge security appliance.\n\n[SANS ISC's write-up](https://isc.sans.edu/diary/rss/33094) lays it out plainly: CVE-2024-40766 is a pre-authentication access vulnerability in SonicOS, CVSS 9.3, patched by SonicWall, actively exploited per CISA confirmation — and still showing up in incident response cases in mid-2026. Not because teams didn't patch. Because the patch fixes the authentication bypass, and nobody closed the management interface that was exposed on the WAN in the first place.\n\n![CVE-2024-40766 SonicWall](https://isc.sans.edu/diaryimages/images/fig1sonic.png)\n\nThat's the part that stings. You apply the patch, you check the box, you move on. Six months later someone pivots from your firewall into your internal network. The CVE is remediated. The attack surface isn't. This is operational inertia meeting a permissive default configuration, and it's exactly the kind of thing that doesn't show up in a vulnerability scan because the finding was closed.\n\nIf you manage SonicWall appliances, stop reading here and do the following before anything else.\n\n## Actions: Do These Now\n\n**SonicWall / CVE-2024-40766 — no delay on these:**\n\n1. **Verify firmware version** — you need SonicOS 7.0.1-5035 or later (Gen 7), or 6.5.4.15-R1 or later (Gen 6). Check via CLI:\n   ```\n   show version\n   ```\n   Anything older than those versions is a live vulnerability.\n\n2. **Disable WAN management access** — in SonicOS, go to `Manage → Appliance → Management Access`. HTTPS and SSH should be disabled on X1 (WAN) unless you have a documented, specific reason they're not. If you do, restrict to known source IPs.\n\n3. **Audit management access rules**:\n   ```\n   show management-access\n   ```\n   Look for `Interface: WAN` with `HTTPS: Enabled`. If you see it, that's your problem.\n\n4. **Check for unauthorized local accounts** — CVE-2024-40766 enables pre-auth account creation on vulnerable versions. Go to `Manage → Users → Local Users` and verify every account there belongs to someone on your team.\n\n5. **Ship management auth logs to an external SIEM** — if you're not already doing this, you're flying blind regardless of patch status.\n\n## PACT: Anonymous Credentials That Might Actually Ship\n\nThe cryptography is decades old. The gap between \"provably secure on paper\" and \"runs in a browser tab\" has always been enormous. [Mozilla's PACT proposal](https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/) is the most credible attempt I've seen to close it.\n\nPACT — Private Access Control Tokens — lets a site prove something about a user (paid subscriber, over 18, member of a group) without learning who that user is. The cryptographic primitives are blind signatures (RSA-BSSA or Schnorr variants depending on the profile) and zero-knowledge proofs. That's not new. What's new is Mozilla proposing concrete JavaScript APIs, integration with CHIPS and Storage Partitioning in Firefox, and a design that acknowledges the actual browser threat model rather than an academic one.\n\nNo stabilized W3C spec number yet — this is still in the proposal phase. But the level of implementation detail in the Mozilla Hacks post suggests this isn't vaporware. The \"prove you paid without tracking you\" use case is genuinely important for a web that wants to move past third-party cookies without replacing them with something worse. Watch the spec repository.\n\n## Rust, devenv, and the Infrastructure Doing Its Homework\n\n[This Week in Rust 657](https://this-week-in-rust.org/blog/2026/06/24/this-week-in-rust-657/) is a consolidation week. Progress on `async fn` in traits stabilization, better intra-doc link resolution in `rustdoc`, several significant crate releases in the networking and crypto space. No single headline, but the kind of week where six months from now you'll notice things got quietly better.\n\nThe more immediately useful read: [the devenv startup performance work](https://devenv.sh/blog/2026/06/26/making-devenv-start-fast-and-the-whole-nixpkgs-with-it/). If you've used Nix for dev environments, you know the pain — a fresh `devenv shell` can take 30-60 seconds because nixpkgs evaluation is synchronous and the default caching is not aggressive enough. The fix involves more aggressive `nix eval` caching, lazy imports for unused nixpkgs subtrees, and a background pre-evaluation daemon. The result: 45 seconds down to 2-3 seconds on repeat starts, ~8 seconds on first run. That's devenv 1.4+. If you run Nix-based dev environments at any scale, this is worth an upgrade.\n\n## Two AI Signals Worth Noting\n\n[Google's OpenRL](https://www.infoq.com/news/2026/06/google-open-rl-fine-tuning/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) is an experimental self-hosted API for LLM post-training via reinforcement learning. The pitch: run your own RLHF or RLAIF pipeline without stitching together TRL, a custom reward server, and whatever glue code you've accumulated over the last year. It exposes environment, reward, and policy update as REST endpoints. Still experimental, the announcement is appropriately hedged — but the direction is clear. Google wants teams to own their post-training loop.\n\nSeparately, [Anthropic's internal findings on HTML vs. Markdown in agentic loops](https://www.infoq.com/news/2026/06/anthropic-html-markdown-agent/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global) are counterintuitive enough to be worth a second read. Their data shows HTML maintains human engagement in long agentic sessions at an 18% higher rate than Markdown, measured by re-read rates and corrective intervention frequency. The explanation is mundane but real: Markdown rendering in agentic chat interfaces is inconsistent across frontends, creating cognitive friction. HTML, parsed by the browser, renders predictably and stays interactive. Two years of \"just use Markdown in prompts\" and it turns out the 1990s format wins for human readability in 2026. Sometimes the boring choice is right.\n\nBoth of these point at the same moment we're in: the agentic infrastructure layer is being poured right now, and choices made this year — output formats, training protocols, human-agent interface conventions — will harden fast. The SonicWall situation is a good reminder of what happens when you inherit a configuration decision you didn't make and never revisited. Don't let that happen with your agent stack too.",
+      "security_actions": [
+        "Vérifier la version SonicOS : `show version` — minimum 7.0.1-5035 (Gen 7) ou 6.5.4.15-R1 (Gen 6)",
+        "Désactiver HTTPS/SSH management sur l'interface WAN : Manage → Appliance → Management Access → désactiver sur X1",
+        "Auditer les règles d'accès management : `show management-access` — chercher 'Interface: WAN' + 'HTTPS: Enabled'",
+        "Vérifier les comptes locaux non reconnus : Manage → Users → Local Users (CVE-2024-40766 permet création de comptes en pre-auth)",
+        "Envoyer les logs d'authentification management vers un SIEM externe — sans visibilité externe, le patch ne suffit pas"
+      ],
+      "architecture_visual": null,
+      "illustration": {
+        "url": "https://res.infoq.com/news/2026/06/cloudflare-bug-quiche/en/headerimage/generatedHeaderImage-1782410835538.jpg",
+        "caption": "How Cloudflare Solved a Congestion Bug in quiche",
+        "source": "InfoQ",
+        "source_url": "https://www.infoq.com/news/2026/06/cloudflare-bug-quiche/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+        "article_title": "How Cloudflare Solved a Congestion Bug in quiche",
+        "domain": "business_market"
+      },
+      "word_count": {
+        "fr": 1450,
+        "en": 1192
+      },
+      "source_count": 8,
+      "sources": [
+        {
+          "id": "2591005ef634",
+          "title": "How Cloudflare Solved a Congestion Bug in quiche",
+          "url": "https://www.infoq.com/news/2026/06/cloudflare-bug-quiche/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "domain": "business_market",
+          "lang": "en",
+          "published_at": "2026-06-25T19:00:00+00:00",
+          "score": 9.2
+        },
+        {
+          "id": "efc7e336f652",
+          "title": "Google OpenRL is an Experimental Self-hosted API for LLM Post-Training Fine-tuning",
+          "url": "https://www.infoq.com/news/2026/06/google-open-rl-fine-tuning/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "domain": "business_market",
+          "lang": "en",
+          "published_at": "2026-06-24T18:00:00+00:00",
+          "score": 9.2
+        },
+        {
+          "id": "a8171306658e",
+          "title": "This Week in Rust 657",
+          "url": "https://this-week-in-rust.org/blog/2026/06/24/this-week-in-rust-657/",
+          "source": "This Week in Rust",
+          "domain": "dev_stack",
+          "lang": "en",
+          "published_at": "2026-06-24T04:00:00+00:00",
+          "score": 9.2
+        },
+        {
+          "id": "257f042161c7",
+          "title": "CVE-2024-40766: The Patch Fixed the Bug. Nobody Fixed the Configuration., (Tue, Jun 23rd)",
+          "url": "https://isc.sans.edu/diary/rss/33094",
+          "source": "SANS ISC",
+          "domain": "security",
+          "lang": "en",
+          "published_at": "2026-06-23T03:02:34+00:00",
+          "score": 9.2
+        },
+        {
+          "id": "f0093f136f9c",
+          "title": "Anthropic Lead: HTML Increasingly Better Than Markdown at Keeping Humans Engaged in Agentic Loops",
+          "url": "https://www.infoq.com/news/2026/06/anthropic-html-markdown-agent/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "source": "InfoQ",
+          "domain": "business_market",
+          "lang": "en",
+          "published_at": "2026-06-24T23:06:00+00:00",
+          "score": 8.9
+        },
+        {
+          "id": "e644913941e0",
+          "title": "pVACtools v6: A comprehensive suite for neoantigen prediction, visualization, and therapy design",
+          "url": "https://arxiv.org/abs/2606.26659",
+          "source": "ArXiv q-bio",
+          "domain": "health_science",
+          "lang": "en",
+          "published_at": "2026-06-26T04:00:00+00:00",
+          "score": 8.8
+        },
+        {
+          "id": "6ee5f9d97678",
+          "title": "PACT: Anonymous Credentials for the Web",
+          "url": "https://hacks.mozilla.org/2026/06/pact-anonymous-credentials-for-the-web/",
+          "source": "Mozilla Hacks",
+          "domain": "dev_stack",
+          "lang": "en",
+          "published_at": "2026-06-23T15:29:52+00:00",
+          "score": 8.8
+        },
+        {
+          "id": "2e4ea1091d12",
+          "title": "Making devenv start fast, and the whole nixpkgs with it - devenv",
+          "url": "https://devenv.sh/blog/2026/06/26/making-devenv-start-fast-and-the-whole-nixpkgs-with-it/",
+          "source": "Lobste.rs",
+          "domain": "dev_stack",
+          "lang": "en",
+          "published_at": "2026-06-26T18:27:04+00:00",
+          "score": 8.2
+        }
+      ]
+    },
     {
       "id": "synthesis_ai_2026-07-02",
       "type": "synthesis",
@@ -7063,7 +7178,7 @@
       "_score_reason": "devenv with nixpkgs optimization directly impacts developer workflow and tooling performance.",
       "score": 8.2,
       "score_reason": "devenv with nixpkgs optimization directly impacts developer workflow and tooling performance.",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "8462763bd7dc",
@@ -7298,7 +7413,7 @@
       "_score_reason": "Neoantigen prediction directly advances cancer immunotherapy with comprehensive, practical toolkit for clinicians.",
       "score": 8.8,
       "score_reason": "Neoantigen prediction directly advances cancer immunotherapy with comprehensive, practical toolkit for clinicians.",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "61fe0e4252ae",
@@ -7372,7 +7487,7 @@
       "_score_reason": "Technical deep-dive on congestion bug fix in quiche; demonstrates ecosystem improvement with concrete signal.",
       "score": 9.2,
       "score_reason": "Technical deep-dive on congestion bug fix in quiche; demonstrates ecosystem improvement with concrete signal.",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "4b89337ab17b",
@@ -7811,7 +7926,7 @@
       "_score_reason": "Anthropic insight on HTML vs Markdown challenges conventional agentic AI design assumptions with empirical signal.",
       "score": 8.9,
       "score_reason": "Anthropic insight on HTML vs Markdown challenges conventional agentic AI design assumptions with empirical signal.",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "3b8279b6410b",
@@ -7849,7 +7964,7 @@
       "_score_reason": "Google's self-hosted LLM fine-tuning API signals major ecosystem shift toward on-premise AI infrastructure control.",
       "score": 9.2,
       "score_reason": "Google's self-hosted LLM fine-tuning API signals major ecosystem shift toward on-premise AI infrastructure control.",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "c9fe2c2022ae",
@@ -8142,7 +8257,7 @@
       "_score_reason": "Weekly Rust digest; directly relevant, curated signal for ecosystem tracking",
       "score": 9.2,
       "score_reason": "Weekly Rust digest; directly relevant, curated signal for ecosystem tracking",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "bf8f1d3563f4",
@@ -8251,7 +8366,7 @@
       "_score_reason": "Web crypto via anonymous credentials; WASM-relevant, technical depth, Mozilla source",
       "score": 8.8,
       "score_reason": "Web crypto via anonymous credentials; WASM-relevant, technical depth, Mozilla source",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "1b1b1aa40d91",
@@ -8302,7 +8417,7 @@
       "_score_reason": "CVE with patch/config guidance; high severity for developers; clear actionability",
       "score": 9.2,
       "score_reason": "CVE with patch/config guidance; high severity for developers; clear actionability",
-      "synthesis_id": "synthesis_2026_W27"
+      "synthesis_id": "synthesis_2026_W26"
     },
     {
       "id": "e5321e5c15e4",
