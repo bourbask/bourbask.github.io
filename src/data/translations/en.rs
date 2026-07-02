@@ -192,13 +192,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     );
     map.insert("cv.projects.lekickerfou.status", "Deployed");
 
-    // CV project item (GitLab Safe Push)
-    map.insert("cv.projects.gitlabsafepush.name", "GitLab Safe Push");
+    // CV project item (LedgerBurner)
+    map.insert("cv.projects.ledgerburner.name", "LedgerBurner");
     map.insert(
-        "cv.projects.gitlabsafepush.description",
-        "CLI tool that checks GitLab pipelines before pushing to avoid breaking CI/CD",
+        "cv.projects.ledgerburner.description",
+        "AI-boosted personal finance manager built for local models — no dependence on freemium apps, a stack that plugs into a personal AI agent",
     );
-    map.insert("cv.projects.gitlabsafepush.status", "Released");
+    map.insert("cv.projects.ledgerburner.status", "In development");
 
     // CV skill categories
     map.insert("cv.skills.categories.backend", "Backend");

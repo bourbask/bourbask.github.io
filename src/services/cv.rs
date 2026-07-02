@@ -902,13 +902,13 @@ impl CVService {
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.gitlabsafepush.name"),
-                status: self.i18n.t("cv.projects.gitlabsafepush.status"),
-                description: self.i18n.t("cv.projects.gitlabsafepush.description"),
+                name: self.i18n.t("cv.projects.ledgerburner.name"),
+                status: self.i18n.t("cv.projects.ledgerburner.status"),
+                description: self.i18n.t("cv.projects.ledgerburner.description"),
                 tech: vec![
-                    "Rust".to_string(),
-                    "GitLab API".to_string(),
-                    "CLI".to_string(),
+                    "Python".to_string(),
+                    "LLM local".to_string(),
+                    "SQLite".to_string(),
                 ],
             },
         ]
