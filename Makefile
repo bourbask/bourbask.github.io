@@ -110,6 +110,24 @@ synth-ai:
 	fi
 	$(PYTHON) scripts/synthesize_news.py --track ai
 
+ledger:
+	$(PYTHON) scripts/extract_ledger.py
+
+ledger-dry:
+	$(PYTHON) scripts/extract_ledger.py --dry-run
+
+forecast:
+	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
+		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \
+	fi
+	$(PYTHON) scripts/forecast_news.py
+
+forecast-dry:
+	@if [ -z "$$ANTHROPIC_API_KEY" ]; then \
+		echo "Error: ANTHROPIC_API_KEY is not set"; exit 1; \
+	fi
+	$(PYTHON) scripts/forecast_news.py --dry-run
+
 # ── Tests (offline, zéro token IA) ──────────────────────────────────────────────
 test:
 	$(PYTHON) -m pytest scripts/tests -v

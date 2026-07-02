@@ -346,6 +346,13 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("veille.noItems", "Aucun élément dans cette catégorie.");
     map.insert("veille.synthesis.aiGenerated", "Généré par Claude IA");
     map.insert("veille.synthesis.aiBadge", "Brief IA");
+    map.insert("veille.synthesis.forecastBadge", "Prévision");
+    map.insert("veille.synthesis.vectorsTitle", "Vecteurs de tendance");
+    map.insert("veille.synthesis.historicalAnalogue", "Précédent historique");
+    map.insert("veille.synthesis.soWhat", "À faire");
+    map.insert("veille.synthesis.confidence", "Confiance");
+    map.insert("veille.synthesis.leadingIndicator", "Indicateur à surveiller");
+    map.insert("veille.synthesis.falsifier", "Ce qui invaliderait ce pari");
     map.insert("veille.synthesis.weekOf", "Semaine du");
     map.insert("veille.synthesis.to", "au");
     map.insert("veille.synthesis.showSources", "Sources");
