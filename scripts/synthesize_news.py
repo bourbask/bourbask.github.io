@@ -129,7 +129,7 @@ def fetch_wikipedia_info(query: str) -> dict:
         url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{quote(query)}"
         resp = requests.get(
             url, timeout=8,
-            headers={"User-Agent": "bourbask.github.io/veille-bot (k.bourbasquet@legal2digital.fr)"},
+            headers={"User-Agent": "bourbask.github.io/veille-bot"},
         )
         if resp.status_code == 200:
             d = resp.json()
