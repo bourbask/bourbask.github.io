@@ -23,7 +23,6 @@ impl CVService {
                 phone: self.i18n.t("cv.personal.phone"),
                 location: self.i18n.t("cv.personal.location"),
                 portfolio: self.i18n.t("cv.personal.portfolio"),
-                license: self.i18n.t("cv.personal.license"),
             },
             summary: self.i18n.t("cv.summary"),
             section_titles: SectionTitles {
@@ -70,10 +69,6 @@ impl CVService {
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📍</span>
-                            <span>{}</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🚗</span>
                             <span>{}</span>
                         </div>
                         <div class="contact-item">
@@ -124,7 +119,6 @@ impl CVService {
             data.personal.email,
             data.personal.phone,
             data.personal.location,
-            data.personal.license,
             data.personal.portfolio,
             data.section_titles.experience,
             self.render_experience(&data.experience),
@@ -168,8 +162,8 @@ impl CVService {
             min-height: 297mm;
             background: white;
             color: #1a1a1a;
-            font-size: 13px;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.35;
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -180,7 +174,7 @@ impl CVService {
         .cv-header {
             background: #2d6a4f !important;
             color: white;
-            padding: 25px 30px;
+            padding: 16px 30px;
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
@@ -227,24 +221,24 @@ impl CVService {
         .cv-contact { flex: 1; }
 
         .cv-name {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
-            margin: 0 0 6px 0;
+            margin: 0 0 5px 0;
             color: white !important;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .cv-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 400;
-            margin: 0 0 12px 0;
+            margin: 0 0 10px 0;
             color: white !important;
             opacity: 0.95;
         }
 
         .cv-summary {
-            font-size: 13px;
-            line-height: 1.5;
+            font-size: 12px;
+            line-height: 1.45;
             margin: 0;
             color: white !important;
             opacity: 0.92;
@@ -254,10 +248,10 @@ impl CVService {
             display: flex;
             align-items: center;
             gap: 16px;
-            font-size: 12px;
+            font-size: 11.5px;
             color: white !important;
-            margin-top: 9px;
-            margin-bottom: 9px;
+            margin-top: 6px;
+            margin-bottom: 6px;
             opacity: 0.9;
         }
 
@@ -268,24 +262,24 @@ impl CVService {
 
         .cv-body {
             display: flex;
-            gap: 25px;
-            padding: 20px 30px;
+            gap: 20px;
+            padding: 14px 30px;
             flex: 1;
             min-height: 0;
         }
 
-        .cv-main { 
-            flex: 2.2; 
+        .cv-main {
+            flex: 2.2;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 10px;
         }
-        
-        .cv-sidebar { 
-            flex: 0.8; 
+
+        .cv-sidebar {
+            flex: 0.8;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .cv-section {
@@ -295,27 +289,27 @@ impl CVService {
         }
 
         .section-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-            margin: 0 0 12px 0;
+            margin: 0 0 8px 0;
             color: #2d6a4f !important;
             display: flex;
             align-items: center;
             gap: 8px;
             border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 6px;
+            padding-bottom: 4px;
         }
 
         .section-icon {
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .experience-item {
             background: #fafbfc;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
-            padding: 8px;
-            margin-bottom: 12px;
+            padding: 7px;
+            margin-bottom: 8px;
             transition: box-shadow 0.2s;
             page-break-inside: avoid;
             break-inside: avoid;
@@ -329,7 +323,7 @@ impl CVService {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .exp-title-group {
@@ -337,24 +331,24 @@ impl CVService {
         }
 
         .exp-title {
-            font-size: 15px;
+            font-size: 13.5px;
             font-weight: 600;
             color: #1e293b;
-            margin: 0 0 4px 0;
+            margin: 0 0 3px 0;
         }
 
         .exp-company {
-            font-size: 12px;
+            font-size: 11px;
             color: #64748b;
             font-weight: 500;
         }
 
         .exp-period {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #2d6a4f !important;
             font-weight: 600;
             background: #dcfce7 !important;
-            padding: 4px 8px;
+            padding: 3px 8px;
             border-radius: 12px;
             white-space: nowrap;
             -webkit-print-color-adjust: exact !important;
@@ -366,23 +360,23 @@ impl CVService {
         }
 
         .exp-achievements li {
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             color: #475569;
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 11px;
+            line-height: 1.35;
         }
 
         .projects-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
         .project-item {
             background: white;
             border: 1px solid #d1d5db;
             border-radius: 6px;
-            padding: 7px;
+            padding: 6px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             page-break-inside: avoid;
             break-inside: avoid;
@@ -392,18 +386,18 @@ impl CVService {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .project-name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             margin: 0;
             color: #1e293b;
         }
 
         .project-status {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #2d6a4f !important;
             font-weight: 600;
             background: #dcfce7 !important;
@@ -413,38 +407,38 @@ impl CVService {
         }
 
         .project-desc {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #64748b;
-            margin: 0 0 6px 0;
+            margin: 0 0 4px 0;
             line-height: 1.3;
         }
 
         .project-tech {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #2d6a4f !important;
             font-weight: 500;
         }
 
         .skill-category {
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             page-break-inside: avoid;
             break-inside: avoid;
         }
 
         .skill-category h4 {
-            font-size: 12px;
+            font-size: 10.5px;
             font-weight: 600;
-            margin: 0 0 4px 0;
+            margin: 0 0 2px 0;
             color: #374151;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .skill-list {
-            font-size: 11px;
+            font-size: 10px;
             color: #64748b;
-            line-height: 1.4;
-            margin-bottom: 4px;
+            line-height: 1.3;
+            margin-bottom: 2px;
         }
 
         .skill-list.learning {
@@ -455,35 +449,35 @@ impl CVService {
         .education-item {
             background: #f8fafc;
             border-radius: 6px;
-            padding: 6px;
-            margin-bottom: 5px;
+            padding: 5px;
+            margin-bottom: 3px;
             page-break-inside: avoid;
             break-inside: avoid;
         }
 
         .edu-degree {
-            font-size: 12px;
+            font-size: 10.5px;
             font-weight: 600;
-            margin: 0 0 4px 0;
+            margin: 0 0 3px 0;
             color: #1e293b;
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
         .edu-school {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #2d6a4f !important;
             font-weight: 600;
             margin-bottom: 2px;
         }
 
         .edu-period {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .edu-details {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
             margin: 0;
             font-style: italic;
@@ -492,16 +486,17 @@ impl CVService {
         .languages-grid {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .language-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 0;
             padding: 2px 4px;
             background: #f1f5f9;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10.5px;
         }
 
         .lang-name { 
@@ -517,25 +512,25 @@ impl CVService {
         .interests-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4px;
+            gap: 3px;
         }
 
         .interest-item {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
-            padding: 2px;
+            padding: 1px;
         }
 
         .cv-footer {
             background: #f8fafc;
-            padding: 12px 30px;
+            padding: 6px 30px;
             text-align: center;
             border-top: 1px solid #e2e8f0;
             flex-shrink: 0;
         }
 
         .footer-text {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
             font-style: italic;
             font-weight: 500;
@@ -848,12 +843,11 @@ impl CVService {
                 "Node.js".to_string(),
                 "Express".to_string(),
                 "Rust".to_string(),
-                "Laravel".to_string(),
-                "FastAPI".to_string(),
+                "Symfony".to_string(),
+                "APIPlatform".to_string(),
             ],
             frontend: vec![
                 "React".to_string(),
-                "Vue.js".to_string(),
                 "Leptos".to_string(),
                 "HTML5".to_string(),
                 "CSS3".to_string(),
@@ -867,13 +861,17 @@ impl CVService {
                 "MongoDB".to_string(),
                 "Redis".to_string(),
             ],
-            devops: vec!["Docker".to_string(), "CI/CD".to_string(), "AWS".to_string()],
+            devops: vec![
+                "Docker".to_string(),
+                "AWS".to_string(),
+                "OpenTofu".to_string(),
+                "Ansible".to_string(),
+            ],
             learning: vec![
                 "Rust".to_string(),
-                "Microservices".to_string(),
-                "OpenTofu".to_string(),
                 "Kubernetes".to_string(),
-                "GraphQL".to_string(),
+                "Claude Code".to_string(),
+                "Prompt Engineering".to_string(),
             ],
         }
     }
@@ -892,23 +890,24 @@ impl CVService {
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.lekickerfou.name"),
-                status: self.i18n.t("cv.projects.lekickerfou.status"),
-                description: self.i18n.t("cv.projects.lekickerfou.description"),
+                name: self.i18n.t("cv.projects.kairos.name"),
+                status: self.i18n.t("cv.projects.kairos.status"),
+                description: self.i18n.t("cv.projects.kairos.description"),
                 tech: vec![
                     "Rust".to_string(),
-                    "Discord API".to_string(),
-                    "Tokio".to_string(),
+                    "LLM API".to_string(),
+                    "Architecture modulaire (plugins)".to_string(),
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.ledgerburner.name"),
-                status: self.i18n.t("cv.projects.ledgerburner.status"),
-                description: self.i18n.t("cv.projects.ledgerburner.description"),
+                name: self.i18n.t("cv.projects.nora.name"),
+                status: self.i18n.t("cv.projects.nora.status"),
+                description: self.i18n.t("cv.projects.nora.description"),
                 tech: vec![
-                    "Python".to_string(),
-                    "LLM local".to_string(),
-                    "SQLite".to_string(),
+                    "FastAPI".to_string(),
+                    "React/TypeScript".to_string(),
+                    "Docker".to_string(),
+                    "PostgreSQL".to_string(),
                 ],
             },
         ]

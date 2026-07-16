@@ -99,16 +99,15 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     // CV Translations
     map.insert("cv.personal.name", "Kévin Bourbasquet");
     map.insert("cv.personal.title", "Full-Stack Developer");
-    map.insert("cv.personal.email", "bourbasquet.k@etik.com");
+    map.insert("cv.personal.email", "contact@kevin-bourbasquet.fr");
     map.insert("cv.personal.phone", "Available on request");
     map.insert("cv.personal.location", "100% Remote");
-    map.insert("cv.personal.license", "Driving License");
-    map.insert("cv.personal.portfolio", "bourbask.github.io");
-    map.insert("cv.summary", "Full-stack developer, {age} years old, with 7 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new fully remote challenges.");
+    map.insert("cv.personal.portfolio", "www.bourbasquetkev.in");
+    map.insert("cv.summary", "A nature lover at {age} and immersed in development for 7 years, I've built solid expertise in Symfony, React and micro-services architectures, working in agile teams. That same curiosity now drives me to bring AI into my daily practice, shipping faster without sacrificing quality. I'm currently looking for new challenges, aiming for a role that supports remote work.");
 
     // CV Section titles
     map.insert("cv.sections.experience", "Professional Experience");
-    map.insert("cv.sections.projects", "Key Projects");
+    map.insert("cv.sections.projects", "Current Projects");
     map.insert("cv.sections.skills", "Skills");
     map.insert("cv.sections.education", "Education");
     map.insert("cv.sections.languages", "Languages");
@@ -121,15 +120,15 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.experience.0.period", "Nov 2022 - Present");
     map.insert(
         "cv.experience.0.achievements.0",
-        "Development of applications for legal announcements and legal formalities",
+        "Business applications with high regulatory complexity: legal announcement publishing and legal formality management",
     );
     map.insert(
         "cv.experience.0.achievements.1",
-        "Technical stack: Symfony, ReactJS, MySQL/MariaDB, REST API",
+        "Technical stack: Symfony, React, MySQL/MariaDB, ApiPlatform, micro-services architecture",
     );
     map.insert(
         "cv.experience.0.achievements.2",
-        "Agile methods, collaboration with GitLab, Redux integration",
+        "Claude Code used daily to speed up refactoring, testing and code review on a complex business codebase",
     );
     map.insert(
         "cv.experience.0.achievements.3",
@@ -147,7 +146,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     );
     map.insert(
         "cv.experience.1.achievements.1",
-        "Stack: Symfony, Vue.js, Node.js, custom web components",
+        "Stack: Symfony, Vue.js, Node.js, micro-services architecture, custom web components",
     );
     map.insert(
         "cv.experience.1.achievements.2",
@@ -182,23 +181,23 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
         "cv.projects.ezprint3d.description",
         "SaaS platform connecting 3D printing services and clients",
     );
-    map.insert("cv.projects.ezprint3d.status", "In development");
+    map.insert("cv.projects.ezprint3d.status", "Rebuild in progress");
 
     // CV project item (lkf bot)
-    map.insert("cv.projects.lekickerfou.name", "LeKickerFou Bot");
+    map.insert("cv.projects.kairos.name", "Kairos");
     map.insert(
-        "cv.projects.lekickerfou.description",
-        "High-performance Discord bot for voice channel management",
+        "cv.projects.kairos.description",
+        "Modular AI-powered personal assistant: orchestrating agents and tools to automate everyday tasks",
     );
-    map.insert("cv.projects.lekickerfou.status", "Deployed");
+    map.insert("cv.projects.kairos.status", "Functional MVP");
 
     // CV project item (LedgerBurner)
-    map.insert("cv.projects.ledgerburner.name", "LedgerBurner");
+    map.insert("cv.projects.nora.name", "Nora");
     map.insert(
-        "cv.projects.ledgerburner.description",
-        "AI-boosted personal finance manager built for local models — no dependence on freemium apps, a stack that plugs into a personal AI agent",
+        "cv.projects.nora.description",
+        "Self-hosted financial dashboard built on Firefly III: multi-account aggregation, transparent financial health scores, fully self-hosted architecture",
     );
-    map.insert("cv.projects.ledgerburner.status", "In development");
+    map.insert("cv.projects.nora.status", "V1 in production");
 
     // CV skill categories
     map.insert("cv.skills.categories.backend", "Backend");
@@ -250,7 +249,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.languages.french.level", "Native");
 
     map.insert("cv.languages.english.name", "English");
-    map.insert("cv.languages.english.level", "Professional");
+    map.insert("cv.languages.english.level", "TOEIC 885/990");
 
     // CV interests
     map.insert("cv.interests.hiking", "🥾 Hiking");
@@ -259,7 +258,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.interests.linux", "🐧 Linux");
 
     // CV footer
-    map.insert("cv.footer", "Available for a 100% remote position • Flexible notice period • Complete portfolio on bourbask.github.io");
+    map.insert("cv.footer", "Available for a 100% remote position • Flexible notice period • Complete portfolio on www.bourbasquetkev.in");
 
     // Blog
     map.insert("blogTitle", "Technical Blog");
