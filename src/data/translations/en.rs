@@ -104,7 +104,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.personal.location", "100% Remote");
     map.insert("cv.personal.license", "Driving License");
     map.insert("cv.personal.portfolio", "bourbask.github.io");
-    map.insert("cv.summary", "Full-stack developer, {age} years old, with 7 years of experience in web development. Expertise in Symfony/React, agile methods, and passion for technical innovation. Seeking new fully remote challenges.");
+    map.insert("cv.summary", "Full-stack developer, {age} years old, with 7 years of experience in web development. Expertise in Symfony/React, agile methods, and Claude Code integrated into the daily workflow to ship faster without sacrificing quality. Seeking new fully remote challenges.");
 
     // CV Section titles
     map.insert("cv.sections.experience", "Professional Experience");
@@ -129,7 +129,7 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     );
     map.insert(
         "cv.experience.0.achievements.2",
-        "Agile methods, collaboration with GitLab, Redux integration",
+        "Claude Code-assisted development integrated into the daily workflow",
     );
     map.insert(
         "cv.experience.0.achievements.3",
@@ -185,12 +185,12 @@ pub fn get_translations() -> HashMap<&'static str, &'static str> {
     map.insert("cv.projects.ezprint3d.status", "In development");
 
     // CV project item (lkf bot)
-    map.insert("cv.projects.lekickerfou.name", "LeKickerFou Bot");
+    map.insert("cv.projects.kairos.name", "Kairos");
     map.insert(
-        "cv.projects.lekickerfou.description",
-        "High-performance Discord bot for voice channel management",
+        "cv.projects.kairos.description",
+        "Modular AI-powered personal assistant: orchestrating agents and tools to automate everyday tasks",
     );
-    map.insert("cv.projects.lekickerfou.status", "Deployed");
+    map.insert("cv.projects.kairos.status", "In development");
 
     // CV project item (LedgerBurner)
     map.insert("cv.projects.ledgerburner.name", "LedgerBurner");
