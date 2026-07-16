@@ -23,7 +23,6 @@ pub struct PersonalInfo {
     pub phone: String,
     pub location: String,
     pub portfolio: String,
-    pub license: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

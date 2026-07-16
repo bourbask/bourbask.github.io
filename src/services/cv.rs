@@ -23,7 +23,6 @@ impl CVService {
                 phone: self.i18n.t("cv.personal.phone"),
                 location: self.i18n.t("cv.personal.location"),
                 portfolio: self.i18n.t("cv.personal.portfolio"),
-                license: self.i18n.t("cv.personal.license"),
             },
             summary: self.i18n.t("cv.summary"),
             section_titles: SectionTitles {
@@ -70,10 +69,6 @@ impl CVService {
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📍</span>
-                            <span>{}</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🚗</span>
                             <span>{}</span>
                         </div>
                         <div class="contact-item">
@@ -124,7 +119,6 @@ impl CVService {
             data.personal.email,
             data.personal.phone,
             data.personal.location,
-            data.personal.license,
             data.personal.portfolio,
             data.section_titles.experience,
             self.render_experience(&data.experience),
@@ -849,12 +843,11 @@ impl CVService {
                 "Node.js".to_string(),
                 "Express".to_string(),
                 "Rust".to_string(),
-                "Laravel".to_string(),
-                "FastAPI".to_string(),
+                "Symfony".to_string(),
+                "APIPlatform".to_string(),
             ],
             frontend: vec![
                 "React".to_string(),
-                "Vue.js".to_string(),
                 "Leptos".to_string(),
                 "HTML5".to_string(),
                 "CSS3".to_string(),
@@ -868,11 +861,15 @@ impl CVService {
                 "MongoDB".to_string(),
                 "Redis".to_string(),
             ],
-            devops: vec!["Docker".to_string(), "CI/CD".to_string(), "AWS".to_string()],
+            devops: vec![
+                "Docker".to_string(),
+                "AWS".to_string(),
+                "OpenTofu".to_string(),
+                "Ansible".to_string(),
+            ],
             learning: vec![
                 "Rust".to_string(),
                 "Kubernetes".to_string(),
-                "Microservices".to_string(),
                 "Claude Code".to_string(),
                 "Prompt Engineering".to_string(),
             ],
@@ -899,17 +896,18 @@ impl CVService {
                 tech: vec![
                     "Rust".to_string(),
                     "LLM API".to_string(),
-                    "Architecture plugin".to_string(),
+                    "Architecture modulaire (plugins)".to_string(),
                 ],
             },
             Project {
-                name: self.i18n.t("cv.projects.ledgerburner.name"),
-                status: self.i18n.t("cv.projects.ledgerburner.status"),
-                description: self.i18n.t("cv.projects.ledgerburner.description"),
+                name: self.i18n.t("cv.projects.nora.name"),
+                status: self.i18n.t("cv.projects.nora.status"),
+                description: self.i18n.t("cv.projects.nora.description"),
                 tech: vec![
-                    "Python".to_string(),
-                    "LLM local".to_string(),
-                    "SQLite".to_string(),
+                    "FastAPI".to_string(),
+                    "React/TypeScript".to_string(),
+                    "Docker".to_string(),
+                    "PostgreSQL".to_string(),
                 ],
             },
         ]
