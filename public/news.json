@@ -1,9 +1,1856 @@
 {
-  "generated_at": "2026-08-25T06:27:34.159796+00:00",
-  "period": "2026-08-25",
-  "count": 681,
+  "generated_at": "2026-08-26T06:31:07.484257+00:00",
+  "period": "2026-08-26",
+  "count": 699,
   "synthesis": null,
   "items": [
+    {
+      "id": "b322654f9726",
+      "title": "IncSFS: Incremental Full-Sparse Flow-Sensitive Pointer Analysis for C/C++",
+      "url": "https://arxiv.org/abs/2608.24391",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.8,
+      "_score_reason": "Pointer analysis for C/C++; relevant to memory safety concerns but not Rust/WASM focused.",
+      "score": 7.8,
+      "score_reason": "Pointer analysis for C/C++; relevant to memory safety concerns but not Rust/WASM focused."
+    },
+    {
+      "id": "be55f837dbdf",
+      "title": "NoC-Out: A Formally-verified Network-on-Chip Library for Rule-based Hardware Designs",
+      "url": "https://arxiv.org/abs/2608.24478",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.2,
+      "_score_reason": "Formally-verified hardware library; rigorous technical work but limited web/WASM relevance.",
+      "score": 7.2,
+      "score_reason": "Formally-verified hardware library; rigorous technical work but limited web/WASM relevance."
+    },
+    {
+      "id": "87f5f77914f8",
+      "title": "MGQL: An Executable, Small-Step Semantics of GQL",
+      "url": "https://arxiv.org/abs/2608.24565",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.2,
+      "_score_reason": "GQL semantics formalization; academic but limited practical impact for web developers.",
+      "score": 6.2,
+      "score_reason": "GQL semantics formalization; academic but limited practical impact for web developers."
+    },
+    {
+      "id": "026a2df88057",
+      "title": "Algorithmic Cost in \"Exact Real Computation\"",
+      "url": "https://arxiv.org/abs/2608.23603",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "ac464cacf744",
+      "title": "MARS: Multi-Specialist LLM Relay System for Competitive Programming",
+      "url": "https://arxiv.org/abs/2608.23918",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.1,
+      "_score_reason": "LLM relay system for competitive programming; hype-adjacent, marginal relevance to web stack.",
+      "score": 5.1,
+      "score_reason": "LLM relay system for competitive programming; hype-adjacent, marginal relevance to web stack."
+    },
+    {
+      "id": "fa9c9fa3a386",
+      "title": "DeepRepoQA: Code Repository Question Answering with Deep Agent Exploration",
+      "url": "https://arxiv.org/abs/2608.24221",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.7,
+      "_score_reason": "LLM code repository QA; trendy AI application but weak signal for practical developer workflows.",
+      "score": 4.7,
+      "score_reason": "LLM code repository QA; trendy AI application but weak signal for practical developer workflows."
+    },
+    {
+      "id": "29f1828e71be",
+      "title": "A Literate Programming Environment for Human and Machine Agents",
+      "url": "https://arxiv.org/abs/2608.24644",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.5,
+      "_score_reason": "Literate programming with LLMs; exploratory but unclear concrete technical benefits.",
+      "score": 5.5,
+      "score_reason": "Literate programming with LLMs; exploratory but unclear concrete technical benefits."
+    },
+    {
+      "id": "301fc496223e",
+      "title": "Quasar: A Programming Language Specialized for LLM Code Actions",
+      "url": "https://arxiv.org/abs/2506.12202",
+      "source": "ArXiv CS.PL",
+      "domain": "dev_stack",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.9,
+      "_score_reason": "LLM-specialized programming language; speculative technology with unclear production readiness.",
+      "score": 4.9,
+      "score_reason": "LLM-specialized programming language; speculative technology with unclear production readiness."
+    },
+    {
+      "id": "8dfde0436265",
+      "title": "RENDER: Controlling Reader-Facing Evidence in LLM Memory Evaluation",
+      "url": "https://arxiv.org/abs/2608.23568",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.7,
+      "_score_reason": "Controlled study of LLM memory evaluation with evidence manipulation; methodologically sound but narrowly scoped.",
+      "score": 6.7,
+      "score_reason": "Controlled study of LLM memory evaluation with evidence manipulation; methodologically sound but narrowly scoped."
+    },
+    {
+      "id": "fcf2c01d9ec2",
+      "title": "ESQ-Bench: A Multi-Tier Enterprise Oracle Benchmark for Evaluating NL2SQL Dialect Generalization and Silent Semantic Divergence",
+      "url": "https://arxiv.org/abs/2608.23569",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.9,
+      "_score_reason": "Comprehensive NL2SQL benchmark addressing dialect generalization and semantic divergence; solid empirical evaluation scope.",
+      "score": 6.9,
+      "score_reason": "Comprehensive NL2SQL benchmark addressing dialect generalization and semantic divergence; solid empirical evaluation scope."
+    },
+    {
+      "id": "ab1d2ceedc68",
+      "title": "LLM Agents Perform Controlled Experiments Using Simulation Models",
+      "url": "https://arxiv.org/abs/2608.23622",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.5,
+      "_score_reason": "LLM agents conducting simulation-based experiments; interesting capability demonstration but limited technical novelty or reproducibility detail.",
+      "score": 6.5,
+      "score_reason": "LLM agents conducting simulation-based experiments; interesting capability demonstration but limited technical novelty or reproducibility detail."
+    },
+    {
+      "id": "824fbe805225",
+      "title": "A survey detection channel overrides the pixels in an astronomical foundation model, and biases tomographic mean redshifts",
+      "url": "https://arxiv.org/abs/2608.23626",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.2,
+      "_score_reason": "Astronomy foundation model artifact detection; domain-specific application of existing techniques without AI methodological contribution.",
+      "score": 3.2,
+      "score_reason": "Astronomy foundation model artifact detection; domain-specific application of existing techniques without AI methodological contribution."
+    },
+    {
+      "id": "584c73097c12",
+      "title": "TRACE: Transition-Aware Residual Control for Multi-Objective Materials Discovery",
+      "url": "https://arxiv.org/abs/2608.23631",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.8,
+      "_score_reason": "Materials discovery optimization via multi-objective control; domain-specific application lacking clear AI methodological advancement.",
+      "score": 5.8,
+      "score_reason": "Materials discovery optimization via multi-objective control; domain-specific application lacking clear AI methodological advancement."
+    },
+    {
+      "id": "399dc7f3e9c6",
+      "title": "Function-Level Execution Feedback for Code Preference Optimization",
+      "url": "https://arxiv.org/abs/2608.23632",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.2,
+      "_score_reason": "Novel code preference optimization via function-level feedback; reproducible technique with practical developer tooling implications.",
+      "score": 7.2,
+      "score_reason": "Novel code preference optimization via function-level feedback; reproducible technique with practical developer tooling implications."
+    },
+    {
+      "id": "6fe85545b6d1",
+      "title": "Auditing the Synthetic Memoir: Measuring Scene-Level Confabulation in LLM-Generated Autobiography Against the Documented Record of the Life It Describes",
+      "url": "https://arxiv.org/abs/2608.23640",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 8.2,
+      "_score_reason": "Rigorous empirical audit of LLM confabulation against documented facts; reproducible methodology with clear developer impact.",
+      "score": 8.2,
+      "score_reason": "Rigorous empirical audit of LLM confabulation against documented facts; reproducible methodology with clear developer impact."
+    },
+    {
+      "id": "cc5afc518099",
+      "title": "How much of a measured AI preference is the model, and how much is the instrument?",
+      "url": "https://arxiv.org/abs/2608.23641",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.5,
+      "_score_reason": "Critical methodological work separating model capability from measurement artifact; high relevance for AI evaluation integrity.",
+      "score": 7.5,
+      "score_reason": "Critical methodological work separating model capability from measurement artifact; high relevance for AI evaluation integrity."
+    },
+    {
+      "id": "59af4edda9ec",
+      "title": "AI Agents Push Humans Out of the Loop",
+      "url": "https://arxiv.org/abs/2608.23642",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.1,
+      "_score_reason": "Clickbait title with vague framing; lacks substantive technical content or rigorous evidence for headline claim.",
+      "score": 4.1,
+      "score_reason": "Clickbait title with vague framing; lacks substantive technical content or rigorous evidence for headline claim."
+    },
+    {
+      "id": "1d7067221e04",
+      "title": "FLARE: A Systematic, Uncertainty-Aware Framework for Evidence-Based Adoption of Artificial Intelligence in Healthcare",
+      "url": "https://arxiv.org/abs/2608.23643",
+      "source": "ArXiv CS.AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.8,
+      "_score_reason": "Systematic framework for AI healthcare adoption with uncertainty quantification; addresses real deployment barriers beyond benchmarks.",
+      "score": 7.8,
+      "score_reason": "Systematic framework for AI healthcare adoption with uncertainty quantification; addresses real deployment barriers beyond benchmarks."
+    },
+    {
+      "id": "8ed5474b9797",
+      "title": "Equivariant Cellular Sheaves for Molecular Electronic Structure: Bridging Sheaf Cohomology and E(3)-Equivariant Hamiltonian Learning",
+      "url": "https://arxiv.org/abs/2608.23571",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.6,
+      "_score_reason": "Equivariant learning for molecular structures; mathematically rigorous but primarily a domain application without broader AI implications.",
+      "score": 5.6,
+      "score_reason": "Equivariant learning for molecular structures; mathematically rigorous but primarily a domain application without broader AI implications."
+    },
+    {
+      "id": "f09138b379fe",
+      "title": "Data Predictability Shapes Weibull Weight-Scale Growth in Transformer Training",
+      "url": "https://arxiv.org/abs/2608.23573",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "5b31731262f2",
+      "title": "From Causal Plausibility to Causal Reliability: Evaluating LLMs as Calibrated Direct Causal-Edge Classifiers",
+      "url": "https://arxiv.org/abs/2608.23660",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.3,
+      "_score_reason": "LLM evaluation as causal classifiers with calibration focus; solid methodology but incremental contribution to causal reasoning literature.",
+      "score": 6.3,
+      "score_reason": "LLM evaluation as causal classifiers with calibration focus; solid methodology but incremental contribution to causal reasoning literature."
+    },
+    {
+      "id": "2ea3e18cf129",
+      "title": "Renormalization Group Flow Matching for Scalable Local Generative Modeling",
+      "url": "https://arxiv.org/abs/2608.23696",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.2,
+      "_score_reason": "Renormalization group matching for generative modeling; mathematically interesting but lacks empirical validation or developer utility demonstration.",
+      "score": 5.2,
+      "score_reason": "Renormalization group matching for generative modeling; mathematically interesting but lacks empirical validation or developer utility demonstration."
+    },
+    {
+      "id": "63e5cdf39f44",
+      "title": "Response Renormalization for Critical Deep Equilibrium Models",
+      "url": "https://arxiv.org/abs/2608.23725",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "68cea1e29f23",
+      "title": "Calibration-Preserving Pruning: Compression as a Reliability Contract",
+      "url": "https://arxiv.org/abs/2608.23744",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "a2d2dc87f704",
+      "title": "Tight Majorizations and Convergence Rates of Nuclear Norm Minimization IRLS",
+      "url": "https://arxiv.org/abs/2608.23765",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "4d57a0b7cadc",
+      "title": "Disentangled Skill Representations for Predictive Human Modeling",
+      "url": "https://arxiv.org/abs/2608.23776",
+      "source": "ArXiv CS.LG",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "9b2de6f5c3b2",
+      "title": "Whose Psychiatry Was Summoned? A Clinical Response to the Psychodynamic Assessment of Claude Mythos Preview",
+      "url": "https://arxiv.org/abs/2608.23567",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "d8ae561c3402",
+      "title": "Agents of ViTAL: Ethics Missions -- A Narrative-Centered Learning Environment with a Co-Designed Conversational Agent for Middle School AI Ethics",
+      "url": "https://arxiv.org/abs/2608.23580",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "fc377aa4ce52",
+      "title": "Stop Abandoning Me: Exploring the Landscape of Unmaintained Intimate Partner Abuse Support Applications",
+      "url": "https://arxiv.org/abs/2608.23826",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "229f3d4589f6",
+      "title": "An Echo Chamber of One: Should AI Psychosis Be a Distinct Clinical Entity?",
+      "url": "https://arxiv.org/abs/2608.23937",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "c63601c057be",
+      "title": "The urban right to AI: Pluralistic co-design and governance of public space",
+      "url": "https://arxiv.org/abs/2608.23999",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "dd3852c94f93",
+      "title": "An AI-Based Approach to Early Reporting and Justice Initiation in Image-based Sexual Abuse. A Pilot Study",
+      "url": "https://arxiv.org/abs/2608.24412",
+      "source": "ArXiv CS.CY",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "73a572bb4dcb",
+      "title": "Adoption Telemetry: Measuring Enterprise AI Adoption from Production Signals",
+      "url": "https://arxiv.org/abs/2608.23617",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "6bfbc9d79536",
+      "title": "The Ordinal Annotation Game: How Construct Abstraction Shapes Crowdsourced Consensus",
+      "url": "https://arxiv.org/abs/2608.23727",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "6116310ab294",
+      "title": "Technology Caregiving: Reframing How Older Adults Are Supported in Everyday Digital Activities",
+      "url": "https://arxiv.org/abs/2608.23751",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "34e65c93e958",
+      "title": "From Anonymous Shapes to Named Places: A Tool for Braille and Place-Semantic Annotation of Tactile Maps",
+      "url": "https://arxiv.org/abs/2608.23820",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "01e5df426149",
+      "title": "ColorA11Y: Enhancing Creative Design Workflows with Just-in-Time Color Accessibility Recommendations",
+      "url": "https://arxiv.org/abs/2608.23852",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "7bdd602c9867",
+      "title": "Who Chooses How Preferences Are Aggregated? Auditing Aggregation-Rule Authority in LLM-Based Group Recommendation",
+      "url": "https://arxiv.org/abs/2608.23966",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "51e254361d28",
+      "title": "When LLMs Slow Down: How Environmental Impacts Mediate University Students' LLM Usage",
+      "url": "https://arxiv.org/abs/2608.23968",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "250662927c8e",
+      "title": "Negotiating Ontological Boundaries in User-Authored Personal Sensing Systems",
+      "url": "https://arxiv.org/abs/2608.24058",
+      "source": "ArXiv CS.HC",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "a2bc17cb5942",
+      "title": "A Human-Factors Guided Cognitive Model of Visuospatial Complexity in Embodied Active Vision",
+      "url": "https://arxiv.org/abs/2608.23572",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.8,
+      "_score_reason": "Cognitive modeling of visual complexity; biomechanics-relevant; modest direct health application.",
+      "score": 6.8,
+      "score_reason": "Cognitive modeling of visual complexity; biomechanics-relevant; modest direct health application."
+    },
+    {
+      "id": "f014106ef40e",
+      "title": "InfoDPP-PAC: Principled Patch Selection for Whole Slide Image Analysis",
+      "url": "https://arxiv.org/abs/2608.23574",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.1,
+      "_score_reason": "Whole slide image analysis improves cancer pathology; rigorous methodology; niche specialist relevance.",
+      "score": 7.1,
+      "score_reason": "Whole slide image analysis improves cancer pathology; rigorous methodology; niche specialist relevance."
+    },
+    {
+      "id": "913e883fed39",
+      "title": "A nonlinear dynamics approach to assess amplitude-frequency coupling in non-invasive human electrogastrography recordings",
+      "url": "https://arxiv.org/abs/2608.23613",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "43e16969e406",
+      "title": "Optimizing RNA yield using deep neural networks coupled to massively parallel screening",
+      "url": "https://arxiv.org/abs/2608.23722",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.5,
+      "_score_reason": "RNA optimization via deep learning accelerates biotechnology; strong innovation; indirect health benefits.",
+      "score": 7.5,
+      "score_reason": "RNA optimization via deep learning accelerates biotechnology; strong innovation; indirect health benefits."
+    },
+    {
+      "id": "f44cb02283cc",
+      "title": "Finch: Toxicity Dose Response Curve Prediction of Chemical Compounds and Mixtures",
+      "url": "https://arxiv.org/abs/2608.23821",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 8.2,
+      "_score_reason": "Toxicity prediction advances drug safety; rigorous ML application; highly relevant for health outcomes.",
+      "score": 8.2,
+      "score_reason": "Toxicity prediction advances drug safety; rigorous ML application; highly relevant for health outcomes."
+    },
+    {
+      "id": "bc2d65f8d1f6",
+      "title": "Global geometry of the genotype-phenotype map illuminates a trade-off between penetrance and mutational adaptability",
+      "url": "https://arxiv.org/abs/2608.24704",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.3,
+      "_score_reason": "Genotype-phenotype mapping illuminates evolution/disease mechanisms; theoretical advancement; moderate accessibility.",
+      "score": 7.3,
+      "score_reason": "Genotype-phenotype mapping illuminates evolution/disease mechanisms; theoretical advancement; moderate accessibility."
+    },
+    {
+      "id": "337883171e6f",
+      "title": "Primate vision reveals a missing principle for robust dynamic AI",
+      "url": "https://arxiv.org/abs/2608.23790",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.5,
+      "_score_reason": "Primate vision principles for robust AI; interesting foundation; unclear immediate health relevance.",
+      "score": 6.5,
+      "score_reason": "Primate vision principles for robust AI; interesting foundation; unclear immediate health relevance."
+    },
+    {
+      "id": "13c1ebf0cfc2",
+      "title": "Kernel-Dependent Pattern Formation in a Population Model with Nonlocal Facilitation and Competition",
+      "url": "https://arxiv.org/abs/2608.23964",
+      "source": "ArXiv q-bio",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-26T04:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "734d322c0146",
+      "title": "ISC Stormcast For Wednesday, August 26th, 2026 https://isc.sans.edu/podcastdetail/10068, (Wed, Aug 26th)",
+      "url": "https://isc.sans.edu/diary/rss/33282",
+      "source": "SANS ISC",
+      "domain": "security",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-26T02:40:13+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 2.5,
+      "_score_reason": "Weekly news podcast summary lacks specific vulnerabilities or developer guidance",
+      "score": 2.5,
+      "score_reason": "Weekly news podcast summary lacks specific vulnerabilities or developer guidance"
+    },
+    {
+      "id": "d791ad9bc777",
+      "title": "World humanoid robot games show runners breaking records, bursting into flames",
+      "url": "https://arstechnica.com/ai/2026/08/world-humanoid-robot-games-show-runners-breaking-records-bursting-into-flames/",
+      "source": "Ars Technica AI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T20:59:03+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "9ec29c2af987",
+      "title": "mklinux-v7.0-mk2 released",
+      "url": "https://lwn.net/Articles/1090582/",
+      "source": "LWN.net",
+      "domain": "dev_stack",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-08-25T20:34:31+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.5,
+      "_score_reason": "Linux kernel release; tangential to web tooling; no Rust/WASM angle mentioned.",
+      "score": 6.5,
+      "score_reason": "Linux kernel release; tangential to web tooling; no Rust/WASM angle mentioned."
+    },
+    {
+      "id": "1a3688bcba61",
+      "title": "AgentHands: Generating interactive hand gestures for spatially grounded agent conversations in XR",
+      "url": "https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr/",
+      "source": "Google Research",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T19:10:59+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "d1594e345d64",
+      "title": "FDA authorizes first wearable device that monitors ketone and blood sugar levels",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-authorizes-first-wearable-device-continuously-monitors-both-ketone-levels-and-blood-sugar",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T19:07:01+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.0,
+      "_score_reason": "FDA medical device approval signals biotech hardware market shift; emerging developer opportunity",
+      "score": 6.0,
+      "score_reason": "FDA medical device approval signals biotech hardware market shift; emerging developer opportunity"
+    },
+    {
+      "id": "b0f8b5700b8e",
+      "title": "Studio House / Estudio Dupuy",
+      "url": "https://www.archdaily.com/1183949/studio-house-estudio-dupuy",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T19:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.8,
+      "_score_reason": "Studio house with natural materials but limited evidence of passive systems or water management.",
+      "score": 6.8,
+      "score_reason": "Studio house with natural materials but limited evidence of passive systems or water management."
+    },
+    {
+      "id": "7e7e883794bd",
+      "title": "Dolly Parton has died",
+      "url": "https://www.theguardian.com/music/2026/aug/25/dolly-parton-country-singer-dead",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T18:02:22+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "Celebrity obituary; completely unrelated to business/market or technology evaluation criteria",
+      "score": 0.0,
+      "score_reason": "Celebrity obituary; completely unrelated to business/market or technology evaluation criteria"
+    },
+    {
+      "id": "0bc5aa240545",
+      "title": "Nitter and XCancel receive cease and desist notices",
+      "url": "https://github.com/zedeus/nitter/issues/1442",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T17:08:21+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.5,
+      "_score_reason": "Open source/API policy clash; demonstrates platform power dynamics but limited technical substance",
+      "score": 5.5,
+      "score_reason": "Open source/API policy clash; demonstrates platform power dynamics but limited technical substance"
+    },
+    {
+      "id": "b93f46aba1a0",
+      "title": "Black hole singularity is a surface not a point",
+      "url": "https://arxiv.org/abs/2608.21590",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T17:02:49+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "26c40134bf84",
+      "title": "Forest House / Lucas Gonçalves Arquitetura",
+      "url": "https://www.archdaily.com/1183946/forest-house-lucas-goncalves-arquitetura",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T17:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.5,
+      "_score_reason": "Forest integration design lacks clear eco-responsibility metrics or DIY self-build applicability details.",
+      "score": 6.5,
+      "score_reason": "Forest integration design lacks clear eco-responsibility metrics or DIY self-build applicability details."
+    },
+    {
+      "id": "0372a402be3d",
+      "title": "The Move to Python 3 Begins",
+      "url": "https://www.eveonline.com/news/view/the-move-to-python-3-begins",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T16:52:46+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.3,
+      "_score_reason": "Python 3 migration; off-stack language focus, minimal Rust/WASM/web relevance.",
+      "score": 4.3,
+      "score_reason": "Python 3 migration; off-stack language focus, minimal Rust/WASM/web relevance."
+    },
+    {
+      "id": "959fccdebf72",
+      "title": "Run OpenBSD on DigitalOcean for $4/month",
+      "url": "https://nil.wallyjones.com/run-openbsd-on-digitalocean-for-4month/",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T16:44:37+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "abd0d435441b",
+      "title": "Tooltips need a delay, and then they need to skip it",
+      "url": "https://blog.master.dev/tooltips-need-a-delay-and-then-they-need-to-skip-it/",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T16:35:36+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.5,
+      "_score_reason": "UX design opinion; minimal strategic or ecosystem relevance for business/market domain",
+      "score": 3.5,
+      "score_reason": "UX design opinion; minimal strategic or ecosystem relevance for business/market domain"
+    },
+    {
+      "id": "27ae8757ad0a",
+      "title": "C2PA Cameras Do Not Survive Contact With Reality",
+      "url": "https://www.da.vidbuchanan.co.uk/blog/android-c2pa.html",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T15:51:24+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "4bf5952e7209",
+      "title": "Java News Roundup: JDK 27-RC1, OpenJDK JEPs, Jakarta EE, BellSoft, Helidon, Micrometer, Tika 4.0",
+      "url": "https://www.infoq.com/news/2026/08/java-news-roundup-aug17-2026/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "domain": "business_market",
+      "categories": [
+        "good_news",
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T15:20:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 8.5,
+      "_score_reason": "Strong ecosystem signal: Java platform evolution, multiple framework updates, developer tooling maturity",
+      "score": 8.5,
+      "score_reason": "Strong ecosystem signal: Java platform evolution, multiple framework updates, developer tooling maturity"
+    },
+    {
+      "id": "6ad1fb7a7cca",
+      "title": "Granite 4.2 LLMs: How They're Built",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-4-2",
+      "source": "Hugging Face",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T15:14:14+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "582534a3066e",
+      "title": "I stabilized never type",
+      "url": "https://blog.ihatereality.space/0C-never-type/",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T15:11:30+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 9.2,
+      "_score_reason": "Rust never type stabilization directly impacts daily development; concrete language feature with technical depth.",
+      "score": 9.2,
+      "score_reason": "Rust never type stabilization directly impacts daily development; concrete language feature with technical depth."
+    },
+    {
+      "id": "fd38b0be8423",
+      "title": "AI won’t replace radiologists, but it will dramatically change their jobs",
+      "url": "https://arstechnica.com/health/2026/08/ai-wont-replace-radiologists-but-it-will-dramatically-change-their-jobs/",
+      "source": "Ars Technica AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T15:10:03+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "9924c940edbf",
+      "title": "Obfuscating IP Addresses as Hostnames, (Tue, Aug 25th)",
+      "url": "https://isc.sans.edu/diary/rss/33280",
+      "source": "SANS ISC",
+      "domain": "security",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T15:03:33+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.0,
+      "_score_reason": "IP obfuscation technique interesting but limited severity or widespread developer applicability",
+      "score": 4.0,
+      "score_reason": "IP obfuscation technique interesting but limited severity or widespread developer applicability"
+    },
+    {
+      "id": "c6834bd14dc6",
+      "title": "Esquina Nativa Center / TACO taller de arquitectura contextual",
+      "url": "https://www.archdaily.com/1183840/esquina-nativa-center-taco-taller-de-arquitectura-contextual",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T15:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 8.7,
+      "_score_reason": "Contextual architecture center integrating local materials and community-based sustainable design principles.",
+      "score": 8.7,
+      "score_reason": "Contextual architecture center integrating local materials and community-based sustainable design principles."
+    },
+    {
+      "id": "0a399a9e12f2",
+      "title": "Bomb fishing is wreaking havoc on Indonesia's coral reefs",
+      "url": "https://e360.yale.edu/digest/bomb-fishing-coral-reefs",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:29:32+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 1.5,
+      "_score_reason": "Environmental issue unrelated to business markets or technology domains",
+      "score": 1.5,
+      "score_reason": "Environmental issue unrelated to business markets or technology domains"
+    },
+    {
+      "id": "19504c9249ad",
+      "title": "Building a backyard office, the build and cost breakdown",
+      "url": "https://www.imkylelambert.com/articles/building-a-backyard-office-the-build-and-cost-breakdown",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:20:36+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 2.5,
+      "_score_reason": "Personal lifestyle DIY project; no business market or technology ecosystem relevance",
+      "score": 2.5,
+      "score_reason": "Personal lifestyle DIY project; no business market or technology ecosystem relevance"
+    },
+    {
+      "id": "6456d0ae7e6d",
+      "title": "OpenAI Jalapeño: Better than Nvidia Blackwell",
+      "url": "https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:06:02+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 2.0,
+      "_score_reason": "Unverified marketing claim lacking credible source; pure hype without technical substance",
+      "score": 2.0,
+      "score_reason": "Unverified marketing claim lacking credible source; pure hype without technical substance"
+    },
+    {
+      "id": "bf43504da23f",
+      "title": "[$] Old-school calendaring at the command line with Remind",
+      "url": "https://lwn.net/Articles/1090376/",
+      "source": "LWN.net",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:03:02+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.8,
+      "_score_reason": "Command-line calendar tool; niche utility unrelated to web development stack.",
+      "score": 3.8,
+      "score_reason": "Command-line calendar tool; niche utility unrelated to web development stack."
+    },
+    {
+      "id": "793b3d657ce8",
+      "title": "Can different exercise modalities improve esports performance? Study protocol for a 12-week three-arm randomized controlled trial",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357119",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "77d7842f6cd4",
+      "title": "Adherence to gestational diabetes screening guidelines: Retrospective audit in three public hospitals in Ethiopia",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357102",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "680df920acc4",
+      "title": "Phenotypic evaluation of local rice (<i>Oryza sativa</i> L.) landraces for tolerance to submergence stress",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357048",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "86d1ffa322b6",
+      "title": "Prevalence and influencing factors of end-of-life symptoms among hospital decedents in South Korea: A cross-sectional secondary analysis",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357041",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "82e5cb4a1ca3",
+      "title": "Appendicular-to-trunk lean mass ratio resolves the height-based normalization paradox in low muscle mass and metabolic syndrome: A population-based cross-sectional study",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357017",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "db282db3b7a1",
+      "title": "Correction: Healthcare experiences of pregnant and postnatal women and healthcare professionals when facing child protection in the perinatal period: A systematic review and Critical Interpretative Synthesis",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357012",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "dfa0e219434e",
+      "title": "Tuberculosis-related knowledge, attitudes, and self-reported preventive practices among medical students at the University of Khartoum: A cross-sectional educational survey",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357003",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "60f0e0b6a755",
+      "title": "Correction: AI-driven diagnosis of mpox using deep learning models",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357001",
+      "source": "PLOS ONE",
+      "domain": "health_science",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T14:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "94a4e096f1e5",
+      "title": "Vanilla OS 3 released",
+      "url": "https://lwn.net/Articles/1090527/",
+      "source": "LWN.net",
+      "domain": "dev_stack",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-08-25T13:54:18+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.2,
+      "_score_reason": "Linux distribution release; generic OS news lacking Rust/WASM/web tooling specificity.",
+      "score": 3.2,
+      "score_reason": "Linux distribution release; generic OS news lacking Rust/WASM/web tooling specificity."
+    },
+    {
+      "id": "a5232a1e1937",
+      "title": "Presentation: Continuous Delivery for Foundational Platforms",
+      "url": "https://www.infoq.com/presentations/cd-reliability-innovation/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:34:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.0,
+      "_score_reason": "Platform engineering trend; continuous delivery patterns shape organizational architecture decisions",
+      "score": 7.0,
+      "score_reason": "Platform engineering trend; continuous delivery patterns shape organizational architecture decisions"
+    },
+    {
+      "id": "07d4b8d7e6ed",
+      "title": "Adding CPU affinity in a 24-core build machine made builds take longer",
+      "url": "https://infosec.exchange/@david_chisnall/117156204452541109",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:29:53+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "8730cf242787",
+      "title": "New Mac mini, featuring M6 and M5 Pro",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro/",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:13:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.0,
+      "_score_reason": "Consumer product announcement; limited business market signal or developer ecosystem impact",
+      "score": 3.0,
+      "score_reason": "Consumer product announcement; limited business market signal or developer ecosystem impact"
+    },
+    {
+      "id": "3668917d0a62",
+      "title": "Security updates for Tuesday",
+      "url": "https://lwn.net/Articles/1090524/",
+      "source": "LWN.net",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:12:29+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "4af4e776cbae",
+      "title": "What’s in the SOSS? Podcast #70 – S3E22 Private Forks, CRA Deadlines, and the True Cost of Open Source Compliance with Dave Russo",
+      "url": "https://openssf.org/podcast/2026/08/25/whats-in-the-soss-podcast-70-s3e22-private-forks-cra-deadlines-and-the-true-cost-of-open-source-compliance-with-dave-russo/",
+      "source": "OpenSSF Blog",
+      "domain": "security",
+      "categories": [
+        "good_news"
+      ],
+      "published_at": "2026-08-25T13:11:39+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "a6b88a221f75",
+      "title": "New Mac Studio with M5 Max and M5 Ultra",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra/",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:03:17+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.5,
+      "_score_reason": "Hardware announcement signals vertical integration strategy; moderate ecosystem impact for professional development",
+      "score": 6.5,
+      "score_reason": "Hardware announcement signals vertical integration strategy; moderate ecosystem impact for professional development"
+    },
+    {
+      "id": "9e0dcfcc9645",
+      "title": "Apple introduces M6 and M5 Ultra",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:01:22+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "a259f2eef687",
+      "title": "Apple's new desktop computers are designed specifically for local AI development",
+      "url": "https://arstechnica.com/apple/2026/08/with-new-mac-studio-and-mac-mini-apple-leans-hard-into-local-ai-inference/",
+      "source": "Ars Technica AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T13:00:11+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "5aed7842e682",
+      "title": "IBM Built the Cold War’s Most Powerful Code Breaker for the NSA",
+      "url": "https://spectrum.ieee.org/cold-war-codebreaker-nsa-ibm",
+      "source": "IEEE Spectrum",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:00:01+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.0,
+      "_score_reason": "Historical analysis of cryptography; interesting but lacks current market or ecosystem signal",
+      "score": 5.0,
+      "score_reason": "Historical analysis of cryptography; interesting but lacks current market or ecosystem signal"
+    },
+    {
+      "id": "22b3d5c391fc",
+      "title": "Glass House / Charlene Koetz Arquitetura",
+      "url": "https://www.archdaily.com/1183928/glass-house-charlene-koetz-arquitetura",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T13:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.8,
+      "_score_reason": "Glass house design contradicts passive heating/cooling principles; poor climate adaptation strategy.",
+      "score": 4.8,
+      "score_reason": "Glass house design contradicts passive heating/cooling principles; poor climate adaptation strategy."
+    },
+    {
+      "id": "0062c1a5b05f",
+      "title": "Hunting Down a Go Runtime Bug on 32-bit Embedded Systems",
+      "url": "https://sigma-star.at/blog/2026/08/go-runtime-netpoll-bug/",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "stack_alt"
+      ],
+      "published_at": "2026-08-25T12:26:40+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "257ea46fc6e7",
+      "title": "BMC Vulnerabilities Put Thousands of Servers at Risk of Hardware-Level Compromise",
+      "url": "https://www.infoq.com/news/2026/08/bmc-vulnerabilities/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "domain": "business_market",
+      "categories": [
+        "urgent"
+      ],
+      "published_at": "2026-08-25T12:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.5,
+      "_score_reason": "Critical infrastructure vulnerability exposes systemic hardware security gaps affecting enterprise deployments",
+      "score": 7.5,
+      "score_reason": "Critical infrastructure vulnerability exposes systemic hardware security gaps affecting enterprise deployments"
+    },
+    {
+      "id": "dcb5479ecd5c",
+      "title": "Portola Valley Home  / Schwartz and Architecture",
+      "url": "https://www.archdaily.com/1183498/portola-valley-home-schwartz-and-architecture",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T12:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.5,
+      "_score_reason": "High-end residential without substantive sustainability integration or DIY construction applicability.",
+      "score": 4.5,
+      "score_reason": "High-end residential without substantive sustainability integration or DIY construction applicability."
+    },
+    {
+      "id": "7daff66b361b",
+      "title": "Don't Wordle",
+      "url": "https://dontwordle.com/",
+      "source": "HackerNews",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T11:49:48+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "ba39c4d2772e",
+      "title": "Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original",
+      "url": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
+      "source": "Hugging Face",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T11:39:24+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "3aa6d6183ad3",
+      "title": "Nuxt 4.5: Experimental SSR Streaming, Vite 8 and an Rsbuild-Powered Rspack Builder",
+      "url": "https://www.infoq.com/news/2026/08/nuxt-4-5-streaming/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "domain": "business_market",
+      "categories": [
+        "good_news",
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-08-25T11:36:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "e826ecdaf72a",
+      "title": "The lazy developer’s guide to observing your own code",
+      "url": "https://www.cncf.io/blog/2026/08/25/the-lazy-developers-guide-to-observing-your-own-code/",
+      "source": "CNCF Blog",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T11:34:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "3f6e983f9399",
+      "title": "MNT Station - A modular, open hardware desktop computer and server",
+      "url": "https://www.crowdsupply.com/mnt-research/mnt-station",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T11:16:01+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "9deb7912d444",
+      "title": "Stop trying to learn all of Kubernetes at once",
+      "url": "https://www.cncf.io/blog/2026/08/25/stop-trying-to-learn-all-of-kubernetes-at-once/",
+      "source": "CNCF Blog",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T11:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "7be549661537",
+      "title": "Black Hat State of Security Vendors",
+      "url": "https://www.schneier.com/blog/archives/2026/08/black-hat-state-of-security-vendors.html",
+      "source": "Schneier on Security",
+      "domain": "security",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T10:54:50+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 0.0,
+      "_score_reason": "",
+      "score": 0.0,
+      "score_reason": ""
+    },
+    {
+      "id": "8cb9364a9835",
+      "title": "Migrating from Codeberg Pages to an OpenBSD VPS",
+      "url": "https://nemin.hu/vps/index.html",
+      "source": "Lobste.rs",
+      "domain": "dev_stack",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T10:42:16+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "6dc9353c2e10",
+      "title": "AI Companion Robots Are Closing the Human Connection in Modern Homes",
+      "url": "https://spectrum.ieee.org/ollobot-ai-companion-robot",
+      "source": "IEEE Spectrum",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T10:00:03+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "7c07c0685a94",
+      "title": "Green House / M2 Senos Arquitectos",
+      "url": "https://www.archdaily.com/1183860/green-house-m2-senos-arquitectos",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T10:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 8.3,
+      "_score_reason": "Green-focused design with wood cladding and low-carbon approach for temperate climate adaptation.",
+      "score": 8.3,
+      "score_reason": "Green-focused design with wood cladding and low-carbon approach for temperate climate adaptation."
+    },
+    {
+      "id": "dac3a9d1e696",
+      "title": "I spent a day at a robot “carnival” in Shanghai. Here’s what I saw.",
+      "url": "https://www.technologyreview.com/2026/08/25/1141907/dispatch-shanghai-humanoid-robot-carnival/",
+      "source": "MIT Tech Review AI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T09:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "59409da08f3f",
+      "title": "Cursor Releases Origin as an Agent-Native Alternative to GitHub",
+      "url": "https://www.infoq.com/news/2026/08/cursor-origin-alternative-github/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+      "source": "InfoQ",
+      "domain": "business_market",
+      "categories": [
+        "future_watch",
+        "stack_alt"
+      ],
+      "published_at": "2026-08-25T08:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "72108d4b4a26",
+      "title": "Radically Collective: The Legacy of Cuba's Microbrigadas Housing Program",
+      "url": "https://www.archdaily.com/1183812/radically-collective-the-legacy-of-cubas-microbrigadas-housing-program",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T07:30:00+00:00",
+      "lang": "en",
+      "status": "selected",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 9.2,
+      "_score_reason": "Collective housing program with proven DIY construction ethos and material efficiency focus.",
+      "score": 9.2,
+      "score_reason": "Collective housing program with proven DIY construction ethos and material efficiency focus."
+    },
+    {
+      "id": "1c0de2ab3229",
+      "title": "The full stack behind abundant intelligence",
+      "url": "https://openai.com/index/the-full-stack-behind-abundant-intelligence",
+      "source": "OpenAI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T07:05:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "31f9b254385b",
+      "title": "Jalapeño’s first results show industry-leading speed and efficiency in AI inference",
+      "url": "https://openai.com/index/jalapeno-first-results",
+      "source": "OpenAI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T07:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "a1fdd6533092",
+      "title": "Bidi Bidi Performing Arts Centre / To​.org + Hassell + Localworks + Arup",
+      "url": "https://www.archdaily.com/1183881/bidi-bidi-performing-arts-centre-torg-plus-hassell-plus-localworks-plus-arup",
+      "source": "ArchDaily",
+      "domain": "architecture",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T07:00:00+00:00",
+      "lang": "en",
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.9,
+      "_score_reason": "Performing arts center with passive design, local materials, and climate-responsive construction methods.",
+      "score": 7.9,
+      "score_reason": "Performing arts center with passive design, local materials, and climate-responsive construction methods."
+    },
+    {
+      "id": "d8510c21d87a",
+      "title": "Web Authentication: An API for accessing Public Key Credentials Level 3 is now a W3C Recommendation",
+      "url": "https://www.w3.org/news/2026/web-authentication-an-api-for-accessing-public-key-credentials-level-3-is-now-a-w3c-recommendation/",
+      "source": "W3C Blog",
+      "domain": "business_market",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T06:44:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
     {
       "id": "8f8d1ea8d061",
       "title": "Beyond Embedded: How DuckDB v2.0 Shifts Architecture Toward Distributed Network Capabilities",
@@ -900,6 +2747,34 @@
       "_score_reason": "Coastal location suggests climate considerations but 'leaf canopy' aesthetic-focused; material sustainability unclear.",
       "score": 5.2,
       "score_reason": "Coastal location suggests climate considerations but 'leaf canopy' aesthetic-focused; material sustainability unclear."
+    },
+    {
+      "id": "5bd6315049a1",
+      "title": "Disrupting a new covert influence campaign from Russia",
+      "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+      "source": "OpenAI",
+      "domain": "ai",
+      "categories": [
+        "future_watch"
+      ],
+      "published_at": "2026-08-25T00:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
+    },
+    {
+      "id": "bbe7f12da309",
+      "title": "Introducing the Admin plugin for ChatGPT Work and Codex",
+      "url": "https://openai.com/index/introducing-admin-plugin",
+      "source": "OpenAI",
+      "domain": "ai",
+      "categories": [
+        "general"
+      ],
+      "published_at": "2026-08-25T00:00:00+00:00",
+      "lang": "en",
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "84f40fd574dc",
@@ -2447,244 +4322,6 @@
       "score_reason": "Formal transducer theory; mathematical but disconnected from practical AI systems."
     },
     {
-      "id": "ed7d26bc4abc",
-      "title": "Wrong-Physics Backdoors in Neural PDE Operators",
-      "url": "https://arxiv.org/abs/2608.20439",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "519dc3ddd863",
-      "title": "Decision Tree and K-Means Analysis of Raman Spectra for Edible Oils: A Physics-Informed AI Approach",
-      "url": "https://arxiv.org/abs/2608.20440",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "af4b96b49dfc",
-      "title": "Shared Physics Responses Recover Hidden Rankings in Neural Operator Libraries",
-      "url": "https://arxiv.org/abs/2608.20441",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "65fca4571a1a",
-      "title": "Beyond Raw Transcripts: Structured Persona Extraction for LLM-Based Digital Twins",
-      "url": "https://arxiv.org/abs/2608.20344",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "bf699d4123d6",
-      "title": "When Vocabulary Comprehension Fails Clinical Reasoning: Evaluating Therapy Bots' Safety Risks for Generation Alpha",
-      "url": "https://arxiv.org/abs/2608.20345",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "9483cc4ce6a9",
-      "title": "Building and Evaluating a Synthetic Bengali Speech Resource for Telecom Customer Care",
-      "url": "https://arxiv.org/abs/2608.20346",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "15371ad94142",
-      "title": "Who Do Language Models Think Is Competent? A Mechanistic Analysis of Occupational Bias",
-      "url": "https://arxiv.org/abs/2608.20347",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "2bb9fb9015ed",
-      "title": "Inhibitory Attention for Clinical Long-Context Reasoning: Characterizing and Mitigating Lost-in-the-Middle Effects in EHR Processing",
-      "url": "https://arxiv.org/abs/2608.20348",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "49639590a082",
-      "title": "Beyond Prompt Engineering: A Systematic Analysis of Prompt Lexical Sensitivity and Its Impacts on Quality",
-      "url": "https://arxiv.org/abs/2608.20349",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "f8757fbe2d3c",
-      "title": "How to Train a Real-World Silicon Concierge? Internalizing Complex Business Workflow to Only OneModel",
-      "url": "https://arxiv.org/abs/2608.20350",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "8caf65626571",
-      "title": "Exploratory As-Analyzed No-Detection of Culturally-Marked Predicate-Triggered PII Amplification in a Synthetic-English RAG Probe: A Predicate-Resource-Confounded Audit",
-      "url": "https://arxiv.org/abs/2608.20351",
-      "source": "ArXiv CS.CL",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "eb23777e2ceb",
-      "title": "Six misconceptions about large language models: A minimal model and diagnostic taxonomy",
-      "url": "https://arxiv.org/abs/2608.20421",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "ba452d2b4e57",
-      "title": "From Urban Mobility to Epidemic Dynamics: A Mixture-of-Experts Framework with Preference Alignment for Policy Scenario Simulation",
-      "url": "https://arxiv.org/abs/2608.20512",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "497e0a0ffc00",
-      "title": "ExploraTwin, a Non-Profit Research Platform for Digital Twin Simulations",
-      "url": "https://arxiv.org/abs/2608.20539",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "167300f58e86",
-      "title": "Interaction Effects Between Learner Characteristics and Dialogue Format in TTS Dialogue-Based Lessons",
-      "url": "https://arxiv.org/abs/2608.20822",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "ef42b7427794",
-      "title": "Fine-tuning LLMs for Tourist Trajectory Prediction using Field Experiment Data",
-      "url": "https://arxiv.org/abs/2608.20830",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "86066b85493a",
-      "title": "Atom Learning Model (ALM): how a real classroom got tokenised",
-      "url": "https://arxiv.org/abs/2608.21106",
-      "source": "ArXiv CS.CY",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
       "id": "8bb2e99bd47d",
       "title": "Me Among Us: Affective Framing in Data Donation",
       "url": "https://arxiv.org/abs/2608.20523",
@@ -2955,20 +4592,6 @@
       "score_reason": ""
     },
     {
-      "id": "03718196d36b",
-      "title": "mLS-GKM: Efficient Multi-class Regulatory Sequence Classification with Gapped k-mer SVMs",
-      "url": "https://arxiv.org/abs/2608.20576",
-      "source": "ArXiv q-bio",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-24T04:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
       "id": "e876619796f8",
       "title": "JDK 27 and JDK 28: What We Know So Far",
       "url": "https://www.infoq.com/news/2026/08/java-27-so-far/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
@@ -3130,20 +4753,6 @@
       "_score_reason": "Raw materials and warm aesthetic suggest natural building; likely DIY-applicable design approach.",
       "score": 8.5,
       "score_reason": "Raw materials and warm aesthetic suggest natural building; likely DIY-applicable design approach."
-    },
-    {
-      "id": "d5e3d3205242",
-      "title": "I were 17, I'd learn how to build LLMs from scratch",
-      "url": "https://twitter.com/paulg/status/2091544343589060625",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-23T20:38:09+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
     },
     {
       "id": "eed113e9ed37",
@@ -3499,7 +5108,7 @@
       "published_at": "2026-08-23T13:46:14+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6c2d60c545d1",
@@ -3513,7 +5122,7 @@
       "published_at": "2026-08-23T13:40:42+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "5aa3dc41b67b",
@@ -3545,7 +5154,7 @@
       "published_at": "2026-08-23T13:00:01+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d8a4a86fb248",
@@ -3564,48 +5173,6 @@
       "_score_reason": "Building project lacks specific eco-responsibility or DIY-construction applicability information.",
       "score": 6.8,
       "score_reason": "Building project lacks specific eco-responsibility or DIY-construction applicability information."
-    },
-    {
-      "id": "6952b35b1753",
-      "title": "Hister - A private, full content search index that you control",
-      "url": "https://hister.org/",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-23T12:28:24+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "d10b6cef56d1",
-      "title": "And then the men with guns tell you to do it anyway",
-      "url": "https://shkspr.mobi/blog/2026/08/and-then-the-men-with-guns-tell-you-to-do-it-anyway/",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-23T12:15:54+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "29aabf3889e1",
-      "title": "Are there any decent programs for pdf viewing and editing for Linux that replace Adobe Acrobat?",
-      "url": "https://lobste.rs/s/kxualw/are_there_any_decent_programs_for_pdf",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-23T12:08:25+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
     },
     {
       "id": "494300d4e65a",
@@ -3637,21 +5204,7 @@
       "published_at": "2026-08-23T08:48:09+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
-    },
-    {
-      "id": "2f6f42b47fdb",
-      "title": "OVHcloud Raises Prices as AI Memory Demand Reprices Non-AI Infrastructure",
-      "url": "https://www.infoq.com/news/2026/08/ovhcloud-memory-price-rise/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-23T08:43:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-24T06:34:10.482236+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "bb35e3efe226",
@@ -4126,78 +5679,6 @@
       "score_reason": "Web toolchain consolidation trend suggests developer ergonomics becoming competitive differentiator"
     },
     {
-      "id": "ff15efa603eb",
-      "title": "Canada will match US tariffs 'dollar for dollar' as trade talks break down",
-      "url": "https://www.bbc.com/news/articles/cvgvyy4x2mvo",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-22T06:16:57+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-23T06:21:38.882442+00:00",
-      "_score": 1.2,
-      "_score_reason": "Trade policy outside tech business domain, not relevant to scoring criteria",
-      "score": 1.2,
-      "score_reason": "Trade policy outside tech business domain, not relevant to scoring criteria"
-    },
-    {
-      "id": "01712ada813d",
-      "title": "The cool things of Gleam",
-      "url": "https://a.baez.link/3mtdbbp2dmc27",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-22T06:16:08+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-23T06:21:38.882442+00:00",
-      "_score": 6.8,
-      "_score_reason": "Gleam language features potentially interesting for functional programming, but tangential to core Rust/WASM stack.",
-      "score": 6.8,
-      "score_reason": "Gleam language features potentially interesting for functional programming, but tangential to core Rust/WASM stack."
-    },
-    {
-      "id": "40e0d3df3b2e",
-      "title": "Antiquity exhibition at Wawel castle / NArchitekTURA",
-      "url": "https://www.archdaily.com/1183570/antiquity-exhibition-at-wawel-castle-narchitektura",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-22T06:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-23T06:21:38.882442+00:00",
-      "_score": 4.8,
-      "_score_reason": "Exhibition project; lacks residential self-build guidance or material/climate adaptation specifics.",
-      "score": 4.8,
-      "score_reason": "Exhibition project; lacks residential self-build guidance or material/climate adaptation specifics."
-    },
-    {
-      "id": "4381da006a18",
-      "title": "There's no reason for software to be slow anymore",
-      "url": "https://danluu.com/perf-opt/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-22T01:06:17+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.6,
-      "_score_reason": "Contrarian take on performance culture; questions foundational industry assumptions about complexity",
-      "score": 7.6,
-      "score_reason": "Contrarian take on performance culture; questions foundational industry assumptions about complexity"
-    },
-    {
       "id": "67396b737365",
       "title": "Friday Squid Blogging: Neon Flying Squid",
       "url": "https://www.schneier.com/blog/archives/2026/08/friday-squid-blogging-neon-flying-squid.html",
@@ -4209,47 +5690,11 @@
       "published_at": "2026-08-21T21:07:20+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 1.5,
-      "_score_reason": "Squid blogging entertainment; completely irrelevant to security or developer action",
-      "score": 1.5,
-      "score_reason": "Squid blogging entertainment; completely irrelevant to security or developer action"
-    },
-    {
-      "id": "2e6aa01d7263",
-      "title": "Homebrew 68K Machine Has A PCI Bus",
-      "url": "https://hackaday.com/2026/08/20/homebrew-68k-machine-has-a-pci-bus/",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T20:24:46+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 3.5,
-      "_score_reason": "Homebrew 68K project lacks relevance to modern Rust, WASM, or web tooling.",
-      "score": 3.5,
-      "score_reason": "Homebrew 68K project lacks relevance to modern Rust, WASM, or web tooling."
-    },
-    {
-      "id": "2735ce735dc6",
-      "title": "A week of using Codex more than Claude",
-      "url": "https://allaboutcoding.ghinda.com/a-week-of-using-codex-more-than-claude/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T19:51:48+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-23T06:21:38.882442+00:00",
-      "_score": 4.8,
-      "_score_reason": "Personal code model comparison lacks systematic analysis or broader market insight",
-      "score": 4.8,
-      "score_reason": "Personal code model comparison lacks systematic analysis or broader market insight"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 1.0,
+      "_score_reason": "Non-security content, completely irrelevant to developer security evaluation",
+      "score": 1.0,
+      "score_reason": "Non-security content, completely irrelevant to developer security evaluation"
     },
     {
       "id": "583ffca0215c",
@@ -4270,24 +5715,6 @@
       "score_reason": "Urban runoff management directly addresses water autonomy and climate adaptation for self-builders."
     },
     {
-      "id": "874758b55ba5",
-      "title": "Scientists release biggest 2D map of the universe",
-      "url": "https://newscenter.lbl.gov/2026/08/10/scientists-release-biggest-2d-map-of-the-universe/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T18:36:34+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 3.2,
-      "_score_reason": "Scientific research; no business market relevance or developer ecosystem impact",
-      "score": 3.2,
-      "score_reason": "Scientific research; no business market relevance or developer ecosystem impact"
-    },
-    {
       "id": "7121e77b203d",
       "title": "This IEEE Senior Member Develops AI Tools for E-Commerce Sites",
       "url": "https://spectrum.ieee.org/ieee-senior-member-ai-ecommerce",
@@ -4299,7 +5726,7 @@
       "published_at": "2026-08-21T18:00:01+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3dbd05138f57",
@@ -4312,30 +5739,8 @@
       ],
       "published_at": "2026-08-21T17:02:24+00:00",
       "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.8,
-      "_score_reason": "Google biomarker tool demonstrates applied AI but lacks technical depth or reproducibility evidence.",
-      "score": 6.8,
-      "score_reason": "Google biomarker tool demonstrates applied AI but lacks technical depth or reproducibility evidence."
-    },
-    {
-      "id": "b77b083e5092",
-      "title": "MFA House / Simone Jazbik Arquitetura",
-      "url": "https://www.archdaily.com/1183798/mfa-house-simone-jazbik-arquitetura",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T17:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.0,
-      "_score_reason": "Residential architecture with eco-conscious approach, moderate relevance to self-build vernacular methods.",
-      "score": 7.0,
-      "score_reason": "Residential architecture with eco-conscious approach, moderate relevance to self-build vernacular methods."
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8f88b780e54f",
@@ -4349,65 +5754,11 @@
       "published_at": "2026-08-21T16:51:50+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "3b363ecc337d",
-      "title": "Kobo can run apps now",
-      "url": "https://bandarlabs.github.io/Cobalt/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T16:25:25+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 4.8,
-      "_score_reason": "Scientific achievement; outside business/market domain, minimal developer ecosystem or strategic signal",
-      "score": 4.8,
-      "score_reason": "Scientific achievement; outside business/market domain, minimal developer ecosystem or strategic signal"
-    },
-    {
-      "id": "406cdb9c473f",
-      "title": "Felony Bench",
-      "url": "https://www.felonybench.com/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T15:17:04+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 1.8,
-      "_score_reason": "Criminal justice reference; insufficient context and outside business/market domain scope",
-      "score": 1.8,
-      "score_reason": "Criminal justice reference; insufficient context and outside business/market domain scope"
-    },
-    {
-      "id": "49b8861d5f28",
-      "title": "Casa Pura Vida / Zozaya Arquitectos",
-      "url": "https://www.archdaily.com/1183767/casa-pura-vida-zozaya-arquitectos",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T15:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.5,
-      "_score_reason": "Sustainable residential design with climate-responsive features, though limited DIY applicability details.",
-      "score": 7.5,
-      "score_reason": "Sustainable residential design with climate-responsive features, though limited DIY applicability details."
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.1,
+      "_score_reason": "Emerging threat discussion lacks immediate actionability or specific developer impact guidance",
+      "score": 5.1,
+      "score_reason": "Emerging threat discussion lacks immediate actionability or specific developer impact guidance"
     },
     {
       "id": "538a22a91914",
@@ -4420,48 +5771,8 @@
       ],
       "published_at": "2026-08-21T14:32:37+00:00",
       "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.9,
-      "_score_reason": "Agentic AI for root cause analysis; strategic shift in how teams approach operations",
-      "score": 7.9,
-      "score_reason": "Agentic AI for root cause analysis; strategic shift in how teams approach operations"
-    },
-    {
-      "id": "a0091eb58ff6",
-      "title": "Claudette: Make Claude stop talking like a BuzzFeed article",
-      "url": "https://github.com/adnanakil/nobuzz/blob/main/README.md",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:31:52+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.8,
-      "_score_reason": "Tool for LLM output tuning; niche developer utility without broader strategic implications",
-      "score": 5.8,
-      "score_reason": "Tool for LLM output tuning; niche developer utility without broader strategic implications"
-    },
-    {
-      "id": "6fdabfb24336",
-      "title": "rust-glancer: An alternative LSP for Rust with focus on low memory usage",
-      "url": "https://rust-glancer.github.io/blog/hello-world/",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:29:38+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 8.2,
-      "_score_reason": "Alternative LSP for Rust with performance focus addresses real developer pain point.",
-      "score": 8.2,
-      "score_reason": "Alternative LSP for Rust with performance focus addresses real developer pain point."
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "4600508af449",
@@ -4483,168 +5794,6 @@
       "score_reason": "Demonstrates AI agents reducing friction in real ecosystem; concrete developer impact at scale"
     },
     {
-      "id": "b0fcfbba9991",
-      "title": "Post-acute and long-term cardiovascular effects following dengue infection: A systematic review protocol",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356838",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.9,
-      "_score_reason": "Systematic review protocol for dengue sequelae; valuable but preliminary; high health impact potential.",
-      "score": 6.9,
-      "score_reason": "Systematic review protocol for dengue sequelae; valuable but preliminary; high health impact potential."
-    },
-    {
-      "id": "510ecce7e042",
-      "title": "Integrated liver transcriptomic data reveal differences in aging-associated regulation between metabolic dysfunction-associated steatotic liver disease and normal liver aging",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356820",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.8,
-      "_score_reason": "Advanced transcriptomic analysis revealing liver aging mechanisms; direct health relevance for metabolic disease.",
-      "score": 7.8,
-      "score_reason": "Advanced transcriptomic analysis revealing liver aging mechanisms; direct health relevance for metabolic disease."
-    },
-    {
-      "id": "00e6974d8ef7",
-      "title": "Aspects of implementing a nurse-based follow-up of patients with liver cirrhosis: A qualitative study",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356782",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.3,
-      "_score_reason": "Qualitative nursing implementation study; practical but limited scientific advancement or innovation.",
-      "score": 5.3,
-      "score_reason": "Qualitative nursing implementation study; practical but limited scientific advancement or innovation."
-    },
-    {
-      "id": "1335f00bc587",
-      "title": "Cross-national disparities in drug interaction reporting and assessment between Switzerland and Austria: A retrospective, registry-based study using pharmacovigilance data",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356774",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.1,
-      "_score_reason": "Important pharmacovigilance comparative analysis; limited novelty but addresses drug safety gaps.",
-      "score": 6.1,
-      "score_reason": "Important pharmacovigilance comparative analysis; limited novelty but addresses drug safety gaps."
-    },
-    {
-      "id": "0982ba3e7eea",
-      "title": "Supplementing Korean artificial intelligence ethical principles: A five-year update",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356766",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.1,
-      "_score_reason": "AI ethics principles update; tangentially related to health; not health/biomechanics research.",
-      "score": 2.1,
-      "score_reason": "AI ethics principles update; tangentially related to health; not health/biomechanics research."
-    },
-    {
-      "id": "90db800db06f",
-      "title": "Visual sources and information usefulness in the second-hand market: User-generated, firm-generated, and mixed photos across price conditions",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356763",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 1.8,
-      "_score_reason": "E-commerce marketplace study; unrelated to health, science, or biomechanics domain.",
-      "score": 1.8,
-      "score_reason": "E-commerce marketplace study; unrelated to health, science, or biomechanics domain."
-    },
-    {
-      "id": "8198ab03d220",
-      "title": "<i>Clogmia albipunctata</i> fails to induce true intestinal myiasis: Evidence from <i>in vitro</i> and <i>in vivo</i> digestive models",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356742",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 8.2,
-      "_score_reason": "Novel parasitic disease mechanism using rigorous in vitro/in vivo models; significant clinical implications.",
-      "score": 8.2,
-      "score_reason": "Novel parasitic disease mechanism using rigorous in vitro/in vivo models; significant clinical implications."
-    },
-    {
-      "id": "31c2c2b148f3",
-      "title": "Association between Ulcerative Colitis, mental health, and Quality of Life in a Pakistani cohort: A cross-sectional analysis",
-      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356531",
-      "source": "PLOS ONE",
-      "domain": "health_science",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T14:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 7.4,
-      "_score_reason": "Addresses important comorbidity between IBD and mental health; clinically relevant for underserved population.",
-      "score": 7.4,
-      "score_reason": "Addresses important comorbidity between IBD and mental health; clinically relevant for underserved population."
-    },
-    {
-      "id": "c566085c3ba0",
-      "title": "Kagi added a setting for removing paywalled links from search results",
-      "url": "https://kagi.com/changelog#11296",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T13:56:37+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.5,
-      "_score_reason": "Search product iteration; modest signal on paywalled content friction but limited strategic depth",
-      "score": 6.5,
-      "score_reason": "Search product iteration; modest signal on paywalled content friction but limited strategic depth"
-    },
-    {
       "id": "7ab7ecf4ec46",
       "title": "[$] Considering the OpenMDW license",
       "url": "https://lwn.net/Articles/1089251/",
@@ -4655,174 +5804,8 @@
       ],
       "published_at": "2026-08-21T13:42:29+00:00",
       "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "cc43b7a41ce5",
-      "title": "Security updates for Friday",
-      "url": "https://lwn.net/Articles/1089999/",
-      "source": "LWN.net",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T13:17:30+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.2,
-      "_score_reason": "General security updates; limited technical depth or specific Rust/WASM stack relevance.",
-      "score": 5.2,
-      "score_reason": "General security updates; limited technical depth or specific Rust/WASM stack relevance."
-    },
-    {
-      "id": "ee005c5c0e5c",
-      "title": "I accidentally logged hundreds of thousands of phone calls to military bases",
-      "url": "https://lina.sh/blog/hijacking-e164-arpa",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T13:11:28+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.5,
-      "_score_reason": "Privacy incident; interesting but lacks business strategy, ecosystem, or market signal",
-      "score": 2.5,
-      "score_reason": "Privacy incident; interesting but lacks business strategy, ecosystem, or market signal"
-    },
-    {
-      "id": "4cca97356b1e",
-      "title": "New Worlds: We are living in the future of J.G. Ballard or William Gibson",
-      "url": "https://precastreinforced.co.uk/2026/08/16/new-worlds/",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T13:07:26+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 4.5,
-      "_score_reason": "Cultural/futurist commentary; no business strategy, ecosystem, or technical substance for domain",
-      "score": 4.5,
-      "score_reason": "Cultural/futurist commentary; no business strategy, ecosystem, or technical substance for domain"
-    },
-    {
-      "id": "390c735c245f",
-      "title": "Epitácio 3714 Building / Cité Arquitetura",
-      "url": "https://www.archdaily.com/1183785/epitacio-3714-building-cite-arquitetura",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T13:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.5,
-      "_score_reason": "Urban building project lacks clear eco-responsibility and self-build material focus.",
-      "score": 5.5,
-      "score_reason": "Urban building project lacks clear eco-responsibility and self-build material focus."
-    },
-    {
-      "id": "9aa8482c4fb7",
-      "title": "Japan tried to build an operating system for the entire world, then the US government intervened",
-      "url": "https://www.xda-developers.com/japan-tried-build-operating-system-entire-world-us-government-intervened/",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T12:47:30+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.2,
-      "_score_reason": "Geopolitical OS history lacks technical depth or current dev stack applicability.",
-      "score": 2.2,
-      "score_reason": "Geopolitical OS history lacks technical depth or current dev stack applicability."
-    },
-    {
-      "id": "7d05548c0a12",
-      "title": "Felony charges for citizen deleting phone data at US Border",
-      "url": "https://www.nytimes.com/2026/08/21/us/politics/samuel-tunick-deleted-phone-felony.html",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T12:10:13+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "788b8d5048d5",
-      "title": "Music theory for programmers",
-      "url": "https://runjs.app/blog/music-theory-for-programmers",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T12:03:04+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.5,
-      "_score_reason": "Music theory educational content lacks developer stack relevance entirely.",
-      "score": 2.5,
-      "score_reason": "Music theory educational content lacks developer stack relevance entirely."
-    },
-    {
-      "id": "c27763a65b91",
-      "title": "Cloudflare Turns Engineering Standards Into an AI-Enforced Control System",
-      "url": "https://www.infoq.com/news/2026/08/cloudflare-ai-enforcement/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T12:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 8.2,
-      "_score_reason": "Long-term signal: automating engineering standards challenges conventional manual QA/review processes",
-      "score": 8.2,
-      "score_reason": "Long-term signal: automating engineering standards challenges conventional manual QA/review processes"
-    },
-    {
-      "id": "a95b29fdaf0b",
-      "title": "HUT-SPOT Pavilion / m²ft architects",
-      "url": "https://www.archdaily.com/1183413/hut-spot-pavilion-m2ft-architects",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T12:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.0,
-      "_score_reason": "Pavilion with experimental materials, limited practical application for permanent residential self-construction.",
-      "score": 6.0,
-      "score_reason": "Pavilion with experimental materials, limited practical application for permanent residential self-construction."
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a624350654a2",
@@ -4844,42 +5827,6 @@
       "synthesis_id": "synthesis_ai_2026-08-24"
     },
     {
-      "id": "98d9ccb86d82",
-      "title": "I'm becoming AI-blind",
-      "url": "https://cymerys.com/w/im-becoming-ai-blind",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T11:48:05+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.5,
-      "_score_reason": "Personal reflection on AI saturation; observation-based but lacks structural analysis or contrarian depth",
-      "score": 5.5,
-      "score_reason": "Personal reflection on AI saturation; observation-based but lacks structural analysis or contrarian depth"
-    },
-    {
-      "id": "fce272ce29ac",
-      "title": "Mini book: Architecture as a Socio-Technical Craft",
-      "url": "https://www.infoq.com/minibooks/architect-sociotechnical-craft/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T11:30:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.2,
-      "_score_reason": "Architecture as socio-technical craft; thoughtful ecosystem perspective but limited market impact signal",
-      "score": 6.2,
-      "score_reason": "Architecture as socio-technical craft; thoughtful ecosystem perspective but limited market impact signal"
-    },
-    {
       "id": "ecf9b83da752",
       "title": "As demand for Meta AI glasses explodes, it’s harder to avoid creepy recordings",
       "url": "https://arstechnica.com/tech-policy/2026/08/meta-ai-glasses-may-get-creepier-and-apps-that-detect-them-arent-perfect/",
@@ -4890,30 +5837,8 @@
       ],
       "published_at": "2026-08-21T11:00:53+00:00",
       "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.1,
-      "_score_reason": "Consumer product privacy concern lacks regulatory substance or technical depth; tabloid framing.",
-      "score": 2.1,
-      "score_reason": "Consumer product privacy concern lacks regulatory substance or technical depth; tabloid framing."
-    },
-    {
-      "id": "542df3496b97",
-      "title": "Presentation: Enchant Your AI and APIs with eBPF Magic 🪄",
-      "url": "https://www.infoq.com/presentations/ebpf-ai-gateway-kubernetes-security/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T11:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 6.8,
-      "_score_reason": "eBPF expanding into AI/API tooling; emerging ecosystem intersection with long-term infrastructure relevance",
-      "score": 6.8,
-      "score_reason": "eBPF expanding into AI/API tooling; emerging ecosystem intersection with long-term infrastructure relevance"
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "add0cf739a68",
@@ -4927,7 +5852,7 @@
       "published_at": "2026-08-21T11:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "43a9ab4c167b",
@@ -4948,24 +5873,6 @@
       "score_reason": "Google Research on spatial reasoning in LLMs addresses genuine capability gap with technical substance."
     },
     {
-      "id": "736e44227b47",
-      "title": "Construction of a Media Library and Redesign of a Music School in Sarlat-la-Canéda / Dominique Coulon & associés",
-      "url": "https://www.archdaily.com/1183616/construction-of-a-media-library-and-redesign-of-a-music-school-in-sarlat-la-caneda-dominique-coulon-and-associes",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T10:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 8.5,
-      "_score_reason": "French public building using local materials and passive design principles, relevant local precedent.",
-      "score": 8.5,
-      "score_reason": "French public building using local materials and passive design principles, relevant local precedent."
-    },
-    {
       "id": "e5814092a857",
       "title": "More Incidents of AIs Going Rogue in Cybersecurity Challenges",
       "url": "https://www.schneier.com/blog/archives/2026/08/more-incidents-of-ais-going-rogue-in-cybersecurity-challenges.html",
@@ -4977,65 +5884,11 @@
       "published_at": "2026-08-21T09:42:34+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "9aa1fc195d98",
-      "title": "Better Batteries",
-      "url": "https://matklad.github.io/2026/08/20/better-batteries.html",
-      "source": "Lobste.rs",
-      "domain": "dev_stack",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T07:47:50+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 2.8,
-      "_score_reason": "Battery technology unrelated to Rust, WASM, or developer tooling stack.",
-      "score": 2.8,
-      "score_reason": "Battery technology unrelated to Rust, WASM, or developer tooling stack."
-    },
-    {
-      "id": "e5b825ed4af9",
-      "title": "12 Colombian Houses Featuring Exposed Brick",
-      "url": "https://www.archdaily.com/939644/11-colombian-houses-that-feature-exposed-brick",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T07:30:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 5.0,
-      "_score_reason": "Exposed brick houses lack substantive sustainability claims or climate adaptation strategies.",
-      "score": 5.0,
-      "score_reason": "Exposed brick houses lack substantive sustainability claims or climate adaptation strategies."
-    },
-    {
-      "id": "953958bc1516",
-      "title": "Ocean Stories Museum  / Transborder Studio",
-      "url": "https://www.archdaily.com/1183510/ocean-stories-museum-transborder-studio",
-      "source": "ArchDaily",
-      "domain": "architecture",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T07:00:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-22T06:19:52.315596+00:00",
-      "_score": 4.0,
-      "_score_reason": "Museum project irrelevant to residential self-build; no eco-responsibility or material guidance.",
-      "score": 4.0,
-      "score_reason": "Museum project irrelevant to residential self-build; no eco-responsibility or material guidance."
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.4,
+      "_score_reason": "AI security research interesting but speculative, limited concrete mitigations for web developers",
+      "score": 5.4,
+      "score_reason": "AI security research interesting but speculative, limited concrete mitigations for web developers"
     },
     {
       "id": "8d5fc2ea778f",
@@ -5184,42 +6037,6 @@
       "score_reason": "Rigorous dose-response framework for pathogen risk assessment with direct public health application."
     },
     {
-      "id": "8289ec8a3b27",
-      "title": "Who Got Missed in the MFA Rollout&#x3f; More Powershell &#x2b; Graph &#x2b; Entra scripting&#x21;, (Fri, Aug 21st)",
-      "url": "https://isc.sans.edu/diary/rss/33272",
-      "source": "SANS ISC",
-      "domain": "security",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-21T02:47:00+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "07d6cd470ff3",
-      "title": "ISC Stormcast For Friday, August 21st, 2026 https://isc.sans.edu/podcastdetail/10062, (Fri, Aug 21st)",
-      "url": "https://isc.sans.edu/diary/rss/33270",
-      "source": "SANS ISC",
-      "domain": "security",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-21T02:00:03+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
       "id": "46e29074fcf2",
       "title": "Enabling the next-generation trait solver on nightly",
       "url": "https://blog.rust-lang.org/2026/08/21/enabling-next-solver-on-nightly/",
@@ -5258,18 +6075,18 @@
       "synthesis_id": "synthesis_ai_2026-08-24"
     },
     {
-      "id": "6e59df0ea0c2",
-      "title": "[$] A look at the Quickshell desktop-component toolkit",
-      "url": "https://lwn.net/Articles/1083090/",
-      "source": "LWN.net",
-      "domain": "dev_stack",
+      "id": "b00c3e470b5b",
+      "title": "How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code",
+      "url": "https://huggingface.co/blog/pwc-search",
+      "source": "Hugging Face",
+      "domain": "ai",
       "categories": [
         "general"
       ],
-      "published_at": "2026-08-20T19:39:51+00:00",
+      "published_at": "2026-08-21T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a112aa54f951",
@@ -5283,11 +6100,11 @@
       "published_at": "2026-08-20T17:44:36+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.2,
+      "_score_reason": "Real incident analysis showing vulnerability exploitation but limited actionability for typical developers",
+      "score": 6.2,
+      "score_reason": "Real incident analysis showing vulnerability exploitation but limited actionability for typical developers"
     },
     {
       "id": "69a3c0a66759",
@@ -5355,7 +6172,7 @@
       "published_at": "2026-08-20T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "5e86b723ff64",
@@ -5369,21 +6186,7 @@
       "published_at": "2026-08-20T15:42:39+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "d947f0c57b7f",
-      "title": "KDE Gear 26.08 released",
-      "url": "https://lwn.net/Articles/1089721/",
-      "source": "LWN.net",
-      "domain": "dev_stack",
-      "categories": [
-        "good_news"
-      ],
-      "published_at": "2026-08-20T13:37:26+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "55b33b4793ea",
@@ -5452,7 +6255,7 @@
       "published_at": "2026-08-20T13:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a9c0b8ca8a1a",
@@ -5466,11 +6269,11 @@
       "published_at": "2026-08-20T09:48:55+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.5,
+      "_score_reason": "Surveillance practice observation with no security vulnerability or developer mitigation",
+      "score": 3.5,
+      "score_reason": "Surveillance practice observation with no security vulnerability or developer mitigation"
     },
     {
       "id": "546c18a8a2cd",
@@ -5484,7 +6287,7 @@
       "published_at": "2026-08-20T09:47:22+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2e8bfa2782e5",
@@ -5598,7 +6401,7 @@
       "published_at": "2026-08-20T05:44:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "734eaf6b912c",
@@ -5834,21 +6637,7 @@
       "published_at": "2026-08-20T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "80622eb8d24d",
-      "title": "Flight attendants freaked out that Google is buying tons of Spirit employee data",
-      "url": "https://arstechnica.com/tech-policy/2026/08/flight-attendants-freaked-out-that-google-to-buy-tons-of-spirit-employee-data/",
-      "source": "Ars Technica AI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-19T20:04:41+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "7e1debc1bd0a",
@@ -5880,21 +6669,7 @@
       "published_at": "2026-08-19T18:00:02+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "650284a2db94",
-      "title": "Meta ran ads for an app promising to nudify female politicians",
-      "url": "https://arstechnica.com/ai/2026/08/meta-ran-ads-for-an-app-promising-to-nudify-female-politicians/",
-      "source": "Ars Technica AI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-19T15:45:29+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "f63223e3bc52",
@@ -5927,7 +6702,7 @@
       "published_at": "2026-08-19T11:21:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "00fec735eca2",
@@ -5941,25 +6716,11 @@
       "published_at": "2026-08-19T10:46:37+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
-    },
-    {
-      "id": "09f9dc1b5215",
-      "title": "Replit expands access to software creation with GPT-5.6 Luna",
-      "url": "https://openai.com/index/replit",
-      "source": "OpenAI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-19T07:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.2,
+      "_score_reason": "Policy concern unrelated to web development security or technical mitigations",
+      "score": 3.2,
+      "score_reason": "Policy concern unrelated to web development security or technical mitigations"
     },
     {
       "id": "f38625bdb1df",
@@ -6137,7 +6898,7 @@
       "published_at": "2026-08-19T04:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6dbfb305b24b",
@@ -6152,21 +6913,7 @@
       "published_at": "2026-08-19T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "40e57b678ada",
-      "title": "ChatGPT Ads expands across Europe",
-      "url": "https://openai.com/index/chatgpt-ads-expands-across-europe",
-      "source": "OpenAI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-18T22:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "da3edf87cdb7",
@@ -6216,11 +6963,11 @@
       "published_at": "2026-08-18T17:12:29+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.3,
+      "_score_reason": "EU CRA open source compliance podcast discussion minimal for immediate developer security actions",
+      "score": 4.3,
+      "score_reason": "EU CRA open source compliance podcast discussion minimal for immediate developer security actions"
     },
     {
       "id": "09b3c1c2df44",
@@ -6270,7 +7017,7 @@
       "published_at": "2026-08-18T11:30:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "1204bd549a14",
@@ -6291,20 +7038,6 @@
       "score_reason": "OpenAI addresses cyber-critical AI capabilities pacing—direct strategic/regulatory substance on frontier model governance."
     },
     {
-      "id": "f7788bfa76bc",
-      "title": "Partnering with CodeAI to prepare the first AI generation",
-      "url": "https://openai.com/index/partnering-with-codeai",
-      "source": "OpenAI",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-18T11:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
       "id": "2fba629bfada",
       "title": "LLMs and Contextual Integrity",
       "url": "https://www.schneier.com/blog/archives/2026/08/llms-and-contextual-integrity.html",
@@ -6317,11 +7050,11 @@
       "published_at": "2026-08-18T10:40:16+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 4.5,
+      "_score_reason": "Conceptual analysis of LLM security lacks concrete patches or developer actions",
+      "score": 4.5,
+      "score_reason": "Conceptual analysis of LLM security lacks concrete patches or developer actions"
     },
     {
       "id": "776665834bfa",
@@ -6335,7 +7068,7 @@
       "published_at": "2026-08-18T10:06:43+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e01d5b60c945",
@@ -6368,21 +7101,7 @@
       "published_at": "2026-08-18T09:13:53+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "89f9a699f7b8",
-      "title": "AI’s recursive self-improvement might not come so quickly after all",
-      "url": "https://www.technologyreview.com/2026/08/18/1142188/ai-recursive-self-improvement/",
-      "source": "MIT Tech Review AI",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-18T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2236226d8c4d",
@@ -6396,7 +7115,7 @@
       "published_at": "2026-08-18T07:59:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6368f17d2ec8",
@@ -6565,34 +7284,6 @@
       "score_reason": "Benchmark analysis directly impacts web tooling performance decisions for senior devs"
     },
     {
-      "id": "7550eaf867a9",
-      "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
-      "url": "https://huggingface.co/blog/multi-vector-encoder",
-      "source": "Hugging Face",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "74fdd9bd89c5",
-      "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
-      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
-      "source": "Hugging Face",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-17T19:46:21+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
       "id": "8f79c54c8bd1",
       "title": "IEEE Presidents’ Scholarship Honors Teen Innovators",
       "url": "https://spectrum.ieee.org/ieee-presidents-scholarship-2026",
@@ -6604,7 +7295,7 @@
       "published_at": "2026-08-17T18:00:04+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d0e541e2aa6a",
@@ -6618,7 +7309,7 @@
       "published_at": "2026-08-17T17:50:06+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "b39d73235791",
@@ -6632,7 +7323,7 @@
       "published_at": "2026-08-17T17:20:02+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "472402adde1a",
@@ -6682,11 +7373,11 @@
       "published_at": "2026-08-17T11:18:03+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 7.8,
+      "_score_reason": "Practical attack vector on public Wi-Fi with direct credential theft implications for web developers",
+      "score": 7.8,
+      "score_reason": "Practical attack vector on public Wi-Fi with direct credential theft implications for web developers"
     },
     {
       "id": "bd03ccfd856d",
@@ -6700,7 +7391,7 @@
       "published_at": "2026-08-17T10:34:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-08-17",
@@ -7090,7 +7781,7 @@
       "published_at": "2026-08-16T09:28:13+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "1a1590993c4a",
@@ -7159,25 +7850,7 @@
       "published_at": "2026-08-15T07:13:06+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "8e73450def02",
-      "title": "Friday Squid Blogging: Searching for the Colossal Squid",
-      "url": "https://www.schneier.com/blog/archives/2026/08/friday-squid-blogging-searching-for-the-colossal-squid-2.html",
-      "source": "Schneier on Security",
-      "domain": "security",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-14T21:01:49+00:00",
-      "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "c179fbae026c",
@@ -7198,20 +7871,6 @@
       "score_reason": "Browser monopoly threatens ad-blocking ecosystem; signals major market consolidation and developer freedom implications."
     },
     {
-      "id": "41ae7a137b97",
-      "title": "Digital Signal Processing Pioneer Bede Liu Dies At 91",
-      "url": "https://spectrum.ieee.org/digital-signal-processing-pioneer-bede-liu",
-      "source": "IEEE Spectrum",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-14T18:00:02+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
       "id": "24954a3cb203",
       "title": "CRA Monthly Tech Talk: ORBIT Launchpad SIG Updates",
       "url": "https://openssf.org/policy/cra/2026/08/14/cra-monthly-tech-talk-orbit-launchpad-sig-updates/",
@@ -7223,7 +7882,7 @@
       "published_at": "2026-08-14T16:39:29+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
       "_score": 0.0,
       "_score_reason": "",
       "score": 0.0,
@@ -7279,11 +7938,11 @@
       "published_at": "2026-08-14T11:24:35+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.9,
+      "_score_reason": "Privacy tracking tool useful for awareness but minimal severity or actionability for developers",
+      "score": 5.9,
+      "score_reason": "Privacy tracking tool useful for awareness but minimal severity or actionability for developers"
     },
     {
       "id": "da1cf8c35698",
@@ -7501,7 +8160,7 @@
       "published_at": "2026-08-13T21:24:55+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "24013c064501",
@@ -7569,21 +8228,7 @@
       "published_at": "2026-08-13T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "3617fcaa66d9",
-      "title": "Lightweight Dragonfly Deployment: P2P Distribution Without the Database Stack",
-      "url": "https://www.cncf.io/blog/2026/08/13/lightweight-dragonfly-deployment-p2p-distribution-without-the-database-stack/",
-      "source": "CNCF Blog",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-13T11:30:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3e500ccae6c7",
@@ -7751,7 +8396,7 @@
       "published_at": "2026-08-13T05:52:06+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "f72e87c9886c",
@@ -7929,7 +8574,7 @@
       "published_at": "2026-08-12T16:47:46+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "63dd354e6f23",
@@ -7980,7 +8625,7 @@
       "published_at": "2026-08-12T14:01:59+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "1f248b507ed2",
@@ -7994,11 +8639,11 @@
       "published_at": "2026-08-12T13:40:34+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 3.9,
+      "_score_reason": "Museum architecture by César Pelli lacks eco-responsibility focus or self-build relevance.",
+      "score": 3.9,
+      "score_reason": "Museum architecture by César Pelli lacks eco-responsibility focus or self-build relevance."
     },
     {
       "id": "16d84886a33c",
@@ -8234,12 +8879,8 @@
       ],
       "published_at": "2026-08-11T17:55:02+00:00",
       "lang": "en",
-      "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 0.0,
-      "_score_reason": "",
-      "score": 0.0,
-      "score_reason": ""
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "40c11ca5f7c1",
@@ -8308,7 +8949,7 @@
       "published_at": "2026-08-11T15:19:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e55e02c2188c",
@@ -8340,7 +8981,7 @@
       "published_at": "2026-08-11T13:02:41+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "b93103c51220",
@@ -8464,7 +9105,7 @@
       "published_at": "2026-08-10T19:30:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "72be5cde6e96",
@@ -8532,7 +9173,7 @@
       "published_at": "2026-08-10T12:07:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6c7031848305",
@@ -8564,7 +9205,7 @@
       "published_at": "2026-08-10T09:42:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "32610ccfd5e1",
@@ -8578,7 +9219,7 @@
       "published_at": "2026-08-10T07:26:14+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-08-10",
@@ -8954,7 +9595,7 @@
       "published_at": "2026-08-09T15:16:16+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d6d63f1fd9b9",
@@ -9319,7 +9960,7 @@
       "published_at": "2026-08-06T17:55:43+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d08dc295c10b",
@@ -9333,7 +9974,7 @@
       "published_at": "2026-08-06T17:00:56+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "ea121f25d187",
@@ -9347,7 +9988,7 @@
       "published_at": "2026-08-06T15:06:15+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "1143d89e3902",
@@ -9380,7 +10021,7 @@
       "published_at": "2026-08-06T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e1775d8d2e17",
@@ -9412,7 +10053,7 @@
       "published_at": "2026-08-06T09:16:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-08-06",
@@ -9674,7 +10315,7 @@
       "published_at": "2026-08-05T18:36:46+00:00",
       "lang": "fr",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3bff1aeaaa98",
@@ -9725,7 +10366,7 @@
       "published_at": "2026-08-05T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8aa25909a827",
@@ -9764,117 +10405,6 @@
       "score_reason": "Direct Rust governance impact; signals LLM policy debates affecting core tooling."
     },
     {
-      "id": "ada229d049a3",
-      "title": "Self-Organising Digital Circuits",
-      "url": "https://arxiv.org/abs/2608.02606",
-      "source": "ArXiv CS.AI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 7.0,
-      "_score_reason": "Self-organizing circuits novel; departure from standard architectures but limited immediate developer relevance.",
-      "score": 7.0,
-      "score_reason": "Self-organizing circuits novel; departure from standard architectures but limited immediate developer relevance."
-    },
-    {
-      "id": "91aad0498ead",
-      "title": "HyperAgent: Planning and Acting over Tool-Schema Hypergraphs for Tool-Use LLM Agents",
-      "url": "https://arxiv.org/abs/2608.02650",
-      "source": "ArXiv CS.AI",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 7.2,
-      "_score_reason": "Tool-use LLM agents via hypergraph schema; practical advancement in agentic reasoning architecture.",
-      "score": 7.2,
-      "score_reason": "Tool-use LLM agents via hypergraph schema; practical advancement in agentic reasoning architecture.",
-      "synthesis_id": "synthesis_ai_2026-08-06"
-    },
-    {
-      "id": "5a49428cf6c2",
-      "title": "VeriTrace: Human-Like Temporal Exploration Completes Agentic Action Space",
-      "url": "https://arxiv.org/abs/2608.02878",
-      "source": "ArXiv CS.AI",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 6.5,
-      "_score_reason": "Temporal action planning for agents; addresses exploration problem but narrow technical scope.",
-      "score": 6.5,
-      "score_reason": "Temporal action planning for agents; addresses exploration problem but narrow technical scope."
-    },
-    {
-      "id": "c28d20444652",
-      "title": "Deep Divide-and-Reduce in Symbolic Regression",
-      "url": "https://arxiv.org/abs/2608.02628",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 6.3,
-      "_score_reason": "Symbolic regression via divide-and-reduce; scientific substance but niche application domain.",
-      "score": 6.3,
-      "score_reason": "Symbolic regression via divide-and-reduce; scientific substance but niche application domain."
-    },
-    {
-      "id": "5135aebbdc8d",
-      "title": "LLMs Can Annotate Attribution Graphs",
-      "url": "https://arxiv.org/abs/2608.02632",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 8.2,
-      "_score_reason": "LLMs for structured annotation tasks; practical developer impact on knowledge graph construction.",
-      "score": 8.2,
-      "score_reason": "LLMs for structured annotation tasks; practical developer impact on knowledge graph construction.",
-      "synthesis_id": "synthesis_ai_2026-08-06"
-    },
-    {
-      "id": "180d7036c926",
-      "title": "Verifier-Guided Model Discovery for Physical Dynamical Systems with Pretrained Symbolic Transformers",
-      "url": "https://arxiv.org/abs/2608.02662",
-      "source": "ArXiv CS.LG",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-05T04:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 7.5,
-      "_score_reason": "Symbolic transformers for physics discovery; reproducible approach to scientific automation with real substance.",
-      "score": 7.5,
-      "score_reason": "Symbolic transformers for physics discovery; reproducible approach to scientific automation with real substance.",
-      "synthesis_id": "synthesis_ai_2026-08-06"
-    },
-    {
       "id": "fc624ced3073",
       "title": "This Week in Rust 663",
       "url": "https://this-week-in-rust.org/blog/2026/08/05/this-week-in-rust-663/",
@@ -9885,48 +10415,8 @@
       ],
       "published_at": "2026-08-05T04:00:00+00:00",
       "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-08T06:32:04.367862+00:00",
-      "_score": 8.1,
-      "_score_reason": "Weekly Rust digest aggregates relevant ecosystem updates, releases, and technical content for active developers.",
-      "score": 8.1,
-      "score_reason": "Weekly Rust digest aggregates relevant ecosystem updates, releases, and technical content for active developers."
-    },
-    {
-      "id": "b6ff313360bf",
-      "title": "Eight Myths on Software Engineering and GenAI",
-      "url": "https://queue.acm.org/detail.cfm?id=3807963",
-      "source": "HackerNews",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-08-04T23:50:52+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 8.5,
-      "_score_reason": "Challenges GenAI myths with evidence-based analysis; contrarian insights on actual engineering impact",
-      "score": 8.5,
-      "score_reason": "Challenges GenAI myths with evidence-based analysis; contrarian insights on actual engineering impact"
-    },
-    {
-      "id": "899f3cac4020",
-      "title": "Third-party cyber evaluations involving OpenAI models",
-      "url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models",
-      "source": "OpenAI",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-04T19:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-08T06:32:04.367862+00:00",
-      "_score": 7.8,
-      "_score_reason": "Primary source on third-party evaluations of OpenAI models; relevant to regulatory accountability frameworks.",
-      "score": 7.8,
-      "score_reason": "Primary source on third-party evaluations of OpenAI models; relevant to regulatory accountability frameworks."
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "86b00d701036",
@@ -9941,43 +10431,7 @@
       "published_at": "2026-08-04T16:47:18+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "c82b1b1a0f3b",
-      "title": "Presentation: The Five Stages of AI Maturity in Engineering Organizations - Where and Why Teams Get Stuck",
-      "url": "https://www.infoq.com/presentations/ai-sdlc-maturity-framework-bottlenecks/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-04T16:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 8.8,
-      "_score_reason": "Organizational AI adoption stages framework provides actionable strategic insights for maturity modeling",
-      "score": 8.8,
-      "score_reason": "Organizational AI adoption stages framework provides actionable strategic insights for maturity modeling"
-    },
-    {
-      "id": "a7f39bca4812",
-      "title": "Case study: How Burp AT helped expose whistleblower reports via a critical vulnerability that was overlooked for years",
-      "url": "https://portswigger.net/blog/case-study-how-burp-at-helped-expose-whistleblower-reports-via-a-critical-vulnerability-that-was-overlooked-for-years",
-      "source": "PortSwigger Blog",
-      "domain": "security",
-      "categories": [
-        "urgent"
-      ],
-      "published_at": "2026-08-04T14:45:31+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-09T06:36:13.530810+00:00",
-      "_score": 8.2,
-      "_score_reason": "Critical vulnerability case study with actionable lessons for developers on security testing.",
-      "score": 8.2,
-      "score_reason": "Critical vulnerability case study with actionable lessons for developers on security testing."
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "b520c96255f8",
@@ -9991,7 +10445,7 @@
       "published_at": "2026-08-04T14:45:31+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e134e2f80fb6",
@@ -10005,26 +10459,7 @@
       "published_at": "2026-08-04T13:26:14+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "31728e72a4ea",
-      "title": "Platform Engineering Maturity Emerges as a Key Differentiator for Enterprise AI Success",
-      "url": "https://www.infoq.com/news/2026/08/perforce-maturity-ai-success/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
-      "source": "InfoQ",
-      "domain": "business_market",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-08-04T12:00:00+00:00",
-      "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-05T08:14:18.944281+00:00",
-      "_score": 9.2,
-      "_score_reason": "Long-term signal on platform engineering maturity as enterprise AI enabler; strategic trend",
-      "score": 9.2,
-      "score_reason": "Long-term signal on platform engineering maturity as enterprise AI enabler; strategic trend",
-      "synthesis_id": "synthesis_2026_W33"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "70ab777e2dcf",
@@ -10037,12 +10472,8 @@
       ],
       "published_at": "2026-08-04T12:00:00+00:00",
       "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-08T06:32:04.367862+00:00",
-      "_score": 7.2,
-      "_score_reason": "NIST regulatory involvement in AI innovation coordination; policy infrastructure development signal.",
-      "score": 7.2,
-      "score_reason": "NIST regulatory involvement in AI innovation coordination; policy infrastructure development signal."
+      "status": "raw",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "87e5c9a58fac",
@@ -10056,7 +10487,7 @@
       "published_at": "2026-08-04T09:16:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "bcedd151dfdf",
@@ -10070,7 +10501,7 @@
       "published_at": "2026-08-04T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "5b7233298ff9",
@@ -10084,7 +10515,7 @@
       "published_at": "2026-08-03T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-08-03",
@@ -10288,7 +10719,7 @@
       "published_at": "2026-08-03T09:00:33+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
       "_score": 0.0,
       "_score_reason": "",
       "score": 0.0,
@@ -10441,7 +10872,7 @@
       "published_at": "2026-07-31T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "882be49da046",
@@ -10455,7 +10886,7 @@
       "published_at": "2026-07-31T10:00:27+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
       "_score": 0.0,
       "_score_reason": "",
       "score": 0.0,
@@ -10473,7 +10904,7 @@
       "published_at": "2026-07-31T07:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "278b65ef5416",
@@ -10487,21 +10918,7 @@
       "published_at": "2026-07-31T07:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "8c357c1baa75",
-      "title": "Science One Framework: A verifiable autonomous research framework via Chain-of-Evidence",
-      "url": "https://research.google/blog/science-one-framework-a-verifiable-autonomous-research-framework-via-chain-of-evidence/",
-      "source": "Google Research",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-07-30T20:36:36+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "fa4182f39960",
@@ -10515,7 +10932,7 @@
       "published_at": "2026-07-30T19:58:53+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "0776312011e6",
@@ -10529,7 +10946,7 @@
       "published_at": "2026-07-30T17:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "9f753904c494",
@@ -10543,7 +10960,7 @@
       "published_at": "2026-07-30T16:49:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3e8da64e2424",
@@ -10557,7 +10974,7 @@
       "published_at": "2026-07-30T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6953a8d0ca71",
@@ -10571,7 +10988,7 @@
       "published_at": "2026-07-30T15:00:59+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "30bee5c6271f",
@@ -10585,7 +11002,7 @@
       "published_at": "2026-07-30T14:58:47+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d690953a519e",
@@ -10599,7 +11016,7 @@
       "published_at": "2026-07-30T11:26:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "1749187b6d75",
@@ -10613,7 +11030,7 @@
       "published_at": "2026-07-30T09:50:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "fca87de3b0d6",
@@ -10627,7 +11044,7 @@
       "published_at": "2026-07-30T08:25:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "fb9008e09dc7",
@@ -10641,7 +11058,7 @@
       "published_at": "2026-07-30T08:20:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3eadb7bf0829",
@@ -10655,7 +11072,7 @@
       "published_at": "2026-07-30T08:17:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-30",
@@ -10751,7 +11168,7 @@
       "published_at": "2026-07-29T21:46:12+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "0b2e4ba75717",
@@ -10766,7 +11183,7 @@
       "published_at": "2026-07-29T20:03:12+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a700ee8f694b",
@@ -10780,7 +11197,7 @@
       "published_at": "2026-07-29T16:02:10+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "df3646377243",
@@ -10794,21 +11211,7 @@
       "published_at": "2026-07-29T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "e5f8a9c7714b",
-      "title": "From CUDA to MLX: How K-Search Brings Decades of Kernel Expertise to Apple Silicon",
-      "url": "http://bair.berkeley.edu/blog/2026/07/29/cuda-to-mlx-k-search/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-07-29T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "718a66de9659",
@@ -10822,7 +11225,7 @@
       "published_at": "2026-07-29T04:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e5f1995a3ef4",
@@ -10837,7 +11240,7 @@
       "published_at": "2026-07-28T20:05:20+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "294161fcfd13",
@@ -10851,22 +11254,7 @@
       "published_at": "2026-07-28T13:21:37+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "dcaa16176ab4",
-      "title": "What’s in the SOSS? Podcast #66 – S3E18 Turning AI into the Ultimate Open Source Maintainer Power Tool with Michael Winser",
-      "url": "https://openssf.org/podcast/2026/07/28/whats-in-the-soss-podcast-66-s3e18-turning-ai-into-the-ultimate-open-source-maintainer-power-tool-with-michael-winser/",
-      "source": "OpenSSF Blog",
-      "domain": "security",
-      "categories": [
-        "good_news",
-        "future_watch"
-      ],
-      "published_at": "2026-07-28T12:51:15+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "5129e11d3ad4",
@@ -10880,7 +11268,7 @@
       "published_at": "2026-07-27T18:00:52+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "0c79fe1b15fa",
@@ -10894,7 +11282,7 @@
       "published_at": "2026-07-27T12:51:51+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-27",
@@ -11087,20 +11475,6 @@
       ]
     },
     {
-      "id": "20fb9af983ce",
-      "title": "Teaching LLMs to Update Beliefs for Efficient Long-Horizon Interaction",
-      "url": "http://bair.berkeley.edu/blog/2026/07/26/abbel/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-07-26T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
       "id": "a82c19d595c8",
       "title": "AI-powered robotics in Europe: Live demonstrations and strategic debate",
       "url": "https://digital-strategy.ec.europa.eu/en/events/ai-powered-robotics-europe-live-demonstrations-and-strategic-debate",
@@ -11112,21 +11486,7 @@
       "published_at": "2026-07-24T12:32:37+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "58757f7b8632",
-      "title": "Group Note: WCAG Evaluation Methodology (WCAG-EM) 2.0",
-      "url": "https://www.w3.org/news/2026/group-note-wcag-evaluation-methodology-wcag-em-2-0/",
-      "source": "W3C Blog",
-      "domain": "business_market",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-07-23T13:08:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-23",
@@ -11222,7 +11582,7 @@
       "published_at": "2026-07-22T18:58:31+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8e2c9aff03e2",
@@ -11236,7 +11596,7 @@
       "published_at": "2026-07-22T14:18:24+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "860743384445",
@@ -11250,7 +11610,7 @@
       "published_at": "2026-07-22T13:38:54+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "f876d9cdf2d5",
@@ -11264,7 +11624,7 @@
       "published_at": "2026-07-22T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "d4581814d40b",
@@ -11278,7 +11638,7 @@
       "published_at": "2026-07-22T01:10:38+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-20",
@@ -11490,7 +11850,7 @@
       "published_at": "2026-07-17T16:46:47+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a364af4c7fa0",
@@ -11504,7 +11864,7 @@
       "published_at": "2026-07-17T13:35:25+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-16",
@@ -11600,7 +11960,7 @@
       "published_at": "2026-07-16T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "613a1c6aeda1",
@@ -11615,7 +11975,7 @@
       "published_at": "2026-07-14T19:22:42+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "903433d47242",
@@ -11629,7 +11989,7 @@
       "published_at": "2026-07-14T13:24:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "0e8a91c38bb5",
@@ -11643,7 +12003,7 @@
       "published_at": "2026-07-14T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "89c16b3448fb",
@@ -11657,7 +12017,7 @@
       "published_at": "2026-07-13T15:03:28+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-13",
@@ -11855,7 +12215,7 @@
       "published_at": "2026-07-13T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6c57fc64d4ec",
@@ -11869,7 +12229,7 @@
       "published_at": "2026-07-10T15:57:47+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "9f602eff5b28",
@@ -11883,7 +12243,7 @@
       "published_at": "2026-07-09T12:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-09",
@@ -11979,7 +12339,7 @@
       "published_at": "2026-07-09T09:20:06+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "143a0575f5ff",
@@ -11993,7 +12353,7 @@
       "published_at": "2026-07-09T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "77406f465962",
@@ -12007,7 +12367,7 @@
       "published_at": "2026-07-08T21:11:56+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "84abaadd2bd3",
@@ -12021,21 +12381,7 @@
       "published_at": "2026-07-08T12:31:39+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "d16153c20c4d",
-      "title": "Intelligence is Free, Now What? <br> Data Systems for, of, and by Agents",
-      "url": "http://bair.berkeley.edu/blog/2026/07/07/intelligence-is-free-now-what/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-07-07T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-07-06",
@@ -12239,7 +12585,7 @@
       "published_at": "2026-07-02T19:27:33+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "643393a833db",
@@ -12253,7 +12599,7 @@
       "published_at": "2026-07-02T15:39:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_2026_W26",
@@ -12464,7 +12810,7 @@
       "published_at": "2026-07-01T21:28:16+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3bcf54eb9d10",
@@ -12478,7 +12824,7 @@
       "published_at": "2026-07-01T21:28:08+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2063e43e38d6",
@@ -12492,21 +12838,7 @@
       "published_at": "2026-07-01T15:02:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "484c06b24d15",
-      "title": "2026 BAIR Graduate Showcase",
-      "url": "http://bair.berkeley.edu/blog/2026/07/01/grads-2026/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "future_watch"
-      ],
-      "published_at": "2026-07-01T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "c23a2de895ab",
@@ -12520,7 +12852,7 @@
       "published_at": "2026-06-30T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "4a7eebf71045",
@@ -12534,7 +12866,7 @@
       "published_at": "2026-06-29T17:15:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-06-29",
@@ -12820,7 +13152,7 @@
       "published_at": "2026-06-25T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8381e8c1023f",
@@ -12834,7 +13166,7 @@
       "published_at": "2026-06-23T16:12:49+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6ee5f9d97678",
@@ -12848,7 +13180,7 @@
       "published_at": "2026-06-23T15:29:52+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2479ac08a18c",
@@ -12862,7 +13194,7 @@
       "published_at": "2026-06-19T12:18:14+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-06-18",
@@ -12958,7 +13290,7 @@
       "published_at": "2026-06-17T23:08:46+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "e2adbeafc4bc",
@@ -12972,7 +13304,7 @@
       "published_at": "2026-06-15T21:20:31+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_ai_2026-06-15",
@@ -13177,7 +13509,7 @@
       "published_at": "2026-06-10T07:30:35+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "0d4aa3bcce31",
@@ -13191,7 +13523,7 @@
       "published_at": "2026-06-09T17:00:35+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_2026_W24",
@@ -13479,7 +13811,7 @@
       "published_at": "2026-06-04T11:58:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "f36564120813",
@@ -13493,7 +13825,7 @@
       "published_at": "2026-06-02T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "synthesis_2026_W21",
@@ -13795,7 +14127,7 @@
       "published_at": "2026-05-26T04:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "da90441a972c",
@@ -13809,7 +14141,7 @@
       "published_at": "2026-05-21T18:00:05+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "941fefc28637",
@@ -13823,7 +14155,7 @@
       "published_at": "2026-05-21T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "ea5d76aae771",
@@ -13837,7 +14169,7 @@
       "published_at": "2026-05-20T20:50:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "4271f51e8346",
@@ -13851,7 +14183,7 @@
       "published_at": "2026-05-19T14:35:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2def2497093c",
@@ -13865,11 +14197,11 @@
       "published_at": "2026-05-15T17:00:48+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 5.5,
-      "_score_reason": "Luxury residential project in Amagansett; limited evidence of climate adaptation or natural material use.",
-      "score": 5.5,
-      "score_reason": "Luxury residential project in Amagansett; limited evidence of climate adaptation or natural material use."
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.2,
+      "_score_reason": "Luxury house prioritizing aesthetics over measurable sustainability or self-construction feasibility.",
+      "score": 5.2,
+      "score_reason": "Luxury house prioritizing aesthetics over measurable sustainability or self-construction feasibility."
     },
     {
       "id": "026733ba08a0",
@@ -13883,7 +14215,7 @@
       "published_at": "2026-05-14T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "463c8a025a24",
@@ -13897,21 +14229,7 @@
       "published_at": "2026-05-12T14:18:47+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "a8b82a1934b2",
-      "title": "Adaptive Parallel Reasoning: The Next Paradigm in Efficient Inference Scaling",
-      "url": "http://bair.berkeley.edu/blog/2026/05/08/adaptive-parallel-reasoning/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-05-08T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8c08977bffd5",
@@ -13926,7 +14244,7 @@
       "published_at": "2026-05-07T16:01:21+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "ee45267d9207",
@@ -13940,7 +14258,7 @@
       "published_at": "2026-05-05T15:49:11+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "f9568cc33d47",
@@ -13953,12 +14271,12 @@
       ],
       "published_at": "2026-05-04T10:00:13+00:00",
       "lang": "en",
-      "status": "selected",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 9.2,
-      "_score_reason": "Low-carbon cedar cladding, Oxfordshire context relevant to France, material focus aligns with DIY ethos.",
-      "score": 9.2,
-      "score_reason": "Low-carbon cedar cladding, Oxfordshire context relevant to France, material focus aligns with DIY ethos."
+      "status": "archived",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 6.3,
+      "_score_reason": "Low-carbon bungalow with cedar wood but insufficient passive heating/cooling or water autonomy information.",
+      "score": 6.3,
+      "score_reason": "Low-carbon bungalow with cedar wood but insufficient passive heating/cooling or water autonomy information."
     },
     {
       "id": "1cb8fee6f2bf",
@@ -13972,7 +14290,7 @@
       "published_at": "2026-05-01T06:52:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "ffb01edc52d1",
@@ -13986,21 +14304,7 @@
       "published_at": "2026-04-28T10:42:54+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
-    },
-    {
-      "id": "434526b1fd71",
-      "title": "Gradient-based Planning for World Models at Longer Horizons",
-      "url": "http://bair.berkeley.edu/blog/2026/04/20/grasp/",
-      "source": "BAIR Blog",
-      "domain": "ai",
-      "categories": [
-        "general"
-      ],
-      "published_at": "2026-04-20T09:00:00+00:00",
-      "lang": "en",
-      "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "004b2d69fdd7",
@@ -14014,7 +14318,7 @@
       "published_at": "2026-04-16T16:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "a676bbdd032c",
@@ -14028,11 +14332,11 @@
       "published_at": "2026-04-09T09:45:29+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
-      "_score": 8.8,
-      "_score_reason": "Positive energy building with verified approach, though port location limits self-build applicability for home context.",
-      "score": 8.8,
-      "score_reason": "Positive energy building with verified approach, though port location limits self-build applicability for home context."
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
+      "_score": 5.0,
+      "_score_reason": "Positive energy building but focused on commercial scale, not applicable to home self-build context.",
+      "score": 5.0,
+      "score_reason": "Positive energy building but focused on commercial scale, not applicable to home self-build context."
     },
     {
       "id": "39c112d9a715",
@@ -14046,7 +14350,7 @@
       "published_at": "2026-03-26T10:30:05+00:00",
       "lang": "en",
       "status": "archived",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00",
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00",
       "_score": 0.0,
       "_score_reason": "",
       "score": 0.0,
@@ -14064,7 +14368,7 @@
       "published_at": "2026-03-25T16:17:11+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "225e6958b725",
@@ -14078,7 +14382,7 @@
       "published_at": "2026-03-24T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "55c7e66cb239",
@@ -14092,7 +14396,7 @@
       "published_at": "2026-03-10T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "bc58cdbaeac6",
@@ -14106,7 +14410,7 @@
       "published_at": "2026-02-27T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3f7e6ba1870a",
@@ -14120,7 +14424,7 @@
       "published_at": "2026-02-26T16:02:36+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "28856fc1bd29",
@@ -14134,7 +14438,7 @@
       "published_at": "2026-02-24T13:00:02+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "2df87f065d16",
@@ -14148,7 +14452,7 @@
       "published_at": "2026-02-18T23:25:52+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "fadddb0c77ea",
@@ -14162,7 +14466,7 @@
       "published_at": "2026-02-17T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "64d3a2e566ae",
@@ -14176,7 +14480,7 @@
       "published_at": "2026-02-16T10:00:30+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "eae2560d1141",
@@ -14190,7 +14494,7 @@
       "published_at": "2026-02-12T17:07:24+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "343de0a3775c",
@@ -14206,7 +14510,7 @@
       "published_at": "2026-02-10T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "8e5f19ecec73",
@@ -14220,7 +14524,7 @@
       "published_at": "2026-01-21T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "74ae331ee04d",
@@ -14234,7 +14538,7 @@
       "published_at": "2026-01-19T11:00:18+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3c3986db7959",
@@ -14248,7 +14552,7 @@
       "published_at": "2025-12-17T10:30:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "3145eabe89f5",
@@ -14262,7 +14566,7 @@
       "published_at": "2025-11-14T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "ac3775f84a07",
@@ -14277,7 +14581,7 @@
       "published_at": "2025-10-29T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "7117b280fceb",
@@ -14291,7 +14595,7 @@
       "published_at": "2025-08-19T16:03:19+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "6895a2b05ece",
@@ -14305,7 +14609,7 @@
       "published_at": "2025-06-04T14:00:29+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "23b7d3c194cc",
@@ -14319,7 +14623,7 @@
       "published_at": "2024-11-16T16:46:15+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "cae179043c8d",
@@ -14334,7 +14638,7 @@
       "published_at": "2024-09-09T17:28:48+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     },
     {
       "id": "63efe9a3386a",
@@ -14348,7 +14652,7 @@
       "published_at": "0001-01-01T00:00:00+00:00",
       "lang": "en",
       "status": "raw",
-      "fetched_at": "2026-08-25T06:26:14.224809+00:00"
+      "fetched_at": "2026-08-26T06:27:45.456032+00:00"
     }
   ]
 }
